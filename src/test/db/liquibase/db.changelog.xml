@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+  #%L
+  nppb-v2
+  $Id:$
+  $HeadURL:$
+  %%
+  Copyright (C) 2015 Mairie de Nouméa
+  %%
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as
+  published by the Free Software Foundation, either version 3 of the
+  License, or (at your option) any later version.
+  
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  
+  You should have received a copy of the GNU General Public
+  License along with this program.  If not, see
+  <http://www.gnu.org/licenses/gpl-3.0.html>.
+  #L%
+  -->
+
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.3.xsd">
+
+<!-- Ajouts de lignes de credits -->
+<changeSet author="barmi83" id="201503071114-1" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+    <createTable  tableName="TEST" >
+        <column name="BAD_COLUMN_NAME" 	type="varchar(10)"/>
+        <column name="good_column_name" 		type="varchar(255)" />
+    </createTable>
+</changeSet>
+
+	
+</databaseChangeLog>
