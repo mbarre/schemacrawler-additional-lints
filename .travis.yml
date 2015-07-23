@@ -1,1 +1,7 @@
 language: java
+services: 
+  postgresql
+addons: 
+  postgresql:"9.3"
+before_script:
+  - psql -c 'create database sc_lint_test;' - U postgres
