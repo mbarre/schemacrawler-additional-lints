@@ -1,7 +1,10 @@
 language: java
-services: 
-  postgresql
+services: postgresql
 addons: 
   postgresql:"9.3"
 before_script:
   - psql -c 'create database sc_lint_test;' -U postgres
+cache:
+  directories:
+  - .autoconf
+  - $HOME/.m2
