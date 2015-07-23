@@ -81,17 +81,29 @@
 			<version>${junit.version}</version>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.hsqldb</groupId>
-			<artifactId>hsqldb</artifactId>
-			<version>${hsqldb.version}</version>
-			<scope>provided</scope>
-		</dependency>
+		<!-- Schemacrawler -->
 		<dependency>
 			<groupId>us.fatehi</groupId>
 			<artifactId>schemacrawler-lint</artifactId>
 			<version>${schemacrawler.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>us.fatehi</groupId>
+			<artifactId>schemacrawler</artifactId>
+			<version>${schemacrawler.version}</version>
+		</dependency>
+<!--  		<dependency> -->
+<!-- 			<groupId>us.fatehi</groupId> -->
+<!-- 			<artifactId>schemacrawler-api</artifactId> -->
+<!-- 			<version>${schemacrawler.version}</version> -->
+<!-- 			<scope>test</scope> -->
+<!-- 		</dependency> -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>us.fatehi</groupId> -->
+<!-- 			<artifactId>schemacrawler-tools</artifactId> -->
+<!-- 			<version>${schemacrawler.version}</version> -->
+<!-- 			<scope>test</scope> -->
+<!-- 		</dependency>  -->
 		
 		<!-- SLF4J LOGBACK -->
         <dependency>
