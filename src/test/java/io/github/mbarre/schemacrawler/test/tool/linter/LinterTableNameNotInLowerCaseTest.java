@@ -20,7 +20,7 @@ public class LinterTableNameNotInLowerCaseTest {
     private static PostgreSqlDatabase database;
 	
 	@BeforeClass
-	public void init(){
+	public static void  init(){
 		database = new PostgreSqlDatabase();
 		database.setUp(PostgreSqlDatabase.CHANGE_LOG_LOWERCASE_CHECK);
 	}
