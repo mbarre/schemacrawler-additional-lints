@@ -5,9 +5,14 @@
 
 <changeSet author="mbarre" id="201503071114-1" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
     <createTable  tableName="TEST" >
-        <column name="BAD_COLUMN_NAME" 	type="varchar(10)"/>
-        <column name="good_column_name" 		type="varchar(255)" />
+    	<column name="id" 		type="int"/>
+        <column name="BAD_COLUMN_NAME" 		type="varchar(10)"/>
+        <column name="good_column_name" 	type="varchar(10)" />
     </createTable>
+    <addPrimaryKey columnNames="id"
+            constraintName="pk_test"
+            schemaName="public"
+            tableName="TEST"/>
 </changeSet>
 
 	
