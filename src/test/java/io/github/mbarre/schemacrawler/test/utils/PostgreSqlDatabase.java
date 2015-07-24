@@ -22,12 +22,14 @@ import org.slf4j.LoggerFactory;
  * @author mbarre
  */
 public class PostgreSqlDatabase {
+    private static final Logger LOG = LoggerFactory.getLogger(PostgreSqlDatabase.class);
+
     public static final String CHANGE_LOG_LOWERCASE_CHECK = "src/test/db/liquibase/lowerCaseCheck/db.changelog.xml";
 
-    private static final String CONNECTION_STRING = "jdbc:postgresql://localhost:5432/sc_lint_test";
-    private static final String USER_NAME = "postgres";
-    private static final String PASSWORD = "";
-    private static final Logger LOG = LoggerFactory.getLogger(PostgreSqlDatabase.class);
+    public static final String CONNECTION_STRING = "jdbc:postgresql://localhost:5432/sc_lint_test";
+    public static final String USER_NAME = "postgres";
+    public static final String PASSWORD = "";
+    
 
     private Liquibase liquibase;
 
