@@ -8,6 +8,7 @@ import io.github.mbarre.schemacrawler.tool.linter.LinterTableNameNotInLowerCase;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.util.Locale;
 
 import org.apache.commons.io.output.StringBuilderWriter;
 import org.junit.Assert;
@@ -65,11 +66,12 @@ public class LinterTableNameNotInLowerCaseTest {
 			executable.execute(connection);
 
 			System.out.println("----");
-			System.out.println(out);
+//			System.out.println(out);
 			
 			
 			Assert.assertNotNull(out.toString());
-			JSONObject json = new JSONObject(out);
+			JSONObject json = new JSONObject(out.toString(),Locale.ENGLISH);
+			System.out.println(json.toString());
 
 			Assert.assertNotNull(json.getJSONObject("table_lints"));
 			Assert.assertEquals("TEST", json.getJSONObject("table_lints").getString("name"));
