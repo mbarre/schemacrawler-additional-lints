@@ -28,7 +28,7 @@ public class PostgreSqlDatabase {
 
     public static final String CONNECTION_STRING = "jdbc:postgresql://localhost:5432/sc_lint_test";
     public static final String USER_NAME = "postgres";
-    public static final String PASSWORD = "";
+    public static final String PASSWORD = "postgres";
     
 
     private Liquibase liquibase;

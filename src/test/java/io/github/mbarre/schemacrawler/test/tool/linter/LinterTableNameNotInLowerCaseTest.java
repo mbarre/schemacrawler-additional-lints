@@ -65,13 +65,8 @@ public class LinterTableNameNotInLowerCaseTest {
 			executable.execute(connection);
 
 			System.out.println("----");
-//			System.out.println(out);
-			
-			
 			Assert.assertNotNull(out.toString());
-			JSONObject json = new JSONObject(out.toString().subSequence(1, out.toString().length()-1)) ;
-			System.out.println();
-
+			JSONObject json = new JSONObject(out.toString().substring(1, out.toString().length()-1)) ;
 			Assert.assertNotNull(json.getJSONObject("table_lints"));
 			Assert.assertEquals("TEST", json.getJSONObject("table_lints").getString("name"));
 
