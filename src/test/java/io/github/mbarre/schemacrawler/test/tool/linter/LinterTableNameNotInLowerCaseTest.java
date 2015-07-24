@@ -9,6 +9,7 @@ import io.github.mbarre.schemacrawler.tool.linter.LinterTableNameNotInLowerCase;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+import org.apache.commons.io.output.StringBuilderWriter;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -21,6 +22,8 @@ import schemacrawler.tools.executable.Executable;
 import schemacrawler.tools.executable.SchemaCrawlerExecutable;
 import schemacrawler.tools.lint.Linter;
 import schemacrawler.tools.lint.LinterRegistry;
+import schemacrawler.tools.options.OutputOptions;
+import schemacrawler.tools.options.TextOutputFormat;
 
 /**
  * @author mbarre
@@ -45,13 +48,21 @@ public class LinterTableNameNotInLowerCaseTest {
 		final SchemaCrawlerOptions options = new SchemaCrawlerOptions();
 		// Set what details are required in the schema - this affects the
 		// time taken to crawl the schema
-		options.setSchemaInfoLevel(SchemaInfoLevel.standard());
+		options.setSchemaInfoLevel(SchemaInfoLevel.minimum());
 
 		Connection connection = DriverManager.getConnection(PostgreSqlDatabase.CONNECTION_STRING, 
 				PostgreSqlDatabase.USER_NAME, PostgreSqlDatabase.PASSWORD);
 		
+		
 		final Executable executable = new SchemaCrawlerExecutable("lint");
+		StringBuilderWriter out = new StringBuilderWriter();
+		OutputOptions outputOptions = new OutputOptions(TextOutputFormat.text,out);
+		executable.setOutputOptions(outputOptions);
+		executable.setSchemaCrawlerOptions(options);
         executable.execute(connection);
+        
+        System.out.println("----");
+        System.out.println(out);
 		
 //		final Catalog catalog = SchemaCrawlerUtility.getCatalog(connection, options);
 //		for (final Schema schema: catalog.getSchemas())
