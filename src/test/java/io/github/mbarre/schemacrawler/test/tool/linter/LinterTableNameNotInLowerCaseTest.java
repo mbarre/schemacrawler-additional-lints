@@ -49,6 +49,7 @@ public class LinterTableNameNotInLowerCaseTest {
 		// Set what details are required in the schema - this affects the
 		// time taken to crawl the schema
 		options.setSchemaInfoLevel(SchemaInfoLevel.minimum());
+		options.setTableNamePattern("TEST");
 
 		Connection connection = DriverManager.getConnection(PostgreSqlDatabase.CONNECTION_STRING, 
 				PostgreSqlDatabase.USER_NAME, PostgreSqlDatabase.PASSWORD);
