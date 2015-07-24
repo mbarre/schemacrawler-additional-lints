@@ -10,8 +10,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 import org.apache.commons.io.output.StringBuilderWriter;
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -26,6 +24,8 @@ import schemacrawler.tools.lint.Linter;
 import schemacrawler.tools.lint.LinterRegistry;
 import schemacrawler.tools.options.OutputOptions;
 import schemacrawler.tools.options.TextOutputFormat;
+import schemacrawler.tools.text.utility.org.json.JSONArray;
+import schemacrawler.tools.text.utility.org.json.JSONObject;
 
 /**
  * @author mbarre
@@ -69,7 +69,7 @@ public class LinterTableNameNotInLowerCaseTest {
 			
 			
 			Assert.assertNotNull(out.toString());
-			JSONObject json = new JSONObject(out.toString().replace("[", "").replace("]", ""));
+			JSONObject json = new JSONObject(out);
 
 			Assert.assertNotNull(json.getJSONArray("table_lints"));
 			Assert.assertEquals(1, json.getJSONArray("table_lints").length());
