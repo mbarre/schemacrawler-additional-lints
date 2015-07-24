@@ -71,11 +71,10 @@ public class LinterTableNameNotInLowerCaseTest {
 			Assert.assertNotNull(out.toString());
 			JSONObject json = new JSONObject(out);
 
-			Assert.assertNotNull(json.getJSONArray("table_lints"));
-			Assert.assertEquals(1, json.getJSONArray("table_lints").length());
-			Assert.assertEquals("TEST", ((JSONObject)json.getJSONArray("table_lints").get(0)).get("name"));
+			Assert.assertNotNull(json.getJSONObject("table_lints"));
+			Assert.assertEquals("TEST", json.getJSONObject("table_lints").getString("name"));
 
-			JSONArray lints = (JSONArray)((JSONObject)json.getJSONArray("table_lints").get(0)).get("lints");
+			JSONArray lints = json.getJSONObject("table_lints").getJSONArray("lints");
 
 			boolean lintDectected = false;
 			for (int i=0; i < lints.length(); i++) {
