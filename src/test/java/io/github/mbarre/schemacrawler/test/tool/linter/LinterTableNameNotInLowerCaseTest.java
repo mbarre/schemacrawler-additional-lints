@@ -31,22 +31,22 @@ import schemacrawler.tools.options.TextOutputFormat;
  * @author mbarre
  */
 public class LinterTableNameNotInLowerCaseTest {
-	
+
 	Logger logger = LoggerFactory.getLogger(LinterTableNameNotInLowerCaseTest.class);
-    private static PostgreSqlDatabase database;
-	
+	private static PostgreSqlDatabase database;
+
 	@BeforeClass
 	public static void  init(){
 		database = new PostgreSqlDatabase();
 		database.setUp(PostgreSqlDatabase.CHANGE_LOG_LOWERCASE_CHECK);
 	}
-	
+
 	@Test
 	public void testLint() throws Exception{
-		
+
 		final LinterRegistry registry = new LinterRegistry();
 		Linter linter = registry.lookupLinter(LinterTableNameNotInLowerCase.class.getName());
-		
+
 		final SchemaCrawlerOptions options = new SchemaCrawlerOptions();
 		// Set what details are required in the schema - this affects the
 		// time taken to crawl the schema
@@ -55,37 +55,41 @@ public class LinterTableNameNotInLowerCaseTest {
 
 		Connection connection = DriverManager.getConnection(PostgreSqlDatabase.CONNECTION_STRING, 
 				PostgreSqlDatabase.USER_NAME, PostgreSqlDatabase.PASSWORD);
-		
-		
+
+
 		final Executable executable = new SchemaCrawlerExecutable("lint");
-		StringBuilderWriter out = new StringBuilderWriter();
-		OutputOptions outputOptions = new OutputOptions(TextOutputFormat.json,out);
-		executable.setOutputOptions(outputOptions);
-		executable.setSchemaCrawlerOptions(options);
-        executable.execute(connection);
-        
-        System.out.println("----");
-        System.out.println(out);
-        
-        JSONObject json = new JSONObject(out.toString());
-       
-        Assert.assertNotNull(json.getJSONArray("table_lints"));
-        Assert.assertEquals(1, json.getJSONArray("table_lints").length());
-        Assert.assertEquals("TEST", ((JSONObject)json.getJSONArray("table_lints").get(0)).get("name"));
-        
-        JSONArray lints = (JSONArray)((JSONObject)json.getJSONArray("table_lints").get(0)).get("lints");
-        
-        boolean lintDectected = false;
-        for (int i=0; i < lints.length(); i++) {
-			if(LinterTableNameNotInLowerCase.class.getName().equals(lints.getJSONObject(i).getString("id"))){
-				Assert.assertEquals("name should be in lower case", lints.getJSONObject(i).getString("description").trim());
-				Assert.assertEquals("TEST", lints.getJSONObject(i).getString("value").trim());
-				Assert.assertEquals("high", lints.getJSONObject(i).getString("severity").trim());
-				lintDectected = true;
+		try (StringBuilderWriter out = new StringBuilderWriter()) {
+			OutputOptions outputOptions = new OutputOptions(TextOutputFormat.json,out);
+			executable.setOutputOptions(outputOptions);
+			executable.setSchemaCrawlerOptions(options);
+			executable.execute(connection);
+
+			System.out.println("----");
+			System.out.println(out);
+			
+			
+			Assert.assertNotNull(out.toString());
+			JSONObject json = new JSONObject(out.toString().replace("[", "").replace("]", ""));
+
+			Assert.assertNotNull(json.getJSONArray("table_lints"));
+			Assert.assertEquals(1, json.getJSONArray("table_lints").length());
+			Assert.assertEquals("TEST", ((JSONObject)json.getJSONArray("table_lints").get(0)).get("name"));
+
+			JSONArray lints = (JSONArray)((JSONObject)json.getJSONArray("table_lints").get(0)).get("lints");
+
+			boolean lintDectected = false;
+			for (int i=0; i < lints.length(); i++) {
+				if(LinterTableNameNotInLowerCase.class.getName().equals(lints.getJSONObject(i).getString("id"))){
+					Assert.assertEquals("name should be in lower case", lints.getJSONObject(i).getString("description").trim());
+					Assert.assertEquals("TEST", lints.getJSONObject(i).getString("value").trim());
+					Assert.assertEquals("high", lints.getJSONObject(i).getString("severity").trim());
+					lintDectected = true;
+				}
 			}
+
+			Assert.assertTrue(lintDectected);
 		}
-        
-        Assert.assertTrue(lintDectected);
+
 	}
 
 }
