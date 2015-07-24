@@ -56,7 +56,7 @@ public class LinterTableNameNotInLowerCaseTest {
 		
 		final Executable executable = new SchemaCrawlerExecutable("lint");
 		StringBuilderWriter out = new StringBuilderWriter();
-		OutputOptions outputOptions = new OutputOptions(TextOutputFormat.text,out);
+		OutputOptions outputOptions = new OutputOptions(TextOutputFormat.json,out);
 		executable.setOutputOptions(outputOptions);
 		executable.setSchemaCrawlerOptions(options);
         executable.execute(connection);
