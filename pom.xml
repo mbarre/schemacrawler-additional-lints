@@ -92,18 +92,6 @@
 			<artifactId>schemacrawler</artifactId>
 			<version>${schemacrawler.version}</version>
 		</dependency>
-<!--  		<dependency> -->
-<!-- 			<groupId>us.fatehi</groupId> -->
-<!-- 			<artifactId>schemacrawler-api</artifactId> -->
-<!-- 			<version>${schemacrawler.version}</version> -->
-<!-- 			<scope>test</scope> -->
-<!-- 		</dependency> -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>us.fatehi</groupId> -->
-<!-- 			<artifactId>schemacrawler-tools</artifactId> -->
-<!-- 			<version>${schemacrawler.version}</version> -->
-<!-- 			<scope>test</scope> -->
-<!-- 		</dependency>  -->
 		
 		<!-- SLF4J LOGBACK -->
         <dependency>
@@ -141,6 +129,13 @@
 			<artifactId>commons-io</artifactId>
 			<version>2.4</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20141113</version>
+		</dependency>
+		
         
 		
 	</dependencies>

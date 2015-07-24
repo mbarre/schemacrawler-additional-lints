@@ -10,6 +10,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 import org.apache.commons.io.output.StringBuilderWriter;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -64,24 +66,26 @@ public class LinterTableNameNotInLowerCaseTest {
         
         System.out.println("----");
         System.out.println(out);
-		
-//		final Catalog catalog = SchemaCrawlerUtility.getCatalog(connection, options);
-//		for (final Schema schema: catalog.getSchemas())
-//		{
-//		  System.out.println(schema);
-//		  for (final Table table: catalog.getTables(schema))
-//		  {
-//		    System.out.print("o--> " + table);
-//		    for (final Column column: table.getColumns())
-//		    {
-//		      System.out.println("     o--> " + column);
-//		    }
-//		  }
-//		}
-		
-		
-		Assert.assertNotNull(linter);
-
+        
+        JSONObject json = new JSONObject(out.toString());
+       
+        Assert.assertNotNull(json.getJSONArray("table_lints"));
+        Assert.assertEquals(1, json.getJSONArray("table_lints").length());
+        Assert.assertEquals("TEST", ((JSONObject)json.getJSONArray("table_lints").get(0)).get("name"));
+        
+        JSONArray lints = (JSONArray)((JSONObject)json.getJSONArray("table_lints").get(0)).get("lints");
+        
+        boolean lintDectected = false;
+        for (int i=0; i < lints.length(); i++) {
+			if(LinterTableNameNotInLowerCase.class.getName().equals(lints.getJSONObject(i).getString("id"))){
+				Assert.assertEquals("name should be in lower case", lints.getJSONObject(i).getString("description").trim());
+				Assert.assertEquals("TEST", lints.getJSONObject(i).getString("value").trim());
+				Assert.assertEquals("high", lints.getJSONObject(i).getString("severity").trim());
+				lintDectected = true;
+			}
+		}
+        
+        Assert.assertTrue(lintDectected);
 	}
 
 }
