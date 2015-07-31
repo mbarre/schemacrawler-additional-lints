@@ -79,7 +79,7 @@ public class LinterTableNameNotInLowerCaseTest {
 			
 			for (int i=0; i < lints.length(); i++) {
 				if(LinterTableNameNotInLowerCase.class.getName().equals(lints.getJSONObject(i).getString("id"))){
-					if("TEST".equals(lints.getJSONObject(i).getString("value").trim())){
+					if("TEST_CASE".equals(lints.getJSONObject(i).getString("value").trim())){
 						Assert.assertEquals("name should be in lower case", lints.getJSONObject(i).getString("description").trim());
 						Assert.assertEquals("high", lints.getJSONObject(i).getString("severity").trim());
 						lint1Dectected = true;
