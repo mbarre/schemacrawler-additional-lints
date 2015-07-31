@@ -25,6 +25,8 @@ public class PostgreSqlDatabase {
     private static final Logger LOG = LoggerFactory.getLogger(PostgreSqlDatabase.class);
 
     public static final String CHANGE_LOG_LOWERCASE_CHECK = "src/test/db/liquibase/lowerCaseCheck/db.changelog.xml";
+    public static final String CHANGE_LOG_PRIMARY_KEY_CHECK = "src/test/db/liquibase/primaryKeyCheck/db.changelog.xml";
+    public static final String CHANGE_LOG_REMARK_CHECK = "src/test/db/liquibase/remarkCheck/db.changelog.xml";
 
     public static final String CONNECTION_STRING = "jdbc:postgresql://localhost:5432/sc_lint_test";
     public static final String USER_NAME = "postgres";
