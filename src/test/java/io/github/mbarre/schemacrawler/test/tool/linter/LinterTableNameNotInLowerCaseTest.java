@@ -51,7 +51,7 @@ public class LinterTableNameNotInLowerCaseTest {
 		// Set what details are required in the schema - this affects the
 		// time taken to crawl the schema
 		options.setSchemaInfoLevel(SchemaInfoLevel.minimum());
-		options.setTableNamePattern("TEST");
+		options.setTableNamePattern("TEST_CASE");
 
 		Connection connection = DriverManager.getConnection(PostgreSqlDatabase.CONNECTION_STRING, 
 				PostgreSqlDatabase.USER_NAME, PostgreSqlDatabase.PASSWORD);
@@ -65,6 +65,8 @@ public class LinterTableNameNotInLowerCaseTest {
 			executable.execute(connection);
 
 			System.out.println("----");
+			System.out.println(out);
+			System.out.println("----");
 			Assert.assertNotNull(out.toString());
 			JSONObject json = new JSONObject(out.toString().substring(1, out.toString().length()-1)) ;
 			Assert.assertNotNull(json.getJSONObject("table_lints"));
@@ -72,17 +74,28 @@ public class LinterTableNameNotInLowerCaseTest {
 
 			JSONArray lints = json.getJSONObject("table_lints").getJSONArray("lints");
 
-			boolean lintDectected = false;
+			boolean lint1Dectected = false;
+			boolean lint2Dectected = false;
+			
 			for (int i=0; i < lints.length(); i++) {
 				if(LinterTableNameNotInLowerCase.class.getName().equals(lints.getJSONObject(i).getString("id"))){
-					Assert.assertEquals("name should be in lower case", lints.getJSONObject(i).getString("description").trim());
-					Assert.assertEquals("TEST", lints.getJSONObject(i).getString("value").trim());
-					Assert.assertEquals("high", lints.getJSONObject(i).getString("severity").trim());
-					lintDectected = true;
+					if("TEST".equals(lints.getJSONObject(i).getString("value").trim())){
+						Assert.assertEquals("name should be in lower case", lints.getJSONObject(i).getString("description").trim());
+						Assert.assertEquals("high", lints.getJSONObject(i).getString("severity").trim());
+						lint1Dectected = true;
+					}
+					else if("UPPERCASE_COLUMNNAME".equals(lints.getJSONObject(i).getString("value").trim())){
+						Assert.assertEquals("name should be in lower case", lints.getJSONObject(i).getString("description").trim());
+						Assert.assertEquals("high", lints.getJSONObject(i).getString("severity").trim());
+						lint2Dectected = true;
+					}
+					else{
+						Assert.fail("Not expected lint detected :"+lints.getJSONObject(i).getString("value").trim());
+					}
 				}
 			}
 
-			Assert.assertTrue(lintDectected);
+			Assert.assertTrue("Some expected lints have not been detected.", lint1Dectected && lint2Dectected);
 		}
 
 	}

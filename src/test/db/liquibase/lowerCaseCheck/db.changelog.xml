@@ -4,15 +4,15 @@
 	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
 <changeSet author="mbarre" id="201503071114-1" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
-    <createTable  tableName="TEST" >
-    	<column name="id" 		type="int"/>
-        <column name="BAD_COLUMN_NAME" 		type="varchar(10)"/>
-        <column name="good_column_name" 	type="varchar(10)" />
+    <createTable  tableName="TEST_CASE" remarks="table for lint LinterTableNameNotInLowerCase">
+    	<column name="id" 						type="int" remarks="primary key"/>
+        <column name="UPPERCASE_COLUMN_NAME" 	type="varchar(10)" remarks="column with bad case"/>
+        <column name="lowercase_column_name" 	type="varchar(10)" remarks="column with good case"/>
     </createTable>
     <addPrimaryKey columnNames="id"
             constraintName="pk_test"
             schemaName="public"
-            tableName="TEST"/>
+            tableName="TEST_CASE"/>
 </changeSet>
 
 	

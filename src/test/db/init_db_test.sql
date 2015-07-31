@@ -1,2 +1,2 @@
 psql -host localhost -U postgres -W
-create database cs_lint_test owner postgres;
+create database sc_lint_test owner postgres;
