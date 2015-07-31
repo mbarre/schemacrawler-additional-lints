@@ -8,5 +8,7 @@ cache:
   directories:
   - .autoconf
   - $HOME/.m2
+script:
+  - mvn clean cobertura:cobertura
 after_success:
-  - mvn clean cobertura:cobertura coveralls:report
+  - mvn coveralls:report
