@@ -10,7 +10,7 @@
 		</layout>
 	</appender>
 
-    <logger name="io.github.mbarre.schemacrawler" level="DEBUG" />
+    <logger name="io.github.mbarre.schemacrawler" level="debug" />
     <!--<logger name="org.springframework.security" level="DEBUG" />-->
     <!--<logger name="org.zkoss" level="DEBUG" />-->
     <!--<logger name="org.hibernate" level="TRACE" />-->

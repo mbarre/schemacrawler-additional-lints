@@ -70,7 +70,7 @@ public class LinterTableNameNotInLowerCaseTest {
 			Assert.assertNotNull(out.toString());
 			JSONObject json = new JSONObject(out.toString().substring(1, out.toString().length()-1)) ;
 			Assert.assertNotNull(json.getJSONObject("table_lints"));
-			Assert.assertEquals("TEST", json.getJSONObject("table_lints").getString("name"));
+			Assert.assertEquals("TEST_CASE", json.getJSONObject("table_lints").getString("name"));
 
 			JSONArray lints = json.getJSONObject("table_lints").getJSONArray("lints");
 
