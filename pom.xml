@@ -249,9 +249,9 @@
 							<version>2.6</version>
 							<configuration>
 								<format>xml</format>
-						        <maxmem>256m</maxmem>
-						        <!-- aggregated reports for multi-module projects -->
-						        <aggregate>true</aggregate>
+						        	<maxmem>256m</maxmem>
+						        	<!-- aggregated reports for multi-module projects -->
+						        	<aggregate>true</aggregate>
 							</configuration>
 						</plugin>
 						<!-- Submit code coverage report to Coveralls.io. -->
@@ -260,6 +260,7 @@
 			                <artifactId>coveralls-maven-plugin</artifactId>
 			                <version>3.1.0</version>
 			                <configuration>
+			                    <serviceName>travis-ci</serviceName>
 			                    <!-- Since I use Travis CI I do not have to put my Coveralls token here. -->
 			                </configuration>
 			            </plugin>
