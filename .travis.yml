@@ -9,6 +9,6 @@ cache:
   - .autoconf
   - $HOME/.m2
 script:
-  - mvn clean cobertura:cobertura
+  - mvn clean cobertura:report
 after_success:
   - mvn coveralls:report
