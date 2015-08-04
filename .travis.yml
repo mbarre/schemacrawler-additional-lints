@@ -12,4 +12,4 @@ cache:
   - .autoconf
   - $HOME/.m2
 after_success:
-  - mvn clean -DrepoToken=$REPO_TOKEN cobertura:cobertura org.eluder.coveralls:coveralls-maven-plugin:report
+  - mvn clean test -DrepoToken=$REPO_TOKEN jacoco:report coveralls:report
