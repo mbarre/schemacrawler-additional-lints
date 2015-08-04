@@ -221,6 +221,13 @@
 						                <goal>prepare-agent</goal>
 						            </goals>
 						        </execution>
+						        <execution>
+				                          <id>jacoco-site</id>
+				                          <phase>package</phase>
+				                          <goals>
+				                            <goal>report</goal>
+				                          </goals>
+				                       </execution>
 						    </executions>
 						</plugin>
 						<!-- Submit code coverage report to Coveralls.io. -->
