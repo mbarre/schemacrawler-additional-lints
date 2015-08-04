@@ -139,41 +139,8 @@
         
 		
 	</dependencies>
-
-<!-- 	<distributionManagement> -->
-<!-- 		<snapshotRepository> -->
-<!-- 			<id>ossrh</id> -->
-<!-- 			<url>https://oss.sonatype.org/content/repositories/snapshots</url> -->
-<!-- 		</snapshotRepository> -->
-<!-- 	</distributionManagement> -->
-
 	<build>
 		<plugins>
-<!-- 			<plugin> -->
-<!-- 				<groupId>org.apache.maven.plugins</groupId> -->
-<!-- 				<artifactId>maven-gpg-plugin</artifactId> -->
-<!-- 				<version>1.6</version> -->
-<!-- 				<executions> -->
-<!-- 					<execution> -->
-<!-- 						<id>sign-artifacts</id> -->
-<!-- 						<phase>verify</phase> -->
-<!-- 						<goals> -->
-<!-- 							<goal>sign</goal> -->
-<!-- 						</goals> -->
-<!-- 					</execution> -->
-<!-- 				</executions> -->
-<!-- 			</plugin> -->
-<!-- 			<plugin> -->
-<!-- 				<groupId>org.sonatype.plugins</groupId> -->
-<!-- 				<artifactId>nexus-staging-maven-plugin</artifactId> -->
-<!-- 				<version>1.6.5</version> -->
-<!-- 				<extensions>true</extensions> -->
-<!-- 				<configuration> -->
-<!-- 					<serverId>ossrh</serverId> -->
-<!-- 					<nexusUrl>https://oss.sonatype.org/</nexusUrl> -->
-<!-- 					<autoReleaseAfterClose>true</autoReleaseAfterClose> -->
-<!-- 				</configuration> -->
-<!-- 			</plugin> -->
 			<plugin>
 				<groupId>com.github.github</groupId>
 				<artifactId>site-maven-plugin</artifactId>
@@ -244,15 +211,17 @@
 						</plugin>
 
 						<plugin>
-							<groupId>org.codehaus.mojo</groupId>
-							<artifactId>cobertura-maven-plugin</artifactId>
-							<version>2.6</version>
-							<configuration>
-								<format>xml</format>
-						        	<maxmem>256m</maxmem>
-						        	<!-- aggregated reports for multi-module projects -->
-						        	<aggregate>true</aggregate>
-							</configuration>
+						    <groupId>org.jacoco</groupId>
+						    <artifactId>jacoco-maven-plugin</artifactId>
+						    <version>0.7.2.201409121644</version>
+						    <executions>
+						        <execution>
+						            <id>prepare-agent</id>
+						            <goals>
+						                <goal>prepare-agent</goal>
+						            </goals>
+						        </execution>
+						    </executions>
 						</plugin>
 						<!-- Submit code coverage report to Coveralls.io. -->
 			            <plugin>
