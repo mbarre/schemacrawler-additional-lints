@@ -212,6 +212,10 @@
 						    <groupId>org.jacoco</groupId>
 						    <artifactId>jacoco-maven-plugin</artifactId>
 						    <version>0.7.2.201409121644</version>
+						    <configuration>
+				                       <destFile>${basedir}/target/coverage-reports/jacoco-unit.exec</destFile>
+				                       <dataFile>${basedir}/target/coverage-reports/jacoco-unit.exec</dataFile>
+				                    </configuration>
 						    <executions>
 						        <execution>
 						            <id>prepare-agent</id>
