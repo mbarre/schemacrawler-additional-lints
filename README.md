@@ -39,3 +39,7 @@ command and enjoy.
 Check that dependencies are up-to-date :
 
     mvn versions:display-dependency-updates
+
+Check that plugins are up-to-date :
+
+    mvn versions:display-plugin-updates
