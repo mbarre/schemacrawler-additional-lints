@@ -235,6 +235,7 @@
 			                <version>3.1.0</version>
 			                <configuration>
 			                    <serviceName>travis-ci</serviceName>
+			                    <repoToken>YCO2Lh8EwlzDW1kNm8aej2ZLXGLuTQyga</repoToken>
 			                    <!-- Since I use Travis CI I do not have to put my Coveralls token here. -->
 			                </configuration>
 			            </plugin>
