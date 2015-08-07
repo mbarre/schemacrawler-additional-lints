@@ -11,5 +11,7 @@ cache:
   directories:
   - .autoconf
   - $HOME/.m2
+script:
+  - mvn test jacoco:report
 after_success:
-  - mvn clean test jacoco:report coveralls:report
+  - mvn coveralls:report
