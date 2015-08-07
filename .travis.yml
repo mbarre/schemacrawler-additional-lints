@@ -12,4 +12,4 @@ cache:
   - .autoconf
   - $HOME/.m2
 after_success:
-  - mvn clean test -DrepoToken=$REPO_TOKEN jacoco:report coveralls:report
+  - mvn clean test jacoco:report coveralls:report
