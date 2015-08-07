@@ -33,3 +33,9 @@ Build without testing as a local postgres install is required to test.
 ... and you're done, you just have to pass your
 normal  [schemacrawler lint](http://sualeh.github.io/SchemaCrawler/lint.html)
 command and enjoy.
+
+# Pre-release tasks
+
+Check that dependencies are up-to-date :
+
+    mvn versions:display-dependency-updates
