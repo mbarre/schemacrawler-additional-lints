@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="schemacrawler-additionnallints">
+    <poweredBy>  
+        <logo name="Maven" href="http://maven.apache.org/" img="http://maven.apache.org/images/logos/maven-button-1.png" />
+    </poweredBy>
+    
+    <bannerLeft>
+        <name>Schemacrawler Additionnal Lints</name>
+        <href>https://github.com/mbarre/schemacrawler-additionnallints</href>
+    </bannerLeft>
+    <skin>
+        <groupId>lt.velykis.maven.skins</groupId>
+        <artifactId>reflow-maven-skin</artifactId>
+        <version>1.1.1</version>
+    </skin>
+    <body>
+        <links>
+            <!-- Plugin links -->
+            <item name = "Plugin ghp (Githug Pages)" href = "http://github.com/mbarre/schemacrawler-additionnallints/"/>
+            <item name = "Project githug page" href = "http://github.com/mbarre/schemacrawler-additionnallints"/>
+
+            <!-- Schemacrawler links -->
+            <item name="Schemacrawler homepage" href="http://schemacrawler.sourceforge.net/" />
+            <item name="Download Schemacrawler" href="http://sourceforge.net/projects/schemacrawler/files/"/>
+        </links>
+
+        <menu ref="reports"/>
+        <footer>All rights reserved.</footer>
+    </body>
+</project>

@@ -253,6 +253,19 @@
 
                     </reportPlugins>
                 </configuration>
+            	<dependencies>
+            	<dependency>
+		          <groupId>lt.velykis.maven.skins</groupId>
+		          <artifactId>reflow-velocity-tools</artifactId>
+		          <version>1.1.1</version>
+		        </dependency>
+		        <!-- Reflow skin requires Velocity >= 1.7  -->
+		        <dependency>
+		          <groupId>org.apache.velocity</groupId>
+		          <artifactId>velocity</artifactId>
+		          <version>1.7</version>
+		        </dependency>
+        </dependencies>
             </plugin>
         	<plugin>
                 <groupId>org.eluder.coveralls</groupId>
