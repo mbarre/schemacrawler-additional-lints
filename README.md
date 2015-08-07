@@ -3,6 +3,18 @@
 
 Some additionnal lints for [Schemacrawler](http://sualeh.github.io/SchemaCrawler/)
 
+# Main purpose
+
+The main purpose of this lint library is to enhance native schemacrawler lints
+with some more hardcore constraints and some specific postgres types. That's
+why a postgreSQL database instance is required to test.
+
+This project has been created to be used at our office
+[Mairie de la Ville de Nouméa](http://www.noumea.nc/) to test our database
+schema quality in a more easy way and make it possible for our partners to
+apply ou database quality policy the easy way.
+
+
 # Build and install lint
 
 **Notice that this version is designed to run on schemacrawler `12.06.03`.**
