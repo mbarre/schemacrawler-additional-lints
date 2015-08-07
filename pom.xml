@@ -44,7 +44,21 @@
 			<timezone>+11</timezone>
 		</developer>
 	</developers>
-
+        <contributors>
+            <contributor>
+            <email>Adrien.Sales@gmail.com</email>
+            <name>Sales</name>
+            <organization>Github</organization>
+            <organizationUrl>https://github.com/adriens</organizationUrl>
+            <roles>
+                <role>DBA</role>
+                <role>Documentation contributor</role>
+                <role>Tester</role>
+                <role>PostgreSQL expert</role>
+            </roles>
+            <timezone>+11</timezone>
+        </contributor>
+        </contributors>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<schemacrawler.version>12.06.03</schemacrawler.version>
