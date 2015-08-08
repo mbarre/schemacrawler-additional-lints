@@ -149,7 +149,11 @@
 		<dependency>
 			<groupId>org.json</groupId>
 			<artifactId>json</artifactId>
-			<version>20141113</version>
+                        <version>20140107</version>
+                        <!--
+                        Needs JDK 1.8 to compile 
+                        <version>20141113</version>
+                        -->
 		</dependency>
 	</dependencies>
 
