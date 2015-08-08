@@ -34,6 +34,18 @@ Build without testing as a local postgres install is required to test.
 normal  [schemacrawler lint](http://sualeh.github.io/SchemaCrawler/lint.html)
 command and enjoy.
 
+# Build and test
+
+To ba able to test locally, assuming you have a locally postgreSQL instance
+up and running with the proper `superuser` account, then run the following
+commands
+
+    dropdb --if-exists sc_lint_test
+    createdb sc_lint_test
+    mvn install
+    export LINT_VERSION=1.0
+    cp target/schemacrawler-additionnallints-${LINT_VERSION}.jar $SCHEMACRAWLER_HOME/lib
+
 # Pre-release tasks
 
 Check that dependencies are up-to-date :
