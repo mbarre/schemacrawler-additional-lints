@@ -44,12 +44,28 @@
 			<timezone>+11</timezone>
 		</developer>
 	</developers>
-
+        <contributors>
+            <contributor>
+            <email>Adrien.Sales@gmail.com</email>
+            <name>Sales</name>
+            <organization>Github</organization>
+            <organizationUrl>https://github.com/adriens</organizationUrl>
+            <roles>
+                <role>DBA</role>
+                <role>Documentation contributor</role>
+                <role>Tester</role>
+                <role>PostgreSQL expert</role>
+                <role>Schemacrawler integrator</role>
+                <role>Open source evangelist</role>
+            </roles>
+            <timezone>+11</timezone>
+        </contributor>
+        </contributors>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<schemacrawler.version>12.06.03</schemacrawler.version>
 		<hsqldb.version>2.3.2</hsqldb.version>
-		<junit.version>4.11</junit.version>
+		<junit.version>4.12</junit.version>
 		<github.global.server>github</github.global.server>
 
 		<maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
@@ -70,8 +86,8 @@
 
 		<slf4j.version>1.7.12</slf4j.version>
 		<logback.version>1.1.3</logback.version>
-		<liquibase-plugin.version>3.4.0</liquibase-plugin.version>
-		<postgresql.version>9.3-1102-jdbc41</postgresql.version>
+		<liquibase-plugin.version>3.4.1</liquibase-plugin.version>
+		<postgresql.version>9.4-1201-jdbc41</postgresql.version>
 	</properties>
 
 	<dependencies>
@@ -133,7 +149,11 @@
 		<dependency>
 			<groupId>org.json</groupId>
 			<artifactId>json</artifactId>
-			<version>20140107</version>
+                        <version>20140107</version>
+                        <!--
+                        Needs JDK 1.8 to compile 
+                        <version>20141113</version>
+                        -->
 		</dependency>
 	</dependencies>
 
