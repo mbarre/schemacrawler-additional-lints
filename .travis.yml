@@ -5,7 +5,7 @@ services: postgresql
 addons: 
   postgresql:"9.3"
 before_script:
-  dropdb --if-exists sc_lint_test
+  - dropdb --if-exists sc_lint_test
   - psql -c 'create database sc_lint_test;' -U postgres
 cache:
   directories:
