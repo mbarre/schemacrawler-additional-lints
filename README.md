@@ -17,17 +17,18 @@ apply our database quality policy the easy way.
 
 # Build and install lint
 
-**Notice that this version is designed to run on schemacrawler `12.06.03`.**
+**Notice that this version is designed to run on schemacrawler `14.x.x`...
+and hence is requiring JDK-1.8 to be built and run.**
 
 For now the jar is not available on maven central repo, so you'll have to build it yourself :
 
     git clone https://github.com/mbarre/schemacrawler-additionnallints.git schemacrawler-additionnallints
     cd schemacrawler-additionnallints
+    export LINT_VERSION=1.1-SNAPSHOT
 
 Build without testing as a local postgres install is required to test.
 
     mvn install -Dmaven.test.skip=true
-    export LINT_VERSION=1.0
     cp target/schemacrawler-additionnallints-${LINT_VERSION}.jar $SCHEMACRAWLER_HOME/lib
 
 ... and you're done, you just have to pass your
@@ -43,7 +44,6 @@ commands
     dropdb --if-exists sc_lint_test
     createdb sc_lint_test
     mvn install
-    export LINT_VERSION=1.0
     cp target/schemacrawler-additionnallints-${LINT_VERSION}.jar $SCHEMACRAWLER_HOME/lib
 
 # Pre-release tasks
