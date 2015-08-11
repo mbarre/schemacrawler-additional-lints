@@ -29,8 +29,15 @@ public class PostgreSqlDatabase {
     public static final String CHANGE_LOG_REMARK_CHECK = "src/test/db/liquibase/remarkCheck/db.changelog.xml";
 
     public static final String CONNECTION_STRING = "jdbc:postgresql://localhost:5432/sc_lint_test";
+    /* Leave to postgres as the default user as described on travis
+    (http://docs.travis-ci.com/user/database-setup/)
+    
+    The default user for accessing the local PostgreSQL server is postgres
+    and doesn’t have a password set up.
+    
+    */
     public static final String USER_NAME = "postgres";
-    public static final String PASSWORD = "postgres";
+    public static final String PASSWORD = "";
     
 
     private Liquibase liquibase;
