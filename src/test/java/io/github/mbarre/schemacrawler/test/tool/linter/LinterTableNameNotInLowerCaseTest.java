@@ -55,7 +55,7 @@ public class LinterTableNameNotInLowerCaseTest {
 		options.setTableNamePattern("TEST_CASE");
 		
 		Connection connection = DriverManager.getConnection(PostgreSqlDatabase.CONNECTION_STRING, 
-				PostgreSqlDatabase.USER_NAME, PostgreSqlDatabase.PASSWORD);
+				PostgreSqlDatabase.USER_NAME, database.getPostgresPassword());
 		
 		final Executable executable = new SchemaCrawlerExecutable("lint");
 		try (StringBuilderWriter out = new StringBuilderWriter()) {

@@ -3,9 +3,13 @@
  */
 package io.github.mbarre.schemacrawler.test.utils;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
 
 import liquibase.Liquibase;
 import liquibase.database.core.PostgresDatabase;
@@ -37,14 +41,16 @@ public class PostgreSqlDatabase {
     
     */
     public static final String USER_NAME = "postgres";
-    public static final String PASSWORD = "";
+    public static final String DEFAULT_PASSWORD = "";
     
 
     private Liquibase liquibase;
+    private Properties properties;
+    private String postgresPassword;
 
     public void setUp(String changelog) {
 	try {
-
+            setProperties();
 	    createTables(changelog);
 
 	} catch (Exception ex) {
@@ -52,6 +58,39 @@ public class PostgreSqlDatabase {
 	    throw new RuntimeException("Error during database initialization", ex);
 	}
     }
+    
+    public void setProperties(){
+        this.properties = new Properties();
+	InputStream input = null;
+        LOG.info("Looking for <test/resources/test.properties> file, with key <postgres.password> ...");
+        try{
+            
+            input = getClass().getClassLoader().getResourceAsStream("test.properties");
+            LOG.info("Found <test/resources/test.properties> file");
+            
+            properties.load(input);
+            LOG.info("Found postgres password : <" + properties.getProperty("postgres.password") +">");
+            if(properties.getProperty("postgres.password") != null){
+                LOG.info("<postgres.password> found...");
+                setPostgresPassword(properties.getProperty("postgres.password"));
+            }
+            else{
+                LOG.info("<postgres.password> nof found : default empty value will be used.");
+                setPostgresPassword(DEFAULT_PASSWORD);
+            }
+        }
+        catch(FileNotFoundException ex){
+            LOG.error("Could not find <test.properties> conf file... will use default", ex);
+            this.properties = null;
+            setPostgresPassword(DEFAULT_PASSWORD);
+        }
+        catch(IOException ex){
+            LOG.error("Could not find <test.properties> conf file... will use default", ex);
+            this.properties = null;
+            setPostgresPassword(DEFAULT_PASSWORD);
+        }
+    }
+    
 
     private Connection getConnectionImpl(String user, String password) throws SQLException {
 	return DriverManager.getConnection(CONNECTION_STRING, user, password);
@@ -61,11 +100,10 @@ public class PostgreSqlDatabase {
     private void createTables(String changelog) {
 
 	Connection holdingConnection;
-
 	try {
 	    ResourceAccessor resourceAccessor = new FileSystemResourceAccessor();
 
-	    holdingConnection = getConnectionImpl(USER_NAME, PASSWORD);
+	    holdingConnection = getConnectionImpl(USER_NAME, getPostgresPassword());
 	    JdbcConnection conn = new JdbcConnection(holdingConnection);
 
 	    PostgresDatabase database = new PostgresDatabase();
@@ -83,6 +121,21 @@ public class PostgreSqlDatabase {
 	    throw new RuntimeException("Error during createTable step", ex);
 	}
 
+    }
+
+    /**
+     * @return the postgresPassword
+     */
+    public String getPostgresPassword() {
+        return postgresPassword;
+    }
+
+    /**
+     * @param postgresPassword the postgresPassword to set
+     */
+    public void setPostgresPassword(String postgresPassword){
+        this.postgresPassword = postgresPassword;
+            LOG.info("PG password set to <" + postgresPassword + ">");
     }
 
 }

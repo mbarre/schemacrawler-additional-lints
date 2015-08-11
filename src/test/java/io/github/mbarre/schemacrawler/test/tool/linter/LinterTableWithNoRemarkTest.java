@@ -56,7 +56,7 @@ public class LinterTableWithNoRemarkTest {
 		options.setTableNamePattern("test_remark");
 		
 		Connection connection = DriverManager.getConnection(PostgreSqlDatabase.CONNECTION_STRING, 
-				PostgreSqlDatabase.USER_NAME, PostgreSqlDatabase.PASSWORD);
+				PostgreSqlDatabase.USER_NAME, database.getPostgresPassword());
 		
 		final Executable executable = new SchemaCrawlerExecutable("lint");
 		try (StringBuilderWriter out = new StringBuilderWriter()) {
