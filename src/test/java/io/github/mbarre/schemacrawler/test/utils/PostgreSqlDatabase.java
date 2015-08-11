@@ -66,9 +66,16 @@ public class PostgreSqlDatabase {
         try{
             
             input = getClass().getClassLoader().getResourceAsStream("test.properties");
-            LOG.info("Found <test/resources/test.properties> file");
+            if(input == null){
+                LOG.info("Not able to open <test/resources/test.properties> file,"
+                        + " skipping and setting to default password");
+                setPostgresPassword(DEFAULT_PASSWORD);
+                return;
+            }
+
             
             properties.load(input);
+            LOG.info("Found <test/resources/test.properties> file");
             LOG.info("Found postgres password : <" + properties.getProperty("postgres.password") +">");
             if(properties.getProperty("postgres.password") != null){
                 LOG.info("<postgres.password> found...");
