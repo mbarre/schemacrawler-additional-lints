@@ -56,7 +56,7 @@ public class LinterTableNameNotInLowerCase extends BaseLinter
 	}
 
 	private List<String> findColumnsWithUpperCase(List<Column> columns){
-		List<String> names = new ArrayList<String>();
+		List<String> names = new ArrayList<>();
 		for (Column column : columns) {
 			if(!isLowerCaseName(column.getName())){
 				names.add(column.getName());
