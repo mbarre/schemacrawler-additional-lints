@@ -15,7 +15,7 @@ import schemacrawler.tools.lint.LintSeverity;
  * Check that objects (tables, columns) have name in lower case
  * @author mbarre
  */
-public class LinterTableNameNotInLowerCase extends BaseLinter
+public class LinterTableNameNotInLowerCase extends BaseLinter 
 {
 
 	public LinterTableNameNotInLowerCase() {
@@ -38,7 +38,6 @@ public class LinterTableNameNotInLowerCase extends BaseLinter
 	protected void lint(final Table table)
 	{
 		requireNonNull(table, "No table provided");
-
 		List<String> names = findColumnsWithUpperCase(table.getColumns());
 		if (!isLowerCaseName(table.getName()))
 		{
