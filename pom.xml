@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>io.github.mbarre</groupId>
 	<artifactId>schemacrawler-additionnallints</artifactId>
-	<version>1.0</version>
+	<version>1.1-SNAPSHOT</version>
 	<name>Additional SchemaCrawler Lints</name>
 	<description>Some additionnal lints for schemacrawler</description> 
 
@@ -63,13 +63,14 @@
         </contributors>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<schemacrawler.version>12.06.03</schemacrawler.version>
+                <schemacrawler.version>14.01.02</schemacrawler.version>
 		<hsqldb.version>2.3.2</hsqldb.version>
 		<junit.version>4.12</junit.version>
 		<github.global.server>github</github.global.server>
 
 		<maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
 		<maven-shade-plugin.version>2.4</maven-shade-plugin.version>
+                <maven-enforcer-plugin.version>1.4</maven-enforcer-plugin.version>
 
 		<!-- Maven reporting plugin versions -->
 		<maven-source-plugin.version>2.4</maven-source-plugin.version>
@@ -149,16 +150,46 @@
 		<dependency>
 			<groupId>org.json</groupId>
 			<artifactId>json</artifactId>
-                        <version>20140107</version>
-                        <!--
-                        Needs JDK 1.8 to compile 
                         <version>20141113</version>
-                        -->
 		</dependency>
 	</dependencies>
 
 	<build>
 		<plugins>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-enforcer-plugin</artifactId>
+                            <version>${maven-enforcer-plugin.version}</version>
+                            <executions>
+                              <execution>
+                                <id>enforce-versions</id>
+                                <goals>
+                                  <goal>enforce</goal>
+                                </goals>
+                                <configuration>
+                                  <rules>
+                                    <bannedPlugins>
+                                      <!-- will only display a warning but does not fail the build. -->
+                                      <level>WARN</level>
+                                      <excludes>
+                                        <exclude>org.apache.maven.plugins:maven-verifier-plugin</exclude>
+                                      </excludes>
+                                      <message>Please consider using the maven-invoker-plugin (http://maven.apache.org/plugins/maven-invoker-plugin/)!</message>
+                                    </bannedPlugins>
+                                    <!--<requireMavenVersion>
+                                      <version>2.0.6</version>
+                                    </requireMavenVersion>-->
+                                    <requireJavaVersion>
+                                      <version>1.8</version>
+                                    </requireJavaVersion>
+                                    <!--<requireOS>
+                                      <family>unix</family>
+                                    </requireOS>-->
+                                  </rules>
+                                </configuration>
+                              </execution>
+                            </executions>
+                          </plugin>
 			<plugin>
 				<groupId>com.github.github</groupId>
 				<artifactId>site-maven-plugin</artifactId>

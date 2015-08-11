@@ -1,5 +1,6 @@
 # schemacrawler-additionnallints 
-[![Build Status](https://travis-ci.org/mbarre/schemacrawler-additionnallints.svg?branch=master)](https://travis-ci.org/mbarre/schemacrawler-additionnallints) [![Coverage Status](https://coveralls.io/repos/mbarre/schemacrawler-additionnallints/badge.png?branch=master&service=github)](https://coveralls.io/github/mbarre/schemacrawler-additionnallints?branch=master)
+
+[![Build Status](https://travis-ci.org/mbarre/schemacrawler-additionnallints.svg?branch=master)](https://travis-ci.org/mbarre/schemacrawler-additionnallints) [![Coverage Status](https://coveralls.io/repos/mbarre/schemacrawler-additionnallints/badge.png?branch=master&service=github)](https://coveralls.io/github/mbarre/schemacrawler-additionnallints?branch=master) [![Join the chat at https://gitter.im/mbarre/schemacrawler-additionnallints](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/mbarre/schemacrawler-additionnallints?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Some additionnal lints for [Schemacrawler](http://sualeh.github.io/SchemaCrawler/)
 
@@ -17,22 +18,34 @@ apply our database quality policy the easy way.
 
 # Build and install lint
 
-**Notice that this version is designed to run on schemacrawler `12.06.03`.**
+**Notice that this version is designed to run on schemacrawler `14.x.x`...
+and hence is requiring JDK-1.8 to be built and run.**
 
 For now the jar is not available on maven central repo, so you'll have to build it yourself :
 
     git clone https://github.com/mbarre/schemacrawler-additionnallints.git schemacrawler-additionnallints
     cd schemacrawler-additionnallints
+    export LINT_VERSION=1.1-SNAPSHOT
 
 Build without testing as a local postgres install is required to test.
 
     mvn install -Dmaven.test.skip=true
-    export LINT_VERSION=1.0
     cp target/schemacrawler-additionnallints-${LINT_VERSION}.jar $SCHEMACRAWLER_HOME/lib
 
 ... and you're done, you just have to pass your
 normal  [schemacrawler lint](http://sualeh.github.io/SchemaCrawler/lint.html)
 command and enjoy.
+
+# Build and test
+
+To ba able to test locally, assuming you have a locally postgreSQL instance
+up and running with the proper `superuser` account, then run the following
+commands
+
+    dropdb --if-exists sc_lint_test
+    createdb sc_lint_test
+    mvn install
+    cp target/schemacrawler-additionnallints-${LINT_VERSION}.jar $SCHEMACRAWLER_HOME/lib
 
 # Pre-release tasks
 

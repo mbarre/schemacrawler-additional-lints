@@ -20,6 +20,7 @@ import org.slf4j.LoggerFactory;
 
 import schemacrawler.schemacrawler.SchemaCrawlerOptions;
 import schemacrawler.schemacrawler.SchemaInfoLevel;
+import schemacrawler.schemacrawler.SchemaInfoLevelBuilder;
 import schemacrawler.tools.executable.Executable;
 import schemacrawler.tools.executable.SchemaCrawlerExecutable;
 import schemacrawler.tools.lint.Linter;
@@ -51,7 +52,7 @@ public class LinterTableWithNoRemarkTest {
 		final SchemaCrawlerOptions options = new SchemaCrawlerOptions();
 		// Set what details are required in the schema - this affects the
 		// time taken to crawl the schema
-		options.setSchemaInfoLevel(SchemaInfoLevel.standard());
+		options.setSchemaInfoLevel(SchemaInfoLevelBuilder.standard());
 		options.setTableNamePattern("test_remark");
 		
 		Connection connection = DriverManager.getConnection(PostgreSqlDatabase.CONNECTION_STRING, 
