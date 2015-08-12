@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Types;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import schemacrawler.schema.Column;
 import schemacrawler.schema.Table;
@@ -58,9 +59,9 @@ public class LinterColumnContentNotNormalized extends LinterTableSql {
                 || (column.getColumnDataType().getJavaSqlType().getJavaSqlType() == Types.NVARCHAR)
                 || (column.getColumnDataType().getJavaSqlType().getJavaSqlType() == Types.VARCHAR)) {
             // test minimal size to pass test
-            System.out.println("<" + column + "> is text based.");
+            LOGGER.log(Level.INFO, "<{0}> is text based.", column);
             if(column.getSize() > MIN_TEXT_COLUMN_SIZE){
-                System.out.println("Column min size requirement are met : <" + column.getSize() + "> is greater than <" + MIN_TEXT_COLUMN_SIZE + ">");
+                LOGGER.log(Level.INFO, "Column min size requirement are met : <{0}> is greater than <{1}>", new Object[]{column.getSize(), MIN_TEXT_COLUMN_SIZE});
                 return true;
             }
             else{
@@ -84,15 +85,15 @@ public class LinterColumnContentNotNormalized extends LinterTableSql {
 
                 if (LinterColumnContentNotNormalized.mustColumnBeTested(column)) {
                     // test based column, perform test
-                    System.out.println("Analyzing colum <" + column + ">");
+                    LOGGER.log(Level.INFO, "Analyzing colum <{0}>", column);
                     sql = "select \"" + column.getName() + "\", count(*)  as counter from \"" + table.getName() + "\" group by \"" + column.getName() + "\" having count(*) > " + NB_REPEAT_TOLERANCE;
-                    System.out.println("SQL : " + sql);
+                    LOGGER.log(Level.INFO, "SQL : {0}", sql);
                     ResultSet rs = stmt.executeQuery(sql);
                     while (rs.next()) {
                         int nbRepeats = rs.getInt("counter");
-                        System.out.println("Found <" + nbRepeats + "> repetitions of the same value <" + rs.getString(1) + "> in <" + column + ">");
+                        LOGGER.log(Level.INFO, "Found <{0}> repetitions of the same value <{1}> in <{2}>", new Object[]{nbRepeats, rs.getString(1), column});
                         if(nbRepeats > NB_REPEAT_TOLERANCE){
-                            System.out.println("Adding lint as nbRepeats exceeds tolerance (" + nbRepeats + " > " + NB_REPEAT_TOLERANCE + " )");
+                            LOGGER.log(Level.INFO, "Adding lint as nbRepeats exceeds tolerance ({0} > {1} )", new Object[]{nbRepeats, NB_REPEAT_TOLERANCE});
                             addLint(table, "Found <" + nbRepeats + "> repetitions of the same value <" + rs.getString(1) + "> in <" + column + ">", column);
                         }
                     }
