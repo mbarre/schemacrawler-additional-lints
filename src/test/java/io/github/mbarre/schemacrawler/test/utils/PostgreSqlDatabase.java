@@ -31,6 +31,8 @@ public class PostgreSqlDatabase {
     public static final String CHANGE_LOG_LOWERCASE_CHECK = "src/test/db/liquibase/lowerCaseCheck/db.changelog.xml";
     public static final String CHANGE_LOG_PRIMARY_KEY_CHECK = "src/test/db/liquibase/primaryKeyCheck/db.changelog.xml";
     public static final String CHANGE_LOG_REMARK_CHECK = "src/test/db/liquibase/remarkCheck/db.changelog.xml";
+    public static final String CHANGE_LOG_NORMALIZE_CHECK = "src/test/db/liquibase/normalizeCheck/db.changelog.xml";
+    
 
     public static final String CONNECTION_STRING = "jdbc:postgresql://localhost:5432/sc_lint_test";
     /* Leave to postgres as the default user as described on travis
@@ -61,7 +63,7 @@ public class PostgreSqlDatabase {
     
     public void setProperties(){
         this.properties = new Properties();
-	InputStream input = null;
+	InputStream input;
         LOG.info("Looking for <test/resources/test.properties> file, with key <postgres.password> ...");
         try{
             
