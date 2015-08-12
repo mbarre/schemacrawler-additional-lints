@@ -86,7 +86,7 @@ public class LinterColumnContentNotNormalized extends LinterTableSql {
                 if (LinterColumnContentNotNormalized.mustColumnBeTested(column)) {
                     // test based column, perform test
                     LOGGER.log(Level.INFO, "Analyzing colum <{0}>", column);
-                    sql = "select \"" + column.getName() + "\", count(*)  as counter from \"" + table.getName() + "\" group by \"" + column.getName() + "\" having count(*) > " + NB_REPEAT_TOLERANCE;
+                    sql = "select \"" + column.getName() + "\", count(*)  as counter from \"" + table.getName() + "\" group by \"" + column.getName() + "\" having count(*) > " + NB_REPEAT_TOLERANCE + " order by count(*) desc";
                     LOGGER.log(Level.INFO, "SQL : {0}", sql);
                     ResultSet rs = stmt.executeQuery(sql);
                     while (rs.next()) {
@@ -94,7 +94,7 @@ public class LinterColumnContentNotNormalized extends LinterTableSql {
                         LOGGER.log(Level.INFO, "Found <{0}> repetitions of the same value <{1}> in <{2}>", new Object[]{nbRepeats, rs.getString(1), column});
                         if(nbRepeats > NB_REPEAT_TOLERANCE){
                             LOGGER.log(Level.INFO, "Adding lint as nbRepeats exceeds tolerance ({0} > {1} )", new Object[]{nbRepeats, NB_REPEAT_TOLERANCE});
-                            addLint(table, "Found <" + nbRepeats + "> repetitions of the same value <" + rs.getString(1) + "> in <" + column + ">", column);
+                            addLint(table, "Found <" + nbRepeats + "> repetitions of the same value <" + rs.getString(1) + "> in <" + column + ">", column.getFullName());
                         }
                     }
                 } else {
