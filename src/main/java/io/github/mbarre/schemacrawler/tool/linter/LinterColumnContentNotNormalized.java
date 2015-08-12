@@ -82,7 +82,6 @@ public class LinterColumnContentNotNormalized extends LinterTableSql {
             stmt = connection.createStatement();
             List<Column> columns = table.getColumns();
             for (Column column : columns) {
-
                 if (LinterColumnContentNotNormalized.mustColumnBeTested(column)) {
                     // test based column, perform test
                     LOGGER.log(Level.INFO, "Analyzing colum <{0}>", column);
@@ -99,7 +98,7 @@ public class LinterColumnContentNotNormalized extends LinterTableSql {
                     }
                 } else {
                     // no text based column, skip test
-                    LOGGER.info("<" + column + "> is not text based : normalize test will be skipped.");
+                    LOGGER.log(Level.INFO, "<{0}> is not text based : normalize test will be skipped.", column);
                 }
 
             }
