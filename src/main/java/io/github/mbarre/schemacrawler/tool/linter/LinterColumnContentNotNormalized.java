@@ -86,7 +86,7 @@ public class LinterColumnContentNotNormalized extends LinterTableSql {
                 if (LinterColumnContentNotNormalized.mustColumnBeTested(column)) {
                     // test based column, perform test
                     LOGGER.log(Level.INFO, "Analyzing colum <{0}>", column);
-                    sql = "select \"" + column.getName() + "\", count(*)  as counter from \"" + table.getName() + "\" where \"" + column.getName() + " \" is not null group by \"" + column.getName() + "\" having count(*) > " + NB_REPEAT_TOLERANCE + " order by count(*) desc";
+                    sql = "select \"" + column.getName() + "\", count(*)  as counter from \"" + table.getName() + "\" where \"" + column.getName() + "\" is not null group by \"" + column.getName() + "\" having count(*) > " + NB_REPEAT_TOLERANCE + " order by count(*) desc";
                     LOGGER.log(Level.INFO, "SQL : {0}", sql);
                     ResultSet rs = stmt.executeQuery(sql);
                     while (rs.next()) {
