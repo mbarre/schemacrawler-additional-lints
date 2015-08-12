@@ -14,6 +14,7 @@ import java.util.Properties;
 import liquibase.Liquibase;
 import liquibase.database.core.PostgresDatabase;
 import liquibase.database.jvm.JdbcConnection;
+import liquibase.exception.LiquibaseException;
 import liquibase.resource.FileSystemResourceAccessor;
 import liquibase.resource.ResourceAccessor;
 
@@ -125,7 +126,7 @@ public class PostgreSqlDatabase {
 
 	    conn.close();
 
-	} catch (Exception ex) {
+	} catch (SQLException | LiquibaseException ex) {
 	    LOG.error("Error during createTable step", ex);
 	    throw new RuntimeException("Error during createTable step", ex);
 	}
