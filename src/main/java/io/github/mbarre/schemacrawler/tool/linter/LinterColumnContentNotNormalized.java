@@ -104,7 +104,7 @@ public class LinterColumnContentNotNormalized extends LinterTableSql {
             }
             stmt.close();
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            LOGGER.severe(ex.getMessage());
         }
 
     }
