@@ -76,8 +76,8 @@ public class LinterColumnContentNotNormalized extends LinterTableSql {
             throws SchemaCrawlerException {
 
         try {
-            String sql = "";
-            Statement stmt = null;
+            String sql;
+            Statement stmt;
             stmt = connection.createStatement();
             List<Column> columns = table.getColumns();
             for (Column column : columns) {
