@@ -5,4 +5,3 @@
 /src/test/db/liquibase/*/liquibase.properties
 /src/test/db/liquibase/*/test.log
 /lint_pdc.html
-/test_lint_normalized.json
