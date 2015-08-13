@@ -22,7 +22,6 @@ import schemacrawler.schemacrawler.SchemaCrawlerOptions;
 import schemacrawler.schemacrawler.SchemaInfoLevelBuilder;
 import schemacrawler.tools.executable.Executable;
 import schemacrawler.tools.executable.SchemaCrawlerExecutable;
-import schemacrawler.tools.lint.Linter;
 import schemacrawler.tools.lint.LinterRegistry;
 import schemacrawler.tools.options.OutputOptions;
 import schemacrawler.tools.options.TextOutputFormat;
@@ -45,7 +44,7 @@ public class LinterTableNameNotInLowerCaseTest {
 	public void testLint() throws Exception{
 
 		final LinterRegistry registry = new LinterRegistry();
-		Linter linter = registry.lookupLinter(LinterTableNameNotInLowerCase.class.getName());
+		Assert.assertTrue(registry.hasLinter(LinterTableNameNotInLowerCase.class.getName()));
 
 		final SchemaCrawlerOptions options = new SchemaCrawlerOptions();
 		// Set what details are required in the schema - this affects the
