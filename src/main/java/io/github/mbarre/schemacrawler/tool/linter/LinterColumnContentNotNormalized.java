@@ -28,19 +28,44 @@ import schemacrawler.tools.linter.LinterTableSql;
  */
 public class LinterColumnContentNotNormalized extends LinterTableSql {
 
+    /**
+     * The repeat tolerance : the lint is throwing an alert
+     * is a chain/value has more than NB_REPEAT_TOLERANCE occurrences
+     */
     public static final int NB_REPEAT_TOLERANCE = 2;
+
+    /**
+     * Defines the minimal text based column on which to apply the lint. This
+     * is the most agressive parameter
+     */
     public static final int MIN_TEXT_COLUMN_SIZE = 2;
+    
+    //TODO : implement the sample parameter so the whole table is not scanned, only a random subset
+    
+    
     private static final Logger LOGGER = Logger.getLogger(LinterColumnContentNotNormalized.class.getName());
 
+    /**
+     * Lint that tests column content normalization by detecting repetition
+     * of text based values instead of a numeric or CHAR(1) values.
+     */
     public LinterColumnContentNotNormalized() {
         setSeverity(LintSeverity.high);
     }
 
+    /**
+     * Returns the lint description
+     * @return
+     */
     @Override
     public String getDescription() {
         return getSummary();
     }
 
+    /**
+     * Returns the Lint summary
+     * @return
+     */
     @Override
     public String getSummary() {
         return " should not have so many duplicates.";
@@ -75,6 +100,12 @@ public class LinterColumnContentNotNormalized extends LinterTableSql {
         }
     }
 
+    /**
+     *
+     * @param table
+     * @param connection
+     * @throws SchemaCrawlerException
+     */
     @Override
     protected void lint(final Table table, final Connection connection)
             throws SchemaCrawlerException {
