@@ -19,7 +19,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import schemacrawler.schemacrawler.SchemaCrawlerOptions;
-import schemacrawler.schemacrawler.SchemaInfoLevel;
 import schemacrawler.schemacrawler.SchemaInfoLevelBuilder;
 import schemacrawler.tools.executable.Executable;
 import schemacrawler.tools.executable.SchemaCrawlerExecutable;
@@ -56,7 +55,7 @@ public class LinterTableWithNoPrimaryKeyTest {
 		options.setTableNamePattern("test_primary_key");
 		
 		Connection connection = DriverManager.getConnection(PostgreSqlDatabase.CONNECTION_STRING, 
-				PostgreSqlDatabase.USER_NAME, PostgreSqlDatabase.PASSWORD);
+				PostgreSqlDatabase.USER_NAME, database.getPostgresPassword());
 		
 		final Executable executable = new SchemaCrawlerExecutable("lint");
 		try (StringBuilderWriter out = new StringBuilderWriter()) {

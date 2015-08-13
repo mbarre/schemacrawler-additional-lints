@@ -50,7 +50,7 @@ public class LinterTableWithNoRemark extends BaseLinter
 	}
 	
 	private List<String> findColumnsWithNoRemark(List<Column> columns){
-		List<String> names = new ArrayList<String>();
+		List<String> names = new ArrayList<>();
 		for (Column column : columns) {
 			if(!column.hasRemarks()){
 				names.add(column.getName());
