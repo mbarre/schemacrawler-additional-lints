@@ -56,3 +56,7 @@ Check that dependencies are up-to-date :
 Check that plugins are up-to-date :
 
     mvn versions:display-plugin-updates
+
+# Command line examples
+
+    schemacrawler -server=postgresql -host=localhost -port=5432 -database=pdc -user=pdc_adm -password=pdc_adm -infolevel=maximum -schemas=pdc_adm -loglevel=INFO -c=lint --outputfile=lint_pdc.html -outputformat=html
