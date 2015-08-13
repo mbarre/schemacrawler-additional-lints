@@ -12,10 +12,8 @@ import java.nio.file.Paths;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 
-import org.apache.commons.io.output.StringBuilderWriter;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.Assert;
