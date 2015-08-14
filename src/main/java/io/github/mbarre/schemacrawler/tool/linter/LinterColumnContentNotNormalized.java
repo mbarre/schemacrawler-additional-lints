@@ -44,24 +44,34 @@ public class LinterColumnContentNotNormalized extends LinterTableSql {
     }
 
     /**
+     * Tells wether a column is text based or not.
+     * @param javaSqlType
+     * @return
+     */
+    public static final boolean isSqlTypeTextBased(int javaSqlType) {
+        return (javaSqlType == Types.NVARCHAR)
+                || (javaSqlType == Types.LONGNVARCHAR)
+                || (javaSqlType == Types.LONGVARCHAR)
+                || (javaSqlType == Types.CHAR)
+                || (javaSqlType == Types.NCHAR)
+                || (javaSqlType == Types.NVARCHAR)
+                || (javaSqlType == Types.VARCHAR);
+        
+    }
+    
+    /**
      * Tells wether a column is text based or not... and if minimal length
      * requirements are met to make normalization computations.
      *
-     * @param column
+     * @param javaSqlType
+     * @param colSize
      * @return
      */
-    public static final boolean mustColumnBeTested(Column column) {
-        if ((column.getColumnDataType().getJavaSqlType().getJavaSqlType() == Types.NVARCHAR)
-                || (column.getColumnDataType().getJavaSqlType().getJavaSqlType() == Types.LONGNVARCHAR)
-                || (column.getColumnDataType().getJavaSqlType().getJavaSqlType() == Types.LONGVARCHAR)
-                || (column.getColumnDataType().getJavaSqlType().getJavaSqlType() == Types.CHAR)
-                || (column.getColumnDataType().getJavaSqlType().getJavaSqlType() == Types.NCHAR)
-                || (column.getColumnDataType().getJavaSqlType().getJavaSqlType() == Types.NVARCHAR)
-                || (column.getColumnDataType().getJavaSqlType().getJavaSqlType() == Types.VARCHAR)) {
+    public static final boolean mustColumnBeTested(int javaSqlType, int colSize) {
+        if (LinterColumnContentNotNormalized.isSqlTypeTextBased(javaSqlType)) {
             // test minimal size to pass test
-            LOGGER.log(Level.INFO, "<{0}> is text based.", column);
-            if(column.getSize() > MIN_TEXT_COLUMN_SIZE){
-                LOGGER.log(Level.INFO, "Column min size requirement are met : <{0}> is greater than <{1}>", new Object[]{column.getSize(), MIN_TEXT_COLUMN_SIZE});
+            if(colSize > MIN_TEXT_COLUMN_SIZE){
+                LOGGER.log(Level.INFO, "Column min size requirement are met : <{0}> is greater than <{1}>", new Object[]{colSize, MIN_TEXT_COLUMN_SIZE});
                 return true;
             }
             else{
@@ -82,7 +92,7 @@ public class LinterColumnContentNotNormalized extends LinterTableSql {
             stmt = connection.createStatement();
             List<Column> columns = table.getColumns();
             for (Column column : columns) {
-                if (LinterColumnContentNotNormalized.mustColumnBeTested(column)) {
+                if (LinterColumnContentNotNormalized.mustColumnBeTested(column.getColumnDataType().getJavaSqlType().getJavaSqlType(), column.getSize())) {
                     // test based column, perform test
                     LOGGER.log(Level.INFO, "Analyzing colum <{0}>", column);
                     sql = "select \"" + column.getName() + "\", count(*)  as counter from \"" + table.getName() + "\" where \"" + column.getName() + "\" is not null group by \"" + column.getName() + "\" having count(*) > " + NB_REPEAT_TOLERANCE + " order by count(*) desc";
