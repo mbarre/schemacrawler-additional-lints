@@ -34,16 +34,17 @@ import schemacrawler.tools.options.TextOutputFormat;
  * @author adriens
  */
 public class LinterColumnContentNotNormalizedTest1 {
-
-	Logger logger = LoggerFactory.getLogger(LinterColumnContentNotNormalizedTest1.class);
+Logger logger = LoggerFactory.getLogger(LinterColumnContentNotNormalizedTest1.class);
 	private static PostgreSqlDatabase database;
 
 	@BeforeClass
 	public static void  init(){
 		database = new PostgreSqlDatabase();
 		database.setUp(PostgreSqlDatabase.CHANGE_LOG_NORMALIZE_CHECK);
+                System.out.println("LinterColumnContentNotNormalizedTest1 running...");
 	}
-        @Test
+
+	@Test
 	public void testLint() throws Exception{
 
 		final LinterRegistry registry = new LinterRegistry();
@@ -105,8 +106,19 @@ public class LinterColumnContentNotNormalizedTest1 {
                 catch (Exception ex){
                     ex.printStackTrace();
                 }
+                       
+		/*try (Path out = new StringBuilderWriter()) {
+			OutputOptions outputOptions = new OutputOptions(TextOutputFormat.json,);
+                        outputOptions.setOutputFile(Paths.get("target/test_lint_normalized.json"));
+			executable.setOutputOptions(outputOptions);
+                        
+			executable.setSchemaCrawlerOptions(options);
+			executable.execute(connection);
+                        
+                        Assert.assertNotNull(out.toString());
+			JSONObject json = new JSONObject(out.toString().substring(1, out.toString().length()-1)) ;
+			Assert.assertNotNull(json.getJSONObject("table_lints"));
+		}*/
+
 	}
-
-	
-
 }
