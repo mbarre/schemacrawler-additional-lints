@@ -1,6 +1,3 @@
-/**
- * 
- */
 package io.github.mbarre.schemacrawler.test.tool.linter;
 
 import io.github.mbarre.schemacrawler.test.utils.PostgreSqlDatabase;
