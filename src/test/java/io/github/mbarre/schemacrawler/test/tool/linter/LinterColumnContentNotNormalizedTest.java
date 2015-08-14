@@ -1,11 +1,13 @@
 package io.github.mbarre.schemacrawler.test.tool.linter;
 
+
 import io.github.mbarre.schemacrawler.test.utils.PostgreSqlDatabase;
 import io.github.mbarre.schemacrawler.tool.linter.LinterColumnContentNotNormalized;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+import org.apache.commons.io.output.StringBuilderWriter;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -20,10 +22,6 @@ import schemacrawler.tools.lint.Linter;
 import schemacrawler.tools.lint.LinterRegistry;
 import schemacrawler.tools.options.OutputOptions;
 import schemacrawler.tools.options.TextOutputFormat;
-
-import java.io.File;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 /**
  * @author adriens
