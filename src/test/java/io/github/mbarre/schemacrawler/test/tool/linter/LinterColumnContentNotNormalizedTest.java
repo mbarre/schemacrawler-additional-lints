@@ -4,6 +4,7 @@ package io.github.mbarre.schemacrawler.test.tool.linter;
 import io.github.mbarre.schemacrawler.test.utils.PostgreSqlDatabase;
 import io.github.mbarre.schemacrawler.tool.linter.LinterColumnContentNotNormalized;
 
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 
@@ -25,6 +26,7 @@ import schemacrawler.tools.options.TextOutputFormat;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.io.File;
 
 /**
  * @author adriens
