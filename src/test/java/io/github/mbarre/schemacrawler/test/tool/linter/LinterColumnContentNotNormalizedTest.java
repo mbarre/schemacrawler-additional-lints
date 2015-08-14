@@ -9,7 +9,6 @@ import io.github.mbarre.schemacrawler.tool.linter.LinterColumnContentNotNormaliz
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-import org.apache.commons.io.output.StringBuilderWriter;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
