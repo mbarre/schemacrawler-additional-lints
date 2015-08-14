@@ -26,7 +26,7 @@ import schemacrawler.tools.options.TextOutputFormat;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.io.File;
+
 
 /**
  * @author adriens
