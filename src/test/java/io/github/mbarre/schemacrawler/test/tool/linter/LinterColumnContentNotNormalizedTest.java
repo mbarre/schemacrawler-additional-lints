@@ -5,6 +5,9 @@ package io.github.mbarre.schemacrawler.test.tool.linter;
 
 import io.github.mbarre.schemacrawler.test.utils.PostgreSqlDatabase;
 import io.github.mbarre.schemacrawler.tool.linter.LinterColumnContentNotNormalized;
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
