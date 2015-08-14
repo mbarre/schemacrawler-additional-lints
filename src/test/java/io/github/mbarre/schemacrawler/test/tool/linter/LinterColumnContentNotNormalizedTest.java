@@ -39,31 +39,6 @@ public class LinterColumnContentNotNormalizedTest {
 		database.setUp(PostgreSqlDatabase.CHANGE_LOG_NORMALIZE_CHECK);
 	}
 
-	@Test
-	public void testLint() throws Exception{
-
-		final LinterRegistry registry = new LinterRegistry();
-		Linter linter = registry.lookupLinter(LinterColumnContentNotNormalized.class.getName());
-		Assert.assertNotNull(linter);
-
-		final SchemaCrawlerOptions options = new SchemaCrawlerOptions();
-		// Set what details are required in the schema - this affects the
-		// time taken to crawl the schema
-		options.setSchemaInfoLevel(SchemaInfoLevelBuilder.standard());
-		options.setTableNamePattern("test_normalized");
-                
-		
-		Connection connection = DriverManager.getConnection(PostgreSqlDatabase.CONNECTION_STRING, 
-				PostgreSqlDatabase.USER_NAME, database.getPostgresPassword());
-		
-		final Executable executable = new SchemaCrawlerExecutable("lint");
-		try (StringBuilderWriter out = new StringBuilderWriter()) {
-			OutputOptions outputOptions = new OutputOptions(TextOutputFormat.json,out);
-			executable.setOutputOptions(outputOptions);
-			executable.setSchemaCrawlerOptions(options);
-			executable.execute(connection);
-		}
-
-	}
+	
 
 }
