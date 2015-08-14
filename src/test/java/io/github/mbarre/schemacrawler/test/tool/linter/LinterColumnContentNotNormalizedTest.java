@@ -24,9 +24,6 @@ import schemacrawler.tools.lint.LinterRegistry;
 import schemacrawler.tools.options.OutputOptions;
 import schemacrawler.tools.options.TextOutputFormat;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
 /**
  * @author adriens
  */
