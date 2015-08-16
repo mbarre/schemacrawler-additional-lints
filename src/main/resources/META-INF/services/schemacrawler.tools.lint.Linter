@@ -2,3 +2,4 @@ io.github.mbarre.schemacrawler.tool.linter.LinterTableNameNotInLowerCase
 io.github.mbarre.schemacrawler.tool.linter.LinterTableWithNoPrimaryKey
 io.github.mbarre.schemacrawler.tool.linter.LinterTableWithNoRemark
 io.github.mbarre.schemacrawler.tool.linter.LinterColumnContentNotNormalized
+io.github.mbarre.schemacrawler.tool.linter.LinterJsonContentInNotJsonbColumn
