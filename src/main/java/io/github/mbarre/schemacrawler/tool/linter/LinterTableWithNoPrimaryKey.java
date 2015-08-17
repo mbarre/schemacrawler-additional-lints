@@ -34,7 +34,7 @@ public class LinterTableWithNoPrimaryKey extends BaseLinter {
 		requireNonNull(table, "No table provided");
 		
 		if(table.getPrimaryKey() == null){
-			addLint(table, getSummary(), table.getName());
+			addLint(table, getDescription(), table.getName());
 		}
 	}
 
