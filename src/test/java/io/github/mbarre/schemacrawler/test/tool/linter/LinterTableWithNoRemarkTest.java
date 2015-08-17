@@ -22,7 +22,6 @@ import schemacrawler.schemacrawler.SchemaCrawlerOptions;
 import schemacrawler.schemacrawler.SchemaInfoLevelBuilder;
 import schemacrawler.tools.executable.Executable;
 import schemacrawler.tools.executable.SchemaCrawlerExecutable;
-import schemacrawler.tools.lint.Linter;
 import schemacrawler.tools.lint.LinterRegistry;
 import schemacrawler.tools.options.OutputOptions;
 import schemacrawler.tools.options.TextOutputFormat;
@@ -45,8 +44,7 @@ public class LinterTableWithNoRemarkTest {
 	public void testLint() throws Exception{
 
 		final LinterRegistry registry = new LinterRegistry();
-		Linter linter = registry.lookupLinter(LinterTableWithNoRemark.class.getName());
-		Assert.assertNotNull(linter);
+		Assert.assertTrue(registry.hasLinter(LinterTableWithNoRemark.class.getName()));
 
 		final SchemaCrawlerOptions options = new SchemaCrawlerOptions();
 		// Set what details are required in the schema - this affects the
