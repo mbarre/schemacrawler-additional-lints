@@ -2,11 +2,12 @@ language: java
 jdk:
   - oraclejdk8
 services: postgresql
-addons: 
-  postgresql:"9.3"
+addons:
+  postgresql: 9.3
 before_script:
   - dropdb --if-exists sc_lint_test
   - psql -c 'create database sc_lint_test;' -U postgres
+  - psql -c 'select version();'
 cache:
   directories:
   - .autoconf
