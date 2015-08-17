@@ -46,14 +46,16 @@ public class LinterJsonTypeColumn extends LinterTableSql {
 		requireNonNull(table, "No table provided");
 		
 		try {
-			LOGGER.log(Level.INFO, connection.getMetaData().getDatabaseProductName());
+			
+			if("PostgreSQL".equalsIgnoreCase(connection.getMetaData().getDatabaseProductName())){
+				List<String> names = findJsonTypeColumn(table.getColumns());
+				for (String name : names) {
+					addLint(table, getDescription(), name);
+				}
+			}
+			
 		} catch (SQLException e) {
-			LOGGER.log(Level.SEVERE, "Unable to get database product name info.");
-		}
-		
-		List<String> names = findJsonTypeColumn(table.getColumns());
-		for (String name : names) {
-			addLint(table, getDescription(), name);
+			LOGGER.log(Level.SEVERE, "Unable to get database product name info. Lint will not be executed.");
 		}
 	}
 
