@@ -64,7 +64,7 @@ public class LinterJsonTypeColumn extends LinterTableSql {
 		for (Column column : columns) {
 			if("json".equalsIgnoreCase(column.getColumnDataType().getDatabaseSpecificTypeName())){
 				names.add(column.getName());
-				 LOGGER.log(Level.INFO, column.getName() + " is json type.", column);
+				 LOGGER.log(Level.INFO, column.getFullName() + " is json type.");
 			}
 		}
 		return names;
