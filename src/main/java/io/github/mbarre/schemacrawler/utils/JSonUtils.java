@@ -5,10 +5,26 @@
  */
 package io.github.mbarre.schemacrawler.utils;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 /**
  * Provides some tools around JSon to share them on the whole project.
  * @author adriens
  */
 public class JSonUtils {
     
+	public static boolean isJsonContent(String content){
+		if (content == null)
+			return false;
+		
+		try{
+			new JSONObject(content);	
+			return true;
+		}catch(JSONException e){
+			return false;
+		}
+		
+	}
+	
 }
