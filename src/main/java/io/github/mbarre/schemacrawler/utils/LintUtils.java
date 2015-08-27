@@ -15,7 +15,6 @@ public class LintUtils {
                 || (javaSqlType == Types.LONGVARCHAR)
                 || (javaSqlType == Types.CHAR)
                 || (javaSqlType == Types.NCHAR)
-                || (javaSqlType == Types.NVARCHAR)
                 || (javaSqlType == Types.VARCHAR);
         
     }
