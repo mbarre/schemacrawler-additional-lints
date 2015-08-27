@@ -22,7 +22,6 @@ public class JSonUtils {
 			new JSONObject(content);	
 			return true;
 		}catch(JSONException e){
-			e.printStackTrace();
 			return false;
 		}
 		
