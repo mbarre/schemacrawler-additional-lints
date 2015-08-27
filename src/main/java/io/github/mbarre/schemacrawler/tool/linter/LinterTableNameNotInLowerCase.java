@@ -45,7 +45,7 @@ public class LinterTableNameNotInLowerCase extends BaseLinter
 		}
 				
 		for (String name : names) {
-			addLint(table, getSummary(), name);
+			addLint(table, getDescription(), name);
 		}
 	}
 

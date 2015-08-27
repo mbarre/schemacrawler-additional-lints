@@ -45,7 +45,7 @@ public class LinterTableWithNoRemark extends BaseLinter
 			names.add(0,table.getName());
 		}
 		for (String name : names) {
-			addLint(table, getSummary(), name);
+			addLint(table, getDescription(), name);
 		}
 	}
 	
