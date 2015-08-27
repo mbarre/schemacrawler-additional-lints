@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+	<changeSet author="mbarre" id="201514081114-1" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+
+	    <createTable  tableName="test_json" remarks="table for lint LinterJsonContentInNotJsonbColumnTest">
+	    	<column name="id" 				type="int" 			remarks="primary key"/>
+	        <column name="content" 			type="varchar(100)" remarks="column with non json data"/>
+	        <column name="content_json" 	type="jsonb" 	remarks="column with json"/>
+	    </createTable>
+
+	    <addPrimaryKey columnNames="id"
+	            constraintName="pk_test"
+	            schemaName="public"
+	            tableName="test_json"/>
+
+	    <sql><![CDATA[insert into test_json(id, content, content_json) values (1, 'AAAA', '{"test":"json"}')]]></sql>
+	    <sql><![CDATA[insert into test_json(id, content, content_json) values (2, '{"test":"json2"}', '{"test2":"json2"}')]]></sql>
+	    <sql><![CDATA[insert into test_json(id, content, content_json) values (3, 'CCCC', '{"test3":"json3"}')]]></sql>
+	    <sql><![CDATA[insert into test_json(id, content, content_json) values (4, 'DDDD', '{"test4":"json4"}')]]></sql>
+
+	</changeSet>
+
+</databaseChangeLog>
