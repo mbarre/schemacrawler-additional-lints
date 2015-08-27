@@ -16,10 +16,10 @@
 	            schemaName="public"
 	            tableName="test_json"/>
 
-	    <sql><![CDATA[insert into test_json values (1, 'AAAA', '{"test":"json"}')]]></sql>
-	    <sql><![CDATA[insert into test_json values (2, 'BBBB', '{"test2":"json2"}')]]></sql>
-	    <sql><![CDATA[insert into test_json values (3, 'CCCC', '{"test3":"json3"}')]]></sql>
-	    <sql><![CDATA[insert into test_json values (4, 'DDDD', '{"test4":"json4"}')]]></sql>
+	    <sql><![CDATA[insert into test_json(id, content, content_json) values (1, 'AAAA', '{"test":"json"}')]]></sql>
+	    <sql><![CDATA[insert into test_json(id, content, content_json) values (2, '{"test":"json2"}', '{"test2":"json2"}')]]></sql>
+	    <sql><![CDATA[insert into test_json(id, content, content_json) values (3, 'CCCC', '{"test3":"json3"}')]]></sql>
+	    <sql><![CDATA[insert into test_json(id, content, content_json) values (4, 'DDDD', '{"test4":"json4"}')]]></sql>
 
 	</changeSet>
 

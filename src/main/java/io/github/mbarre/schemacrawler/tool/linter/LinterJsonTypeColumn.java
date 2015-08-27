@@ -47,8 +47,9 @@ public class LinterJsonTypeColumn extends LinterTableSql {
 		requireNonNull(table, "No table provided");
 		
 		try {
-			
-			if("PostgreSQL".equalsIgnoreCase(connection.getMetaData().getDatabaseProductName())){
+			System.out.println(connection.getMetaData().getDatabaseProductVersion());
+			if("PostgreSQL".equalsIgnoreCase(connection.getMetaData().getDatabaseProductName()) &&
+					"9.4".compareTo(connection.getMetaData().getDatabaseProductVersion()) <= 0){
 				List<String> names = findJsonTypeColumn(table.getColumns());
 				for (String name : names) {
 					addLint(table, getDescription(), name);

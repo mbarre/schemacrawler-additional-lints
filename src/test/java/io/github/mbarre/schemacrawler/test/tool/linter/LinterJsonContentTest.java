@@ -4,8 +4,7 @@
 package io.github.mbarre.schemacrawler.test.tool.linter;
 
 import io.github.mbarre.schemacrawler.test.utils.PostgreSqlDatabase;
-import io.github.mbarre.schemacrawler.tool.linter.LinterJsonTypeColumn;
-import io.github.mbarre.schemacrawler.tool.linter.LinterTableNameNotInLowerCase;
+import io.github.mbarre.schemacrawler.tool.linter.LinterJsonContent;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -49,7 +48,7 @@ public class LinterJsonContentTest {
 	public void testLint() throws Exception{
 
 		final LinterRegistry registry = new LinterRegistry();
-		Assert.assertTrue(registry.hasLinter(LinterTableNameNotInLowerCase.class.getName()));
+		Assert.assertTrue(registry.hasLinter(LinterJsonContent.class.getName()));
 
 		final SchemaCrawlerOptions options = new SchemaCrawlerOptions();
 		// Set what details are required in the schema - this affects the
@@ -77,8 +76,8 @@ public class LinterJsonContentTest {
 
 			Assert.assertNotNull(lints);
 			Assert.assertEquals(1,lints.length());
-			Assert.assertEquals(LinterJsonTypeColumn.class.getName(), lints.getJSONObject(0).getString("id"));
-			Assert.assertEquals("content", lints.getJSONObject(0).getString("value").trim());
+			Assert.assertEquals(LinterJsonContent.class.getName(), lints.getJSONObject(0).getString("id"));
+			Assert.assertEquals("public.test_json.content", lints.getJSONObject(0).getString("value").trim());
 			Assert.assertEquals("should be JSON or JSONB type.", lints.getJSONObject(0).getString("description").trim());
 			Assert.assertEquals("high", lints.getJSONObject(0).getString("severity").trim());
 		}

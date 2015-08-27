@@ -48,7 +48,6 @@ public class LinterJsonContent extends LinterTableSql {
         try (Statement stmt = connection.createStatement()){
             String sql;
             List<Column> columns = table.getColumns();
-            
             for (Column column : columns) {
             	if(LintUtils.isSqlTypeTextBased(column.getColumnDataType().getJavaSqlType().getJavaSqlType())){
             		
@@ -63,7 +62,7 @@ public class LinterJsonContent extends LinterTableSql {
                         if(JSonUtils.isJsonContent(data)){
                             LOGGER.log(Level.INFO, "Adding lint as data is JSON but column type is not JSONB or JSON.");
                             addLint(table, getSummary(), column.getFullName());
-                            break;
+                            found = true;
                         }
                     }            		
             	}
