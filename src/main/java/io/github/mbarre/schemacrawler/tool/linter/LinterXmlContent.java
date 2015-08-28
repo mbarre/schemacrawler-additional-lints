@@ -1,6 +1,7 @@
 package io.github.mbarre.schemacrawler.tool.linter;
 
 import io.github.mbarre.schemacrawler.utils.LintUtils;
+import io.github.mbarre.schemacrawler.utils.XmlUtils;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -59,7 +60,7 @@ public class LinterXmlContent extends LinterTableSql {
                     while (rs.next() && !found) {
                         String data = rs.getString(column.getName());
                         
-                        if(LintUtils.isXmlContent(data)){
+                        if(XmlUtils.isXmlContent(data)){
                             LOGGER.log(Level.INFO, "Adding lint as data is XML but column type is not XML.");
                             addLint(table, getDescription(), column.getFullName());
                             found = true;
