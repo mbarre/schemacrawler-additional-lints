@@ -1,12 +1,12 @@
 package io.github.mbarre.schemacrawler.tool.linter;
 
-import io.github.mbarre.schemacrawler.utils.JSonUtils;
 import io.github.mbarre.schemacrawler.utils.LintUtils;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,16 +18,16 @@ import schemacrawler.tools.lint.LintSeverity;
 import schemacrawler.tools.linter.LinterTableSql;
 
 /**
- * Linter to check if non JSONB type is used whereas JSON data is store in column
+ * Linter to check if non XML type is used whereas XML data is store in column
  * @author mbarre
  * @since 1.0.1
  */
-public class LinterJsonContent extends LinterTableSql {
+public class LinterXmlContent extends LinterTableSql {
 	
-    private static final Logger LOGGER = Logger.getLogger(LinterJsonContent.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(LinterXmlContent.class.getName());
 
 
-	public LinterJsonContent () {
+	public LinterXmlContent () {
         setSeverity(LintSeverity.high);
     }
 
@@ -38,7 +38,7 @@ public class LinterJsonContent extends LinterTableSql {
 
     @Override
     public String getSummary() {
-        return " should be JSON or JSONB type.";
+        return " should be XML type.";
     }
     
     @Override
@@ -59,12 +59,15 @@ public class LinterJsonContent extends LinterTableSql {
                     while (rs.next() && !found) {
                         String data = rs.getString(column.getName());
                         
-                        if(JSonUtils.isJsonContent(data)){
-                            LOGGER.log(Level.INFO, "Adding lint as data is JSON but column type is not JSONB or JSON.");
+                        if(LintUtils.isXmlContent(data)){
+                            LOGGER.log(Level.INFO, "Adding lint as data is XML but column type is not XML.");
                             addLint(table, getDescription(), column.getFullName());
                             found = true;
                         }
                     }            		
+            	}
+            	else if(column.getColumnDataType().getJavaSqlType().getJavaSqlType() == Types.CLOB){
+            		//TODO voir comment gérer ce cas pour ne pas que ca explose !
             	}
             }
             

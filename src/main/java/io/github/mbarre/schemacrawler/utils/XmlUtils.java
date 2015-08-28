@@ -11,22 +11,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
-public class LintUtils {
-
-	/**
-	 * Tells wether a column is text based or not.
-	 * @param javaSqlType
-	 * @return
-	 */
-	public static final boolean isSqlTypeTextBased(int javaSqlType) {
-		return (javaSqlType == Types.NVARCHAR)
-				|| (javaSqlType == Types.LONGNVARCHAR)
-				|| (javaSqlType == Types.LONGVARCHAR)
-				|| (javaSqlType == Types.CHAR)
-				|| (javaSqlType == Types.NCHAR)
-				|| (javaSqlType == Types.VARCHAR);
-	}
-
+public class XmlUtils {
 
 	/**
 	 * Tells wether a column contens XML data or not.
