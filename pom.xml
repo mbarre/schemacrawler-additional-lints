@@ -63,7 +63,7 @@
 	</contributors>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<schemacrawler.version>14.02.01</schemacrawler.version>
+		<schemacrawler.version>14.02.02</schemacrawler.version>
 		<hsqldb.version>2.3.2</hsqldb.version>
 		<junit.version>4.12</junit.version>
 		<github.global.server>github</github.global.server>
