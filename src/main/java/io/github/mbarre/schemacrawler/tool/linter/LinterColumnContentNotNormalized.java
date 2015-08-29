@@ -25,19 +25,37 @@ import schemacrawler.tools.linter.LinterTableSql;
  */
 public class LinterColumnContentNotNormalized extends LinterTableSql {
 
+    /**
+     *
+     */
     public static final int NB_REPEAT_TOLERANCE = 2;
+
+    /**
+     *
+     */
     public static final int MIN_TEXT_COLUMN_SIZE = 2;
     private static final Logger LOGGER = Logger.getLogger(LinterColumnContentNotNormalized.class.getName());
 
+    /**
+     *
+     */
     public LinterColumnContentNotNormalized() {
         setSeverity(LintSeverity.high);
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String getDescription() {
         return getSummary();
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String getSummary() {
         return " should not have so many duplicates.";
@@ -81,6 +99,12 @@ public class LinterColumnContentNotNormalized extends LinterTableSql {
         }
     }
 
+    /**
+     *
+     * @param table
+     * @param connection
+     * @throws SchemaCrawlerException
+     */
     @Override
     protected void lint(final Table table, final Connection connection)
             throws SchemaCrawlerException {

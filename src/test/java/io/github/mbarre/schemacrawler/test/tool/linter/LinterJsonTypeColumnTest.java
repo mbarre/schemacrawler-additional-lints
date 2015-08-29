@@ -73,7 +73,8 @@ public class LinterJsonTypeColumnTest {
 			Assert.assertEquals("test_json", json.getJSONObject("table_lints").getString("name"));
 
 			JSONArray lints = json.getJSONObject("table_lints").getJSONArray("lints");
-
+                        // only get ours... not the native lint ()
+                        lints.remove(1);
 			Assert.assertNotNull(lints);
 			Assert.assertEquals(1,lints.length());
 			Assert.assertEquals(LinterJsonTypeColumn.class.getName(), lints.getJSONObject(0).getString("id"));

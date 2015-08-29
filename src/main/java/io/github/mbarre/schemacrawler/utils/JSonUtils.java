@@ -14,7 +14,12 @@ import org.json.JSONObject;
  */
 public class JSonUtils {
     
-	public static boolean isJsonContent(String content){
+    /**
+     *
+     * @param content
+     * @return
+     */
+    public static boolean isJsonContent(String content){
 		if (content == null)
 			return false;
 		

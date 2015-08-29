@@ -25,23 +25,39 @@ import schemacrawler.tools.linter.LinterTableSql;
 public class LinterJsonTypeColumn extends LinterTableSql {
 	private static final Logger LOGGER = Logger.getLogger(LinterJsonTypeColumn.class.getName());
 	
-	public LinterJsonTypeColumn() {
+    /**
+     *
+     */
+    public LinterJsonTypeColumn() {
 		setSeverity(LintSeverity.high);
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public String getDescription()
 	{
 		return getSummary();
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public String getSummary()
 	{
 		return " \"jsonb\" type should be used instead of \"json\" to store JSON data.";
 	}
 
-	@Override
+    /**
+     *
+     * @param table
+     * @param connection
+     */
+    @Override
 	protected void lint(final Table table, Connection connection)
 	{
 		requireNonNull(table, "No table provided");

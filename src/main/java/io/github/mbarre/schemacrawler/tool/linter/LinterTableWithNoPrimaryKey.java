@@ -14,21 +14,36 @@ import schemacrawler.tools.lint.LintSeverity;
  */
 public class LinterTableWithNoPrimaryKey extends BaseLinter {
 
-	public LinterTableWithNoPrimaryKey(){
+    /**
+     *
+     */
+    public LinterTableWithNoPrimaryKey(){
 		setSeverity(LintSeverity.high);
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public String getDescription() {
 		return getSummary();
 	}
 
-	@Override
+    /**
+     *
+     * @return
+     */
+    @Override
 	public String getSummary() {
 		return " table should have a primary key";
 	}
 
-	@Override
+    /**
+     *
+     * @param table
+     */
+    @Override
 	protected void lint(Table table) {
 
 		requireNonNull(table, "No table provided");

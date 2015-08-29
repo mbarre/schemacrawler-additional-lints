@@ -73,9 +73,11 @@ public class LinterXmlContentTest {
 			Assert.assertEquals("test_xml", json.getJSONObject("table_lints").getString("name"));
 
 			JSONArray lints = json.getJSONObject("table_lints").getJSONArray("lints");
+                        // only get ours... not the native lint ()
+                        lints.remove(1);
 
 			Assert.assertNotNull(lints);
-			Assert.assertEquals(1,lints.length());
+                        Assert.assertEquals(1,lints.length());
 			Assert.assertEquals(LinterXmlContent.class.getName(), lints.getJSONObject(0).getString("id"));
 			Assert.assertEquals("public.test_xml.content", lints.getJSONObject(0).getString("value").trim());
 			Assert.assertEquals("should be XML type.", lints.getJSONObject(0).getString("description").trim());

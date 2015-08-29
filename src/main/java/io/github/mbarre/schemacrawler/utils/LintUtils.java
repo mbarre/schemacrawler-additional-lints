@@ -2,6 +2,10 @@ package io.github.mbarre.schemacrawler.utils;
 
 import java.sql.Types;
 
+/**
+ *
+ * @author salad74
+ */
 public class LintUtils {
 
 	/**

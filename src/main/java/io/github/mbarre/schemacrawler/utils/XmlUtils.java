@@ -11,6 +11,10 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
+/**
+ *
+ * @author salad74
+ */
 public class XmlUtils {
 
 	/**
