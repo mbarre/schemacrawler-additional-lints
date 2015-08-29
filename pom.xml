@@ -90,6 +90,7 @@
 		<liquibase-plugin.version>3.4.1</liquibase-plugin.version>
 		<postgresql.version>9.4-1201-jdbc41</postgresql.version>
                 <commons-io.version>2.4</commons-io.version>
+                <json.version>20141113</json.version>
 	</properties>
 
 	<dependencies>
@@ -151,7 +152,7 @@
 		<dependency>
 			<groupId>org.json</groupId>
 			<artifactId>json</artifactId>
-			<version>20141113</version>
+			<version>${json.version}</version>
 		</dependency>
 
 		<dependency>
