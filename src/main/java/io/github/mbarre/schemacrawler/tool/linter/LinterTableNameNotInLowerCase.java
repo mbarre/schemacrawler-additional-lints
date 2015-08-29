@@ -19,15 +19,15 @@ public class LinterTableNameNotInLowerCase extends BaseLinter
 {
 
     /**
-     *
+     * The lint
      */
     public LinterTableNameNotInLowerCase() {
 		setSeverity(LintSeverity.high);
 	}
 
     /**
-     *
-     * @return
+     * Get the lint description
+     * @return lint description
      */
     @Override
 	public String getDescription()
@@ -36,8 +36,8 @@ public class LinterTableNameNotInLowerCase extends BaseLinter
 	}
 
     /**
-     *
-     * @return
+     * Get the lint summary
+     * @return the lint summary
      */
     @Override
 	public String getSummary()
@@ -46,8 +46,8 @@ public class LinterTableNameNotInLowerCase extends BaseLinter
 	}
 
     /**
-     *
-     * @param table
+     * The lint that does the job
+     * @param table table
      */
     @Override
 	protected void lint(final Table table)

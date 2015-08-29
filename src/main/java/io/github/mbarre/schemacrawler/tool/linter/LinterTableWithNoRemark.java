@@ -19,15 +19,15 @@ public class LinterTableWithNoRemark extends BaseLinter
 {
 
     /**
-     *
+     * The lint
      */
     public LinterTableWithNoRemark() {
 		setSeverity(LintSeverity.low);
 	}
 
     /**
-     *
-     * @return
+     * Get lint description
+     * @return lint description
      */
     @Override
 	public String getDescription()
@@ -36,8 +36,8 @@ public class LinterTableWithNoRemark extends BaseLinter
 	}
 
     /**
-     *
-     * @return
+     * lint summary
+     * @return summary
      */
     @Override
 	public String getSummary()
@@ -46,8 +46,8 @@ public class LinterTableWithNoRemark extends BaseLinter
 	}
 
     /**
-     *
-     * @param table
+     * The lint that does the job
+     * @param table table
      */
     @Override
 	protected void lint(final Table table)

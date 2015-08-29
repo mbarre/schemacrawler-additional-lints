@@ -26,6 +26,7 @@ public class LinterJsonTypeColumn extends LinterTableSql {
 	private static final Logger LOGGER = Logger.getLogger(LinterJsonTypeColumn.class.getName());
 	
     /**
+     * The lint that test if the proper jsonb type has been used.
      *
      */
     public LinterJsonTypeColumn() {
@@ -33,8 +34,8 @@ public class LinterJsonTypeColumn extends LinterTableSql {
 	}
 
     /**
-     *
-     * @return
+     * Get the description
+     * @return the description
      */
     @Override
 	public String getDescription()
@@ -43,8 +44,8 @@ public class LinterJsonTypeColumn extends LinterTableSql {
 	}
 
     /**
-     *
-     * @return
+     * Get the summaru
+     * @return the summaru
      */
     @Override
 	public String getSummary()
@@ -53,9 +54,9 @@ public class LinterJsonTypeColumn extends LinterTableSql {
 	}
 
     /**
-     *
-     * @param table
-     * @param connection
+     * The lint that does the job
+     * @param table table
+     * @param connection connection
      */
     @Override
 	protected void lint(final Table table, Connection connection)

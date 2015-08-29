@@ -28,15 +28,15 @@ public class LinterXmlContent extends LinterTableSql {
     private static final Logger LOGGER = Logger.getLogger(LinterXmlContent.class.getName());
 
     /**
-     *
+     * The lint
      */
     public LinterXmlContent () {
         setSeverity(LintSeverity.high);
     }
 
     /**
-     *
-     * @return
+     * Get lint description
+     * @return lint description
      */
     @Override
     public String getDescription() {
@@ -44,8 +44,8 @@ public class LinterXmlContent extends LinterTableSql {
     }
 
     /**
-     *
-     * @return
+     * Get lint summary
+     * @return summary
      */
     @Override
     public String getSummary() {
@@ -53,10 +53,10 @@ public class LinterXmlContent extends LinterTableSql {
     }
     
     /**
-     *
-     * @param table
-     * @param connection
-     * @throws SchemaCrawlerException
+     * The lint that does the job
+     * @param table table
+     * @param connection connection
+     * @throws SchemaCrawlerException SchemaCrawlerException
      */
     @Override
     protected void lint(final Table table, final Connection connection)

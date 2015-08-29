@@ -2,7 +2,6 @@ package io.github.mbarre.schemacrawler.utils;
 
 import java.io.IOException;
 import java.io.StringReader;
-import java.sql.Types;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -19,8 +18,8 @@ public class XmlUtils {
 
 	/**
 	 * Tells wether a column contens XML data or not.
-	 * @param data
-	 * @return
+	 * @param data the string to test
+	 * @return if the string is a valid xml (or not)
 	 */
 	public static final boolean isXmlContent(String data) {
 

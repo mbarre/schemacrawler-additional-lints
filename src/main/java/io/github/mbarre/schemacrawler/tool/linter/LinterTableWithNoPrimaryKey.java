@@ -15,15 +15,15 @@ import schemacrawler.tools.lint.LintSeverity;
 public class LinterTableWithNoPrimaryKey extends BaseLinter {
 
     /**
-     *
+     * The lint
      */
     public LinterTableWithNoPrimaryKey(){
 		setSeverity(LintSeverity.high);
 	}
 
     /**
-     *
-     * @return
+     * Get lint description
+     * @return lint description
      */
     @Override
 	public String getDescription() {
@@ -31,8 +31,8 @@ public class LinterTableWithNoPrimaryKey extends BaseLinter {
 	}
 
     /**
-     *
-     * @return
+     * lint summary
+     * @return lint summary
      */
     @Override
 	public String getSummary() {
@@ -40,8 +40,8 @@ public class LinterTableWithNoPrimaryKey extends BaseLinter {
 	}
 
     /**
-     *
-     * @param table
+     * The lint that does the job
+     * @param table table
      */
     @Override
 	protected void lint(Table table) {
