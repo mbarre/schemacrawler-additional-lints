@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+	<changeSet author="mbarre" id="201508281040-1" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+
+	    <createTable  tableName="test_xml" remarks="table for lint LinterXmlContentTest">
+	    	<column name="id" 				type="int" 			remarks="primary key"/>
+	        <column name="content" 			type="varchar(100)" remarks="column with non xml data"/>
+	        <column name="content_xml" 	type="xml" 	remarks="column with xml"/>
+	    </createTable>
+
+	    <addPrimaryKey columnNames="id"
+	            constraintName="pk_test"
+	            schemaName="public"
+	            tableName="test_xml"/>
+
+	    <sql><![CDATA[insert into test_xml(id, content, content_xml) values (1, 'null', '<?xml version="1.0" encoding="UTF-8"?><test>data</test>')]]></sql>
+	    <sql><![CDATA[insert into test_xml(id, content, content_xml) values (2, '<?xml version="1.0" encoding="UTF-8"?><test>data2</test>', '<?xml version="1.0" encoding="UTF-8"?><test>data2</test>')]]></sql>
+	    <sql><![CDATA[insert into test_xml(id, content, content_xml) values (3, 'CCCC', '<?xml version="1.0" encoding="UTF-8"?><test>data</test>')]]></sql>
+	    <sql><![CDATA[insert into test_xml(id, content, content_xml) values (4, 'DDDD', '<?xml version="1.0" encoding="UTF-8"?><test>data</test>')]]></sql>
+
+	</changeSet>
+
+</databaseChangeLog>

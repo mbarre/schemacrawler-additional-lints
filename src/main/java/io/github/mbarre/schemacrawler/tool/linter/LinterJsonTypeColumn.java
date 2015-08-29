@@ -18,8 +18,9 @@ import schemacrawler.tools.lint.LintSeverity;
 import schemacrawler.tools.linter.LinterTableSql;
 
 /**
- * @author barmi83
- * @since 
+ * Linter to check if JSON type is used instead of JSONB - PostgreSQL reserved lint
+ * @author mbarre
+ * @since 1.0.1
  */
 public class LinterJsonTypeColumn extends LinterTableSql {
 	private static final Logger LOGGER = Logger.getLogger(LinterJsonTypeColumn.class.getName());
@@ -46,8 +47,8 @@ public class LinterJsonTypeColumn extends LinterTableSql {
 		requireNonNull(table, "No table provided");
 		
 		try {
-			
-			if("PostgreSQL".equalsIgnoreCase(connection.getMetaData().getDatabaseProductName())){
+			if("PostgreSQL".equalsIgnoreCase(connection.getMetaData().getDatabaseProductName()) &&
+					"9.4".compareTo(connection.getMetaData().getDatabaseProductVersion()) <= 0){
 				List<String> names = findJsonTypeColumn(table.getColumns());
 				for (String name : names) {
 					addLint(table, getDescription(), name);
