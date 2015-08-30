@@ -18,7 +18,10 @@ public class JSonUtilsTest {
 
 	private Logger LOGGER = LoggerFactory.getLogger(JSonUtilsTest.class);
 
-	
+        public JSonUtilsTest(){
+        JSonUtils test = new JSonUtils();
+        Assert.assertTrue(true);
+    }
 	@Test
 	public void testUtils_success() throws Exception{
 

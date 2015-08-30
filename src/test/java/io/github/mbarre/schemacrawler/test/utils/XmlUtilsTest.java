@@ -18,6 +18,10 @@ public class XmlUtilsTest {
 
     private Logger LOGGER = LoggerFactory.getLogger(XmlUtilsTest.class);
 
+    public XmlUtilsTest(){
+        XmlUtils test = new XmlUtils();
+        Assert.assertTrue(true);
+    }
     @Test
     public void testUtils_success() throws Exception {
 

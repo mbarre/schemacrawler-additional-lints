@@ -8,6 +8,9 @@ import java.sql.Types;
  */
 public class LintUtils {
 
+        public LintUtils(){
+            
+        }
 	/**
 	 * Tells wether a column is text based or not.
 	 * @param javaSqlType the javaSqlType
