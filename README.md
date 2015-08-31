@@ -67,3 +67,17 @@ Check that plugins are up-to-date :
 # Command line examples
 
     schemacrawler -server=postgresql -host=localhost -port=5432 -database=pdc -user=pdc_adm -password=pdc_adm -infolevel=maximum -schemas=pdc_adm -loglevel=INFO -c=lint --outputfile=lint_pdc.html -outputformat=html
+
+# Donate
+
+
+If you like this lint library, you can donate :
+
+* Stars on github
+* Ideas for new lints
+* Code for new lints
+* Code to increase code coverage
+* A nice logo
+* Feebdack on this library
+* Anything you think that could make us happy to go on developing this library,
+including just some kind words on our gitter

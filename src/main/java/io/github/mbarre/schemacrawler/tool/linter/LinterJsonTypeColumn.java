@@ -25,23 +25,40 @@ import schemacrawler.tools.linter.LinterTableSql;
 public class LinterJsonTypeColumn extends LinterTableSql {
 	private static final Logger LOGGER = Logger.getLogger(LinterJsonTypeColumn.class.getName());
 	
-	public LinterJsonTypeColumn() {
+    /**
+     * The lint that test if the proper jsonb type has been used.
+     *
+     */
+    public LinterJsonTypeColumn() {
 		setSeverity(LintSeverity.high);
 	}
 
-	@Override
+    /**
+     * Get the description
+     * @return the description
+     */
+    @Override
 	public String getDescription()
 	{
 		return getSummary();
 	}
 
-	@Override
+    /**
+     * Get the summaru
+     * @return the summaru
+     */
+    @Override
 	public String getSummary()
 	{
 		return " \"jsonb\" type should be used instead of \"json\" to store JSON data.";
 	}
 
-	@Override
+    /**
+     * The lint that does the job
+     * @param table table
+     * @param connection connection
+     */
+    @Override
 	protected void lint(final Table table, Connection connection)
 	{
 		requireNonNull(table, "No table provided");
@@ -61,11 +78,11 @@ public class LinterJsonTypeColumn extends LinterTableSql {
 	}
 
 	private List<String> findJsonTypeColumn(List<Column> columns){
-		List<String> names = new ArrayList<String>();
+		List<String> names = new ArrayList<>();
 		for (Column column : columns) {
 			if("json".equalsIgnoreCase(column.getColumnDataType().getDatabaseSpecificTypeName())){
 				names.add(column.getName());
-				 LOGGER.log(Level.INFO, column.getFullName() + " is json type.");
+				 LOGGER.log(Level.INFO, "{0} is json type.", column.getFullName());
 			}
 		}
 		return names;

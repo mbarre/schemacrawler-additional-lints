@@ -18,23 +18,38 @@ import schemacrawler.tools.lint.LintSeverity;
 public class LinterTableNameNotInLowerCase extends BaseLinter 
 {
 
-	public LinterTableNameNotInLowerCase() {
+    /**
+     * The lint
+     */
+    public LinterTableNameNotInLowerCase() {
 		setSeverity(LintSeverity.high);
 	}
 
-	@Override
+    /**
+     * Get the lint description
+     * @return lint description
+     */
+    @Override
 	public String getDescription()
 	{
 		return getSummary();
 	}
 
-	@Override
+    /**
+     * Get the lint summary
+     * @return the lint summary
+     */
+    @Override
 	public String getSummary()
 	{
 		return " name should be in lower case";
 	}
 
-	@Override
+    /**
+     * The lint that does the job
+     * @param table table
+     */
+    @Override
 	protected void lint(final Table table)
 	{
 		requireNonNull(table, "No table provided");

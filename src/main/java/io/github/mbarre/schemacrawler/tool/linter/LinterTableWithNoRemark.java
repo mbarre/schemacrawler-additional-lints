@@ -18,23 +18,38 @@ import schemacrawler.tools.lint.LintSeverity;
 public class LinterTableWithNoRemark extends BaseLinter
 {
 
-	public LinterTableWithNoRemark() {
+    /**
+     * The lint
+     */
+    public LinterTableWithNoRemark() {
 		setSeverity(LintSeverity.low);
 	}
 
-	@Override
+    /**
+     * Get lint description
+     * @return lint description
+     */
+    @Override
 	public String getDescription()
 	{
 		return getSummary();
 	}
 
-	@Override
+    /**
+     * lint summary
+     * @return summary
+     */
+    @Override
 	public String getSummary()
 	{
 		return " should have a remark";
 	}
 
-	@Override
+    /**
+     * The lint that does the job
+     * @param table table
+     */
+    @Override
 	protected void lint(final Table table)
 	{
 		requireNonNull(table, "No table provided");

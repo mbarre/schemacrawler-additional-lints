@@ -27,21 +27,37 @@ public class LinterXmlContent extends LinterTableSql {
 	
     private static final Logger LOGGER = Logger.getLogger(LinterXmlContent.class.getName());
 
-
-	public LinterXmlContent () {
+    /**
+     * The lint
+     */
+    public LinterXmlContent () {
         setSeverity(LintSeverity.high);
     }
 
+    /**
+     * Get lint description
+     * @return lint description
+     */
     @Override
     public String getDescription() {
         return getSummary();
     }
 
+    /**
+     * Get lint summary
+     * @return summary
+     */
     @Override
     public String getSummary() {
         return " should be XML type.";
     }
     
+    /**
+     * The lint that does the job
+     * @param table table
+     * @param connection connection
+     * @throws SchemaCrawlerException SchemaCrawlerException
+     */
     @Override
     protected void lint(final Table table, final Connection connection)
             throws SchemaCrawlerException {

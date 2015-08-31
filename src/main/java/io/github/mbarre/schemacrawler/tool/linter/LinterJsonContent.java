@@ -26,21 +26,37 @@ public class LinterJsonContent extends LinterTableSql {
 	
     private static final Logger LOGGER = Logger.getLogger(LinterJsonContent.class.getName());
 
-
-	public LinterJsonContent () {
+    /**
+     * The lint that parses and test Json content
+     */
+    public LinterJsonContent () {
         setSeverity(LintSeverity.high);
     }
 
+    /**
+     * Get lint descrption
+     * @return lint description
+     */
     @Override
     public String getDescription() {
         return getSummary();
     }
 
+    /**
+     * Get lint Summary
+     * @return lint Summary
+     */
     @Override
     public String getSummary() {
         return " should be JSON or JSONB type.";
     }
     
+    /**
+     * The lint that does the job
+     * @param table table
+     * @param connection connection
+     * @throws SchemaCrawlerException SchemaCrawlerException
+     */
     @Override
     protected void lint(final Table table, final Connection connection)
             throws SchemaCrawlerException {
