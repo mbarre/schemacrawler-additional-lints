@@ -1,9 +1,20 @@
 language: java
 jdk:
   - oraclejdk8
+env:
+  global:
+   - secure: "pYTnADdShGADib2I83d37Q/0HWbNvQQ5slALZkE6uFHxt3xQB+iNg65VWhJZqobobuIw7IO+/81oMrjEfrluH9niL8P5FrtKJFKZhzgMXfXm+3ScLrIeRg/sFIBahqPBZcZ2hAXSeOgMCz0zDpwmnvWpvLqNmHa54+ydevombqxPpAhJNdCWLhos+FypS7WzZ6z5mofGBxckSN+X9tdvLXQ1WXXIqTIzAdA7hh2tQacCDsVP4F7rJ7P7cGTLUP0pCaBf2xWWj0p+v+EAZnbyGSi5t6EtF0KtGBfI6aFFzsdDvQU7b7YK6+ePRHLnAmLrGJLZl3YToa+xkDouvNKC9HMqKv1votZejnTmSxZlx87RVzl+i9AWF0RuOsrHmpC0+Ut25j7U4Vz+ZhCKX1ZqOMmt0JVxSQpZwL36SitvibN3UytLeVzp6K3hzO/1377SgLMNcJFkMy4eiwQ2MLFQQiG2KWCrnmecTuBmE/nWXKWBxY5l+gosY6u10ewk8lgfP/CQ8mKa5fHoz4qok7k4WcdpBTQ77uI0QJLgGSgLUbV0HUSNLZHlLC+jvxfm8IKp9jwU5PMvOxrS9lczKRDvvZ6xutMnlhcAkNMoTrv/vEqebF2CQwps9GPsgu4Zr7TyNpTRXD6ACSkXnpPmI3VUFZr7eI8dXm7pctc85gGIOt4="
 services: postgresql
 addons:
   postgresql: 9.4
+  coverity_scan:
+    project:
+      name: "mbarre/schemacrawler-additionnallints"
+      description: "Build submitted via Travis CI"
+    notification_email: false
+    build_command_prepend: "mvn clean"
+    build_command:   "mvn -DskipTests=true compile"
+    branch_pattern: master
 before_script:
   - dropdb --if-exists sc_lint_test
   - psql -c 'create database sc_lint_test;' -U postgres
