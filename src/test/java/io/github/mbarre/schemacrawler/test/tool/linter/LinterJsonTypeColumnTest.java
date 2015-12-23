@@ -45,7 +45,7 @@ public class LinterJsonTypeColumnTest {
 	public void testLint() throws Exception{
 
 		final LinterRegistry registry = new LinterRegistry();
-		Assert.assertTrue(registry.hasLinter(LinterJsonTypeColumnTest.class.getName()));
+		Assert.assertTrue(registry.hasLinter(LinterJsonTypeColumn.class.getName()));
 
 		final SchemaCrawlerOptions options = new SchemaCrawlerOptions();
 		// Set what details are required in the schema - this affects the
