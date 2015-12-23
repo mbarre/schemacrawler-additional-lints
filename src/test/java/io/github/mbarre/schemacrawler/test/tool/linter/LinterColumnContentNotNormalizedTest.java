@@ -55,16 +55,16 @@ public class LinterColumnContentNotNormalizedTest  {
         // time taken to crawl the schema
         options.setSchemaInfoLevel(SchemaInfoLevelBuilder.standard());
 
-                //final Catalog catalog = getCatalog(options);
+        //final Catalog catalog = getCatalog(options);
         Connection connection = DriverManager.getConnection(PostgreSqlDatabase.CONNECTION_STRING,
                 PostgreSqlDatabase.USER_NAME, database.getPostgresPassword());
 
         final Executable executable = new SchemaCrawlerExecutable("lint");
-        final Path linterConfigsFile = FileSystems.getDefault().getPath("resources", "/schemacrawler-linter-configs-test.xml");
+        final Path linterConfigsFile = FileSystems.getDefault().getPath("", this.getClass().getClassLoader().getResource("schemacrawler-linter-configs-test.xml").getPath());
         final LintOptionsBuilder optionsBuilder = new LintOptionsBuilder();
         optionsBuilder.withLinterConfigs(linterConfigsFile.toString());
-
         executable.setAdditionalConfiguration(optionsBuilder.toConfig());
+
         try {
             Path out = Paths.get("target/test_lint_normalized.json");
             OutputOptions outputOptions = new OutputOptions(TextOutputFormat.json, out);
@@ -74,7 +74,6 @@ public class LinterColumnContentNotNormalizedTest  {
             executable.setSchemaCrawlerOptions(options);
             executable.execute(connection);
 
-            //Assert.assertNotNull(out.g);
             File output = new File(out.toString());
             Assert.assertTrue("Lint json output must be generated.", output.exists());
             // now, only grab the lints i'm interested in (id : io.github.mbarre.schemacrawler.tool.linter.LinterColumnContentNotNormalized)
@@ -83,7 +82,7 @@ public class LinterColumnContentNotNormalizedTest  {
             Assert.assertNotNull(json.getJSONObject("table_lints"));
 
             JSONArray lints = json.getJSONObject("table_lints").getJSONArray("lints");
-                        // now we have the json array, let's filter only the one we want in our lint
+            // now we have the json array, let's filter only the one we want in our lint
             // lint id : [io.github.mbarre.schemacrawler.tool.linter.LinterColumnContentNotNormalized]
             boolean lint1Dectected = false;
             for (int i = 0; i < lints.length(); i++) {

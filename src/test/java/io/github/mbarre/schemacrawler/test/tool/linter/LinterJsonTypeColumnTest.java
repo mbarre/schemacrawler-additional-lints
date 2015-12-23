@@ -18,9 +18,12 @@ import schemacrawler.schemacrawler.SchemaInfoLevelBuilder;
 import schemacrawler.tools.executable.Executable;
 import schemacrawler.tools.executable.SchemaCrawlerExecutable;
 import schemacrawler.tools.lint.LinterRegistry;
+import schemacrawler.tools.lint.executable.LintOptionsBuilder;
 import schemacrawler.tools.options.OutputOptions;
 import schemacrawler.tools.options.TextOutputFormat;
 
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
@@ -57,21 +60,24 @@ public class LinterJsonTypeColumnTest {
 				PostgreSqlDatabase.USER_NAME, database.getPostgresPassword());
 		
 		final Executable executable = new SchemaCrawlerExecutable("lint");
+
+        final Path linterConfigsFile = FileSystems.getDefault().getPath("", this.getClass().getClassLoader().getResource("schemacrawler-linter-configs-test.xml").getPath());
+		final LintOptionsBuilder optionsBuilder = new LintOptionsBuilder();
+		optionsBuilder.withLinterConfigs(linterConfigsFile.toString());
+		executable.setAdditionalConfiguration(optionsBuilder.toConfig());
 		
 		try (StringBuilderWriter out = new StringBuilderWriter()) {
 			OutputOptions outputOptions = new OutputOptions(TextOutputFormat.json,out);
 			executable.setOutputOptions(outputOptions);
 			executable.setSchemaCrawlerOptions(options);
 			executable.execute(connection);
-
+            System.out.println(out);
 			Assert.assertNotNull(out.toString());
 			JSONObject json = new JSONObject(out.toString().substring(1, out.toString().length()-1)) ;
 			Assert.assertNotNull(json.getJSONObject("table_lints"));
 			Assert.assertEquals("test_json", json.getJSONObject("table_lints").getString("name"));
 
 			JSONArray lints = json.getJSONObject("table_lints").getJSONArray("lints");
-                        // only get ours... not the native lint ()
-                        lints.remove(1);
 			Assert.assertNotNull(lints);
 			Assert.assertEquals(1,lints.length());
 			Assert.assertEquals(LinterJsonTypeColumn.class.getName(), lints.getJSONObject(0).getString("id"));
