@@ -3,10 +3,13 @@
  */
 package io.github.mbarre.schemacrawler.tool.linter;
 
-import static java.util.Objects.requireNonNull;
 import schemacrawler.schema.Table;
 import schemacrawler.tools.lint.BaseLinter;
 import schemacrawler.tools.lint.LintSeverity;
+
+import java.sql.Connection;
+
+import static java.util.Objects.requireNonNull;
 
 /**
  * Check that tables have primary key
@@ -44,8 +47,7 @@ public class LinterTableWithNoPrimaryKey extends BaseLinter {
      * @param table table
      */
     @Override
-	protected void lint(Table table) {
-
+	protected void lint(final Table table, Connection connection){
 		requireNonNull(table, "No table provided");
 		
 		if(table.getPrimaryKey() == null){

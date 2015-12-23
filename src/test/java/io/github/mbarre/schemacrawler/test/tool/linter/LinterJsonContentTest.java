@@ -5,10 +5,6 @@ package io.github.mbarre.schemacrawler.test.tool.linter;
 
 import io.github.mbarre.schemacrawler.test.utils.PostgreSqlDatabase;
 import io.github.mbarre.schemacrawler.tool.linter.LinterJsonContent;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-
 import org.apache.commons.io.output.StringBuilderWriter;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -17,14 +13,19 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import schemacrawler.schemacrawler.SchemaCrawlerOptions;
 import schemacrawler.schemacrawler.SchemaInfoLevelBuilder;
 import schemacrawler.tools.executable.Executable;
 import schemacrawler.tools.executable.SchemaCrawlerExecutable;
 import schemacrawler.tools.lint.LinterRegistry;
+import schemacrawler.tools.lint.executable.LintOptionsBuilder;
 import schemacrawler.tools.options.OutputOptions;
 import schemacrawler.tools.options.TextOutputFormat;
+
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
+import java.sql.Connection;
+import java.sql.DriverManager;
 
 
 /**
@@ -60,6 +61,10 @@ public class LinterJsonContentTest {
 				PostgreSqlDatabase.USER_NAME, database.getPostgresPassword());
 		
 		final Executable executable = new SchemaCrawlerExecutable("lint");
+		final Path linterConfigsFile = FileSystems.getDefault().getPath("", this.getClass().getClassLoader().getResource("schemacrawler-linter-configs-test.xml").getPath());
+		final LintOptionsBuilder optionsBuilder = new LintOptionsBuilder();
+		optionsBuilder.withLinterConfigs(linterConfigsFile.toString());
+		executable.setAdditionalConfiguration(optionsBuilder.toConfig());
 		
 		try (StringBuilderWriter out = new StringBuilderWriter()) {
 			OutputOptions outputOptions = new OutputOptions(TextOutputFormat.json,out);
@@ -73,8 +78,6 @@ public class LinterJsonContentTest {
 			Assert.assertEquals("test_json", json.getJSONObject("table_lints").getString("name"));
 
 			JSONArray lints = json.getJSONObject("table_lints").getJSONArray("lints");
-                        // only get ours... not the native lint ()
-                        lints.remove(1);
 			Assert.assertNotNull(lints);
 			Assert.assertEquals(1,lints.length());
 			Assert.assertEquals(LinterJsonContent.class.getName(), lints.getJSONObject(0).getString("id"));
