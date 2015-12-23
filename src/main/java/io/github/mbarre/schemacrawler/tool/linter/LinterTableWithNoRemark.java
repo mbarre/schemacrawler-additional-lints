@@ -1,15 +1,16 @@
 package io.github.mbarre.schemacrawler.tool.linter;
 
 
-import static java.util.Objects.requireNonNull;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import schemacrawler.schema.Column;
 import schemacrawler.schema.Table;
 import schemacrawler.tools.lint.BaseLinter;
 import schemacrawler.tools.lint.LintSeverity;
+
+import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
+
+import static java.util.Objects.requireNonNull;
 
 /**
  * Check that objects (tables, columns) have a remark
@@ -50,7 +51,7 @@ public class LinterTableWithNoRemark extends BaseLinter
      * @param table table
      */
     @Override
-	protected void lint(final Table table)
+	protected void lint(final Table table, Connection connection)
 	{
 		requireNonNull(table, "No table provided");
 

@@ -2,37 +2,36 @@ package io.github.mbarre.schemacrawler.test.tool.linter;
 
 import io.github.mbarre.schemacrawler.test.utils.PostgreSqlDatabase;
 import io.github.mbarre.schemacrawler.tool.linter.LinterColumnContentNotNormalized;
-import java.io.File;
-import java.io.FileInputStream;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.Types;
 import org.apache.commons.io.IOUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import schemacrawler.schemacrawler.SchemaCrawlerOptions;
 import schemacrawler.schemacrawler.SchemaInfoLevelBuilder;
 import schemacrawler.tools.executable.Executable;
 import schemacrawler.tools.executable.SchemaCrawlerExecutable;
-import schemacrawler.tools.lint.Linter;
 import schemacrawler.tools.lint.LinterRegistry;
+import schemacrawler.tools.lint.executable.LintOptionsBuilder;
 import schemacrawler.tools.options.OutputOptions;
 import schemacrawler.tools.options.TextOutputFormat;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Types;
 
 /**
  * @author adriens
  */
-public class LinterColumnContentNotNormalizedTest {
+public class LinterColumnContentNotNormalizedTest  {
 
     Logger logger = LoggerFactory.getLogger(LinterColumnContentNotNormalizedTest.class);
     private static PostgreSqlDatabase database;
@@ -48,8 +47,7 @@ public class LinterColumnContentNotNormalizedTest {
     public void testLint() throws Exception {
 
         final LinterRegistry registry = new LinterRegistry();
-        Linter linter = registry.lookupLinter(LinterColumnContentNotNormalized.class.getName());
-        Assert.assertNotNull(linter);
+        Assert.assertTrue(registry.hasLinter(LinterColumnContentNotNormalized.class.getName()));
 
         final SchemaCrawlerOptions options = new SchemaCrawlerOptions();
 
@@ -62,6 +60,11 @@ public class LinterColumnContentNotNormalizedTest {
                 PostgreSqlDatabase.USER_NAME, database.getPostgresPassword());
 
         final Executable executable = new SchemaCrawlerExecutable("lint");
+        final Path linterConfigsFile = FileSystems.getDefault().getPath("resources", "/schemacrawler-linter-configs-test.xml");
+        final LintOptionsBuilder optionsBuilder = new LintOptionsBuilder();
+        optionsBuilder.withLinterConfigs(linterConfigsFile.toString());
+
+        executable.setAdditionalConfiguration(optionsBuilder.toConfig());
         try {
             Path out = Paths.get("target/test_lint_normalized.json");
             OutputOptions outputOptions = new OutputOptions(TextOutputFormat.json, out);

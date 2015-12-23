@@ -4,4 +4,13 @@
 /.project
 /src/test/db/liquibase/*/liquibase.properties
 /src/test/db/liquibase/*/test.log
-/lint_pdc.html
+/lint_pdc.html.idea
+.idea/compiler.xml
+.idea/copyright
+.idea/encodings.xml
+.idea/libraries
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+.idea/workspace.xml
+schemacrawler-additionnallints.iml
