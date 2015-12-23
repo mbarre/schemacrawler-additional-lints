@@ -4,7 +4,6 @@
 /.project
 /src/test/db/liquibase/*/liquibase.properties
 /src/test/db/liquibase/*/test.log
-/lint_pdc.html.idea
 .idea/compiler.xml
 .idea/copyright
 .idea/encodings.xml
