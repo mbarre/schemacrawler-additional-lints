@@ -5,9 +5,10 @@
  */
 package io.github.mbarre.schemacrawler.utils;
 
-import java.sql.Types;
 import org.junit.Assert;
 import org.junit.Test;
+
+import java.sql.Types;
 
 /**
  *

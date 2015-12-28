@@ -3,6 +3,15 @@
  */
 package io.github.mbarre.schemacrawler.test.utils;
 
+import liquibase.Liquibase;
+import liquibase.database.core.PostgresDatabase;
+import liquibase.database.jvm.JdbcConnection;
+import liquibase.exception.LiquibaseException;
+import liquibase.resource.FileSystemResourceAccessor;
+import liquibase.resource.ResourceAccessor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -10,16 +19,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
-
-import liquibase.Liquibase;
-import liquibase.database.core.PostgresDatabase;
-import liquibase.database.jvm.JdbcConnection;
-import liquibase.exception.LiquibaseException;
-import liquibase.resource.FileSystemResourceAccessor;
-import liquibase.resource.ResourceAccessor;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Classe utilitaire pour l'initialisation de la base de test
@@ -29,12 +28,8 @@ import org.slf4j.LoggerFactory;
 public class PostgreSqlDatabase {
     private static final Logger LOG = LoggerFactory.getLogger(PostgreSqlDatabase.class);
 
-    public static final String CHANGE_LOG_LOWERCASE_CHECK = "src/test/db/liquibase/lowerCaseCheck/db.changelog.xml";
-    public static final String CHANGE_LOG_PRIMARY_KEY_CHECK = "src/test/db/liquibase/primaryKeyCheck/db.changelog.xml";
-    public static final String CHANGE_LOG_REMARK_CHECK = "src/test/db/liquibase/remarkCheck/db.changelog.xml";
     public static final String CHANGE_LOG_NORMALIZE_CHECK = "src/test/db/liquibase/normalizeCheck/db.changelog.xml";
     
-
     public static final String CONNECTION_STRING = "jdbc:postgresql://localhost:5432/sc_lint_test";
     /* Leave to postgres as the default user as described on travis
     (http://docs.travis-ci.com/user/database-setup/)

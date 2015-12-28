@@ -78,6 +78,7 @@ public class LinterColumnContentNotNormalizedTest  {
             Assert.assertTrue("Lint json output must be generated.", output.exists());
             // now, only grab the lints i'm interested in (id : io.github.mbarre.schemacrawler.tool.linter.LinterColumnContentNotNormalized)
             Assert.assertNotNull(IOUtils.toString(new FileInputStream(output)));
+            System.out.println(out.toString().substring(1, out.toString().length() - 1));
             JSONObject json = new JSONObject(out.toString().substring(1, out.toString().length() - 1));
             Assert.assertNotNull(json.getJSONObject("table_lints"));
 
