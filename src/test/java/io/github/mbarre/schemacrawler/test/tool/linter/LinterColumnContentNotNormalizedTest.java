@@ -1,10 +1,8 @@
 package io.github.mbarre.schemacrawler.test.tool.linter;
 
+import io.github.mbarre.schemacrawler.test.utils.LintWrapper;
 import io.github.mbarre.schemacrawler.test.utils.PostgreSqlDatabase;
 import io.github.mbarre.schemacrawler.tool.linter.LinterColumnContentNotNormalized;
-import org.apache.commons.io.IOUtils;
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -12,34 +10,27 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import schemacrawler.schemacrawler.SchemaCrawlerOptions;
 import schemacrawler.schemacrawler.SchemaInfoLevelBuilder;
-import schemacrawler.tools.executable.Executable;
-import schemacrawler.tools.executable.SchemaCrawlerExecutable;
 import schemacrawler.tools.lint.LinterRegistry;
-import schemacrawler.tools.lint.executable.LintOptionsBuilder;
-import schemacrawler.tools.options.OutputOptions;
-import schemacrawler.tools.options.TextOutputFormat;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.nio.file.FileSystems;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Types;
+import java.util.List;
 
 /**
  * @author adriens
  */
-public class LinterColumnContentNotNormalizedTest  {
+public class LinterColumnContentNotNormalizedTest  extends BaseLintTest {
 
     Logger logger = LoggerFactory.getLogger(LinterColumnContentNotNormalizedTest.class);
     private static PostgreSqlDatabase database;
+    private static final String CHANGE_LOG_NORMALIZE_CHECK = "src/test/db/liquibase/normalizeCheck/db.changelog.xml";
+
 
     @BeforeClass
     public static void init() {
         database = new PostgreSqlDatabase();
-        database.setUp(PostgreSqlDatabase.CHANGE_LOG_NORMALIZE_CHECK);
+        database.setUp(CHANGE_LOG_NORMALIZE_CHECK);
         System.out.println("LinterColumnContentNotNormalizedTest1 running...");
     }
 
@@ -51,56 +42,30 @@ public class LinterColumnContentNotNormalizedTest  {
 
         final SchemaCrawlerOptions options = new SchemaCrawlerOptions();
 
-		// Set what details are required in the schema - this affects the
+        // Set what details are required in the schema - this affects the
         // time taken to crawl the schema
         options.setSchemaInfoLevel(SchemaInfoLevelBuilder.standard());
 
-        //final Catalog catalog = getCatalog(options);
         Connection connection = DriverManager.getConnection(PostgreSqlDatabase.CONNECTION_STRING,
                 PostgreSqlDatabase.USER_NAME, database.getPostgresPassword());
 
-        final Executable executable = new SchemaCrawlerExecutable("lint");
-        final Path linterConfigsFile = FileSystems.getDefault().getPath("", this.getClass().getClassLoader().getResource("schemacrawler-linter-configs-test.xml").getPath());
-        final LintOptionsBuilder optionsBuilder = new LintOptionsBuilder();
-        optionsBuilder.withLinterConfigs(linterConfigsFile.toString());
-        executable.setAdditionalConfiguration(optionsBuilder.toConfig());
+        List<LintWrapper> lints = executeToJsonAndConvertToLintList(options, connection);
 
-        try {
-            Path out = Paths.get("target/test_lint_normalized.json");
-            OutputOptions outputOptions = new OutputOptions(TextOutputFormat.json, out);
-            outputOptions.setOutputFile(Paths.get("target/test_lint_normalized.json"));
-            executable.setOutputOptions(outputOptions);
-
-            executable.setSchemaCrawlerOptions(options);
-            executable.execute(connection);
-
-            File output = new File(out.toString());
-            Assert.assertTrue("Lint json output must be generated.", output.exists());
-            // now, only grab the lints i'm interested in (id : io.github.mbarre.schemacrawler.tool.linter.LinterColumnContentNotNormalized)
-            Assert.assertNotNull(IOUtils.toString(new FileInputStream(output)));
-            System.out.println(out.toString().substring(1, out.toString().length() - 1));
-            JSONObject json = new JSONObject(out.toString().substring(1, out.toString().length() - 1));
-            Assert.assertNotNull(json.getJSONObject("table_lints"));
-
-            JSONArray lints = json.getJSONObject("table_lints").getJSONArray("lints");
-            // now we have the json array, let's filter only the one we want in our lint
-            // lint id : [io.github.mbarre.schemacrawler.tool.linter.LinterColumnContentNotNormalized]
-            boolean lint1Dectected = false;
-            for (int i = 0; i < lints.length(); i++) {
-                // be sure we are on the right lint
-                if (LinterColumnContentNotNormalized.class.getName().equals(lints.getJSONObject(i).getString("id"))) {
-                    if ("public.test_normalized.content".equals(lints.getJSONObject(i).getString("value").trim())) {
-                        Assert.assertEquals("Found <4> repetitions of the same value <AAAA> in <public.test_normalized.content>", lints.getJSONObject(i).getString("description").trim());
-                        Assert.assertEquals("high", lints.getJSONObject(i).getString("severity").trim());
-                        lint1Dectected = true;
-                    }
+        // now we have the json array, let's filter only the one we want in our lint
+        // lint id : [io.github.mbarre.schemacrawler.tool.linter.LinterColumnContentNotNormalized]
+        boolean lint1Dectected = false;
+        for (LintWrapper lint : lints) {
+            // be sure we are on the right lint
+            if (LinterColumnContentNotNormalized.class.getName().equals(lint.getId())) {
+                if ("public.test_normalized.content".equals(lint.getValue())) {
+                    Assert.assertEquals("Found <4> repetitions of the same value <AAAA> in <public.test_normalized.content>", lint.getDescription());
+                    Assert.assertEquals("high", lint.getSeverity());
+                    lint1Dectected = true;
                 }
             }
-            Assert.assertTrue("Normalization issue has been detected.", lint1Dectected);
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
         }
+        Assert.assertTrue("Normalization issue has been detected.", lint1Dectected);
+
     }
 
     @Test
@@ -147,7 +112,7 @@ public class LinterColumnContentNotNormalizedTest  {
         LinterColumnContentNotNormalized test = new LinterColumnContentNotNormalized();
         Assert.assertEquals(" should not have so many duplicates.", test.getSummary());
     }
-    
+
     @Test
     public void testGetDescription() {
         LinterColumnContentNotNormalized test = new LinterColumnContentNotNormalized();

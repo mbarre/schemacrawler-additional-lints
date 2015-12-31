@@ -28,8 +28,6 @@ import java.util.Properties;
 public class PostgreSqlDatabase {
     private static final Logger LOG = LoggerFactory.getLogger(PostgreSqlDatabase.class);
 
-    public static final String CHANGE_LOG_NORMALIZE_CHECK = "src/test/db/liquibase/normalizeCheck/db.changelog.xml";
-    
     public static final String CONNECTION_STRING = "jdbc:postgresql://localhost:5432/sc_lint_test";
     /* Leave to postgres as the default user as described on travis
     (http://docs.travis-ci.com/user/database-setup/)
