@@ -47,28 +47,58 @@ public abstract class BaseLintTest {
         Assert.assertNotNull(data);
         JSONObject json = new JSONObject(data.toString().substring(1, data.toString().length() - 2));
 
-        Assert.assertNotNull(json.getJSONObject("table_lints"));
-        JSONArray jsonLints = json.getJSONObject("table_lints").getJSONArray("lints");
-        Assert.assertNotNull(jsonLints);
-
-        if(options.getTableNamePattern() != null  && ! options.getTableNamePattern().isEmpty())
-            Assert.assertEquals(options.getTableNamePattern(), json.getJSONObject("table_lints").getString("name"));
-
         List<LintWrapper>lints = new ArrayList<LintWrapper>();
-        LintWrapper lint = null;
-        for (int i = 0; i < jsonLints.length(); i++) {
-            lint = new LintWrapper();
-            lint.setId(jsonLints.getJSONObject(i).getString("id"));
-            Assert.assertNotNull(lint.getId());
-            lint.setValue(jsonLints.getJSONObject(i).getString("value").trim());
-            Assert.assertNotNull(lint.getValue());
-            lint.setDescription(jsonLints.getJSONObject(i).getString("description").trim());
-            Assert.assertNotNull(lint.getDescription());
-            lint.setSeverity(jsonLints.getJSONObject(i).getString("severity").trim());
-            Assert.assertNotNull(lint.getSeverity());
 
-            lints.add(lint);
+        if( json.get("table_lints") instanceof  JSONObject) {
+
+            Assert.assertNotNull(json.getJSONObject("table_lints"));
+            JSONArray jsonLints = json.getJSONObject("table_lints").getJSONArray("lints");
+            Assert.assertNotNull(jsonLints);
+
+            if(options.getTableNamePattern() != null  && ! options.getTableNamePattern().isEmpty())
+                Assert.assertEquals(options.getTableNamePattern(), json.getJSONObject("table_lints").getString("name"));
+
+            for (int i = 0; i < jsonLints.length(); i++) {
+                if(!"databasechangelog".equals(json.getJSONObject("table_lints").getString("name")) &&
+                        !"databasechangeloglock".equals(json.getJSONObject("table_lints").getString("name")))
+                    lints.add(createLintWrapper(json.getJSONObject("table_lints").getString("name"), jsonLints.getJSONObject(i)));
+            }
         }
+        else{
+            Assert.assertNotNull(json.getJSONArray("table_lints"));
+            JSONArray jsonTableLints = json.getJSONArray("table_lints");
+
+            for (int i = 0; i < jsonTableLints.length(); i++) {
+                JSONArray jsonLints = jsonTableLints.getJSONObject(i).getJSONArray("lints");
+                Assert.assertNotNull(jsonLints);
+
+                if(options.getTableNamePattern() != null  && ! options.getTableNamePattern().isEmpty())
+                    Assert.assertEquals(options.getTableNamePattern(), json.getJSONObject("table_lints").getString("name"));
+
+                for (int j = 0; j < jsonLints.length(); j++) {
+                    if(!"databasechangelog".equals(jsonTableLints.getJSONObject(i).getString("name")) &&
+                            !"databasechangeloglock".equals(jsonTableLints.getJSONObject(i).getString("name")))
+                        lints.add(createLintWrapper(jsonTableLints.getJSONObject(i).getString("name"), jsonLints.getJSONObject(j)));
+                }
+            }
+        }
+
         return lints;
+    }
+
+    private LintWrapper createLintWrapper(String tableName, JSONObject jsonLint){
+
+        LintWrapper lint = new LintWrapper();
+        lint.setId(jsonLint.getString("id"));
+        Assert.assertNotNull(lint.getId());
+        lint.setValue(jsonLint.getString("value").trim());
+        Assert.assertNotNull(lint.getValue());
+        lint.setDescription(jsonLint.getString("description").trim());
+        Assert.assertNotNull(lint.getDescription());
+        lint.setSeverity(jsonLint.getString("severity").trim());
+        Assert.assertNotNull(lint.getSeverity());
+        lint.setTableName(tableName);
+
+        return lint;
     }
 }
