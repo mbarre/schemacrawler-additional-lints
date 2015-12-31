@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+	<changeSet author="mbarre" id="20152812-1" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+
+		<createTable  tableName="test_int_boolean" remarks="table for lint LinterBooleanContentColumnTest">
+			<column name="id" 				type="int" 			remarks="primary key"/>
+			<column name="int_data" 		type="int" 			remarks="column with non boolean data"/>
+			<column name="int_boolean" 		type="int" 			remarks="column with boolean"/>
+		</createTable>
+		<addPrimaryKey columnNames="id"
+					   constraintName="pk_int_test"
+					   schemaName="public"
+					   tableName="test_int_boolean"/>
+		<sql><![CDATA[insert into test_int_boolean(id, int_data, int_boolean) values (1, 1, 1)]]></sql>
+		<sql><![CDATA[insert into test_int_boolean(id, int_data, int_boolean) values (2, 0, 15)]]></sql>
+		<sql><![CDATA[insert into test_int_boolean(id, int_data, int_boolean) values (3, 1, 47)]]></sql>
+		<sql><![CDATA[insert into test_int_boolean(id, int_data, int_boolean) values (4, 1, 1)]]></sql>
+		<sql><![CDATA[insert into test_int_boolean(id, int_data, int_boolean) values (5, 0, 0)]]></sql>
+
+	</changeSet>
+
+	<changeSet author="mbarre" id="20152812-2" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+		<createTable  tableName="test_bigint_boolean" remarks="table for lint LinterBooleanContentColumnTest">
+			<column name="id" 				type="int" 			remarks="primary key"/>
+			<column name="bigint_data" 		type="bigint" 		remarks="column with non boolean data"/>
+			<column name="bigint_boolean" 	type="bigint" 		remarks="column with boolean"/>
+		</createTable>
+		<addPrimaryKey columnNames="id"
+					   constraintName="pk_bigint_test"
+					   schemaName="public"
+					   tableName="test_bigint_boolean"/>
+
+		<sql><![CDATA[insert into test_bigint_boolean(id, bigint_data, bigint_boolean) values (1, 1, 1)]]></sql>
+		<sql><![CDATA[insert into test_bigint_boolean(id, bigint_data, bigint_boolean) values (2, 15, 0)]]></sql>
+		<sql><![CDATA[insert into test_bigint_boolean(id, bigint_data, bigint_boolean) values (3, 47, 1)]]></sql>
+		<sql><![CDATA[insert into test_bigint_boolean(id, bigint_data, bigint_boolean) values (4, 1, 1)]]></sql>
+		<sql><![CDATA[insert into test_bigint_boolean(id, bigint_data, bigint_boolean) values (5, 0, 0)]]></sql>
+	</changeSet>
+
+	<changeSet author="mbarre" id="20152812-3" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+		<createTable  tableName="test_double_boolean" remarks="table for lint LinterBooleanContentColumnTest">
+			<column name="id" 				type="int" 			remarks="primary key"/>
+			<column name="double_data" 		type="double" 		remarks="column with non boolean data"/>
+			<column name="double_boolean" 	type="double" 		remarks="column with boolean"/>
+		</createTable>
+		<addPrimaryKey columnNames="id"
+					   constraintName="pk_double_test"
+					   schemaName="public"
+					   tableName="test_double_boolean"/>
+		<sql><![CDATA[insert into test_double_boolean(id, double_data, double_boolean) values (1, 1, 1)]]></sql>
+		<sql><![CDATA[insert into test_double_boolean(id, double_data, double_boolean) values (2, 15, 0)]]></sql>
+		<sql><![CDATA[insert into test_double_boolean(id, double_data, double_boolean) values (3, 47, 1)]]></sql>
+		<sql><![CDATA[insert into test_double_boolean(id, double_data, double_boolean) values (4, 1, 1)]]></sql>
+		<sql><![CDATA[insert into test_double_boolean(id, double_data, double_boolean) values (5, 0, 0)]]></sql>
+	</changeSet>
+
+	<changeSet author="mbarre" id="20152812-4" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+		<createTable  tableName="test_float_boolean" remarks="table for lint LinterBooleanContentColumnTest">
+			<column name="id" 				type="int" 			remarks="primary key"/>
+			<column name="float_data" 		type="float" 		remarks="column with non boolean data"/>
+			<column name="float_boolean" 	type="float" 		remarks="column with boolean"/>
+		</createTable>
+		<addPrimaryKey columnNames="id"
+					   constraintName="pk_float_test"
+					   schemaName="public"
+					   tableName="test_float_boolean"/>
+
+		<sql><![CDATA[insert into test_float_boolean(id, float_data, float_boolean) values (1, 1, 1)]]></sql>
+		<sql><![CDATA[insert into test_float_boolean(id, float_data, float_boolean) values (2, 15, 0)]]></sql>
+		<sql><![CDATA[insert into test_float_boolean(id, float_data, float_boolean) values (3, 47, 1)]]></sql>
+		<sql><![CDATA[insert into test_float_boolean(id, float_data, float_boolean) values (4, 1, 1)]]></sql>
+		<sql><![CDATA[insert into test_float_boolean(id, float_data, float_boolean) values (5, 0, 0)]]></sql>
+	</changeSet>
+
+	<changeSet author="mbarre" id="20152812-5" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+		<createTable  tableName="test_integer_boolean" remarks="table for lint LinterBooleanContentColumnTest">
+			<column name="id" 				type="int" 			remarks="primary key"/>
+			<column name="integer_data" 	type="integer" 		remarks="column with non boolean data"/>
+			<column name="integer_boolean" 	type="integer" 		remarks="column with boolean"/>
+		</createTable>
+		<addPrimaryKey columnNames="id"
+					   constraintName="pk_integer_test"
+					   schemaName="public"
+					   tableName="test_integer_boolean"/>
+
+		<sql><![CDATA[insert into test_integer_boolean(id, integer_data, integer_boolean) values (1, 1, 1)]]></sql>
+		<sql><![CDATA[insert into test_integer_boolean(id, integer_data, integer_boolean) values (2, 15, 0)]]></sql>
+		<sql><![CDATA[insert into test_integer_boolean(id, integer_data, integer_boolean) values (3, 47, 1)]]></sql>
+		<sql><![CDATA[insert into test_integer_boolean(id, integer_data, integer_boolean) values (4, 1, 1)]]></sql>
+		<sql><![CDATA[insert into test_integer_boolean(id, integer_data, integer_boolean) values (5, 0, 0)]]></sql>
+	</changeSet>
+
+	<changeSet author="mbarre" id="20152812-7" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+		<createTable  tableName="test_smallint_boolean" remarks="table for lint LinterBooleanContentColumnTest">
+			<column name="id" 				type="int" 			remarks="primary key"/>
+			<column name="smallint_data" 	type="smallint" 	remarks="column with non boolean data"/>
+			<column name="smallint_boolean" type="smallint" 	remarks="column with boolean"/>
+		</createTable>
+		<addPrimaryKey columnNames="id"
+					   constraintName="pk_smallint_test"
+					   schemaName="public"
+					   tableName="test_smallint_boolean"/>
+
+		<sql><![CDATA[insert into test_smallint_boolean(id, smallint_data, smallint_boolean) values (1, 1, 1)]]></sql>
+		<sql><![CDATA[insert into test_smallint_boolean(id, smallint_data, smallint_boolean) values (2, 15, 0)]]></sql>
+		<sql><![CDATA[insert into test_smallint_boolean(id, smallint_data, smallint_boolean) values (3, 47, 1)]]></sql>
+		<sql><![CDATA[insert into test_smallint_boolean(id, smallint_data, smallint_boolean) values (4, 1, 1)]]></sql>
+		<sql><![CDATA[insert into test_smallint_boolean(id, smallint_data, smallint_boolean) values (5, 0, 0)]]></sql>
+	</changeSet>
+
+	<changeSet author="mbarre" id="20152812-8" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+		<createTable  tableName="test_tinyint_boolean" remarks="table for lint LinterBooleanContentColumnTest">
+			<column name="id" 				type="int" 			remarks="primary key"/>
+			<column name="tinyint_data" 		type="tinyint" 		remarks="column with non boolean data"/>
+			<column name="tinyint_boolean" 	type="tinyint" 		remarks="column with boolean"/>
+		</createTable>
+		<addPrimaryKey columnNames="id"
+					   constraintName="pk_tinyint_test"
+					   schemaName="public"
+					   tableName="test_tinyint_boolean"/>
+		<sql><![CDATA[insert into test_tinyint_boolean(id, tinyint_data, tinyint_boolean) values (1, 1, 1)]]></sql>
+		<sql><![CDATA[insert into test_tinyint_boolean(id, tinyint_data, tinyint_boolean) values (2, 15, 0)]]></sql>
+		<sql><![CDATA[insert into test_tinyint_boolean(id, tinyint_data, tinyint_boolean) values (3, 47, 1)]]></sql>
+		<sql><![CDATA[insert into test_tinyint_boolean(id, tinyint_data, tinyint_boolean) values (4, 1, 1)]]></sql>
+		<sql><![CDATA[insert into test_tinyint_boolean(id, tinyint_data, tinyint_boolean) values (5, 0, 0)]]></sql>
+	</changeSet>
+
+	<changeSet author="mbarre" id="20152812-9" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+		<createTable  tableName="test_number_boolean" remarks="table for lint LinterBooleanContentColumnTest">
+			<column name="id" 				type="int" 			remarks="primary key"/>
+			<column name="number_data" 		type="number" 		remarks="column with non boolean data"/>
+			<column name="number_boolean" 	type="number" 		remarks="column with boolean"/>
+		</createTable>
+		<addPrimaryKey columnNames="id"
+					   constraintName="pk_number_test"
+					   schemaName="public"
+					   tableName="test_number_boolean"/>
+
+		<sql><![CDATA[insert into test_number_boolean(id, number_data, number_boolean) values (2, 15, 0)]]></sql>
+		<sql><![CDATA[insert into test_number_boolean(id, number_data, number_boolean) values (3, 47, 1)]]></sql>
+		<sql><![CDATA[insert into test_number_boolean(id, number_data, number_boolean) values (4, 1, 1)]]></sql>
+		<sql><![CDATA[insert into test_number_boolean(id, number_data, number_boolean) values (5, 0, 0)]]></sql>
+
+	</changeSet>
+
+</databaseChangeLog>

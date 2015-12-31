@@ -25,5 +25,22 @@ public class LintUtils {
 				|| (javaSqlType == Types.VARCHAR);
 	}
 
+	/**
+	 * Tells wether a column is numeric based or not.
+	 * @param javaSqlType the javaSqlType
+	 * @return is the sqlType is numeric based or not
+	 */
+	public static final boolean isSqlTypeNumericBased(int javaSqlType) {
+		return (javaSqlType == Types.BIGINT)
+				|| (javaSqlType == Types.DECIMAL)
+				|| (javaSqlType == Types.FLOAT)
+				|| (javaSqlType == Types.DOUBLE)
+				|| (javaSqlType == Types.INTEGER)
+				|| (javaSqlType == Types.NUMERIC)
+                || (javaSqlType == Types.SMALLINT)
+                || (javaSqlType == Types.REAL)
+                || (javaSqlType == Types.TINYINT);
+	}
+
 
 }

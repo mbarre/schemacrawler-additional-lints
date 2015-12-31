@@ -5,3 +5,4 @@ io.github.mbarre.schemacrawler.tool.linter.LinterColumnContentNotNormalized
 io.github.mbarre.schemacrawler.tool.linter.LinterJsonTypeColumn
 io.github.mbarre.schemacrawler.tool.linter.LinterJsonContent
 io.github.mbarre.schemacrawler.tool.linter.LinterXmlContent
+io.github.mbarre.schemacrawler.tool.linter.LinterBooleanContent

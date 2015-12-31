@@ -9,6 +9,19 @@ public class LintWrapper {
     private String value;
     private String description;
     private String severity;
+    private String tableName;
+
+    public LintWrapper(){
+        super();
+    }
+
+    public LintWrapper(String id, String value, String description, String severity, String tableName) {
+        this.id = id;
+        this.value = value;
+        this.description = description;
+        this.severity = severity;
+        this.tableName = tableName;
+    }
 
     public String getId() {
         return id;
@@ -40,5 +53,18 @@ public class LintWrapper {
 
     public void setSeverity(String severity) {
         this.severity = severity;
+    }
+
+    public String getTableName() {
+        return tableName;
+    }
+
+    public void setTableName(String tableName) {
+        this.tableName = tableName;
+    }
+
+    @Override
+    public String toString() {
+        return "LintWrapper[id="+id+", value="+value+", description="+description+", severity="+severity+", table="+tableName+"]";
     }
 }
