@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>io.github.mbarre</groupId>
 	<artifactId>schemacrawler-additionnallints</artifactId>
-	<version>1.1</version>
+	<version>1.1.1-SNAPSHOT</version>
 	<name>Additional SchemaCrawler Lints</name>
 	<description>Some additionnal lints for schemacrawler</description>
 
@@ -63,7 +63,7 @@
 	</contributors>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<schemacrawler.version>14.05.04</schemacrawler.version>
+		<schemacrawler.version>14.05.05</schemacrawler.version>
 		<java.version>1.8</java.version>
 		<java.version.short>8</java.version.short>
 		<hsqldb.version>2.3.2</hsqldb.version>
@@ -92,8 +92,8 @@
 		<liquibase-plugin.version>3.4.1</liquibase-plugin.version>
 		<postgresql.version>9.4-1201-jdbc41</postgresql.version>
 		<commons-io.version>2.4</commons-io.version>
-        <json.version>20141113</json.version>
-        <xerces.version>2.11.0</xerces.version>
+                <json.version>20141113</json.version>
+                <xerces.version>2.11.0</xerces.version>
 	</properties>
 
 	<dependencies>
@@ -108,11 +108,13 @@
 			<groupId>us.fatehi</groupId>
 			<artifactId>schemacrawler-lint</artifactId>
 			<version>${schemacrawler.version}</version>
+                        <scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>us.fatehi</groupId>
 			<artifactId>schemacrawler</artifactId>
 			<version>${schemacrawler.version}</version>
+                        <scope>provided</scope>
 		</dependency>
 		<!-- SLF4J LOGBACK -->
 		<dependency>
@@ -125,17 +127,13 @@
 			<artifactId>jcl-over-slf4j</artifactId>
 			<version>${slf4j.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-classic</artifactId>
-			<version>${logback.version}</version>
-		</dependency>
 
 		<!-- Liquibase -->
 		<dependency>
 			<groupId>org.liquibase</groupId>
 			<artifactId>liquibase-maven-plugin</artifactId>
 			<version>${liquibase-plugin.version}</version>
+                        <scope>test</scope>
 		</dependency>
 
 		<!-- Postgresql -->
@@ -143,6 +141,7 @@
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<version>${postgresql.version}</version>
+                        <scope>test</scope>
 		</dependency>
 
 		<dependency>
@@ -156,13 +155,6 @@
 			<artifactId>json</artifactId>
 			<version>${json.version}</version>
 		</dependency>
-
-		<dependency>
-			<groupId>xerces</groupId>
-			<artifactId>xercesImpl</artifactId>
-			<version>${xerces.version}</version>
-		</dependency>
-
 	</dependencies>
 
 
