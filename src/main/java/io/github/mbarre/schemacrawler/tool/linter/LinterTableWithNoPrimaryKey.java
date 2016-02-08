@@ -49,7 +49,7 @@ public class LinterTableWithNoPrimaryKey extends BaseLinter {
     @Override
 	protected void lint(final Table table, Connection connection){
 		requireNonNull(table, "No table provided");
-		
+                
 		if(table.getPrimaryKey() == null){
 			addLint(table, getDescription(), table.getName());
 		}

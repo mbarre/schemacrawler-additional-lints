@@ -24,16 +24,16 @@ import schemacrawler.tools.linter.LinterTableSql;
  * @since 1.0.1
  */
 public class LinterXmlContent extends LinterTableSql {
-	
+    
     private static final Logger LOGGER = Logger.getLogger(LinterXmlContent.class.getName());
-
+    
     /**
      * The lint
      */
     public LinterXmlContent () {
         setSeverity(LintSeverity.high);
     }
-
+    
     /**
      * Get lint description
      * @return lint description
@@ -42,7 +42,7 @@ public class LinterXmlContent extends LinterTableSql {
     public String getDescription() {
         return getSummary();
     }
-
+    
     /**
      * Get lint summary
      * @return summary
@@ -61,35 +61,37 @@ public class LinterXmlContent extends LinterTableSql {
     @Override
     protected void lint(final Table table, final Connection connection)
             throws SchemaCrawlerException {
-
+        
         try (Statement stmt = connection.createStatement()){
+            
             String sql;
             List<Column> columns = table.getColumns();
             for (Column column : columns) {
-            	if(LintUtils.isSqlTypeTextBased(column.getColumnDataType().getJavaSqlType().getJavaSqlType())){
-            		
-            		sql = "select " + column.getName() + " from " + table.getName() ;
+                
+                if(LintUtils.isSqlTypeTextBased(column.getColumnDataType().getJavaSqlType().getJavaSqlType())){
+                    
+                    sql = "select \"" + column.getName() + "\" from \"" + table.getName() +"\"" ;
                     LOGGER.log(Level.INFO, "SQL : {0}", sql);
                     
                     ResultSet rs = stmt.executeQuery(sql);
                     boolean found = false;
                     while (rs.next() && !found) {
                         String data = rs.getString(column.getName());
-                        
                         if(XmlUtils.isXmlContent(data)){
                             LOGGER.log(Level.INFO, "Adding lint as data is XML but column type is not XML.");
                             addLint(table, getDescription(), column.getFullName());
                             found = true;
                         }
-                    }            		
-            	}
-            	else if(column.getColumnDataType().getJavaSqlType().getJavaSqlType() == Types.CLOB){
-            		//TODO voir comment gérer ce cas pour ne pas que ca explose !
-            	}
+                    }
+                }
+                else if(column.getColumnDataType().getJavaSqlType().getJavaSqlType() == Types.CLOB){
+                    //TODO voir comment gérer ce cas pour ne pas que ca explose !
+                }
             }
             
         }catch (SQLException ex) {
             LOGGER.severe(ex.getMessage());
+            throw new SchemaCrawlerException(ex.getMessage(), ex);
         }
     }
 }

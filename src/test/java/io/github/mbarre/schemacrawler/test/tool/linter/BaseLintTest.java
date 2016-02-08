@@ -41,13 +41,13 @@ public abstract class BaseLintTest {
         executable.setOutputOptions(outputOptions);
         executable.setSchemaCrawlerOptions(options);
         executable.execute(connection);
-
+        
         File output = new File(out.toString());
         String data = IOUtils.toString(new FileInputStream(output));
         Assert.assertNotNull(data);
         JSONObject json = new JSONObject(data.toString().substring(1, data.toString().length() - 2));
-
-        List<LintWrapper>lints = new ArrayList<LintWrapper>();
+       
+        List<LintWrapper>lints = new ArrayList<>();
 
         if( json.get("table_lints") instanceof  JSONObject) {
 

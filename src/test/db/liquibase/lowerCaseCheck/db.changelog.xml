@@ -13,6 +13,8 @@
             constraintName="pk_test"
             schemaName="public"
             tableName="TEST_CASE"/>
+    
+    <sql>insert into "TEST_CASE"(id, "UPPERCASE_COLUMN_NAME", lowercase_column_name) values (1, 'AAAA', 'aaaaa')</sql>
 </changeSet>
 
 	
