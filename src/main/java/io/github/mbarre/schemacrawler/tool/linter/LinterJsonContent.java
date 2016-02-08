@@ -62,30 +62,34 @@ public class LinterJsonContent extends LinterTableSql {
             throws SchemaCrawlerException {
 
         try (Statement stmt = connection.createStatement()){
-            String sql;
-            List<Column> columns = table.getColumns();
-            for (Column column : columns) {
-            	if(LintUtils.isSqlTypeTextBased(column.getColumnDataType().getJavaSqlType().getJavaSqlType())){
-            		
-            		sql = "select " + column.getName() + " from " + table.getName() ;
-                    LOGGER.log(Level.INFO, "SQL : {0}", sql);
-                    
-                    ResultSet rs = stmt.executeQuery(sql);
-                    boolean found = false;
-                    while (rs.next() && !found) {
-                        String data = rs.getString(column.getName());
+            if("PostgreSQL".equalsIgnoreCase(connection.getMetaData().getDatabaseProductName()) &&
+                    "9.4".compareTo(connection.getMetaData().getDatabaseProductVersion()) <= 0){
+                String sql;
+                List<Column> columns = table.getColumns();
+                for (Column column : columns) {
+                    if(LintUtils.isSqlTypeTextBased(column.getColumnDataType().getJavaSqlType().getJavaSqlType())){
                         
-                        if(JSonUtils.isJsonContent(data)){
-                            LOGGER.log(Level.INFO, "Adding lint as data is JSON but column type is not JSONB or JSON.");
-                            addLint(table, getDescription(), column.getFullName());
-                            found = true;
+                        sql = "select \"" + column.getName() + "\" from \"" + table.getName() +"\"" ;
+                        LOGGER.log(Level.INFO, "SQL : {0}", sql);
+                        
+                        ResultSet rs = stmt.executeQuery(sql);
+                        boolean found = false;
+                        while (rs.next() && !found) {
+                            String data = rs.getString(column.getName());
+                            
+                            if(JSonUtils.isJsonContent(data)){
+                                LOGGER.log(Level.INFO, "Adding lint as data is JSON but column type is not JSONB or JSON.");
+                                addLint(table, getDescription(), column.getFullName());
+                                found = true;
+                            }
                         }
-                    }            		
-            	}
+                    }
+                }
             }
             
         }catch (SQLException ex) {
             LOGGER.severe(ex.getMessage());
+            throw new SchemaCrawlerException(ex.getMessage(), ex);
         }
     }
 }

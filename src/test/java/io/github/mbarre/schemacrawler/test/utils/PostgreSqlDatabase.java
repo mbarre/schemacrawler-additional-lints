@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package io.github.mbarre.schemacrawler.test.utils;
 
@@ -22,12 +22,12 @@ import java.util.Properties;
 
 /**
  * Classe utilitaire pour l'initialisation de la base de test
- * 
+ *
  * @author mbarre
  */
 public class PostgreSqlDatabase {
     private static final Logger LOG = LoggerFactory.getLogger(PostgreSqlDatabase.class);
-
+    
     public static final String CONNECTION_STRING = "jdbc:postgresql://localhost:5432/sc_lint_test";
     /* Leave to postgres as the default user as described on travis
     (http://docs.travis-ci.com/user/database-setup/)
@@ -39,25 +39,40 @@ public class PostgreSqlDatabase {
     public static final String USER_NAME = "postgres";
     public static final String DEFAULT_PASSWORD = "";
     
-
+    
     private Liquibase liquibase;
     private Properties properties;
     private String postgresPassword;
-
+    
     public void setUp(String changelog) {
-	try {
+        try {
             setProperties();
-	    createTables(changelog);
-
-	} catch (Exception ex) {
-	    LOG.error("Error during database initialization", ex);
-	    throw new RuntimeException("Error during database initialization", ex);
-	}
+            createTables(changelog);
+            
+        } catch (Exception ex) {
+            LOG.error("Error during database initialization", ex);
+            throw new RuntimeException("Error during database initialization", ex);
+        }
+    }
+    
+    public String getDbVersion(){
+        setProperties();
+        String version;
+        try {
+            Connection connection = DriverManager.getConnection(PostgreSqlDatabase.CONNECTION_STRING,
+                    PostgreSqlDatabase.USER_NAME, getPostgresPassword());
+            version = connection.getMetaData().getDatabaseProductVersion();
+            connection.close();
+        } catch (Exception ex) {
+            LOG.error("Error during database initialization", ex);
+            throw new RuntimeException("Error during database initialization", ex);
+        }
+        return version;
     }
     
     public void setProperties(){
         this.properties = new Properties();
-	InputStream input;
+        InputStream input;
         LOG.info("Looking for <test/resources/test.properties> file, with key <postgres.password> ...");
         try{
             
@@ -68,7 +83,7 @@ public class PostgreSqlDatabase {
                 setPostgresPassword(DEFAULT_PASSWORD);
                 return;
             }
-
+            
             
             properties.load(input);
             LOG.info("Found <test/resources/test.properties> file");
@@ -94,51 +109,51 @@ public class PostgreSqlDatabase {
         }
     }
     
-
+    
     private Connection getConnectionImpl(String user, String password) throws SQLException {
-	return DriverManager.getConnection(CONNECTION_STRING, user, password);
+        return DriverManager.getConnection(CONNECTION_STRING, user, password);
     }
-
+    
     // Create tables...
     private void createTables(String changelog) {
-
-	Connection holdingConnection;
-	try {
-	    ResourceAccessor resourceAccessor = new FileSystemResourceAccessor();
-
-	    holdingConnection = getConnectionImpl(USER_NAME, getPostgresPassword());
-	    JdbcConnection conn = new JdbcConnection(holdingConnection);
-
-	    PostgresDatabase database = new PostgresDatabase();
-	    database.setDefaultSchemaName("public");
-	    database.setConnection(conn);
-
-	    liquibase = new Liquibase(changelog, resourceAccessor, database);
-	    liquibase.dropAll();
-	    liquibase.update("test");
-
-	    conn.close();
-
-	} catch (SQLException | LiquibaseException ex) {
-	    LOG.error("Error during createTable step", ex);
-	    throw new RuntimeException("Error during createTable step", ex);
-	}
-
+        
+        Connection holdingConnection;
+        try {
+            ResourceAccessor resourceAccessor = new FileSystemResourceAccessor();
+            
+            holdingConnection = getConnectionImpl(USER_NAME, getPostgresPassword());
+            JdbcConnection conn = new JdbcConnection(holdingConnection);
+            
+            PostgresDatabase database = new PostgresDatabase();
+            database.setDefaultSchemaName("public");
+            database.setConnection(conn);
+            
+            liquibase = new Liquibase(changelog, resourceAccessor, database);
+            liquibase.dropAll();
+            liquibase.update("test");
+            
+            conn.close();
+            
+        } catch (SQLException | LiquibaseException ex) {
+            LOG.error("Error during createTable step", ex);
+            throw new RuntimeException("Error during createTable step", ex);
+        }
+        
     }
-
+    
     /**
      * @return the postgresPassword
      */
     public String getPostgresPassword() {
         return postgresPassword;
     }
-
+    
     /**
      * @param postgresPassword the postgresPassword to set
      */
     public void setPostgresPassword(String postgresPassword){
         this.postgresPassword = postgresPassword;
-            LOG.info("PG password set to <" + postgresPassword + ">");
+        LOG.info("PG password set to <" + postgresPassword + ">");
     }
-
+    
 }

@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 
 import schemacrawler.schema.Column;
 import schemacrawler.schema.Table;
+import schemacrawler.schemacrawler.SchemaCrawlerException;
 import schemacrawler.tools.lint.LintSeverity;
 import schemacrawler.tools.linter.LinterTableSql;
 
@@ -59,7 +60,7 @@ public class LinterJsonTypeColumn extends LinterTableSql {
      * @param connection connection
      */
     @Override
-	protected void lint(final Table table, Connection connection)
+	protected void lint(final Table table, Connection connection) throws SchemaCrawlerException
 	{
 		requireNonNull(table, "No table provided");
 		
@@ -74,6 +75,7 @@ public class LinterJsonTypeColumn extends LinterTableSql {
 			
 		} catch (SQLException e) {
 			LOGGER.log(Level.SEVERE, "Unable to get database product name info. Lint will not be executed.");
+                        throw new SchemaCrawlerException(e.getMessage(), e);
 		}
 	}
 
