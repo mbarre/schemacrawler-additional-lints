@@ -1,28 +1,35 @@
 language: java
 jdk:
-  - oraclejdk8
+- oraclejdk8
 env:
   global:
-   - secure: "pYTnADdShGADib2I83d37Q/0HWbNvQQ5slALZkE6uFHxt3xQB+iNg65VWhJZqobobuIw7IO+/81oMrjEfrluH9niL8P5FrtKJFKZhzgMXfXm+3ScLrIeRg/sFIBahqPBZcZ2hAXSeOgMCz0zDpwmnvWpvLqNmHa54+ydevombqxPpAhJNdCWLhos+FypS7WzZ6z5mofGBxckSN+X9tdvLXQ1WXXIqTIzAdA7hh2tQacCDsVP4F7rJ7P7cGTLUP0pCaBf2xWWj0p+v+EAZnbyGSi5t6EtF0KtGBfI6aFFzsdDvQU7b7YK6+ePRHLnAmLrGJLZl3YToa+xkDouvNKC9HMqKv1votZejnTmSxZlx87RVzl+i9AWF0RuOsrHmpC0+Ut25j7U4Vz+ZhCKX1ZqOMmt0JVxSQpZwL36SitvibN3UytLeVzp6K3hzO/1377SgLMNcJFkMy4eiwQ2MLFQQiG2KWCrnmecTuBmE/nWXKWBxY5l+gosY6u10ewk8lgfP/CQ8mKa5fHoz4qok7k4WcdpBTQ77uI0QJLgGSgLUbV0HUSNLZHlLC+jvxfm8IKp9jwU5PMvOxrS9lczKRDvvZ6xutMnlhcAkNMoTrv/vEqebF2CQwps9GPsgu4Zr7TyNpTRXD6ACSkXnpPmI3VUFZr7eI8dXm7pctc85gGIOt4="
+  - secure: pYTnADdShGADib2I83d37Q/0HWbNvQQ5slALZkE6uFHxt3xQB+iNg65VWhJZqobobuIw7IO+/81oMrjEfrluH9niL8P5FrtKJFKZhzgMXfXm+3ScLrIeRg/sFIBahqPBZcZ2hAXSeOgMCz0zDpwmnvWpvLqNmHa54+ydevombqxPpAhJNdCWLhos+FypS7WzZ6z5mofGBxckSN+X9tdvLXQ1WXXIqTIzAdA7hh2tQacCDsVP4F7rJ7P7cGTLUP0pCaBf2xWWj0p+v+EAZnbyGSi5t6EtF0KtGBfI6aFFzsdDvQU7b7YK6+ePRHLnAmLrGJLZl3YToa+xkDouvNKC9HMqKv1votZejnTmSxZlx87RVzl+i9AWF0RuOsrHmpC0+Ut25j7U4Vz+ZhCKX1ZqOMmt0JVxSQpZwL36SitvibN3UytLeVzp6K3hzO/1377SgLMNcJFkMy4eiwQ2MLFQQiG2KWCrnmecTuBmE/nWXKWBxY5l+gosY6u10ewk8lgfP/CQ8mKa5fHoz4qok7k4WcdpBTQ77uI0QJLgGSgLUbV0HUSNLZHlLC+jvxfm8IKp9jwU5PMvOxrS9lczKRDvvZ6xutMnlhcAkNMoTrv/vEqebF2CQwps9GPsgu4Zr7TyNpTRXD6ACSkXnpPmI3VUFZr7eI8dXm7pctc85gGIOt4=
 services: postgresql
 addons:
   postgresql: 9.4
   coverity_scan:
     project:
-      name: "mbarre/schemacrawler-additionnallints"
-      description: "Build submitted via Travis CI"
+      name: mbarre/schemacrawler-additionnallints
+      description: Build submitted via Travis CI
     notification_email: false
-    build_command_prepend: "mvn clean"
-    build_command:   "mvn -DskipTests=true compile"
+    build_command_prepend: mvn clean
+    build_command: mvn -DskipTests=true compile
     branch_pattern: master
 before_script:
-  - dropdb --if-exists sc_lint_test
-  - psql -c 'create database sc_lint_test;' -U postgres
+- dropdb --if-exists sc_lint_test
+- psql -c 'create database sc_lint_test;' -U postgres
 cache:
   directories:
   - .autoconf
   - $HOME/.m2
 script:
-  - mvn test jacoco:report
+- mvn test jacoco:report
 after_success:
-  - mvn coveralls:report
+- mvn coveralls:report
+deploy:
+  provider: releases
+  api_key:
+    secure: ZfPAAfcU13jvUVRFRj6cp2OnDYWDVreLc8+QFApKeiApFuDOprZmmIk+HA34UbflJvXq0q9IWcvjS7nJIMGGMLH6vdFaPDLiKqjRVKPnyj10Q3XfEA/8ZRzMg5QpUf32GRrBemKzDkU5mdXhacYKb1cNCYsQt2Ix1DC6slwKmS2duOyLu/Knw25b/m7yz4KxDI+l7bjYwa3OIOEQxh0z5OcQpwt6Wy39iuc4pRLORrjtHGISOA+1PA+ycmBjZZGibNCZ0CRl5+f5AfdY1W3evaCg/7I3ha8Y+p/3MyTBVjISEefDTMkI+gWFncsHP4MP53w5Ekp0f7GovLAFOF7dqY3DF4Qkeyd6qHHIsDHRr3Zyp/JD5iAQtezW45oy/afsRiherBBUbwppb/63IYbBSu69wJZAupY3tycSgpO/KCQ+giV/NzhzspNbevsCsaNWbt3a0DPqvVYVWmRGhU2PjNUy21WslvIQT2lUzMWRM11ubkF4MFfH1OLrBP4LinNG2FZ5pKd3kBldePInieQ89xfuFnQ2jqtfGI+lTWNEhcgOBMAs57s6mCLDu4xvyDWclD3DRvlhKWKe6iaYoLnkRW2ko4IlP4ksCQatCPzSa06Kg4ax8vhyDKA4CpcAqUsYKY80OV9xjQqabuz4N+fxCi0e3sY7QVuYLrwfKbhVBxo=
+  file: target/schemacrawler-additionnallints*.jar
+  on:
+    repo: mbarre/schemacrawler-additionnallints
