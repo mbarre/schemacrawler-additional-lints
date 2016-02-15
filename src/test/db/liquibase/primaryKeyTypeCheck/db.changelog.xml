@@ -3,23 +3,56 @@
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
-	<changeSet author="mbarre" id="201514081114-1" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+	<changeSet author="mbarre" id="201615021528-1" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
 
-	    <createTable  tableName="test_json" remarks="table for lint LinterJsonContentInNotJsonbColumnTest">
-	    	<column name="id" 				type="int" 			remarks="primary key"/>
-	        <column name="content" 			type="varchar(100)" remarks="column with non json data"/>
-	        <column name="content_json" 	type="json" 	remarks="column with json"/>
+	    <createTable  tableName="test_pk_char" remarks="table for lint LinterPrimaryKeyNotIntegerLikeTypeTest">
+	    	<column name="id" 				type="char(10)" remarks="primary key"/>
+	        <column name="content"                          type="varchar(100)" remarks="column with data"/>
 	    </createTable>
 
 	    <addPrimaryKey columnNames="id"
-	            constraintName="pk_test"
+	            constraintName="pk_char_test"
 	            schemaName="public"
-	            tableName="test_json"/>
+	            tableName="test_pk_char"/>
 
-	    <sql><![CDATA[insert into test_json values (1, 'AAAA', '{"test":"json"}')]]></sql>
-	    <sql><![CDATA[insert into test_json values (2, 'BBBB', '{"test2":"json2"}')]]></sql>
-	    <sql><![CDATA[insert into test_json values (3, 'CCCC', '{"test3":"json3"}')]]></sql>
-	    <sql><![CDATA[insert into test_json values (4, 'DDDD', '{"test4":"json4"}')]]></sql>
+            <sql>insert into test_pk_char(id, content) values ('1234567891', 'test char(10) pk')</sql>
+            
+            <createTable  tableName="test_pk_singlechar" remarks="table for lint LinterPrimaryKeyNotIntegerLikeTypeTest">
+	    	<column name="id" 				type="char(1)" remarks="primary key"/>
+	        <column name="content"                          type="varchar(100)" remarks="column with data"/>
+	    </createTable>
+
+	    <addPrimaryKey columnNames="id"
+	            constraintName="pk_singlechar_test"
+	            schemaName="public"
+	            tableName="test_pk_singlechar"/>
+
+            <sql>insert into test_pk_singlechar(id, content) values ('1', 'test char(1) pk')</sql>
+            <sql>insert into test_pk_singlechar(id, content) values ('2', 'test char(1) pk')</sql>
+            
+            <createTable  tableName="test_pk_timestamp" remarks="table for lint LinterPrimaryKeyNotIntegerLikeTypeTest">
+	    	<column name="id" 				type="timestamp" remarks="primary key"/>
+	        <column name="content"                          type="varchar(100)" remarks="column with data"/>
+	    </createTable>
+
+	    <addPrimaryKey columnNames="id"
+	            constraintName="pk_timestamp_test"
+	            schemaName="public"
+	            tableName="test_pk_timestamp"/>
+
+            <sql>insert into test_pk_timestamp(id, content) values (current_timestamp, 'test timestamp pk')</sql>
+            
+            <createTable  tableName="test_pk_int" remarks="table for lint LinterPrimaryKeyNotIntegerLikeTypeTest">
+	    	<column name="id" 				type="int" remarks="primary key"/>
+	        <column name="content"                          type="varchar(100)" remarks="column with data"/>
+	    </createTable>
+
+	    <addPrimaryKey columnNames="id"
+	            constraintName="pk_int_test"
+	            schemaName="public"
+	            tableName="test_pk_int"/>
+
+            <sql>insert into test_pk_int(id, content) values (1, 'test int pk')</sql>
 
 	</changeSet>
 

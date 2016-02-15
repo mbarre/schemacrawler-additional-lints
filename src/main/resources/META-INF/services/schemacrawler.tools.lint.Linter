@@ -6,3 +6,4 @@ io.github.mbarre.schemacrawler.tool.linter.LinterJsonTypeColumn
 io.github.mbarre.schemacrawler.tool.linter.LinterJsonContent
 io.github.mbarre.schemacrawler.tool.linter.LinterXmlContent
 io.github.mbarre.schemacrawler.tool.linter.LinterBooleanContent
+io.github.mbarre.schemacrawler.tool.linter.LinterPrimaryKeyNotIntegerLikeType

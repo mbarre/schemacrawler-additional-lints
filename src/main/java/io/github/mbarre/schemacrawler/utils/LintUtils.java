@@ -42,5 +42,17 @@ public class LintUtils {
                 || (javaSqlType == Types.TINYINT);
 	}
 
+        /**
+	 * Tells wether a column is integer like type or not.
+	 * @param javaSqlType the javaSqlType
+	 * @return is the sqlType is numeric based or not
+	 */
+	public static final boolean isSqlTypeIntegerBased(int javaSqlType) {
+		return (javaSqlType == Types.BIGINT)
+				|| (javaSqlType == Types.INTEGER)
+                || (javaSqlType == Types.SMALLINT)
+                || (javaSqlType == Types.TINYINT);
+	}
+
 
 }
