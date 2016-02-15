@@ -62,13 +62,13 @@
 		</contributor>
 	</contributors>
         
-<!--        <repositories>
+        <repositories>
             <repository>
                 <id>The Central Repository</id>
                 <name>The Central Repository</name>
-                <url>http://search.maven.org/</url>
+                <url>http://repo.maven.apache.org/maven2/</url>
             </repository>
-        </repositories>-->
+        </repositories>
         
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -106,7 +106,7 @@
 		<liquibase-plugin.version>3.4.2</liquibase-plugin.version>
 		<postgresql.version>9.4.1207</postgresql.version>
 		<commons-io.version>2.4</commons-io.version>
-                <json.version>5.0.5</json.version>
+                <json.version>20160212</json.version>
                 <xerces.version>2.11.0</xerces.version>
                 
                 <coveralls-maven-plugin.version>4.1.0 </coveralls-maven-plugin.version>
@@ -467,7 +467,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>2.10.2</version>
+				<version>${maven-javadoc-plugin.version}</version>
 				<reportSets>
 					<reportSet><!-- by default, id = "default" -->
 						<reports><!-- select non-aggregate reports -->
