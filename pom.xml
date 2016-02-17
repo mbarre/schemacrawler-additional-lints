@@ -110,7 +110,7 @@
                 <xerces.version>2.11.0</xerces.version>
                 
                 <coveralls-maven-plugin.version>4.1.0 </coveralls-maven-plugin.version>
-                <versioneye-maven-plugin.version>3.7.0</versioneye-maven-plugin>
+                <versioneye-maven-plugin.version>3.7.0</versioneye-maven-plugin.version>
 	</properties>
 
 	<dependencies>
