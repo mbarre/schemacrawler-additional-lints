@@ -110,6 +110,7 @@
                 <xerces.version>2.11.0</xerces.version>
                 
                 <coveralls-maven-plugin.version>4.1.0 </coveralls-maven-plugin.version>
+                <versioneye-maven-plugin.version>3.7.0</versioneye-maven-plugin>
 	</properties>
 
 	<dependencies>
@@ -343,6 +344,11 @@
 					<repoToken>YCO2Lh8EwlzDW1kNm8aej2ZLXGLuTQyga</repoToken>
 				</configuration>
 			</plugin>
+			<plugin>
+      				<groupId>com.versioneye</groupId>
+      				<artifactId>versioneye-maven-plugin</artifactId>
+      				<version>${versioneye-maven-plugin.version}</version>
+    			</plugin>
 
 			<plugin>
 				<groupId>org.jacoco</groupId>
