@@ -22,7 +22,7 @@ cache:
   directories:
   - .autoconf
   - $HOME/.m2
-install: "mvn install versioneye:update -DcreateChecksum=true -DskipTests=true -Dmaven.javadoc.skip=true -B -V"
+install: "mvn install versioneye:update -DcreateChecksum=true -Dmaven.javadoc.skip=true -B -V"
 script:
 - mvn test jacoco:report
 after_success:
