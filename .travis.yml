@@ -7,14 +7,6 @@ env:
 services: postgresql
 addons:
   postgresql: 9.4
-  coverity_scan:
-    project:
-      name: mbarre/schemacrawler-additionnallints
-      description: Build submitted via Travis CI
-    notification_email: false
-    build_command_prepend: mvn clean
-    build_command: mvn -DskipTests=true compile
-    branch_pattern: master
 before_script:
 - dropdb --if-exists sc_lint_test
 - psql -c 'create database sc_lint_test;' -U postgres
@@ -22,7 +14,7 @@ cache:
   directories:
   - .autoconf
   - $HOME/.m2
-install: "mvn install versioneye:update -DcreateChecksum=true -Dmaven.javadoc.skip=true -B -V"
+install: "mvn clean install versioneye:update -DcreateChecksum=true -Dmaven.javadoc.skip=true -B -V"
 script:
 - mvn test jacoco:report
 after_success:
