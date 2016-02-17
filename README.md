@@ -12,6 +12,7 @@ Some additionnal lints for [Schemacrawler](http://sualeh.github.io/SchemaCrawler
 
 [schemacrawler-additionnallints maven web site](http://mbarre.github.io/schemacrawler-additionnallints/)
 
+
 # Main purpose
 
 The main purpose of this lint library is to enhance native schemacrawler lints
