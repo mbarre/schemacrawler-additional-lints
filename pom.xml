@@ -348,6 +348,9 @@
       				<groupId>com.versioneye</groupId>
       				<artifactId>versioneye-maven-plugin</artifactId>
       				<version>${versioneye-maven-plugin.version}</version>
+      				<configuration>
+        				<apiKey>e2c3ed7d47fb4c35394d</apiKey>
+      				</configuration>
     			</plugin>
 
 			<plugin>
