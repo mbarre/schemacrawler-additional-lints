@@ -22,6 +22,7 @@ cache:
   directories:
   - .autoconf
   - $HOME/.m2
+install: "mvn -DcreateChecksum=true clean install versioneye:update"
 script:
 - mvn test jacoco:report
 after_success:
