@@ -8,6 +8,7 @@
 
 [Code climate feed](https://codeclimate.com/github/mbarre/schemacrawler-additionnallints)
 
+
 Some additionnal lints for [Schemacrawler](http://sualeh.github.io/SchemaCrawler/)
 
 [schemacrawler-additionnallints maven web site](http://mbarre.github.io/schemacrawler-additionnallints/)
