@@ -349,8 +349,7 @@
       				<artifactId>versioneye-maven-plugin</artifactId>
       				<version>${versioneye-maven-plugin.version}</version>
       				<configuration>
-        				<apiKey>e2c3ed7d47fb4c35394d</apiKey>
-                                        <projectId>56b9a580e8833700367b30e2</projectId>
+                                    <propertiesPath>target/travis/versioneye.properties</propertiesPath>
       				</configuration>
     			</plugin>
 
