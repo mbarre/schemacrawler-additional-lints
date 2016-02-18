@@ -17,6 +17,7 @@ cache:
   - .autoconf
   - $HOME/.m2
 script:
+- cat target/travis/versioneye.properties
 - mvn versioneye:update test jacoco:report
 after_success:
 - mvn coveralls:report
