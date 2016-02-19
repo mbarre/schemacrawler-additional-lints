@@ -111,6 +111,8 @@
                 
                 <coveralls-maven-plugin.version>4.1.0 </coveralls-maven-plugin.version>
                 <versioneye-maven-plugin.version>3.7.0</versioneye-maven-plugin.version>
+                <versioneye-maven-plugin.apikey>${env.VERSIONEYE_APIKEY}</versioneye-maven-plugin.apikey>
+                <versioneye-maven-plugin.projectid>${env.VERSIONEYE_PROJECTID}</versioneye-maven-plugin.projectid>
 	</properties>
 
 	<dependencies>
@@ -349,7 +351,8 @@
       				<artifactId>versioneye-maven-plugin</artifactId>
       				<version>${versioneye-maven-plugin.version}</version>
       				<configuration>
-                                    <propertiesPath>target/travis/versioneye.properties</propertiesPath>
+                                    <apiKey>${versioneye-maven-plugin.apikey}</apiKey>
+                                    <projectId>${versioneye-maven-plugin.projectid}</projectId>
       				</configuration>
     			</plugin>
 
