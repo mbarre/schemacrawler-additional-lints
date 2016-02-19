@@ -15,15 +15,15 @@ import java.util.logging.Logger;
 import schemacrawler.schema.Column;
 import schemacrawler.schema.Table;
 import schemacrawler.schemacrawler.SchemaCrawlerException;
+import schemacrawler.tools.lint.BaseLinter;
 import schemacrawler.tools.lint.LintSeverity;
-import schemacrawler.tools.linter.LinterTableSql;
 
 /**
  * Linter to check if JSON type is used instead of JSONB - PostgreSQL reserved lint
  * @author mbarre
  * @since 1.0.1
  */
-public class LinterJsonTypeColumn extends LinterTableSql {
+public class LinterJsonTypeColumn extends BaseLinter {
 	private static final Logger LOGGER = Logger.getLogger(LinterJsonTypeColumn.class.getName());
 	
     /**

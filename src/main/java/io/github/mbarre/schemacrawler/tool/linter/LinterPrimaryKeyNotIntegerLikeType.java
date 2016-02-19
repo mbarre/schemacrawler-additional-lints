@@ -12,15 +12,15 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import schemacrawler.schema.Column;
 import schemacrawler.schema.Table;
+import schemacrawler.tools.lint.BaseLinter;
 import schemacrawler.tools.lint.LintSeverity;
-import schemacrawler.tools.linter.LinterTableSql;
 
 /*
 * Linter to check if primary key is integer like type
 * Created by barmi83
 */
 
-public class LinterPrimaryKeyNotIntegerLikeType extends LinterTableSql {
+public class LinterPrimaryKeyNotIntegerLikeType extends BaseLinter {
     private static final Logger LOGGER = Logger.getLogger(LinterPrimaryKeyNotIntegerLikeType.class.getName());
     
     
