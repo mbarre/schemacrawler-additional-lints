@@ -1,6 +1,7 @@
 package io.github.mbarre.schemacrawler.utils;
 
 import java.sql.Types;
+import schemacrawler.schema.ColumnDataType;
 
 /**
  *
@@ -68,12 +69,13 @@ public class LintUtils {
         
          /**
 	 * Tells wether a column is large text like type or not.
-	 * @param javaSqlType the javaSqlType
+	 * @param dataType the dataType
 	 * @return is the sqlType is binary based or not
 	 */
-	public static final boolean isSqlTypeLargeTextBased(int javaSqlType) {
-		return (javaSqlType == Types.CLOB);
+	public static final boolean isSqlTypeLargeTextBased(ColumnDataType dataType) {
+		return (dataType.getJavaSqlType().getJavaSqlType() == Types.CLOB
+                        || "text".equalsIgnoreCase(dataType.getDatabaseSpecificTypeName()));
 	}
-
-
+        
+        
 }

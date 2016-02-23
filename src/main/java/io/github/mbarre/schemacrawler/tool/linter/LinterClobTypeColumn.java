@@ -5,6 +5,7 @@
  */
 package io.github.mbarre.schemacrawler.tool.linter;
 
+import io.github.mbarre.schemacrawler.utils.LintUtils;
 import java.sql.Connection;
 import java.sql.Types;
 import java.util.logging.Level;
@@ -61,9 +62,7 @@ public class LinterClobTypeColumn extends BaseLinter {
         System.out.println(Types.CLOB);
         
         for (Column column : table.getColumns()) {
-                System.err.println(column.getColumnDataType().getName());
-                System.err.println(column.getColumnDataType().getDatabaseSpecificTypeName());
-                if("text".equalsIgnoreCase(column.getColumnDataType().getName())){
+                if(LintUtils.isSqlTypeLargeTextBased(column.getColumnDataType())){
                     addLint(table, getDescription(), column.getName());
                     LOGGER.log(Level.INFO, "{0} is CLOB/TEXT type.", column.getFullName());
                 }
