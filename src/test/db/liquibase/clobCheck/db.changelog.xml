@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+	<changeSet author="mbarre" id="201618021441-1" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+
+	    <createTable  tableName="test_clob" remarks="table for lint LinterClobTypeColumnTest">
+	    	<column name="id" 				type="int"              remarks="primary key"/>
+	        <column name="content_clob"                     type="clob"             remarks="column with Clob"/>
+	        <column name="content"                         type="varchar(30)" 	remarks="column simple data"/>
+	    </createTable>
+
+	    <addPrimaryKey columnNames="id"
+	            constraintName="pk_test"
+	            schemaName="public"
+	            tableName="test_clob"/>
+
+	</changeSet>
+
+</databaseChangeLog>
