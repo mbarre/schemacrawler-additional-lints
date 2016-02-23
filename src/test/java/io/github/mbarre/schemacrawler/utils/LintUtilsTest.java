@@ -157,41 +157,41 @@ public class LintUtilsTest {
     @Test
     public void testIsSqlTypeBinaryBased() {
         
-        Assert.assertTrue(LintUtils.isSqlTypeNumericBased(Types.BINARY));
-        Assert.assertTrue(LintUtils.isSqlTypeNumericBased(Types.BLOB));
-        Assert.assertTrue(LintUtils.isSqlTypeNumericBased(Types.LONGVARBINARY));
-        Assert.assertTrue(LintUtils.isSqlTypeNumericBased(Types.VARBINARY));
+        Assert.assertTrue(LintUtils.isSqlTypeBinayBased(Types.BINARY));
+        Assert.assertTrue(LintUtils.isSqlTypeBinayBased(Types.BLOB));
+        Assert.assertTrue(LintUtils.isSqlTypeBinayBased(Types.LONGVARBINARY));
+        Assert.assertTrue(LintUtils.isSqlTypeBinayBased(Types.VARBINARY));
         
-        Assert.assertFalse(LintUtils.isSqlTypeNumericBased(Types.BIGINT));
-        Assert.assertFalse(LintUtils.isSqlTypeNumericBased(Types.DECIMAL));
-        Assert.assertFalse(LintUtils.isSqlTypeNumericBased(Types.NUMERIC));
-        Assert.assertFalse(LintUtils.isSqlTypeNumericBased(Types.REAL));
-        Assert.assertFalse(LintUtils.isSqlTypeNumericBased(Types.SMALLINT));
-        Assert.assertFalse(LintUtils.isSqlTypeNumericBased(Types.TINYINT));
-        Assert.assertFalse(LintUtils.isSqlTypeNumericBased(Types.DOUBLE));
-        Assert.assertFalse(LintUtils.isSqlTypeNumericBased(Types.FLOAT));
-        Assert.assertFalse(LintUtils.isSqlTypeNumericBased(Types.INTEGER));
-        Assert.assertFalse(LintUtils.isSqlTypeNumericBased(Types.NVARCHAR));
-        Assert.assertFalse(LintUtils.isSqlTypeNumericBased(Types.LONGNVARCHAR));
-        Assert.assertFalse(LintUtils.isSqlTypeNumericBased(Types.LONGVARCHAR));
-        Assert.assertFalse(LintUtils.isSqlTypeNumericBased(Types.CHAR));
-        Assert.assertFalse(LintUtils.isSqlTypeNumericBased(Types.NCHAR));
-        Assert.assertFalse(LintUtils.isSqlTypeNumericBased(Types.VARCHAR));
-        Assert.assertFalse(LintUtils.isSqlTypeNumericBased(Types.BIT));
-        Assert.assertFalse(LintUtils.isSqlTypeNumericBased(Types.ARRAY));
-        Assert.assertFalse(LintUtils.isSqlTypeNumericBased(Types.BOOLEAN));
-        Assert.assertFalse(LintUtils.isSqlTypeNumericBased(Types.CLOB));
-        Assert.assertFalse(LintUtils.isSqlTypeNumericBased(Types.DATALINK));
-        Assert.assertFalse(LintUtils.isSqlTypeNumericBased(Types.DATE));
-        Assert.assertFalse(LintUtils.isSqlTypeNumericBased(Types.DISTINCT));
-        Assert.assertFalse(LintUtils.isSqlTypeNumericBased(Types.JAVA_OBJECT));
-        Assert.assertFalse(LintUtils.isSqlTypeNumericBased(Types.NCLOB));
-        Assert.assertFalse(LintUtils.isSqlTypeNumericBased(Types.NULL));
-        Assert.assertFalse(LintUtils.isSqlTypeNumericBased(Types.OTHER));
-        Assert.assertFalse(LintUtils.isSqlTypeNumericBased(Types.SQLXML));
-        Assert.assertFalse(LintUtils.isSqlTypeNumericBased(Types.TIME));
-        Assert.assertFalse(LintUtils.isSqlTypeNumericBased(Types.TIMESTAMP));
-        Assert.assertFalse(LintUtils.isSqlTypeNumericBased(Types.TIMESTAMP_WITH_TIMEZONE));
+        Assert.assertFalse(LintUtils.isSqlTypeBinayBased(Types.BIGINT));
+        Assert.assertFalse(LintUtils.isSqlTypeBinayBased(Types.DECIMAL));
+        Assert.assertFalse(LintUtils.isSqlTypeBinayBased(Types.NUMERIC));
+        Assert.assertFalse(LintUtils.isSqlTypeBinayBased(Types.REAL));
+        Assert.assertFalse(LintUtils.isSqlTypeBinayBased(Types.SMALLINT));
+        Assert.assertFalse(LintUtils.isSqlTypeBinayBased(Types.TINYINT));
+        Assert.assertFalse(LintUtils.isSqlTypeBinayBased(Types.DOUBLE));
+        Assert.assertFalse(LintUtils.isSqlTypeBinayBased(Types.FLOAT));
+        Assert.assertFalse(LintUtils.isSqlTypeBinayBased(Types.INTEGER));
+        Assert.assertFalse(LintUtils.isSqlTypeBinayBased(Types.NVARCHAR));
+        Assert.assertFalse(LintUtils.isSqlTypeBinayBased(Types.LONGNVARCHAR));
+        Assert.assertFalse(LintUtils.isSqlTypeBinayBased(Types.LONGVARCHAR));
+        Assert.assertFalse(LintUtils.isSqlTypeBinayBased(Types.CHAR));
+        Assert.assertFalse(LintUtils.isSqlTypeBinayBased(Types.NCHAR));
+        Assert.assertFalse(LintUtils.isSqlTypeBinayBased(Types.VARCHAR));
+        Assert.assertFalse(LintUtils.isSqlTypeBinayBased(Types.BIT));
+        Assert.assertFalse(LintUtils.isSqlTypeBinayBased(Types.ARRAY));
+        Assert.assertFalse(LintUtils.isSqlTypeBinayBased(Types.BOOLEAN));
+        Assert.assertFalse(LintUtils.isSqlTypeBinayBased(Types.CLOB));
+        Assert.assertFalse(LintUtils.isSqlTypeBinayBased(Types.DATALINK));
+        Assert.assertFalse(LintUtils.isSqlTypeBinayBased(Types.DATE));
+        Assert.assertFalse(LintUtils.isSqlTypeBinayBased(Types.DISTINCT));
+        Assert.assertFalse(LintUtils.isSqlTypeBinayBased(Types.JAVA_OBJECT));
+        Assert.assertFalse(LintUtils.isSqlTypeBinayBased(Types.NCLOB));
+        Assert.assertFalse(LintUtils.isSqlTypeBinayBased(Types.NULL));
+        Assert.assertFalse(LintUtils.isSqlTypeBinayBased(Types.OTHER));
+        Assert.assertFalse(LintUtils.isSqlTypeBinayBased(Types.SQLXML));
+        Assert.assertFalse(LintUtils.isSqlTypeBinayBased(Types.TIME));
+        Assert.assertFalse(LintUtils.isSqlTypeBinayBased(Types.TIMESTAMP));
+        Assert.assertFalse(LintUtils.isSqlTypeBinayBased(Types.TIMESTAMP_WITH_TIMEZONE));
         
     }
     
