@@ -8,6 +8,7 @@ env:
 services: postgresql
 addons:
   postgresql: 9.4
+install: mvn install checksum:files -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 before_script:
 - dropdb --if-exists sc_lint_test
 - psql -c 'create database sc_lint_test;' -U postgres
