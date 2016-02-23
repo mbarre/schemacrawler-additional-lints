@@ -151,4 +151,48 @@ public class LintUtilsTest {
         Assert.assertFalse(LintUtils.isSqlTypeIntegerBased(Types.VARBINARY));
     }
     
+     /**
+     * Test of testIsSqlTypeNumericBased method, of class LintUtils.
+     */
+    @Test
+    public void testIsSqlTypeBinaryBased() {
+        
+        Assert.assertTrue(LintUtils.isSqlTypeNumericBased(Types.BINARY));
+        Assert.assertTrue(LintUtils.isSqlTypeNumericBased(Types.BLOB));
+        Assert.assertTrue(LintUtils.isSqlTypeNumericBased(Types.LONGVARBINARY));
+        Assert.assertTrue(LintUtils.isSqlTypeNumericBased(Types.VARBINARY));
+        
+        Assert.assertFalse(LintUtils.isSqlTypeNumericBased(Types.BIGINT));
+        Assert.assertFalse(LintUtils.isSqlTypeNumericBased(Types.DECIMAL));
+        Assert.assertFalse(LintUtils.isSqlTypeNumericBased(Types.NUMERIC));
+        Assert.assertFalse(LintUtils.isSqlTypeNumericBased(Types.REAL));
+        Assert.assertFalse(LintUtils.isSqlTypeNumericBased(Types.SMALLINT));
+        Assert.assertFalse(LintUtils.isSqlTypeNumericBased(Types.TINYINT));
+        Assert.assertFalse(LintUtils.isSqlTypeNumericBased(Types.DOUBLE));
+        Assert.assertFalse(LintUtils.isSqlTypeNumericBased(Types.FLOAT));
+        Assert.assertFalse(LintUtils.isSqlTypeNumericBased(Types.INTEGER));
+        Assert.assertFalse(LintUtils.isSqlTypeNumericBased(Types.NVARCHAR));
+        Assert.assertFalse(LintUtils.isSqlTypeNumericBased(Types.LONGNVARCHAR));
+        Assert.assertFalse(LintUtils.isSqlTypeNumericBased(Types.LONGVARCHAR));
+        Assert.assertFalse(LintUtils.isSqlTypeNumericBased(Types.CHAR));
+        Assert.assertFalse(LintUtils.isSqlTypeNumericBased(Types.NCHAR));
+        Assert.assertFalse(LintUtils.isSqlTypeNumericBased(Types.VARCHAR));
+        Assert.assertFalse(LintUtils.isSqlTypeNumericBased(Types.BIT));
+        Assert.assertFalse(LintUtils.isSqlTypeNumericBased(Types.ARRAY));
+        Assert.assertFalse(LintUtils.isSqlTypeNumericBased(Types.BOOLEAN));
+        Assert.assertFalse(LintUtils.isSqlTypeNumericBased(Types.CLOB));
+        Assert.assertFalse(LintUtils.isSqlTypeNumericBased(Types.DATALINK));
+        Assert.assertFalse(LintUtils.isSqlTypeNumericBased(Types.DATE));
+        Assert.assertFalse(LintUtils.isSqlTypeNumericBased(Types.DISTINCT));
+        Assert.assertFalse(LintUtils.isSqlTypeNumericBased(Types.JAVA_OBJECT));
+        Assert.assertFalse(LintUtils.isSqlTypeNumericBased(Types.NCLOB));
+        Assert.assertFalse(LintUtils.isSqlTypeNumericBased(Types.NULL));
+        Assert.assertFalse(LintUtils.isSqlTypeNumericBased(Types.OTHER));
+        Assert.assertFalse(LintUtils.isSqlTypeNumericBased(Types.SQLXML));
+        Assert.assertFalse(LintUtils.isSqlTypeNumericBased(Types.TIME));
+        Assert.assertFalse(LintUtils.isSqlTypeNumericBased(Types.TIMESTAMP));
+        Assert.assertFalse(LintUtils.isSqlTypeNumericBased(Types.TIMESTAMP_WITH_TIMEZONE));
+        
+    }
+    
 }

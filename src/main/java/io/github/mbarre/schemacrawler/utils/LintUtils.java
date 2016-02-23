@@ -37,9 +37,9 @@ public class LintUtils {
 				|| (javaSqlType == Types.DOUBLE)
 				|| (javaSqlType == Types.INTEGER)
 				|| (javaSqlType == Types.NUMERIC)
-                || (javaSqlType == Types.SMALLINT)
-                || (javaSqlType == Types.REAL)
-                || (javaSqlType == Types.TINYINT);
+                                || (javaSqlType == Types.SMALLINT)
+                                || (javaSqlType == Types.REAL)
+                                || (javaSqlType == Types.TINYINT);
 	}
 
         /**
@@ -50,8 +50,20 @@ public class LintUtils {
 	public static final boolean isSqlTypeIntegerBased(int javaSqlType) {
 		return (javaSqlType == Types.BIGINT)
 				|| (javaSqlType == Types.INTEGER)
-                || (javaSqlType == Types.SMALLINT)
-                || (javaSqlType == Types.TINYINT);
+                                || (javaSqlType == Types.SMALLINT)
+                                || (javaSqlType == Types.TINYINT);
+	}
+        
+         /**
+	 * Tells wether a column is binary like type or not.
+	 * @param javaSqlType the javaSqlType
+	 * @return is the sqlType is binary based or not
+	 */
+	public static final boolean isSqlTypeBinayBased(int javaSqlType) {
+		return (javaSqlType == Types.BINARY) 
+                        || (javaSqlType == Types.BLOB)
+                        || (javaSqlType == Types.VARBINARY)
+                        || (javaSqlType == Types.LONGVARBINARY);
 	}
 
 
