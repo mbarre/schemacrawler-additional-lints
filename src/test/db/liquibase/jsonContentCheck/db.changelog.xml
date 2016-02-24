@@ -7,7 +7,7 @@
 
 	    <createTable  tableName="test_json" remarks="table for lint LinterJsonContentInNotJsonbColumnTest">
 	    	<column name="id" 				type="int" 			remarks="primary key"/>
-	        <column name="content"                          type="varchar(15)" remarks="column with non json data"/>
+	        <column name="content"                          type="varchar(20)" remarks="column with non json data"/>
 	        <column name="content_json"                     type="jsonb" 	remarks="column with json"/>
 	    </createTable>
 
@@ -16,10 +16,10 @@
 	            schemaName="public"
 	            tableName="test_json"/>
 
-	    <sql><![CDATA[insert into test_json(id, content, content_json) values (1, 'AAAA', '{"test":"json"}')]]></sql>
+	    <sql><![CDATA[insert into test_json(id, content, content_json) values (1, 'AAAAA', '{"test":"json"}')]]></sql>
 	    <sql><![CDATA[insert into test_json(id, content, content_json) values (2, '{"test":"json2"}', '{"test2":"json2"}')]]></sql>
 	    <sql><![CDATA[insert into test_json(id, content, content_json) values (3, null, '{"test3":"json3"}')]]></sql>
-	    <sql><![CDATA[insert into test_json(id, content, content_json) values (4, 'DDDD', '{"test4":"json4"}')]]></sql>
+	    <sql><![CDATA[insert into test_json(id, content, content_json) values (4, 'DDDDD', '{"test4":"json4"}')]]></sql>
 
 	</changeSet>
 
