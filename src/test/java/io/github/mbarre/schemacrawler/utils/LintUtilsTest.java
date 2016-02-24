@@ -9,6 +9,12 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.sql.Types;
+import java.util.Map;
+import schemacrawler.schema.ColumnDataType;
+import schemacrawler.schema.JavaSqlType;
+import schemacrawler.schema.NamedObject;
+import schemacrawler.schema.Schema;
+import schemacrawler.schema.SearchableType;
 
 /**
  *
@@ -64,6 +70,7 @@ public class LintUtilsTest {
         Assert.assertFalse(LintUtils.isSqlTypeTextBased(Types.TINYINT));
         Assert.assertFalse(LintUtils.isSqlTypeTextBased(Types.VARBINARY));
     }
+    
     
     /**
      * Test of testIsSqlTypeNumericBased method, of class LintUtils.

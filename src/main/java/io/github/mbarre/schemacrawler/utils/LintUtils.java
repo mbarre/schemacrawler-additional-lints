@@ -74,6 +74,7 @@ public class LintUtils {
 	 */
 	public static final boolean isSqlTypeLargeTextBased(ColumnDataType dataType) {
 		return (dataType.getJavaSqlType().getJavaSqlType() == Types.CLOB
+                        || dataType.getJavaSqlType().getJavaSqlType() == Types.LONGVARCHAR
                         || "text".equalsIgnoreCase(dataType.getDatabaseSpecificTypeName()));
 	}
 
