@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+	<changeSet author="mbarre" id="201624021023-1" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+
+	    <createTable  tableName="test_varchar" remarks="table for lint LinterColumnSize">
+	    	<column name="id" 				type="int"              remarks="primary key"/>
+	        <column name="content_over"                     type="varchar(100)"     remarks="oversized column"/>
+	        <column name="content_ok"                       type="varchar(100)" 	remarks="well sized column"/>
+	    </createTable>
+            
+            <addPrimaryKey columnNames="id"
+	            constraintName="pk_test"
+	            schemaName="public"
+	            tableName="test_varchar"/>
+            
+            <insert tableName="test_varchar">
+                <column name="id" type="int" value="1"/>
+                <column name="content_over" type="varchar(100)" value="jfhsk"/>
+                <column name="content_ok" type="varchar(100)" value="test longueur chaine"/>
+            </insert>
+            
+            <createTable  tableName="test_clob" remarks="table for lint LinterColumnSize">
+	    	<column name="id" 				type="int"              remarks="primary key"/>
+	        <column name="content_over"                     type="clob"             remarks="oversized column"/>
+	        <column name="content_ok"                       type="clob"             remarks="well sized column"/>
+	    </createTable>
+            
+            <addPrimaryKey columnNames="id"
+	            constraintName="pk_test_2"
+	            schemaName="public"
+	            tableName="test_clob"/>
+            
+            <insert tableName="test_clob">
+                <column name="id" type="int" value="1"/>
+                <column name="content_over" type="clob" value="jfhsk"/>
+                <column name="content_ok" type="clob" value=""/>
+            </insert>
+        </changeSet>
+
+</databaseChangeLog>

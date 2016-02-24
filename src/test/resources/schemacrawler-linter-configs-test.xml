@@ -50,6 +50,7 @@
     <linter id="schemacrawler.tools.linter.LinterTableWithBadlyNamedColumns">
         <run>false</run>
         <config>
+            <property name="bad-column-names"><![CDATA[.*\.id]]></property>
         </config>
     </linter>
     <linter id="schemacrawler.tools.linter.LinterTableWithIncrementingColumns">
@@ -88,6 +89,13 @@
         <run>false</run>
         <severity>critical</severity>
         <config>
+        </config>
+    </linter>
+    <linter id="io.github.mbarre.schemacrawler.tool.linter.LinterColumnSize">
+        <run>true</run>
+        <severity>high</severity>
+        <config>
+            <property name="minColumnSizeRate">0.2</property>
         </config>
     </linter>
 

@@ -1,4 +1,4 @@
-package io.github.mbarre.schemacrawler.test.tool.linter;
+package io.github.mbarre.schemacrawler.tool.linter;
 
 import io.github.mbarre.schemacrawler.test.utils.LintWrapper;
 import org.apache.commons.io.IOUtils;
@@ -29,6 +29,7 @@ public abstract class BaseLintTest {
     protected List<LintWrapper> executeToJsonAndConvertToLintList(SchemaCrawlerOptions options, Connection connection) throws Exception {
 
         final Executable executable = new SchemaCrawlerExecutable("lint");
+
         final Path linterConfigsFile = FileSystems.getDefault().getPath("", this.getClass().getClassLoader().getResource("schemacrawler-linter-configs-test.xml").getPath());
         final LintOptionsBuilder optionsBuilder = new LintOptionsBuilder();
         optionsBuilder.withLinterConfigs(linterConfigsFile.toString());
@@ -82,7 +83,7 @@ public abstract class BaseLintTest {
                 }
             }
         }
-
+        System.out.println("lints:"+lints);
         return lints;
     }
 
