@@ -29,6 +29,7 @@ public abstract class BaseLintTest {
     protected List<LintWrapper> executeToJsonAndConvertToLintList(SchemaCrawlerOptions options, Connection connection) throws Exception {
 
         final Executable executable = new SchemaCrawlerExecutable("lint");
+
         final Path linterConfigsFile = FileSystems.getDefault().getPath("", this.getClass().getClassLoader().getResource("schemacrawler-linter-configs-test.xml").getPath());
         final LintOptionsBuilder optionsBuilder = new LintOptionsBuilder();
         optionsBuilder.withLinterConfigs(linterConfigsFile.toString());
@@ -82,7 +83,7 @@ public abstract class BaseLintTest {
                 }
             }
         }
-
+        System.out.println("lints:"+lints);
         return lints;
     }
 
