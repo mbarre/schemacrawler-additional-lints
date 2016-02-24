@@ -7,8 +7,8 @@
 
 	    <createTable  tableName="test_json" remarks="table for lint LinterJsonContentInNotJsonbColumnTest">
 	    	<column name="id" 				type="int" 			remarks="primary key"/>
-	        <column name="content" 			type="varchar(100)" remarks="column with non json data"/>
-	        <column name="content_json" 	type="json" 	remarks="column with json"/>
+	        <column name="content"                          type="varchar(10)" remarks="column with non json data"/>
+	        <column name="content_json"                     type="json" 	remarks="column with json"/>
 	    </createTable>
 
 	    <addPrimaryKey columnNames="id"
