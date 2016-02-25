@@ -53,7 +53,7 @@ public class LinterColumnSizeTest extends BaseLintTest {
         Assert.assertEquals(1, lints.size());
         Assert.assertEquals(LinterColumnSize.class.getName(), lints.get(0).getId());
         Assert.assertEquals("public.test_varchar.content_over", lints.get(0).getValue());
-        Assert.assertEquals("column is oversized regarding its content.", lints.get(0).getDescription());
+        Assert.assertEquals("Column is oversized (100 car.) regarding its content (max: 5 car.).", lints.get(0).getDescription());
         Assert.assertEquals("high", lints.get(0).getSeverity());
     }
     

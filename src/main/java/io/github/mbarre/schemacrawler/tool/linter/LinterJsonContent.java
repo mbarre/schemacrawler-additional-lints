@@ -14,15 +14,15 @@ import java.util.logging.Logger;
 import schemacrawler.schema.Column;
 import schemacrawler.schema.Table;
 import schemacrawler.schemacrawler.SchemaCrawlerException;
+import schemacrawler.tools.lint.BaseLinter;
 import schemacrawler.tools.lint.LintSeverity;
-import schemacrawler.tools.linter.LinterTableSql;
 
 /**
  * Linter to check if non JSONB type is used whereas JSON data is store in column
  * @author mbarre
  * @since 1.0.1
  */
-public class LinterJsonContent extends LinterTableSql {
+public class LinterJsonContent extends BaseLinter {
 	
     private static final Logger LOGGER = Logger.getLogger(LinterJsonContent.class.getName());
 
@@ -48,7 +48,7 @@ public class LinterJsonContent extends LinterTableSql {
      */
     @Override
     public String getSummary() {
-        return " should be JSON or JSONB type.";
+        return "Should be JSON or JSONB type.";
     }
     
     /**
@@ -64,13 +64,16 @@ public class LinterJsonContent extends LinterTableSql {
         try (Statement stmt = connection.createStatement()){
             if("PostgreSQL".equalsIgnoreCase(connection.getMetaData().getDatabaseProductName()) &&
                     "9.4".compareTo(connection.getMetaData().getDatabaseProductVersion()) <= 0){
+               
                 String sql;
                 List<Column> columns = table.getColumns();
                 for (Column column : columns) {
                     if(LintUtils.isSqlTypeTextBased(column.getColumnDataType().getJavaSqlType().getJavaSqlType())){
                         
+                        LOGGER.log(Level.INFO, "Checking {0}...", column.getFullName());
+                        
                         sql = "select \"" + column.getName() + "\" from \"" + table.getName() +"\"" ;
-                        LOGGER.log(Level.INFO, "SQL : {0}", sql);
+                        LOGGER.log(Level.CONFIG, "SQL : {0}", sql);
                         
                         ResultSet rs = stmt.executeQuery(sql);
                         boolean found = false;
@@ -78,7 +81,6 @@ public class LinterJsonContent extends LinterTableSql {
                             String data = rs.getString(column.getName());
                             
                             if(JSonUtils.isJsonContent(data)){
-                                LOGGER.log(Level.INFO, "Adding lint as data is JSON but column type is not JSONB or JSON.");
                                 addLint(table, getDescription(), column.getFullName());
                                 found = true;
                             }

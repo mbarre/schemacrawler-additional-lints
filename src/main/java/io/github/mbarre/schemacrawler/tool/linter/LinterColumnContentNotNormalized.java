@@ -1,51 +1,51 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package io.github.mbarre.schemacrawler.tool.linter;
 
+import io.github.mbarre.schemacrawler.utils.LintUtils;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Types;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import schemacrawler.schema.Column;
 import schemacrawler.schema.Table;
 import schemacrawler.schemacrawler.SchemaCrawlerException;
+import schemacrawler.tools.lint.BaseLinter;
 import schemacrawler.tools.lint.LintSeverity;
-import schemacrawler.tools.linter.LinterTableSql;
 
 /**
  * Test column contents normalization. Detect wether foreign table should have
  * be used.
  * @author salad74
  */
-public class LinterColumnContentNotNormalized extends LinterTableSql {
-
+public class LinterColumnContentNotNormalized extends BaseLinter {
+    
     /**
      * Repeat tolerance : 1 is the most agressive, duplicates occur since there
      * are at least tow reps of the same value.
      */
     public static final int NB_REPEAT_TOLERANCE = 2;
-
+    
     /**
      * The minimal length of the text based column. We consider that a 1-length
      * char based column is acceptable.
      */
     public static final int MIN_TEXT_COLUMN_SIZE = 2;
     private static final Logger LOGGER = Logger.getLogger(LinterColumnContentNotNormalized.class.getName());
-
+    
     /**
      * Build the lint
      */
     public LinterColumnContentNotNormalized() {
         setSeverity(LintSeverity.high);
     }
-
+    
     /**
      * Get the lint descrption
      * @return The Lint description
@@ -54,7 +54,7 @@ public class LinterColumnContentNotNormalized extends LinterTableSql {
     public String getDescription() {
         return getSummary();
     }
-
+    
     /**
      * Get the Summary
      * @return The lint summary
@@ -63,21 +63,7 @@ public class LinterColumnContentNotNormalized extends LinterTableSql {
     public String getSummary() {
         return " should not have so many duplicates.";
     }
-
-    /**
-     * Tells wether a column is text based or not.
-     * @param javaSqlType javaSqlType
-     * @return boolean that tells if the type is test based (or not)
-     */
-    public static final boolean isSqlTypeTextBased(int javaSqlType) {
-        return (javaSqlType == Types.NVARCHAR)
-                || (javaSqlType == Types.LONGNVARCHAR)
-                || (javaSqlType == Types.LONGVARCHAR)
-                || (javaSqlType == Types.CHAR)
-                || (javaSqlType == Types.NCHAR)
-                || (javaSqlType == Types.VARCHAR);
-        
-    }
+    
     
     /**
      * Tells wether a column is text based or not... and if minimal length
@@ -88,7 +74,7 @@ public class LinterColumnContentNotNormalized extends LinterTableSql {
      * @return mustColumnBeTested
      */
     public static final boolean mustColumnBeTested(int javaSqlType, int colSize) {
-        if (LinterColumnContentNotNormalized.isSqlTypeTextBased(javaSqlType)) {
+        if (LintUtils.isSqlTypeTextBased(javaSqlType)) {
             // test minimal size to pass test
             if(colSize > MIN_TEXT_COLUMN_SIZE){
                 LOGGER.log(Level.INFO, "Column min size requirement are met : <{0}> is greater than <{1}>", new Object[]{colSize, MIN_TEXT_COLUMN_SIZE});
@@ -101,7 +87,7 @@ public class LinterColumnContentNotNormalized extends LinterTableSql {
             return false;
         }
     }
-
+    
     /**
      * The lint that does the job
      * @param table table
@@ -111,11 +97,9 @@ public class LinterColumnContentNotNormalized extends LinterTableSql {
     @Override
     protected void lint(final Table table, final Connection connection)
             throws SchemaCrawlerException {
-
-        try {
+        
+        try (Statement stmt = connection.createStatement()){
             String sql;
-            Statement stmt;
-            stmt = connection.createStatement();
             List<Column> columns = table.getColumns();
             for (Column column : columns) {
                 if (LinterColumnContentNotNormalized.mustColumnBeTested(column.getColumnDataType().getJavaSqlType().getJavaSqlType(), column.getSize())) {
@@ -136,12 +120,11 @@ public class LinterColumnContentNotNormalized extends LinterTableSql {
                     // no text based column, skip test
                     LOGGER.log(Level.INFO, "<{0}> is not text based : normalize test will be skipped.", column);
                 }
-
+                
             }
-            stmt.close();
         } catch (SQLException ex) {
             LOGGER.severe(ex.getMessage());
         }
-
+        
     }
 }

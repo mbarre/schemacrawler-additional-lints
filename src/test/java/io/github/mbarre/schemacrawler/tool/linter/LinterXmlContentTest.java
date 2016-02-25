@@ -5,12 +5,9 @@ package io.github.mbarre.schemacrawler.tool.linter;
 
 import io.github.mbarre.schemacrawler.test.utils.LintWrapper;
 import io.github.mbarre.schemacrawler.test.utils.PostgreSqlDatabase;
-import io.github.mbarre.schemacrawler.tool.linter.LinterXmlContent;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import schemacrawler.schemacrawler.SchemaCrawlerOptions;
 import schemacrawler.schemacrawler.SchemaInfoLevelBuilder;
 import schemacrawler.tools.lint.LinterRegistry;
@@ -28,7 +25,6 @@ import java.util.List;
 public class LinterXmlContentTest extends BaseLintTest {
 
 	private static final String CHANGE_LOG_XML_CHECK = "src/test/db/liquibase/xmlContentCheck/db.changelog.xml";
-	private Logger LOGGER = LoggerFactory.getLogger(LinterXmlContentTest.class);
 	private static PostgreSqlDatabase database;
 
 	@BeforeClass
@@ -44,8 +40,6 @@ public class LinterXmlContentTest extends BaseLintTest {
 		Assert.assertTrue(registry.hasLinter(LinterXmlContent.class.getName()));
 
 		final SchemaCrawlerOptions options = new SchemaCrawlerOptions();
-		// Set what details are required in the schema - this affects the
-		// time taken to crawl the schema
 		options.setSchemaInfoLevel(SchemaInfoLevelBuilder.standard());
 		options.setTableNamePattern("test_xml");
 

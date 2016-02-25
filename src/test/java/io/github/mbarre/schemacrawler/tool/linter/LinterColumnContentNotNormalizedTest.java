@@ -2,12 +2,9 @@ package io.github.mbarre.schemacrawler.tool.linter;
 
 import io.github.mbarre.schemacrawler.test.utils.LintWrapper;
 import io.github.mbarre.schemacrawler.test.utils.PostgreSqlDatabase;
-import io.github.mbarre.schemacrawler.tool.linter.LinterColumnContentNotNormalized;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import schemacrawler.schemacrawler.SchemaCrawlerOptions;
 import schemacrawler.schemacrawler.SchemaInfoLevelBuilder;
 import schemacrawler.tools.lint.LinterRegistry;
@@ -22,7 +19,6 @@ import java.util.List;
  */
 public class LinterColumnContentNotNormalizedTest  extends BaseLintTest {
 
-    Logger logger = LoggerFactory.getLogger(LinterColumnContentNotNormalizedTest.class);
     private static PostgreSqlDatabase database;
     private static final String CHANGE_LOG_NORMALIZE_CHECK = "src/test/db/liquibase/normalizeCheck/db.changelog.xml";
 
@@ -65,33 +61,6 @@ public class LinterColumnContentNotNormalizedTest  extends BaseLintTest {
             }
         }
         Assert.assertTrue("Normalization issue has been detected.", lint1Dectected);
-
-    }
-
-    @Test
-    public void testIsSqlTypeTextBased() {
-        Assert.assertFalse(LinterColumnContentNotNormalized.isSqlTypeTextBased(Types.BIGINT));
-        Assert.assertFalse(LinterColumnContentNotNormalized.isSqlTypeTextBased(Types.BIT));
-        Assert.assertFalse(LinterColumnContentNotNormalized.isSqlTypeTextBased(Types.BOOLEAN));
-        Assert.assertTrue(LinterColumnContentNotNormalized.isSqlTypeTextBased(Types.CHAR));
-        Assert.assertFalse(LinterColumnContentNotNormalized.isSqlTypeTextBased(Types.DATE));
-        Assert.assertFalse(LinterColumnContentNotNormalized.isSqlTypeTextBased(Types.DECIMAL));
-        Assert.assertFalse(LinterColumnContentNotNormalized.isSqlTypeTextBased(Types.DOUBLE));
-        Assert.assertFalse(LinterColumnContentNotNormalized.isSqlTypeTextBased(Types.FLOAT));
-        Assert.assertFalse(LinterColumnContentNotNormalized.isSqlTypeTextBased(Types.INTEGER));
-        Assert.assertFalse(LinterColumnContentNotNormalized.isSqlTypeTextBased(Types.JAVA_OBJECT));
-        Assert.assertTrue(LinterColumnContentNotNormalized.isSqlTypeTextBased(Types.LONGNVARCHAR));
-        Assert.assertFalse(LinterColumnContentNotNormalized.isSqlTypeTextBased(Types.LONGVARBINARY));
-        Assert.assertTrue(LinterColumnContentNotNormalized.isSqlTypeTextBased(Types.LONGVARCHAR));
-        Assert.assertTrue(LinterColumnContentNotNormalized.isSqlTypeTextBased(Types.NCHAR));
-        Assert.assertFalse(LinterColumnContentNotNormalized.isSqlTypeTextBased(Types.NULL));
-        Assert.assertFalse(LinterColumnContentNotNormalized.isSqlTypeTextBased(Types.NUMERIC));
-        Assert.assertTrue(LinterColumnContentNotNormalized.isSqlTypeTextBased(Types.NVARCHAR));
-        Assert.assertFalse(LinterColumnContentNotNormalized.isSqlTypeTextBased(Types.OTHER));
-        Assert.assertFalse(LinterColumnContentNotNormalized.isSqlTypeTextBased(Types.REAL));
-        Assert.assertFalse(LinterColumnContentNotNormalized.isSqlTypeTextBased(Types.SMALLINT));
-        Assert.assertFalse(LinterColumnContentNotNormalized.isSqlTypeTextBased(Types.TIME));
-        Assert.assertTrue(LinterColumnContentNotNormalized.isSqlTypeTextBased(Types.VARCHAR));
 
     }
 

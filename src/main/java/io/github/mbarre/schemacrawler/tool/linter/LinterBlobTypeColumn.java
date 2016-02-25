@@ -58,9 +58,9 @@ public class LinterBlobTypeColumn extends BaseLinter {
     @Override
     protected void lint(final Table table, final Connection connection) {
         for (Column column : table.getColumns()) {
+            LOGGER.log(Level.INFO, "Checking {0}...", column.getFullName());
             if(LintUtils.isSqlTypeBinayBased(column.getColumnDataType().getJavaSqlType().getJavaSqlType())){
                 addLint(table, getDescription(), column.getName());
-                LOGGER.log(Level.INFO, "{0} is BLOB type.", column.getFullName());
             }
         }
     }

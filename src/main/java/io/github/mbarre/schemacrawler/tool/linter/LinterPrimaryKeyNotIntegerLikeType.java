@@ -23,8 +23,6 @@ import schemacrawler.tools.lint.LintSeverity;
 public class LinterPrimaryKeyNotIntegerLikeType extends BaseLinter {
     private static final Logger LOGGER = Logger.getLogger(LinterPrimaryKeyNotIntegerLikeType.class.getName());
     
-    
-    
     /**
      * The lint that parses and test primary keys
      *
@@ -49,7 +47,7 @@ public class LinterPrimaryKeyNotIntegerLikeType extends BaseLinter {
      */
     @Override
     public String getSummary() {
-        return "should be Integer like type or eventually char(1).";
+        return "Should be Integer like type or eventually char(1).";
     }
     
     /**
@@ -59,14 +57,13 @@ public class LinterPrimaryKeyNotIntegerLikeType extends BaseLinter {
      */
     @Override
     protected void lint(final Table table, final Connection connection) {
-        
    
         for (Column column : table.getColumns()) {
             if(column.isPartOfPrimaryKey()){
+                LOGGER.log(Level.INFO, "Checking {0}...", column.getFullName());
                 if(!LintUtils.isSqlTypeIntegerBased(column.getColumnDataType().getJavaSqlType().getJavaSqlType()) 
                         && !(column.getColumnDataType().getJavaSqlType().getJavaSqlType() ==  Types.CHAR && column.getSize() == 1)){
                     addLint(table, getDescription(), column.getFullName());
-                    LOGGER.log(Level.INFO, "{0} is not integer like type nor char(1).", column.getFullName());
                 }
             }
         }

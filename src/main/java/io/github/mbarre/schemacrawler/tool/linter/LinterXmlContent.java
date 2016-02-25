@@ -15,15 +15,15 @@ import java.util.logging.Logger;
 import schemacrawler.schema.Column;
 import schemacrawler.schema.Table;
 import schemacrawler.schemacrawler.SchemaCrawlerException;
+import schemacrawler.tools.lint.BaseLinter;
 import schemacrawler.tools.lint.LintSeverity;
-import schemacrawler.tools.linter.LinterTableSql;
 
 /**
  * Linter to check if non XML type is used whereas XML data is store in column
  * @author mbarre
  * @since 1.0.1
  */
-public class LinterXmlContent extends LinterTableSql {
+public class LinterXmlContent extends BaseLinter {
     
     private static final Logger LOGGER = Logger.getLogger(LinterXmlContent.class.getName());
     
@@ -65,20 +65,24 @@ public class LinterXmlContent extends LinterTableSql {
         try (Statement stmt = connection.createStatement()){
             
             String sql;
+            String columnName;
+            String tableName = table.getName().replaceAll("\"", "");
             List<Column> columns = table.getColumns();
             for (Column column : columns) {
                 
                 if(LintUtils.isSqlTypeTextBased(column.getColumnDataType().getJavaSqlType().getJavaSqlType())){
                     
-                    sql = "select \"" + column.getName() + "\" from \"" + table.getName() +"\"" ;
-                    LOGGER.log(Level.INFO, "SQL : {0}", sql);
+                    columnName = column.getName().replaceAll("\"", "");
+                    
+                    sql = "select \"" + columnName + "\" from \"" + tableName +"\" where \"" + columnName + "\" like '<%>'" ;
+                    LOGGER.log(Level.CONFIG, "SQL : {0}", sql);
+                    LOGGER.log(Level.INFO, "Checking {0}...", column.getFullName());
                     
                     ResultSet rs = stmt.executeQuery(sql);
                     boolean found = false;
                     while (rs.next() && !found) {
                         String data = rs.getString(column.getName());
                         if(XmlUtils.isXmlContent(data)){
-                            LOGGER.log(Level.INFO, "Adding lint as data is XML but column type is not XML.");
                             addLint(table, getDescription(), column.getFullName());
                             found = true;
                         }

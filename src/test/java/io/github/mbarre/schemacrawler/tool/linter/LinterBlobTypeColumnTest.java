@@ -7,15 +7,12 @@ package io.github.mbarre.schemacrawler.tool.linter;
 
 import io.github.mbarre.schemacrawler.test.utils.LintWrapper;
 import io.github.mbarre.schemacrawler.test.utils.PostgreSqlDatabase;
-import io.github.mbarre.schemacrawler.tool.linter.LinterBlobTypeColumn;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.List;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import schemacrawler.schemacrawler.SchemaCrawlerOptions;
 import schemacrawler.schemacrawler.SchemaInfoLevelBuilder;
 import schemacrawler.tools.lint.LinterRegistry;
@@ -27,7 +24,6 @@ import schemacrawler.tools.lint.LinterRegistry;
 public class LinterBlobTypeColumnTest extends BaseLintTest {
     
     private static final String CHANGE_LOG_BLOB_CHECK = "src/test/db/liquibase/blobCheck/db.changelog.xml";
-    private static final Logger LOGGER = LoggerFactory.getLogger(LinterBlobTypeColumnTest.class);
     private static PostgreSqlDatabase database;
     
     @BeforeClass

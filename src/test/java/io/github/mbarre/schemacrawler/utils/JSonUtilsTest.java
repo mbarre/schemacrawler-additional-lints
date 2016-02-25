@@ -3,20 +3,15 @@
   */
 package io.github.mbarre.schemacrawler.utils;
 
-import io.github.mbarre.schemacrawler.utils.JSonUtils;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * @author barmi83
  * @since
  */
 public class JSonUtilsTest {
-    
-    private Logger LOGGER = LoggerFactory.getLogger(JSonUtilsTest.class);
     
     public JSonUtilsTest(){
         JSonUtils test = new JSonUtils();

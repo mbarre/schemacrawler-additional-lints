@@ -5,12 +5,9 @@ package io.github.mbarre.schemacrawler.tool.linter;
 
 import io.github.mbarre.schemacrawler.test.utils.LintWrapper;
 import io.github.mbarre.schemacrawler.test.utils.PostgreSqlDatabase;
-import io.github.mbarre.schemacrawler.tool.linter.LinterTableWithNoRemark;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import schemacrawler.schemacrawler.SchemaCrawlerOptions;
 import schemacrawler.schemacrawler.SchemaInfoLevelBuilder;
 import schemacrawler.tools.lint.LinterRegistry;
@@ -25,7 +22,6 @@ import java.util.List;
 public class LinterTableWithNoRemarkTest extends BaseLintTest {
 
 	private static final String CHANGE_LOG_REMARK_CHECK = "src/test/db/liquibase/remarkCheck/db.changelog.xml";
-	private Logger logger = LoggerFactory.getLogger(LinterTableWithNoRemarkTest.class);
 	private static PostgreSqlDatabase database;
 
 	@BeforeClass

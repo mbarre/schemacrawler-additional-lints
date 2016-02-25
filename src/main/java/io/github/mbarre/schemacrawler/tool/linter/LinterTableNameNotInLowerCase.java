@@ -11,8 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static java.util.Objects.requireNonNull;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -21,7 +21,7 @@ import org.slf4j.LoggerFactory;
  */
 public class LinterTableNameNotInLowerCase extends BaseLinter
 {
-    private static final Logger LOGGER = LoggerFactory.getLogger(LinterTableNameNotInLowerCase.class);
+    private static final Logger LOGGER = Logger.getLogger(LinterTableNameNotInLowerCase.class.getName());
     
     
     /**
@@ -48,7 +48,7 @@ public class LinterTableNameNotInLowerCase extends BaseLinter
     @Override
     public String getSummary()
     {
-        return " name should be in lower case";
+        return "Name should be in lower case";
     }
     
     /**
@@ -59,11 +59,11 @@ public class LinterTableNameNotInLowerCase extends BaseLinter
     protected void lint(final Table table, Connection connection)
     {
         requireNonNull(table, "No table provided");
+        
         List<String> names = findColumnsWithUpperCase(table.getColumns());
         if (!isLowerCaseName(table.getName()))
         {
             names.add(0,table.getName());
-            System.out.println(table.getName());
         }
         
         for (String name : names) {
@@ -79,6 +79,7 @@ public class LinterTableNameNotInLowerCase extends BaseLinter
     private List<String> findColumnsWithUpperCase(List<Column> columns){
         List<String> names = new ArrayList<>();
         for (Column column : columns) {
+            LOGGER.log(Level.INFO, "Checking {0}...", column.getFullName());
             if(!isLowerCaseName(column.getName())){
                 names.add(column.getName());
             }
