@@ -3,12 +3,9 @@
   */
 package io.github.mbarre.schemacrawler.utils;
 
-import io.github.mbarre.schemacrawler.utils.XmlUtils;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * @author barmi83
@@ -16,7 +13,6 @@ import org.slf4j.LoggerFactory;
  */
 public class XmlUtilsTest {
     
-    private Logger LOGGER = LoggerFactory.getLogger(XmlUtilsTest.class);
     
     public XmlUtilsTest(){
         XmlUtils test = new XmlUtils();

@@ -6,8 +6,10 @@ import java.io.StringReader;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import org.xml.sax.ErrorHandler;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
 
 /**
  *
@@ -29,6 +31,7 @@ public class XmlUtils {
         try {
             
             db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+            db.setErrorHandler(new SimpleErrorHandler());
             
             InputSource is = new InputSource();
             is.setCharacterStream(new StringReader(data));
@@ -40,4 +43,23 @@ public class XmlUtils {
             return false;
         }
     }
+    
+    
+    private static class SimpleErrorHandler implements ErrorHandler {
+        @Override
+        public void warning(SAXParseException e) throws SAXException {
+            // Do nothing
+        }
+        
+        @Override
+        public void error(SAXParseException e) throws SAXException {
+            // Do nothing
+        }
+        
+        @Override
+        public void fatalError(SAXParseException e) throws SAXException {
+            // Do nothing
+        }
+    }
+    
 }
