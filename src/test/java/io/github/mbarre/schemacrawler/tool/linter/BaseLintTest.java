@@ -14,6 +14,7 @@ import schemacrawler.tools.options.TextOutputFormat;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -49,7 +50,7 @@ public abstract class BaseLintTest {
         JSONObject json = new JSONObject(data.toString().substring(1, data.toString().length() - 2));
        
         List<LintWrapper>lints = new ArrayList<>();
-
+        
         if( json.get("table_lints") instanceof  JSONObject) {
 
             Assert.assertNotNull(json.getJSONObject("table_lints"));
@@ -83,7 +84,6 @@ public abstract class BaseLintTest {
                 }
             }
         }
-        System.out.println("lints:"+lints);
         return lints;
     }
 
