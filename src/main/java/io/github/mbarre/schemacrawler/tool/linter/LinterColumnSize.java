@@ -101,7 +101,7 @@ public class LinterColumnSize extends BaseLinter {
                     while (rs.next()) {
                         int maxLength = rs.getInt(1);
                         if(maxLength > 0 && (maxLength*100/column.getSize() < minColumnSizePercent)){
-                            addLint(table, "Column is oversized ("+column.getSize()+" car.) regarding its content (max: "+maxLength+" car.).", column.getFullName());
+                            addLint(table, "Column is oversized ("+column.getSize()+" char.) regarding its content (max: "+maxLength+" char.).", column.getFullName());
                         }
                     }
                 }
