@@ -67,13 +67,18 @@ public class LinterColumnContentNotNormalizedTest  extends BaseLintTest {
     @Test
     public void testMustColumnBeTested() {
         //text based but too short
-        Assert.assertFalse(LinterColumnContentNotNormalized.mustColumnBeTested(Types.VARCHAR, LinterColumnContentNotNormalized.MIN_TEXT_COLUMN_SIZE - 1));
+        Assert.assertFalse(LinterColumnContentNotNormalized.mustColumnBeTested(Types.VARCHAR, 
+                LinterColumnContentNotNormalized.MIN_TEXT_COLUMN_SIZE - 1, LinterColumnContentNotNormalized.MIN_TEXT_COLUMN_SIZE));
         // Text based and good length
-        Assert.assertFalse(LinterColumnContentNotNormalized.mustColumnBeTested(Types.NVARCHAR, LinterColumnContentNotNormalized.MIN_TEXT_COLUMN_SIZE));
-        Assert.assertTrue(LinterColumnContentNotNormalized.mustColumnBeTested(Types.NCHAR, LinterColumnContentNotNormalized.MIN_TEXT_COLUMN_SIZE + 1));
+        Assert.assertFalse(LinterColumnContentNotNormalized.mustColumnBeTested(Types.NVARCHAR, 
+                LinterColumnContentNotNormalized.MIN_TEXT_COLUMN_SIZE, LinterColumnContentNotNormalized.MIN_TEXT_COLUMN_SIZE));
+        Assert.assertTrue(LinterColumnContentNotNormalized.mustColumnBeTested(Types.NCHAR, 
+                LinterColumnContentNotNormalized.MIN_TEXT_COLUMN_SIZE + 1, LinterColumnContentNotNormalized.MIN_TEXT_COLUMN_SIZE));
         // not text based
-        Assert.assertFalse(LinterColumnContentNotNormalized.mustColumnBeTested(Types.BIT, LinterColumnContentNotNormalized.MIN_TEXT_COLUMN_SIZE));
-        Assert.assertFalse(LinterColumnContentNotNormalized.mustColumnBeTested(Types.BIT, LinterColumnContentNotNormalized.MIN_TEXT_COLUMN_SIZE + 1));
+        Assert.assertFalse(LinterColumnContentNotNormalized.mustColumnBeTested(Types.BIT, 
+                LinterColumnContentNotNormalized.MIN_TEXT_COLUMN_SIZE, LinterColumnContentNotNormalized.MIN_TEXT_COLUMN_SIZE));
+        Assert.assertFalse(LinterColumnContentNotNormalized.mustColumnBeTested(Types.BIT, 
+                LinterColumnContentNotNormalized.MIN_TEXT_COLUMN_SIZE + 1, LinterColumnContentNotNormalized.MIN_TEXT_COLUMN_SIZE));
     }
 
     @Test

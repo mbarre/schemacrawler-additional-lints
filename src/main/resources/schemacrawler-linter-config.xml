@@ -104,6 +104,10 @@
     <linter id="io.github.mbarre.schemacrawler.tool.linter.LinterColumnContentNotNormalized">
         <run>true</run>
         <table-exclusion-pattern><![CDATA[.*databasechangelog*]]></table-exclusion-pattern>
+        <config>
+            <property name="nbRepeatTolerance">2</property>
+            <property name="minTextColumnSize">2</property>
+        </config>
     </linter>
     <linter id="io.github.mbarre.schemacrawler.tool.linter.LinterJsonTypeColumn">
         <run>true</run>

@@ -15,6 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import schemacrawler.schema.Column;
 import schemacrawler.schema.Table;
+import schemacrawler.schemacrawler.Config;
 import schemacrawler.schemacrawler.SchemaCrawlerException;
 import schemacrawler.tools.lint.BaseLinter;
 import schemacrawler.tools.lint.LintSeverity;
@@ -25,6 +26,10 @@ import schemacrawler.tools.lint.LintSeverity;
  * @author salad74
  */
 public class LinterColumnContentNotNormalized extends BaseLinter {
+    
+    private static final Logger LOGGER = Logger.getLogger(LinterColumnContentNotNormalized.class.getName());
+    private static final String NB_REPEAT_TOLERANCE_CONFIG = "nbRepeatTolerance";
+    private static final String MIN_TEXT_COLUMN_SIZE_CONFIG = "minTextColumnSize";
     
     /**
      * Repeat tolerance : 1 is the most agressive, duplicates occur since there
@@ -37,13 +42,18 @@ public class LinterColumnContentNotNormalized extends BaseLinter {
      * char based column is acceptable.
      */
     public static final int MIN_TEXT_COLUMN_SIZE = 2;
-    private static final Logger LOGGER = Logger.getLogger(LinterColumnContentNotNormalized.class.getName());
+    
+    private int nbRepeatTolerance;
+    private int minTextColumnSize;
+    
     
     /**
      * Build the lint
      */
     public LinterColumnContentNotNormalized() {
         setSeverity(LintSeverity.high);
+        nbRepeatTolerance = NB_REPEAT_TOLERANCE;
+        minTextColumnSize = MIN_TEXT_COLUMN_SIZE;
     }
     
     /**
@@ -63,6 +73,12 @@ public class LinterColumnContentNotNormalized extends BaseLinter {
     public String getSummary() {
         return " should not have so many duplicates.";
     }
+
+    @Override
+    public void configure(Config config) {
+        nbRepeatTolerance = config.getIntegerValue(NB_REPEAT_TOLERANCE_CONFIG, NB_REPEAT_TOLERANCE);
+        minTextColumnSize = config.getIntegerValue(MIN_TEXT_COLUMN_SIZE_CONFIG, MIN_TEXT_COLUMN_SIZE);
+    }
     
     
     /**
@@ -71,13 +87,14 @@ public class LinterColumnContentNotNormalized extends BaseLinter {
      *
      * @param javaSqlType javaSqlType
      * @param colSize colSize
+     * @param minColumnSize minColSize
      * @return mustColumnBeTested
      */
-    public static final boolean mustColumnBeTested(int javaSqlType, int colSize) {
+    public static final boolean mustColumnBeTested(int javaSqlType, int colSize, int minColumnSize) {
         if (LintUtils.isSqlTypeTextBased(javaSqlType)) {
             // test minimal size to pass test
-            if(colSize > MIN_TEXT_COLUMN_SIZE){
-                LOGGER.log(Level.INFO, "Column min size requirement are met : <{0}> is greater than <{1}>", new Object[]{colSize, MIN_TEXT_COLUMN_SIZE});
+            if(colSize > minColumnSize){
+                LOGGER.log(Level.INFO, "Column min size requirement are met : <{0}> is greater than <{1}>", new Object[]{colSize, minColumnSize});
                 return true;
             }
             else{
@@ -98,25 +115,28 @@ public class LinterColumnContentNotNormalized extends BaseLinter {
     protected void lint(final Table table, final Connection connection)
             throws SchemaCrawlerException {
         
+        LOGGER.log(Level.CONFIG, "<nbRepeatTolerance> parameter set to {0}",nbRepeatTolerance);
+        LOGGER.log(Level.CONFIG, "<minTextColumnSize> parameter set to {0}",minTextColumnSize);
+        
         try (Statement stmt = connection.createStatement()){
             String sql;
             String tableName = table.getName().replaceAll("\"", "");
             List<Column> columns = table.getColumns();
             
             for (Column column : columns) {
-                if (LinterColumnContentNotNormalized.mustColumnBeTested(column.getColumnDataType().getJavaSqlType().getJavaSqlType(), column.getSize())) {
+                if (LinterColumnContentNotNormalized.mustColumnBeTested(column.getColumnDataType().getJavaSqlType().getJavaSqlType(), column.getSize(), minTextColumnSize)) {
                     // test based column, perform test
                     LOGGER.log(Level.INFO, "Checking {0}...", column.getFullName());
                     String columnName = column.getName().replaceAll("\"", "");
-                    sql = "select \"" + columnName + "\", count(*)  as counter from \"" + tableName + "\" where \"" + columnName + "\" is not null group by \"" + columnName + "\" having count(*) > " + NB_REPEAT_TOLERANCE + " order by count(*) desc";
+                    sql = "select \"" + columnName + "\", count(*)  as counter from \"" + tableName + "\" where \"" + columnName + "\" is not null group by \"" + columnName + "\" having count(*) > " + nbRepeatTolerance + " order by count(*) desc";
                     LOGGER.log(Level.CONFIG, "SQL : {0}", sql);
                     
                     try(ResultSet rs = stmt.executeQuery(sql)){
                         while (rs.next()) {
                             int nbRepeats = rs.getInt("counter");
                             LOGGER.log(Level.CONFIG, "Found <{0}> repetitions of the same value <{1}> in <{2}>", new Object[]{nbRepeats, rs.getString(1), column});
-                            if(nbRepeats > NB_REPEAT_TOLERANCE){
-                                LOGGER.log(Level.CONFIG, "Adding lint as nbRepeats exceeds tolerance ({0} > {1} )", new Object[]{nbRepeats, NB_REPEAT_TOLERANCE});
+                            if(nbRepeats > nbRepeatTolerance){
+                                LOGGER.log(Level.CONFIG, "Adding lint as nbRepeats exceeds tolerance ({0} > {1} )", new Object[]{nbRepeats, nbRepeatTolerance});
                                 addLint(table, "Found <" + nbRepeats + "> repetitions of the same value <" + rs.getString(1) + "> in <" + column + ">", column.getFullName());
                             }
                         }
@@ -124,8 +144,6 @@ public class LinterColumnContentNotNormalized extends BaseLinter {
                         LOGGER.severe(ex.getMessage());
                         throw new SchemaCrawlerException(ex.getMessage(), ex);
                     }
-                    
-                    
                 } else {
                     // no text based column, skip test
                     LOGGER.log(Level.CONFIG, "<{0}> is not text based : normalize test will be skipped.", column);

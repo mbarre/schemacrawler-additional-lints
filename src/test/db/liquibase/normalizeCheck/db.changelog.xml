@@ -7,24 +7,28 @@
     <createTable  tableName="test_normalized" remarks="table for lint LinterColumnContentNotNormalized">
     	<column name="id"       type="int" remarks="primary key"/>
         <column name="content" 	type="varchar(4)" remarks="dummy not normalized content"/>
-
+        <column name="content_notchecked" 	type="int" remarks="dummy not checked content"/>
     </createTable>
     <!-- Put some contents -->
     <insert tableName="test_normalized">
         <column name="id" valueNumeric="1"/>
         <column name="content" value="AAAA"/>
+        <column name="content_notchecked" value="1"/>
     </insert>
     <insert tableName="test_normalized">
         <column name="id" valueNumeric="2"/>
         <column name="content" value="AAAA"/>
+        <column name="content_notchecked" value="2"/>
     </insert>
     <insert tableName="test_normalized">
         <column name="id" valueNumeric="3"/>
         <column name="content" value="AAAA"/>
+        <column name="content_notchecked" value="3"/>
     </insert>
     <insert tableName="test_normalized">
         <column name="id" valueNumeric="4"/>
         <column name="content" value="AAAA"/>
+        <column name="content_notchecked" value="4"/>
     </insert>
 </changeSet>
 
