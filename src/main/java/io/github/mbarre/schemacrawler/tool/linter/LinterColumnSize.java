@@ -76,9 +76,9 @@ public class LinterColumnSize extends BaseLinter {
     @Override
     protected void lint(final Table table, final Connection connection)
             throws SchemaCrawlerException {
-        
-        LOGGER.log(Level.CONFIG, "Min. content size set to : {0}% of declared column size.", minColumnSizePercent);
-        
+
+        LOGGER.log(Level.CONFIG, "<minColumnSizePercent> parameter set to {0}%", minColumnSizePercent);
+
         try (Statement stmt = connection.createStatement()){
             
             String sql;
