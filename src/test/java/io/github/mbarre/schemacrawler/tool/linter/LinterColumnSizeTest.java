@@ -5,7 +5,6 @@ package io.github.mbarre.schemacrawler.tool.linter;
 
 import io.github.mbarre.schemacrawler.test.utils.LintWrapper;
 import io.github.mbarre.schemacrawler.test.utils.PostgreSqlDatabase;
-import io.github.mbarre.schemacrawler.tool.linter.LinterColumnSize;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -58,11 +57,18 @@ public class LinterColumnSizeTest extends BaseLintTest {
         Assert.assertEquals("high", lints.get(0).getSeverity());
     }
     
-     @Test
+    @Test
     public void testLint_getDescription () throws SchemaCrawlerException{
         final LinterRegistry registry = new LinterRegistry();
         LinterColumnSize linter = (LinterColumnSize)registry.newLinter(LinterColumnSize.class.getName());
         Assert.assertEquals("column is oversized regarding its content.", linter.getDescription());
+    }
+    
+    @Test
+    public void testLint_getSummary () throws SchemaCrawlerException{
+        final LinterRegistry registry = new LinterRegistry();
+        LinterColumnSize linter = (LinterColumnSize)registry.newLinter(LinterColumnSize.class.getName());
+        Assert.assertEquals(linter.getSummary(), linter.getDescription());
     }
     
 }

@@ -16,6 +16,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.List;
+import schemacrawler.schemacrawler.SchemaCrawlerException;
 
 
 /**
@@ -64,6 +65,20 @@ public class LinterJsonContentTest extends BaseLintTest {
             Assert.assertEquals("Should be JSON or JSONB type.", lints.get(0).getDescription());
             Assert.assertEquals("high", lints.get(0).getSeverity());
         }
+    }
+    
+      @Test
+    public void testLint_getDescription () throws SchemaCrawlerException{
+        final LinterRegistry registry = new LinterRegistry();
+        LinterJsonContent linter = (LinterJsonContent)registry.newLinter(LinterJsonContent.class.getName());
+        Assert.assertEquals("Should be JSON or JSONB type.", linter.getDescription());
+    }
+    
+         @Test
+    public void testLint_getSummary () throws SchemaCrawlerException{
+        final LinterRegistry registry = new LinterRegistry();
+        LinterJsonContent linter = (LinterJsonContent)registry.newLinter(LinterJsonContent.class.getName());
+        Assert.assertEquals(linter.getSummary(), linter.getDescription());
     }
     
 }
