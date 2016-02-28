@@ -100,30 +100,41 @@ public class LinterColumnContentNotNormalized extends BaseLinter {
         
         try (Statement stmt = connection.createStatement()){
             String sql;
+            String tableName = table.getName().replaceAll("\"", "");
             List<Column> columns = table.getColumns();
+            
             for (Column column : columns) {
                 if (LinterColumnContentNotNormalized.mustColumnBeTested(column.getColumnDataType().getJavaSqlType().getJavaSqlType(), column.getSize())) {
                     // test based column, perform test
-                    LOGGER.log(Level.INFO, "Analyzing colum <{0}>", column);
-                    sql = "select \"" + column.getName() + "\", count(*)  as counter from \"" + table.getName() + "\" where \"" + column.getName() + "\" is not null group by \"" + column.getName() + "\" having count(*) > " + NB_REPEAT_TOLERANCE + " order by count(*) desc";
-                    LOGGER.log(Level.INFO, "SQL : {0}", sql);
-                    ResultSet rs = stmt.executeQuery(sql);
-                    while (rs.next()) {
-                        int nbRepeats = rs.getInt("counter");
-                        LOGGER.log(Level.INFO, "Found <{0}> repetitions of the same value <{1}> in <{2}>", new Object[]{nbRepeats, rs.getString(1), column});
-                        if(nbRepeats > NB_REPEAT_TOLERANCE){
-                            LOGGER.log(Level.INFO, "Adding lint as nbRepeats exceeds tolerance ({0} > {1} )", new Object[]{nbRepeats, NB_REPEAT_TOLERANCE});
-                            addLint(table, "Found <" + nbRepeats + "> repetitions of the same value <" + rs.getString(1) + "> in <" + column + ">", column.getFullName());
+                    LOGGER.log(Level.INFO, "Checking {0}...", column.getFullName());
+                    String columnName = column.getName().replaceAll("\"", "");
+                    sql = "select \"" + columnName + "\", count(*)  as counter from \"" + tableName + "\" where \"" + columnName + "\" is not null group by \"" + columnName + "\" having count(*) > " + NB_REPEAT_TOLERANCE + " order by count(*) desc";
+                    LOGGER.log(Level.CONFIG, "SQL : {0}", sql);
+                    
+                    try(ResultSet rs = stmt.executeQuery(sql)){
+                        while (rs.next()) {
+                            int nbRepeats = rs.getInt("counter");
+                            LOGGER.log(Level.CONFIG, "Found <{0}> repetitions of the same value <{1}> in <{2}>", new Object[]{nbRepeats, rs.getString(1), column});
+                            if(nbRepeats > NB_REPEAT_TOLERANCE){
+                                LOGGER.log(Level.CONFIG, "Adding lint as nbRepeats exceeds tolerance ({0} > {1} )", new Object[]{nbRepeats, NB_REPEAT_TOLERANCE});
+                                addLint(table, "Found <" + nbRepeats + "> repetitions of the same value <" + rs.getString(1) + "> in <" + column + ">", column.getFullName());
+                            }
                         }
+                    } catch (SQLException ex) {
+                        LOGGER.severe(ex.getMessage());
+                        throw new SchemaCrawlerException(ex.getMessage(), ex);
                     }
+                    
+                    
                 } else {
                     // no text based column, skip test
-                    LOGGER.log(Level.INFO, "<{0}> is not text based : normalize test will be skipped.", column);
+                    LOGGER.log(Level.CONFIG, "<{0}> is not text based : normalize test will be skipped.", column);
                 }
                 
             }
         } catch (SQLException ex) {
             LOGGER.severe(ex.getMessage());
+            throw new SchemaCrawlerException(ex.getMessage(), ex);
         }
         
     }

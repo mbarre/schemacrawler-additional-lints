@@ -26,12 +26,12 @@ import schemacrawler.tools.lint.LintSeverity;
  */
 public class LinterColumnSize extends BaseLinter {
     private static final Logger LOGGER = Logger.getLogger(LinterColumnSize.class.getName());
-
+    
     private static final int MIN_COLUMN_SIZE_PERCENT = 10;
     public static final String COLUMNSIZE_CONFIG_PARAM = "minColumnSizePercent";
     
     private double minColumnSizePercent;
-   
+    
     
     /**
      * The lint that parses and test numeric content
@@ -66,7 +66,7 @@ public class LinterColumnSize extends BaseLinter {
         int value = config.getIntegerValue(COLUMNSIZE_CONFIG_PARAM, MIN_COLUMN_SIZE_PERCENT);
         minColumnSizePercent = Double.valueOf(value);
     }
-
+    
     /**
      * The lint that does the job
      * @param table table
@@ -97,12 +97,16 @@ public class LinterColumnSize extends BaseLinter {
                     sql = "select max(length(\"" + columnName + "\")) as max from \"" + tableName +"\"" ;
                     LOGGER.log(Level.CONFIG,"SQL : {0}", sql);
                     
-                    ResultSet rs = stmt.executeQuery(sql);
-                    while (rs.next()) {
-                        int maxLength = rs.getInt(1);
-                        if(maxLength > 0 && (maxLength*100/column.getSize() < minColumnSizePercent)){
-                            addLint(table, "Column is oversized ("+column.getSize()+" char.) regarding its content (max: "+maxLength+" char.).", column.getFullName());
+                    try(ResultSet rs = stmt.executeQuery(sql)){
+                        while (rs.next()) {
+                            int maxLength = rs.getInt(1);
+                            if(maxLength > 0 && (maxLength*100/column.getSize() < minColumnSizePercent)){
+                                addLint(table, "Column is oversized ("+column.getSize()+" char.) regarding its content (max: "+maxLength+" char.).", column.getFullName());
+                            }
                         }
+                    }   catch (SQLException ex) {
+                        LOGGER.log(Level.SEVERE, ex.getMessage());
+                        throw new SchemaCrawlerException(ex.getMessage(), ex);
                     }
                 }
             }

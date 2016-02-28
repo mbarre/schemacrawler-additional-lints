@@ -78,14 +78,18 @@ public class LinterXmlContent extends BaseLinter {
                     LOGGER.log(Level.CONFIG, "SQL : {0}", sql);
                     LOGGER.log(Level.INFO, "Checking {0}...", column.getFullName());
                     
-                    ResultSet rs = stmt.executeQuery(sql);
-                    boolean found = false;
-                    while (rs.next() && !found) {
-                        String data = rs.getString(column.getName());
-                        if(XmlUtils.isXmlContent(data)){
-                            addLint(table, getDescription(), column.getFullName());
-                            found = true;
+                    try(ResultSet rs = stmt.executeQuery(sql)){
+                        boolean found = false;
+                        while (rs.next() && !found) {
+                            String data = rs.getString(column.getName());
+                            if(XmlUtils.isXmlContent(data)){
+                                addLint(table, getDescription(), column.getFullName());
+                                found = true;
+                            }
                         }
+                    }catch (SQLException ex) {
+                        LOGGER.severe(ex.getMessage());
+                        throw new SchemaCrawlerException(ex.getMessage(), ex);
                     }
                 }
                 else if(column.getColumnDataType().getJavaSqlType().getJavaSqlType() == Types.CLOB){

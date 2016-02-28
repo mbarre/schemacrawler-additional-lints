@@ -62,52 +62,69 @@ public class LinterBooleanContent extends BaseLinter {
         
         try (Statement stmt = connection.createStatement()){
             
-            String sql;
             List<Column> columns = table.getColumns();
-            String columnName;
-            String tableName = table.getName().replaceAll("\"", "");
             
             for (Column column : columns) {
-                columnName = column.getName().replaceAll("\"", "");
                 
                 int columnDataType = column.getColumnDataType().getJavaSqlType().getJavaSqlType();
                 if(LintUtils.isSqlTypeNumericBased(columnDataType)){
                     LOGGER.log(Level.INFO, "Checking {0}...", column.getFullName());
                     
-                    sql = "select count (distinct \"" + columnName + "\") as countRow from \"" + tableName +"\"";
-                    LOGGER.log(Level.CONFIG, "SQL : {0}", sql);
-                    
-                    ResultSet rs = stmt.executeQuery(sql);
-                    boolean found = false;
-                    if(rs.next()){
-                        int count = rs.getInt("countRow");
-                        
-                        if(count == 2){
-                            sql = "select distinct \"" + columnName + "\" from \"" + tableName + "\"" ;
-                            LOGGER.log(Level.CONFIG, "SQL : {0}", sql);
-                            
-                            rs = stmt.executeQuery(sql);
-                            boolean trueFound = false;
-                            boolean falseFound = false;
-                            while (rs.next()) {
-                                if(rs.getObject(columnName) != null) {
-                                    int data = ((Number) rs.getObject(columnName)).intValue();
-                                    if(data == 1)
-                                        trueFound = true;
-                                    else if(data == 0)
-                                        falseFound = true;
-                                }
-                            }
-                            
-                            if(trueFound && falseFound){
-                                addLint(table, getDescription(), column.getFullName());
-                            }
-                        }
-                        
-                        
+                    int count = getSelectDistinctCount(stmt, table, column);
+                    if(count == 2){
+                        checkIfBooleanValuesAndLint(stmt, table, column);
                     }
-                    
                 }
+            }
+        }catch (SQLException ex) {
+            LOGGER.severe(ex.getMessage());
+            throw new SchemaCrawlerException(ex.getMessage(), ex);
+        }
+    }
+    
+    
+    private static int getSelectDistinctCount(Statement stmt, Table table, Column column) throws SchemaCrawlerException{
+        String tableName = table.getName().replaceAll("\"", "");
+        String columnName = column.getName().replaceAll("\"", "");
+        
+        String sql = "select count (distinct \"" + columnName + "\") as countRow from \"" + tableName +"\"";
+        LOGGER.log(Level.CONFIG, "SQL : {0}", sql);
+        
+        int count = 0;
+        try(ResultSet rs = stmt.executeQuery(sql)){
+            if(rs.next()){
+                count = rs.getInt("countRow");
+            }
+        }catch (SQLException ex) {
+            LOGGER.severe(ex.getMessage());
+            throw new SchemaCrawlerException(ex.getMessage(), ex);
+        }
+        return count;
+    }
+    
+    private void checkIfBooleanValuesAndLint(Statement stmt, final Table table, Column column) throws SchemaCrawlerException{
+        String tableName = table.getName().replaceAll("\"", "");
+        String columnName = column.getName().replaceAll("\"", "");
+        
+        String sql = "select distinct \"" + columnName + "\" from \"" + tableName + "\"" ;
+        LOGGER.log(Level.CONFIG, "SQL : {0}", sql);
+        
+        try(ResultSet rs = stmt.executeQuery(sql)){
+           
+            boolean trueFound = false;
+            boolean falseFound = false;
+            while (rs.next()) {
+                if(rs.getObject(columnName) != null) {
+                    int data = ((Number) rs.getObject(columnName)).intValue();
+                    if(data == 1)
+                        trueFound = true;
+                    else if(data == 0)
+                        falseFound = true;
+                }
+            }
+            
+            if(trueFound && falseFound){
+                addLint(table, getDescription(), column.getFullName());
             }
             
         }catch (SQLException ex) {
