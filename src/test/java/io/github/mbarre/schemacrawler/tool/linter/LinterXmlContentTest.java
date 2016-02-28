@@ -47,7 +47,6 @@ public class LinterXmlContentTest extends BaseLintTest {
 				PostgreSqlDatabase.USER_NAME, database.getPostgresPassword());
 
 		List<LintWrapper> lints = executeToJsonAndConvertToLintList(options, connection);
-
 		Assert.assertEquals(1,lints.size());
 		Assert.assertEquals(LinterXmlContent.class.getName(), lints.get(0).getId());
 		Assert.assertEquals("public.test_xml.content", lints.get(0).getValue());
