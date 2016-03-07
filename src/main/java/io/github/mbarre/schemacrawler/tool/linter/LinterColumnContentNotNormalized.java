@@ -15,10 +15,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import schemacrawler.schema.Column;
 import schemacrawler.schema.Table;
-import schemacrawler.schemacrawler.Config;
 import schemacrawler.schemacrawler.SchemaCrawlerException;
 import schemacrawler.tools.lint.BaseLinter;
 import schemacrawler.tools.lint.LintSeverity;
+import schemacrawler.tools.lint.LinterConfig;
 
 /**
  * Test column contents normalization. Detect wether foreign table should have
@@ -75,12 +75,12 @@ public class LinterColumnContentNotNormalized extends BaseLinter {
     }
 
     @Override
-    public void configure(Config config) {
-        nbRepeatTolerance = config.getIntegerValue(NB_REPEAT_TOLERANCE_CONFIG, NB_REPEAT_TOLERANCE);
-        minTextColumnSize = config.getIntegerValue(MIN_TEXT_COLUMN_SIZE_CONFIG, MIN_TEXT_COLUMN_SIZE);
+    public void configure(LinterConfig linterConfig) {
+        super.configure(linterConfig);
+        nbRepeatTolerance = linterConfig.getConfig().getIntegerValue(NB_REPEAT_TOLERANCE_CONFIG, NB_REPEAT_TOLERANCE);
+        minTextColumnSize = linterConfig.getConfig().getIntegerValue(MIN_TEXT_COLUMN_SIZE_CONFIG, MIN_TEXT_COLUMN_SIZE);
     }
-    
-    
+        
     /**
      * Tells wether a column is text based or not... and if minimal length
      * requirements are met to make normalization computations.

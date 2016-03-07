@@ -15,10 +15,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import schemacrawler.schema.Column;
 import schemacrawler.schema.Table;
-import schemacrawler.schemacrawler.Config;
 import schemacrawler.schemacrawler.SchemaCrawlerException;
 import schemacrawler.tools.lint.BaseLinter;
 import schemacrawler.tools.lint.LintSeverity;
+import schemacrawler.tools.lint.LinterConfig;
 
 /**
  *
@@ -60,12 +60,15 @@ public class LinterColumnSize extends BaseLinter {
     public String getSummary() {
         return "column is oversized regarding its content.";
     }
-    
+
     @Override
-    protected void configure(final Config config){
-        int value = config.getIntegerValue(COLUMNSIZE_CONFIG_PARAM, MIN_COLUMN_SIZE_PERCENT);
+    public void configure(LinterConfig linterConfig) {
+        super.configure(linterConfig);
+        int value = linterConfig.getConfig().getIntegerValue(COLUMNSIZE_CONFIG_PARAM, MIN_COLUMN_SIZE_PERCENT);
         minColumnSizePercent = Double.valueOf(value);
     }
+    
+    
     
     /**
      * The lint that does the job
