@@ -25,7 +25,7 @@ public class LinterTableWithNoPrimaryKey extends BaseLinter {
      * The lint
      */
     public LinterTableWithNoPrimaryKey(){
-        setSeverity(LintSeverity.high);
+        setSeverity(LintSeverity.critical);
     }
     
     /**
@@ -49,14 +49,15 @@ public class LinterTableWithNoPrimaryKey extends BaseLinter {
     /**
      * The lint that does the job
      * @param table table
+     * @param connection
      */
     @Override
     protected void lint(final Table table, Connection connection){
         requireNonNull(table, "No table provided");
-        LOGGER.log(Level.INFO, "Checking {0}....", table.getName());
+        LOGGER.log(Level.INFO, "Checking {0}....", table.getFullName());
         
         if(table.getPrimaryKey() == null){
-            addLint(table, getDescription(), table.getName());
+            addLint(table, getDescription(), table.getFullName());
         }
     }
     
