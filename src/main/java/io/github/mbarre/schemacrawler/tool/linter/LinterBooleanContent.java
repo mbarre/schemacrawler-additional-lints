@@ -71,7 +71,7 @@ public class LinterBooleanContent extends BaseLinter {
                     LOGGER.log(Level.INFO, "Checking {0}...", column.getFullName());
                     
                     int count = getSelectDistinctCount(stmt, table, column);
-                    if(count == 2){
+                    if(count > 2){
                         checkIfBooleanValuesAndLint(stmt, table, column);
                     }
                 }
