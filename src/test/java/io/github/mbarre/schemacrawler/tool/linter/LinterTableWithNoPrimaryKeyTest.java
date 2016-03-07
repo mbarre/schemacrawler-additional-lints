@@ -47,9 +47,9 @@ public class LinterTableWithNoPrimaryKeyTest extends BaseLintTest {
         boolean lintDetected = false;
         for (LintWrapper lint : lints) {
             if(LinterTableWithNoPrimaryKey.class.getName().equals(lint.getId())){
-                if("test_primary_key".equals(lint.getValue())){
+                if(lint.getValue().contains("test_primary_key")){
                     Assert.assertEquals("Table should have a primary key", lint.getDescription());
-                    Assert.assertEquals("high", lint.getSeverity());
+                    Assert.assertEquals("critical", lint.getSeverity());
                     lintDetected = true;
                 }
                 else{
