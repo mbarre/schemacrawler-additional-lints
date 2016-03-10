@@ -101,10 +101,6 @@
     	<run>true</run>
     	<table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
     </linter>
-    <linter id="io.github.mbarre.schemacrawler.tool.linter.LinterTableWithNoRemark">
-    	<run>false</run><!--Doublon avec schemacrawler.tools.linter.LinterTableWithNoRemarks -->
-    	<table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
-    </linter>
     <linter id="io.github.mbarre.schemacrawler.tool.linter.LinterColumnContentNotNormalized">
     	<run>true</run>
       <severity>high</severity>
