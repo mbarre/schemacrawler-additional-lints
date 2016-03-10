@@ -67,12 +67,14 @@ public class LinterJsonContent extends BaseLinter {
                 
                 String sql;
                 List<Column> columns = table.getColumns();
+                String columnName;
+                String tableName = table.getName().replaceAll("\"", "");
                 for (Column column : columns) {
                     if(LintUtils.isSqlTypeTextBased(column.getColumnDataType().getJavaSqlType().getJavaSqlType())){
+                        columnName = column.getFullName().replaceAll("\"", "");
+                        LOGGER.log(Level.INFO, "Checking {0}...",columnName);
                         
-                        LOGGER.log(Level.INFO, "Checking {0}...", column.getFullName());
-                        
-                        sql = "select \"" + column.getName() + "\" from \"" + table.getName() +"\"" ;
+                        sql = "select \"" + columnName + "\" from \"" + tableName +"\"" ;
                         LOGGER.log(Level.CONFIG, "SQL : {0}", sql);
                         
                         try(ResultSet rs = stmt.executeQuery(sql)){
@@ -81,7 +83,7 @@ public class LinterJsonContent extends BaseLinter {
                                 String data = rs.getString(column.getName());
                                 
                                 if(JSonUtils.isJsonContent(data)){
-                                    addLint(table, getDescription(), column.getFullName());
+                                    addLint(table, getDescription(), columnName);
                                     found = true;
                                 }
                             }
