@@ -29,7 +29,7 @@ public class LinterBlobTypeColumn extends BaseLinter {
      */
     public LinterBlobTypeColumn() {
         super();
-        setSeverity(LintSeverity.high);
+        setSeverity(LintSeverity.critical);
     }
     
     /**
