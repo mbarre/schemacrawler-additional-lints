@@ -5,7 +5,6 @@
 */
 package io.github.mbarre.schemacrawler.tool.linter;
 
-import io.github.mbarre.schemacrawler.utils.LintUtils;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,12 +12,14 @@ import java.sql.Statement;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import io.github.mbarre.schemacrawler.utils.LintUtils;
 import schemacrawler.schema.Column;
 import schemacrawler.schema.Table;
+import schemacrawler.schemacrawler.Config;
 import schemacrawler.schemacrawler.SchemaCrawlerException;
 import schemacrawler.tools.lint.BaseLinter;
 import schemacrawler.tools.lint.LintSeverity;
-import schemacrawler.tools.lint.LinterConfig;
 
 /**
  *
@@ -62,13 +63,9 @@ public class LinterColumnSize extends BaseLinter {
     }
 
     @Override
-    public void configure(LinterConfig linterConfig) {
-        super.configure(linterConfig);
-        int value = linterConfig.getConfig().getIntegerValue(COLUMNSIZE_CONFIG_PARAM, MIN_COLUMN_SIZE_PERCENT);
-        minColumnSizePercent = Double.valueOf(value);
+    public void configure(Config config) {
+        minColumnSizePercent = config.getIntegerValue(COLUMNSIZE_CONFIG_PARAM, MIN_COLUMN_SIZE_PERCENT);
     }
-    
-    
     
     /**
      * The lint that does the job
