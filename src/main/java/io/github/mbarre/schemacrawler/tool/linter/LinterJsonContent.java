@@ -71,7 +71,7 @@ public class LinterJsonContent extends BaseLinter {
                 String tableName = table.getName().replaceAll("\"", "");
                 for (Column column : columns) {
                     if(LintUtils.isSqlTypeTextBased(column.getColumnDataType().getJavaSqlType().getJavaSqlType())){
-                        columnName = column.getFullName().replaceAll("\"", "");
+                        columnName = column.getName().replaceAll("\"", "");
                         LOGGER.log(Level.INFO, "Checking {0}...",columnName);
                         
                         sql = "select \"" + columnName + "\" from \"" + tableName +"\"" ;
