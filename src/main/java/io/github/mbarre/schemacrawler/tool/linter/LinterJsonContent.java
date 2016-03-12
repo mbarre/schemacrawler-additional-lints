@@ -23,16 +23,16 @@ import schemacrawler.tools.lint.LintSeverity;
  * @since 1.0.1
  */
 public class LinterJsonContent extends BaseLinter {
-    
+
     private static final Logger LOGGER = Logger.getLogger(LinterJsonContent.class.getName());
-    
+
     /**
      * The lint that parses and test Json content
      */
     public LinterJsonContent () {
         setSeverity(LintSeverity.high);
     }
-    
+
     /**
      * Get lint descrption
      * @return lint description
@@ -41,7 +41,7 @@ public class LinterJsonContent extends BaseLinter {
     public String getDescription() {
         return getSummary();
     }
-    
+
     /**
      * Get lint Summary
      * @return lint Summary
@@ -50,7 +50,7 @@ public class LinterJsonContent extends BaseLinter {
     public String getSummary() {
         return "Should be JSON or JSONB type.";
     }
-    
+
     /**
      * The lint that does the job
      * @param table table
@@ -60,11 +60,11 @@ public class LinterJsonContent extends BaseLinter {
     @Override
     protected void lint(final Table table, final Connection connection)
             throws SchemaCrawlerException {
-        
+
         try (Statement stmt = connection.createStatement()){
             if("PostgreSQL".equalsIgnoreCase(connection.getMetaData().getDatabaseProductName()) &&
                     "9.4".compareTo(connection.getMetaData().getDatabaseProductVersion()) <= 0){
-                
+
                 String sql;
                 List<Column> columns = table.getColumns();
                 String columnName;
@@ -73,17 +73,17 @@ public class LinterJsonContent extends BaseLinter {
                     if(LintUtils.isSqlTypeTextBased(column.getColumnDataType().getJavaSqlType().getJavaSqlType())){
                         columnName = column.getName().replaceAll("\"", "");
                         LOGGER.log(Level.INFO, "Checking {0}...",columnName);
-                        
+
                         sql = "select \"" + columnName + "\" from \"" + tableName +"\"" ;
                         LOGGER.log(Level.CONFIG, "SQL : {0}", sql);
-                        
+
                         try(ResultSet rs = stmt.executeQuery(sql)){
                             boolean found = false;
                             while (rs.next() && !found) {
                                 String data = rs.getString(column.getName());
-                                
+
                                 if(JSonUtils.isJsonContent(data)){
-                                    addLint(table, getDescription(), columnName);
+                                    addLint(table, getDescription(), column.getFullName());
                                     found = true;
                                 }
                             }
@@ -94,7 +94,7 @@ public class LinterJsonContent extends BaseLinter {
                     }
                 }
             }
-            
+
         }catch (SQLException ex) {
             LOGGER.severe(ex.getMessage());
             throw new SchemaCrawlerException(ex.getMessage(), ex);
