@@ -1,3 +1,24 @@
+<!--
+  #%L
+  Additional SchemaCrawler Lints
+  %%
+  Copyright (C) 2015 - 2016 github
+  %%
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as
+  published by the Free Software Foundation, either version 3 of the
+  License, or (at your option) any later version.
+  
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  
+  You should have received a copy of the GNU General Public
+  License along with this program.  If not, see
+  <http://www.gnu.org/licenses/gpl-3.0.html>.
+  #L%
+  -->
 <schemacrawler-linter-configs>
     <linter id="schemacrawler.tools.linter.LinterCatalogSql">
         <run>false</run>
@@ -12,7 +33,7 @@
         <table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
     </linter>
     <linter id="schemacrawler.tools.linter.LinterForeignKeyMismatch">
-        <run>true</run>
+        <run>false</run><!-- user custom linter with java sql type -->
           <table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
     </linter>
     <linter id="schemacrawler.tools.linter.LinterForeignKeyWithNoIndexes">
@@ -144,6 +165,14 @@
             <property name="minColumnSizePercent">20</property>
             <!-- <dispatch>terminate_system</dispatch>
             <dispatch-threshold>10</dispatch-threshold> -->
+        </config>
+    </linter>
+    <linter id="io.github.mbarre.schemacrawler.tool.linter.LinterForeignKeyMismatchLazy">
+        <run>true</run>
+        <table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
+        <config>
+            <dispatch>terminate_system</dispatch>
+            <dispatch-threshold>10</dispatch-threshold>
         </config>
     </linter>
 </schemacrawler-linter-configs>
