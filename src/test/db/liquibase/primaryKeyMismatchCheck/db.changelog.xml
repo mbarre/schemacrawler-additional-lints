@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+	<changeSet author="mbarre" id="201611031109-1" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+            <createSequence sequenceName="s_test_pk"
+            incrementBy="1"
+            maxValue="99999"
+            minValue="1"
+            startValue="1"/>
+            
+	    <createTable  tableName="test_pk" remarks="table for lint LinterForeignKeyMismatch">
+	    	<column name="id" type="bigint" defaultValueComputed="nextval('s_test_pk')"  remarks="primary key">
+                  <constraints nullable="false"/>
+                </column>
+	        <column name="content" type="varchar(10)" remarks="column with data"/>
+	    </createTable>
+
+	    <addPrimaryKey columnNames="id"
+	            constraintName="pk_test"
+	            schemaName="public"
+	            tableName="test_pk"/>
+
+ 
+            <createTable  tableName="test_fk" remarks="table for lint LinterForeignKeyMismatch">
+	    	<column name="id" 				type="bigint" remarks="primary key"/>
+	        <column name="content"                          type="varchar(10)" remarks="column with data"/>
+                <column name="test_pk_id"                       type="bigint" remarks="foreign key"/>
+	    </createTable>
+
+	    <addPrimaryKey columnNames="id"
+	            constraintName="pk_test_fk"
+	            schemaName="public"
+	            tableName="test_fk"/>
+            
+            <addForeignKeyConstraint baseColumnNames="test_pk_id"
+            baseTableName="test_fk"
+            constraintName="fk_test"
+            referencedColumnNames="id"
+            referencedTableName="test_pk"/>
+            
+            <createTable  tableName="test_fk_2" remarks="table for lint LinterForeignKeyMismatch">
+	    	<column name="id" 				type="bigint" remarks="primary key"/>
+	        <column name="content"                          type="varchar(10)" remarks="column with data"/>
+                <column name="test_pk_id"                       type="int4" remarks="foreign key"/>
+	    </createTable>
+
+	    <addPrimaryKey columnNames="id"
+	            constraintName="pk_test_fk_2"
+	            schemaName="public"
+	            tableName="test_fk_2"/>
+            
+            <addForeignKeyConstraint baseColumnNames="test_pk_id"
+            baseTableName="test_fk_2"
+            constraintName="fk_test_2"
+            referencedColumnNames="id"
+            referencedTableName="test_pk"/>
+
+            
+	</changeSet>
+
+</databaseChangeLog>
