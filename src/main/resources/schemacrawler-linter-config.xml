@@ -172,7 +172,7 @@
         <table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
         <config>
             <dispatch>terminate_system</dispatch>
-            <dispatch-threshold>10</dispatch-threshold>
+            <dispatch-threshold>1</dispatch-threshold>
         </config>
     </linter>
 </schemacrawler-linter-configs>
