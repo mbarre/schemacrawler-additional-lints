@@ -16,7 +16,7 @@ import schemacrawler.tools.lint.LintSeverity;
 
 /**
  * Check that foreign key has the same type as the associated primary key, using the Java sql type instead of jdbc type.
- * @see  sualeh/SchemaCrawler/schemacrawler-lint/src/main/java/schemacrawler/tools/linter/LinterForeignKeyMismatch.java
+ * @see schemacrawler.tools.linter.LinterForeignKeyMismatch
  * @author Sualeh Fatehi, mbarre
  */
 public class LinterForeignKeyMismatchLazy extends BaseLinter {
