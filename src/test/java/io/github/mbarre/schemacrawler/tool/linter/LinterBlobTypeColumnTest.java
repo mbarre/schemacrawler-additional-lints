@@ -51,8 +51,8 @@ public class LinterBlobTypeColumnTest extends BaseLintTest {
             
             Assert.assertEquals(1,lints.size());
             Assert.assertEquals(LinterBlobTypeColumn.class.getName(), lints.get(0).getId());
-            Assert.assertEquals("content_blob", lints.get(0).getValue());
+            Assert.assertEquals("public.test_blob.content_blob", lints.get(0).getValue());
             Assert.assertEquals("BLOB should not be used.", lints.get(0).getDescription());
-            Assert.assertEquals("high", lints.get(0).getSeverity());
+            Assert.assertEquals("critical", lints.get(0).getSeverity());
         }
 }

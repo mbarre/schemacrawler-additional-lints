@@ -60,7 +60,7 @@ public class LinterBlobTypeColumn extends BaseLinter {
         for (Column column : table.getColumns()) {
             LOGGER.log(Level.INFO, "Checking {0}...", column.getFullName());
             if(LintUtils.isSqlTypeBinayBased(column.getColumnDataType().getJavaSqlType().getJavaSqlType())){
-                addLint(table, getDescription(), column.getName());
+                addLint(table, getDescription(), column.getFullName());
             }
         }
     }
