@@ -35,7 +35,6 @@ public class TestLintPlugin
   {
     final LinterRegistry registry = new LinterRegistry();
     assertTrue(registry.hasLinter("io.github.mbarre.schemacrawler.tool.linter.LinterTableNameNotInLowerCase"));
-    assertTrue(registry.hasLinter("io.github.mbarre.schemacrawler.tool.linter.LinterTableWithNoPrimaryKey"));
     assertTrue(registry.hasLinter("io.github.mbarre.schemacrawler.tool.linter.LinterColumnContentNotNormalized"));
     assertTrue(registry.hasLinter("io.github.mbarre.schemacrawler.tool.linter.LinterJsonTypeColumn"));
     assertTrue(registry.hasLinter("io.github.mbarre.schemacrawler.tool.linter.LinterJsonContent"));
