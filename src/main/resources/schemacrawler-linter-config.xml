@@ -34,7 +34,7 @@
     </linter>
     <linter id="schemacrawler.tools.linter.LinterForeignKeyMismatch">
         <run>false</run><!-- user custom linter with java sql type -->
-          <table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
+        <table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
     </linter>
     <linter id="schemacrawler.tools.linter.LinterForeignKeyWithNoIndexes">
         <run>true</run>
