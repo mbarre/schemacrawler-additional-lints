@@ -25,7 +25,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>io.github.mbarre</groupId>
 	<artifactId>schemacrawler-additionnallints</artifactId>
-	<version>1.1.4</version>
+	<version>1.1.5-SNAPSHOT</version>
 	<name>Additional SchemaCrawler Lints</name>
 	<description>Some additionnal lints for schemacrawler</description>
         <inceptionYear>2015</inceptionYear>
