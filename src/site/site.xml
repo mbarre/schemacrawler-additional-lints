@@ -1,40 +1,11 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<!--
-  #%L
-  Additional SchemaCrawler Lints
-  %%
-  Copyright (C) 2015 - 2016 github
-  %%
-  This program is free software: you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as
-  published by the Free Software Foundation, either version 3 of the
-  License, or (at your option) any later version.
-
-  This program is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
-
-  You should have received a copy of the GNU General Public
-  License along with this program.  If not, see
-  <http://www.gnu.org/licenses/gpl-3.0.html>.
-  #L%
-  -->
-<project name="schemacrawler-additionnallints">
-    <poweredBy>
-        <logo name="Maven" href="http://maven.apache.org/" img="http://maven.apache.org/images/logos/maven-button-1.png" />
-    </poweredBy>
-
-    <bannerLeft>
-        <name>Schemacrawler Additionnal Lints</name>
-        <href>https://github.com/mbarre/schemacrawler-additionnallints</href>
-    </bannerLeft>
-    <skin>
-        <groupId>lt.velykis.maven.skins</groupId>
-        <artifactId>reflow-maven-skin</artifactId>
-        <version>1.1.1</version>
-    </skin>
-    <custom>
+<project name="Maven">
+  <skin>
+    <groupId>lt.velykis.maven.skins</groupId>
+    <artifactId>reflow-maven-skin</artifactId>
+    <version>1.1.1</version>
+  </skin>
+  <custom>
     <reflowSkin>
       <brand>
         <name>SchemaCrawler Additionnal Lints</name>
@@ -43,23 +14,22 @@
       <highlightJs>true</highlightJs>
     </reflowSkin>
   </custom>
-    <body>
-        <menu name="Additionnal Lints">
-          <item name="About Additionnal Lints" href="about.html" />
-          <item name="Download" href="https://github.com/mbarre/schemacrawler-additionnallints/releases"/>
-          <item name="About Me" href="https://www.linkedin.com/in/michèle-barré-2652b06" />
-        </menu>
-        <menu name="SchemaCrawler">
-          <item name="Homepage" href="http://sualeh.github.io/SchemaCrawler/" />
-          <item name="Download" href="https://github.com/sualeh/SchemaCrawler/releases/" />
-        </menu>
-        <links>
-            <!-- Plugin links -->
-            <!-- <item name = "Plugin ghp (Githug Pages)" href = "http://github.com/mbarre/schemacrawler-additionnallints/"/> -->
-            <item name="Project github page" href = "http://github.com/mbarre/schemacrawler-additionnallints"/>
-        </links>
+  <body>
 
-        <menu ref="reports"/>
-        <footer>All rights reserved.</footer>
-    </body>
+    <menu name="Additionnal Lints">
+      <item name="About Additionnal Lints" href="index.html" />
+      <item name="Download" href="https://github.com/mbarre/schemacrawler-additionnallints/releases"/>
+    </menu>
+    <menu name="SchemaCrawler">
+      <item name="Homepage" href="http://sualeh.github.io/SchemaCrawler/" />
+      <item name="Download" href="https://github.com/sualeh/SchemaCrawler/releases/" />
+    </menu>
+    <links>
+      <!-- Plugin links -->
+      <item name="Project github page" href = "http://github.com/mbarre/schemacrawler-additionnallints"/>
+    </links>
+
+    <menu ref="reports"/>
+    <footer>All rights reserved.</footer>
+  </body>
 </project>
