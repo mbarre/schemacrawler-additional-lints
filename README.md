@@ -1,7 +1,5 @@
 # schemacrawler-additionnallints
-[![Project Website](https://img.shields.io/badge/Project%20Website-Additionnal%20Lints-7f3692.svg)](http://mbarre.github.io/schemacrawler-additionnallints/)
-
-[![endorse](https://api.coderwall.com/mbarre/endorsecount.svg)](https://coderwall.com/mbarre)
+[![Project Website](https://img.shields.io/badge/Project%20Website-Additionnal%20Lints-7f3692.svg)](http://mbarre.github.io/schemacrawler-additionnallints/) [![endorse](https://api.coderwall.com/mbarre/endorsecount.svg)](https://coderwall.com/mbarre)
 [![Build Status](https://travis-ci.org/mbarre/schemacrawler-additionnallints.svg?branch=master)](https://travis-ci.org/mbarre/schemacrawler-additionnallints) [![Coverage Status](https://coveralls.io/repos/mbarre/schemacrawler-additionnallints/badge.png?branch=master&service=github)](https://coveralls.io/github/mbarre/schemacrawler-additionnallints?branch=master) [![Join the chat at https://gitter.im/mbarre/schemacrawler-additionnallints](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/mbarre/schemacrawler-additionnallints?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Dependency Status](https://www.versioneye.com/user/projects/56b9a580e8833700367b30e2/badge.svg?style=flat)](https://www.versioneye.com/user/projects/56b9a580e8833700367b30e2)
 
@@ -28,7 +26,7 @@ For now the jar is not available on maven central repo, so you'll have to build 
 
     git clone https://github.com/mbarre/schemacrawler-additionnallints.git schemacrawler-additionnallints
     cd schemacrawler-additionnallints
-    export LINT_VERSION=1.1-SNAPSHOT
+    export LINT_VERSION=1.1.4
 
 Build without testing as a local postgres install is required to test.
 
