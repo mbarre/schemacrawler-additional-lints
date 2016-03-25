@@ -14,3 +14,5 @@
 .idea/workspace.xml
 schemacrawler-additionnallints.iml
 .idea
+.DS_Store
+dependency-reduced-pom.xml
