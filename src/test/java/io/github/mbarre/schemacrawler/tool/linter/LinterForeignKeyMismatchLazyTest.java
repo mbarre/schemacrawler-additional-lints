@@ -69,10 +69,13 @@ public class LinterForeignKeyMismatchLazyTest extends BaseLintTest {
         Assert.assertEquals(1,lints.size());
         Assert.assertEquals(LinterForeignKeyMismatchLazy.class.getName(), lints.get(0).getId());
         Assert.assertEquals("fk_test_2", lints.get(0).getValue());
-        Assert.assertEquals("Foreign key data type does not match Primary key.", lints.get(0).getDescription());
+        Assert.assertEquals("Foreign key data type (INTEGER) does not match Primary key (BIGINT).", lints.get(0).getDescription());
         Assert.assertEquals("critical", lints.get(0).getSeverity());
+        
        
     }
+    
+   
     
    
     

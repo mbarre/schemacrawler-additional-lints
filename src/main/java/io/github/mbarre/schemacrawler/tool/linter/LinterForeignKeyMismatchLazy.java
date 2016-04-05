@@ -75,15 +75,12 @@ public class LinterForeignKeyMismatchLazy extends BaseLinter {
             throws SchemaCrawlerException {
         
         requireNonNull(table, "No table provided");
-        List<ForeignKey> mismatchedForeignKeys = findMismatchedForeignKeys(table);
-        for (final ForeignKey foreignKey: mismatchedForeignKeys)
-        {
-            addTableLint(table, getSummary(), foreignKey);
-        }
+        findMismatchedForeignKeys(table);
+        
     }
     
-    private List<ForeignKey> findMismatchedForeignKeys(final Table table){
-        final List<ForeignKey> mismatchedForeignKeys = new ArrayList<>();
+    private void findMismatchedForeignKeys(final Table table){
+        
         if (table != null && !(table instanceof View))
         {
             for (final ForeignKey foreignKey: table.getImportedForeignKeys())
@@ -95,13 +92,13 @@ public class LinterForeignKeyMismatchLazy extends BaseLinter {
                     if (!pkColumn.getColumnDataType().getJavaSqlType().getJavaSqlTypeName().equals(fkColumn.getColumnDataType().getJavaSqlType().getJavaSqlTypeName())
                             || pkColumn.getSize() != fkColumn.getSize())
                     {
-                        mismatchedForeignKeys.add(foreignKey);
+                        addTableLint(table, "Foreign key data type ("+fkColumn.getColumnDataType().getJavaSqlType().getJavaSqlTypeName()+") "
+                                + "does not match Primary key ("+pkColumn.getColumnDataType().getJavaSqlType().getJavaSqlTypeName()+").", foreignKey);
                         break;
                     }
                 }
             }
         }
-        return mismatchedForeignKeys;
     }
     
 }
