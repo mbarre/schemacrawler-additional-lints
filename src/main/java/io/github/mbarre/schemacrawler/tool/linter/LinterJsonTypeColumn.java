@@ -60,7 +60,7 @@ public class LinterJsonTypeColumn extends BaseLinter {
     @Override
     public String getDescription()
     {
-        return "\"\\\"JSONB\\\" type should be used instead of \\\"JSON\\\" to store JSON data.";
+        return "\"JSONB\" type should be used instead of \"JSON\" to store JSON data.";
     }
     
     /**
