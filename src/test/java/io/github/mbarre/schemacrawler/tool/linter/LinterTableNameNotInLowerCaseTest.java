@@ -72,12 +72,12 @@ public class LinterTableNameNotInLowerCaseTest extends BaseLintTest {
         for (LintWrapper lint : lints) {
             if(LinterTableNameNotInLowerCase.class.getName().equals(lint.getId())){
                 if("TEST_CASE".equals(lint.getValue())){
-                    Assert.assertEquals("Name should be in lower case", lint.getDescription());
+                    Assert.assertEquals("name should be in lower case", lint.getDescription());
                     Assert.assertEquals("high", lint.getSeverity());
                     lint1Detected = true;
                 }
                 else if("UPPERCASE_COLUMN_NAME".equals(lint.getValue())){
-                    Assert.assertEquals("Name should be in lower case", lint.getDescription());
+                    Assert.assertEquals("name should be in lower case", lint.getDescription());
                     Assert.assertEquals("high", lint.getSeverity());
                     lint2Detected = true;
                 }

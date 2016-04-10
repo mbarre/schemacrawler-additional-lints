@@ -72,12 +72,12 @@ public class LinterPrimaryKeyNotIntegerLikeTypeTest extends BaseLintTest {
         for (LintWrapper lint : lints) {
             if(LinterPrimaryKeyNotIntegerLikeType.class.getName().equals(lint.getId())){
                 if("public.test_pk_char.id".equals(lint.getValue())){
-                    Assert.assertEquals("Should be Integer like type or eventually char(1).", lint.getDescription());
+                    Assert.assertEquals("should be Integer like type or eventually char(1).", lint.getDescription());
                     Assert.assertEquals("high", lint.getSeverity());
                     lint1Detected = true;
                 }
                 else if("public.test_pk_timestamp.id".equals(lint.getValue())){
-                    Assert.assertEquals("Should be Integer like type or eventually char(1).", lint.getDescription());
+                    Assert.assertEquals("should be Integer like type or eventually char(1).", lint.getDescription());
                     Assert.assertEquals("high", lint.getSeverity());
                     lint2Detected = true;
                 }

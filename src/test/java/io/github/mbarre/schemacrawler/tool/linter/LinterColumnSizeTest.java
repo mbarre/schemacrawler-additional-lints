@@ -80,14 +80,14 @@ public class LinterColumnSizeTest extends BaseLintTest {
     public void testLint_getDescription () throws SchemaCrawlerException{
         final LinterRegistry registry = new LinterRegistry();
         LinterColumnSize linter = (LinterColumnSize)registry.newLinter(LinterColumnSize.class.getName());
-        Assert.assertEquals("column is oversized regarding its content.", linter.getDescription());
+        Assert.assertEquals("Column is oversized regarding its content.", linter.getDescription());
     }
     
     @Test
     public void testLint_getSummary () throws SchemaCrawlerException{
         final LinterRegistry registry = new LinterRegistry();
         LinterColumnSize linter = (LinterColumnSize)registry.newLinter(LinterColumnSize.class.getName());
-        Assert.assertEquals(linter.getSummary(), linter.getDescription());
+        Assert.assertEquals("oversized column.", linter.getSummary());
     }
     
 }

@@ -106,13 +106,13 @@ public class LinterColumnContentNotNormalizedTest  extends BaseLintTest {
     @Test
     public void testGetSummary() {
         LinterColumnContentNotNormalized test = new LinterColumnContentNotNormalized();
-        Assert.assertEquals(" should not have so many duplicates.", test.getSummary());
+        Assert.assertEquals("too much duplicates.", test.getSummary());
     }
 
     @Test
     public void testGetDescription() {
         LinterColumnContentNotNormalized test = new LinterColumnContentNotNormalized();
-        Assert.assertEquals(test.getDescription(), test.getSummary());
+        Assert.assertEquals(test.getSummary(), test.getDescription());
     }
 
 }
