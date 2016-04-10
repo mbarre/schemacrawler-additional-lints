@@ -23,8 +23,6 @@ package io.github.mbarre.schemacrawler.tool.linter;
  */
 
 import java.sql.Connection;
-import java.util.ArrayList;
-import java.util.List;
 import static java.util.Objects.requireNonNull;
 import schemacrawler.schema.Column;
 import schemacrawler.schema.ForeignKey;
@@ -52,7 +50,7 @@ public class LinterForeignKeyMismatchLazy extends BaseLinter {
      */
     @Override
     public String getDescription() {
-        return getSummary();
+        return "Foreign key data type does not match Primary key.";
     }
     
     /**
@@ -61,7 +59,7 @@ public class LinterForeignKeyMismatchLazy extends BaseLinter {
      */
     @Override
     public String getSummary() {
-        return "Foreign key data type does not match Primary key.";
+        return "FK data type doesn't match PK.";
     }
     
     /**

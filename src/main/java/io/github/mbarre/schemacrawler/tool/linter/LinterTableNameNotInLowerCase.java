@@ -70,15 +70,16 @@ public class LinterTableNameNotInLowerCase extends BaseLinter
     @Override
     public String getSummary()
     {
-        return "Name should be in lower case";
+        return "name should be in lower case";
     }
     
     /**
      * The lint that does the job
      * @param table table
+     * @param connection
      */
     @Override
-    protected void lint(final Table table, Connection connection)
+    protected void lint(final Table table, final Connection connection)
     {
         requireNonNull(table, "No table provided");
         

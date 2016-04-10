@@ -64,7 +64,7 @@ public class LinterPrimaryKeyNotIntegerLikeType extends BaseLinter {
      */
     @Override
     public String getSummary() {
-        return "Should be Integer like type or eventually char(1).";
+        return "should be Integer like type or eventually char(1).";
     }
     
     /**

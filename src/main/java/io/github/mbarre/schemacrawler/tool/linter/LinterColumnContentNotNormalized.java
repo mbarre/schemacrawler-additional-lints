@@ -89,7 +89,7 @@ public class LinterColumnContentNotNormalized extends BaseLinter {
      */
     @Override
     public String getSummary() {
-        return " should not have so many duplicates.";
+        return "too much duplicates.";
     }
 
     @Override
