@@ -69,7 +69,7 @@ public class LinterXmlContentTest extends BaseLintTest {
 		Assert.assertEquals(1,lints.size());
 		Assert.assertEquals(LinterXmlContent.class.getName(), lints.get(0).getId());
 		Assert.assertEquals("public.test_xml.content", lints.get(0).getValue());
-		Assert.assertEquals("should be XML type.", lints.get(0).getDescription());
+		Assert.assertEquals("should be XML type", lints.get(0).getDescription());
 		Assert.assertEquals("high", lints.get(0).getSeverity());
 
 	}

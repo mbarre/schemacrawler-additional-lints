@@ -64,7 +64,7 @@ public class LinterBlobTypeColumn extends BaseLinter {
      */
     @Override
     public String getSummary() {
-        return "BLOB should not be used.";
+        return "BLOB should not be used";
     }
     
     /**

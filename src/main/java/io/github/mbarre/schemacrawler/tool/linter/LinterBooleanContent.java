@@ -69,7 +69,7 @@ public class LinterBooleanContent extends BaseLinter {
      */
     @Override
     public String getSummary() {
-        return "should be boolean type.";
+        return "should be boolean type";
     }
     
     /**

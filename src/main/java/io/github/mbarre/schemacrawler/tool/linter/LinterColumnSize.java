@@ -67,7 +67,7 @@ public class LinterColumnSize extends BaseLinter {
     @Override
     public String getDescription()
     {
-        return "Column is oversized regarding its content.";
+        return "Column is oversized regarding its content";
     }
     
     /**
@@ -76,7 +76,7 @@ public class LinterColumnSize extends BaseLinter {
      */
     @Override
     public String getSummary() {
-        return "oversized column.";
+        return "oversized column";
     }
 
     @Override

@@ -81,7 +81,7 @@ public class LinterJsonContentTest extends BaseLintTest {
             Assert.assertEquals(1, lints.size());
             Assert.assertEquals(LinterJsonContent.class.getName(), lints.get(0).getId());
             Assert.assertEquals("public.test_json.content", lints.get(0).getValue());
-            Assert.assertEquals("should be JSON or JSONB type.", lints.get(0).getDescription());
+            Assert.assertEquals("should be JSON or JSONB type", lints.get(0).getDescription());
             Assert.assertEquals("high", lints.get(0).getSeverity());
         }
     }
@@ -90,7 +90,7 @@ public class LinterJsonContentTest extends BaseLintTest {
     public void testLint_getDescription () throws SchemaCrawlerException{
         final LinterRegistry registry = new LinterRegistry();
         LinterJsonContent linter = (LinterJsonContent)registry.newLinter(LinterJsonContent.class.getName());
-        Assert.assertEquals("should be JSON or JSONB type.", linter.getDescription());
+        Assert.assertEquals("should be JSON or JSONB type", linter.getDescription());
     }
     
          @Test

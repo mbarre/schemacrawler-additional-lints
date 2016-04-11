@@ -70,7 +70,7 @@ public class LinterBooleanContentTest extends BaseLintTest {
 		Assert.assertEquals(8, lints.size());
 		for (LintWrapper lint :	lints) {
 			Assert.assertEquals(LinterBooleanContent.class.getName(), lint.getId());
-			Assert.assertEquals("should be boolean type.", lint.getDescription());
+			Assert.assertEquals("should be boolean type", lint.getDescription());
 			Assert.assertEquals("high", lint.getSeverity());
 			Assert.assertTrue(p.matcher(lint.getTableName()).matches());
 		}

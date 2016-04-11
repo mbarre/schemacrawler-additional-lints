@@ -50,7 +50,7 @@ public class LinterForeignKeyMismatchLazy extends BaseLinter {
      */
     @Override
     public String getDescription() {
-        return "Foreign key data type does not match Primary key.";
+        return "Foreign key data type does not match Primary key";
     }
     
     /**
@@ -59,7 +59,7 @@ public class LinterForeignKeyMismatchLazy extends BaseLinter {
      */
     @Override
     public String getSummary() {
-        return "FK data type doesn't match PK.";
+        return "FK data type doesn't match PK";
     }
     
     /**

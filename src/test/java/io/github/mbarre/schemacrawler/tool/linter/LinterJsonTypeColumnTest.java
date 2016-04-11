@@ -78,7 +78,7 @@ public class LinterJsonTypeColumnTest extends BaseLintTest {
             Assert.assertEquals(1,lints.size());
             Assert.assertEquals(LinterJsonTypeColumn.class.getName(), lints.get(0).getId());
             Assert.assertEquals("content_json", lints.get(0).getValue());
-            Assert.assertEquals("\"JSONB\" type should be used instead of \"JSON\" to store JSON data.", lints.get(0).getDescription());
+            Assert.assertEquals("\"JSONB\" type should be used instead of \"JSON\" to store JSON data", lints.get(0).getDescription());
             Assert.assertEquals("high", lints.get(0).getSeverity());
         }
     }

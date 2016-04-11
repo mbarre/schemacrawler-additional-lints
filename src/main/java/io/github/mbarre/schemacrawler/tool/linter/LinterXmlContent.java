@@ -62,7 +62,7 @@ public class LinterXmlContent extends BaseLinter {
      */
     @Override
     public String getDescription() {
-        return " should be XML type.";
+        return getSummary();
     }
     
     /**
@@ -71,7 +71,7 @@ public class LinterXmlContent extends BaseLinter {
      */
     @Override
     public String getSummary() {
-        return "should be XML type.";
+        return "should be XML type";
     }
     
     /**

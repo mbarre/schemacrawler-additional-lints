@@ -70,7 +70,7 @@ public class LinterJsonContent extends BaseLinter {
      */
     @Override
     public String getSummary() {
-        return "should be JSON or JSONB type.";
+        return "should be JSON or JSONB type";
     }
 
     /**
