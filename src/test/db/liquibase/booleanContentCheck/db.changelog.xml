@@ -37,8 +37,8 @@
 					   schemaName="public"
 					   tableName="test_int_boolean"/>
 		<sql><![CDATA[insert into test_int_boolean(id, int_data, int_boolean) values (1, 1, 1)]]></sql>
-		<sql><![CDATA[insert into test_int_boolean(id, int_data, int_boolean) values (2, 0, 15)]]></sql>
-		<sql><![CDATA[insert into test_int_boolean(id, int_data, int_boolean) values (3, 1, 47)]]></sql>
+		<sql><![CDATA[insert into test_int_boolean(id, int_data, int_boolean) values (2, 15, 0)]]></sql>
+		<sql><![CDATA[insert into test_int_boolean(id, int_data, int_boolean) values (3, 47, 1)]]></sql>
 		<sql><![CDATA[insert into test_int_boolean(id, int_data, int_boolean) values (4, 1, 1)]]></sql>
 		<sql><![CDATA[insert into test_int_boolean(id, int_data, int_boolean) values (5, 0, 0)]]></sql>
 
