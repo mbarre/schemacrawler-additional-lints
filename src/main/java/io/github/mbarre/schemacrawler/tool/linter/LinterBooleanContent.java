@@ -26,6 +26,7 @@ import io.github.mbarre.schemacrawler.utils.LintUtils;
 import schemacrawler.schema.Column;
 import schemacrawler.schema.Table;
 import schemacrawler.schemacrawler.SchemaCrawlerException;
+import schemacrawler.tools.lint.BaseLinter;
 import schemacrawler.tools.lint.LintSeverity;
 
 import java.sql.Connection;
@@ -35,7 +36,6 @@ import java.sql.Statement;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import schemacrawler.tools.lint.BaseLinter;
 
 /**
  * Linter to check if numeric column is used instead of boolean column
@@ -85,16 +85,20 @@ public class LinterBooleanContent extends BaseLinter {
         try (Statement stmt = connection.createStatement()){
             
             List<Column> columns = table.getColumns();
-            
+            int columnDataType;
+            int count;
+            int distinctCount;
+
             for (Column column : columns) {
-                
-                int columnDataType = column.getColumnDataType().getJavaSqlType().getJavaSqlType();
+                columnDataType = column.getColumnDataType().getJavaSqlType().getJavaSqlType();
                 if(LintUtils.isSqlTypeNumericBased(columnDataType)){
                     LOGGER.log(Level.INFO, "Checking {0}...", column.getFullName());
-                    
-                    int count = getSelectDistinctCount(stmt, table, column);
-                    if(count > 2){
-                        checkIfBooleanValuesAndLint(stmt, table, column);
+                    count = getSelectCount(stmt, table, column);
+                    if(count > 2) {
+                        distinctCount = getSelectDistinctCount(stmt, table, column);
+                        if (distinctCount == 2) {
+                            checkIfBooleanValuesAndLint(stmt, table, column);
+                        }
                     }
                 }
             }
@@ -103,19 +107,37 @@ public class LinterBooleanContent extends BaseLinter {
             throw new SchemaCrawlerException(ex.getMessage(), ex);
         }
     }
-    
+
+    private static int getSelectCount(Statement stmt, Table table, Column column) throws SchemaCrawlerException{
+        String tableName = table.getName().replaceAll("\"", "");
+        String columnName = column.getName().replaceAll("\"", "");
+
+        String sql = "select count (\"" + columnName + "\") as countRow from \"" + tableName +"\"";
+        LOGGER.log(Level.CONFIG, "SQL : {0}", sql);
+
+        int count = 0;
+        try(ResultSet rs = stmt.executeQuery(sql)){
+            if(rs.next()){
+                count = rs.getInt("countRow");
+            }
+        }catch (SQLException ex) {
+            LOGGER.severe(ex.getMessage());
+            throw new SchemaCrawlerException(ex.getMessage(), ex);
+        }
+        return count;
+    }
     
     private static int getSelectDistinctCount(Statement stmt, Table table, Column column) throws SchemaCrawlerException{
         String tableName = table.getName().replaceAll("\"", "");
         String columnName = column.getName().replaceAll("\"", "");
         
-        String sql = "select count (distinct \"" + columnName + "\") as countRow from \"" + tableName +"\"";
+        String sql = "select count (distinct \"" + columnName + "\") as countDistinctRow from \"" + tableName +"\"";
         LOGGER.log(Level.CONFIG, "SQL : {0}", sql);
         
         int count = 0;
         try(ResultSet rs = stmt.executeQuery(sql)){
             if(rs.next()){
-                count = rs.getInt("countRow");
+                count = rs.getInt("countDistinctRow");
             }
         }catch (SQLException ex) {
             LOGGER.severe(ex.getMessage());
