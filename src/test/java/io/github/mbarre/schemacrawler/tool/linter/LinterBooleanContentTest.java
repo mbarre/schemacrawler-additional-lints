@@ -61,10 +61,10 @@ public class LinterBooleanContentTest extends BaseLintTest {
 
 		final SchemaCrawlerOptions options = new SchemaCrawlerOptions();
 		options.setSchemaInfoLevel(SchemaInfoLevelBuilder.standard());
-		
-		Connection connection = DriverManager.getConnection(PostgreSqlDatabase.CONNECTION_STRING, 
+
+		Connection connection = DriverManager.getConnection(PostgreSqlDatabase.CONNECTION_STRING,
 				PostgreSqlDatabase.USER_NAME, database.getPostgresPassword());
-		
+
 		List<LintWrapper> lints = executeToJsonAndConvertToLintList(options, connection);
 		Pattern p = Pattern.compile("test_(.*)_boolean");
 		Assert.assertEquals(8, lints.size());
@@ -74,6 +74,23 @@ public class LinterBooleanContentTest extends BaseLintTest {
 			Assert.assertEquals("high", lint.getSeverity());
 			Assert.assertTrue(p.matcher(lint.getTableName()).matches());
 		}
+		Assert.assertTrue(contains(lints, "public.test_bigint_boolean.bigint_boolean"));
+		Assert.assertTrue(contains(lints, "public.test_double_boolean.double_boolean"));
+		Assert.assertTrue(contains(lints, "public.test_float_boolean.float_boolean"));
+		Assert.assertTrue(contains(lints, "public.test_int_boolean.int_boolean"));
+		Assert.assertTrue(contains(lints, "public.test_integer_boolean.integer_boolean"));
+		Assert.assertTrue(contains(lints, "public.test_number_boolean.number_boolean"));
+		Assert.assertTrue(contains(lints, "public.test_smallint_boolean.smallint_boolean"));
+		Assert.assertTrue(contains(lints, "public.test_tinyint_boolean.tinyint_boolean"));
+
+	}
+
+	private boolean contains(List<LintWrapper> lints, String columnName){
+		for (LintWrapper lint : lints) {
+			if(lint.getValue().equals(columnName))
+				return true;
+		}
+		return false;
 	}
 
 }
