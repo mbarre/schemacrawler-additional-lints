@@ -76,7 +76,7 @@ public class LinterColumnContentNotNormalizedTest  extends BaseLintTest {
             // be sure we are on the right lint
             if (LinterColumnContentNotNormalized.class.getName().equals(lint.getId())) {
                 if ("public.test_normalized.content".equals(lint.getValue())) {
-                    Assert.assertEquals("Found <4> repetitions of the same value <AAAA> in <public.test_normalized.content>", lint.getDescription());
+                    Assert.assertEquals("Found <4> repetitions of the same value <AAAA>", lint.getDescription());
                     Assert.assertEquals("high", lint.getSeverity());
                     lint1Dectected = true;
                 }
