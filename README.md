@@ -4,10 +4,7 @@
 [![Dependency Status](https://www.versioneye.com/user/projects/56b9a580e8833700367b30e2/badge.svg?style=flat)](https://www.versioneye.com/user/projects/56b9a580e8833700367b30e2)
 
 
-[![Github Releases](https://img.shields.io/github/downloads/mbarre/schemacrawler-additionnallints
-/latest/total.svg?maxAge=2592000)](http://www.somsubhra.com/github-release-stats/?username=mbarre&repository=schemacrawler-additionnallints
-
-[![Github All Releases](https://img.shields.io/github/downloads/mbarre/schemacrawler-additionnallints/total.svg?maxAge=2592000)](http://www.somsubhra.com/github-release-stats/?username=mbarre&repository=schemacrawler-additionnallints)
+[![Github Releases](https://img.shields.io/github/downloads/mbarre/schemacrawler-additionnallints/latest/total.svg?maxAge=2592000)]()[![Github All Releases](https://img.shields.io/github/downloads/mbarre/schemacrawler-additionnallints/total.svg?maxAge=2592000)](http://www.somsubhra.com/github-release-stats/?username=mbarre&repository=schemacrawler-additionnallints)
 
 Some additionnal lints for [Schemacrawler](http://sualeh.github.io/SchemaCrawler/)
 
