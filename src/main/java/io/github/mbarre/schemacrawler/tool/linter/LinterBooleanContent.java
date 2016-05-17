@@ -90,16 +90,21 @@ public class LinterBooleanContent extends BaseLinter {
             int distinctCount;
 
             for (Column column : columns) {
-                columnDataType = column.getColumnDataType().getJavaSqlType().getJavaSqlType();
-                if(LintUtils.isSqlTypeNumericBased(columnDataType)){
-                    LOGGER.log(Level.INFO, "Checking {0}...", column.getFullName());
-                    count = getSelectCount(stmt, table, column);
-                    if(count > 2) {
-                        distinctCount = getSelectDistinctCount(stmt, table, column);
-                        if (distinctCount == 2) {
-                            checkIfBooleanValuesAndLint(stmt, table, column);
+                //skip column if PK or FK
+                if(!column.isPartOfPrimaryKey() && !column.isPartOfForeignKey()) {
+
+                    columnDataType = column.getColumnDataType().getJavaSqlType().getJavaSqlType();
+                    if (LintUtils.isSqlTypeNumericBased(columnDataType)) {
+                        LOGGER.log(Level.INFO, "Checking {0}...", column.getFullName());
+                        count = getSelectCount(stmt, table, column);
+                        if (count > 2) {
+                            distinctCount = getSelectDistinctCount(stmt, table, column);
+                            if (distinctCount == 2) {
+                                checkIfBooleanValuesAndLint(stmt, table, column);
+                            }
                         }
                     }
+
                 }
             }
         }catch (SQLException ex) {
