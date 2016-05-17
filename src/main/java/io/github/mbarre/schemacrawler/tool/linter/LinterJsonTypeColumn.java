@@ -22,7 +22,11 @@ package io.github.mbarre.schemacrawler.tool.linter;
  * #L%
  */
 
-import static java.util.Objects.requireNonNull;
+import schemacrawler.schema.Column;
+import schemacrawler.schema.Table;
+import schemacrawler.schemacrawler.SchemaCrawlerException;
+import schemacrawler.tools.lint.BaseLinter;
+import schemacrawler.tools.lint.LintSeverity;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -31,11 +35,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import schemacrawler.schema.Column;
-import schemacrawler.schema.Table;
-import schemacrawler.schemacrawler.SchemaCrawlerException;
-import schemacrawler.tools.lint.BaseLinter;
-import schemacrawler.tools.lint.LintSeverity;
+import static java.util.Objects.requireNonNull;
 
 /**
  * Linter to check if JSON type is used instead of JSONB - PostgreSQL reserved lint
@@ -86,7 +86,7 @@ public class LinterJsonTypeColumn extends BaseLinter {
         try {
             if("PostgreSQL".equalsIgnoreCase(connection.getMetaData().getDatabaseProductName()) &&
                     "9.4".compareTo(connection.getMetaData().getDatabaseProductVersion()) <= 0){
-                List<String> names = findJsonTypeColumn(table.getColumns());
+                List<String> names = findJsonTypeColumn(getColumns(table));
                 for (String name : names) {
                     addLint(table, getDescription(), name);
                 }

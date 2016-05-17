@@ -24,21 +24,16 @@ package io.github.mbarre.schemacrawler.tool.linter;
 
 import io.github.mbarre.schemacrawler.utils.LintUtils;
 import io.github.mbarre.schemacrawler.utils.XmlUtils;
-
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.sql.Types;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import schemacrawler.schema.Column;
 import schemacrawler.schema.Table;
 import schemacrawler.schemacrawler.SchemaCrawlerException;
 import schemacrawler.tools.lint.BaseLinter;
 import schemacrawler.tools.lint.LintSeverity;
+
+import java.sql.*;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Linter to check if non XML type is used whereas XML data is store in column
@@ -89,7 +84,7 @@ public class LinterXmlContent extends BaseLinter {
             String sql;
             String columnName;
             String tableName = table.getName().replaceAll("\"", "");
-            List<Column> columns = table.getColumns();
+            List<Column> columns = getColumns(table);
             for (Column column : columns) {
                 
                 if(LintUtils.isSqlTypeTextBased(column.getColumnDataType().getJavaSqlType().getJavaSqlType())){
@@ -115,7 +110,7 @@ public class LinterXmlContent extends BaseLinter {
                     }
                 }
                 else if(column.getColumnDataType().getJavaSqlType().getJavaSqlType() == Types.CLOB){
-                    //TODO voir comment gérer ce cas pour ne pas que ca explose !
+                    //TODO voir comment gérer ce cas
                 }
             }
             

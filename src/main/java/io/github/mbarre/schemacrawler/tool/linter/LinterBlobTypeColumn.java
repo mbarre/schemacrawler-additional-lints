@@ -23,13 +23,15 @@ package io.github.mbarre.schemacrawler.tool.linter;
  */
 
 import io.github.mbarre.schemacrawler.utils.LintUtils;
-import java.sql.Connection;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import schemacrawler.schema.Column;
 import schemacrawler.schema.Table;
 import schemacrawler.tools.lint.BaseLinter;
 import schemacrawler.tools.lint.LintSeverity;
+
+import java.sql.Connection;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -74,7 +76,8 @@ public class LinterBlobTypeColumn extends BaseLinter {
      */
     @Override
     protected void lint(final Table table, final Connection connection) {
-        for (Column column : table.getColumns()) {
+        List<Column> columns = getColumns(table);
+        for (Column column : columns) {
             LOGGER.log(Level.INFO, "Checking {0}...", column.getFullName());
             if(LintUtils.isSqlTypeBinayBased(column.getColumnDataType().getJavaSqlType().getJavaSqlType())){
                 addLint(table, getDescription(), column.getFullName());

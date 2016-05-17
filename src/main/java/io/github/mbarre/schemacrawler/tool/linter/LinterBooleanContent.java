@@ -84,7 +84,7 @@ public class LinterBooleanContent extends BaseLinter {
         
         try (Statement stmt = connection.createStatement()){
             
-            List<Column> columns = table.getColumns();
+            List<Column> columns = getColumns(table);
             int columnDataType;
             int count;
             int distinctCount;

@@ -22,14 +22,6 @@ package io.github.mbarre.schemacrawler.tool.linter;
  * #L%
  */
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import io.github.mbarre.schemacrawler.utils.LintUtils;
 import schemacrawler.schema.Column;
 import schemacrawler.schema.Table;
@@ -37,6 +29,14 @@ import schemacrawler.schemacrawler.Config;
 import schemacrawler.schemacrawler.SchemaCrawlerException;
 import schemacrawler.tools.lint.BaseLinter;
 import schemacrawler.tools.lint.LintSeverity;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -102,7 +102,7 @@ public class LinterColumnSize extends BaseLinter {
             String columnName;
             String tableName = table.getName().replaceAll("\"", "");
             
-            List<Column> columns = table.getColumns();
+            List<Column> columns = getColumns(table);
             for (Column column : columns) {
                 
                 if(LintUtils.isSqlTypeTextBased(column.getColumnDataType().getJavaSqlType().getJavaSqlType())

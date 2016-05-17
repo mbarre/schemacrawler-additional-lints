@@ -138,7 +138,7 @@ public class LinterColumnContentNotNormalized extends BaseLinter {
         try (Statement stmt = connection.createStatement()){
             String sql;
             String tableName = table.getName().replaceAll("\"", "");
-            List<Column> columns = table.getColumns();
+            List<Column> columns = getColumns(table);
             
             for (Column column : columns) {
                 if (LinterColumnContentNotNormalized.mustColumnBeTested(column.getColumnDataType().getJavaSqlType().getJavaSqlType(), column.getSize(), minTextColumnSize)) {
