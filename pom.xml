@@ -24,16 +24,16 @@ License along with this program.  If not, see
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>io.github.mbarre</groupId>
-	<artifactId>schemacrawler-additionallints</artifactId>
+	<artifactId>schemacrawler-additional-lints</artifactId>
 	<version>1.1.8-SNAPSHOT</version>
 	<name>Additional SchemaCrawler Lints</name>
-	<description>Some additional lints for schemacrawler</description>
+	<description>Some additional lints for Schemacrawler</description>
 	<inceptionYear>2015</inceptionYear>
 	<organization>
 		<name>github</name>
-		<url>https://github.com/mbarre/schemacrawler-additionallints</url>
+		<url>https://github.com/mbarre/schemacrawler-additional-lints</url>
 	</organization>
-	<url>https://github.com/mbarre/schemacrawler-additionallints</url>
+	<url>https://github.com/mbarre/schemacrawler-additional-lints</url>
 
 	<licenses>
 		<license>
@@ -43,12 +43,12 @@ License along with this program.  If not, see
 	</licenses>
 	<issueManagement>
 		<system>GitHub Issues</system>
-		<url>https://github.com/mbarre/schemacrawler-additionallints/issues</url>
+		<url>https://github.com/mbarre/schemacrawler-additional-lints/issues</url>
 	</issueManagement>
 	<scm>
-		<connection>scm:git:git://github.com/mbarre/schemacrawler-additionallints.git</connection>
-		<developerConnection>scm:git:git@github.com:mbarre/schemacrawler-additionallints.git</developerConnection>
-		<url>https://github.com/mbarre/schemacrawler-additionallints</url>
+		<connection>scm:git:git://github.com/mbarre/schemacrawler-additional-lints.git</connection>
+		<developerConnection>scm:git:git@github.com:mbarre/schemacrawler-additional-lints.git</developerConnection>
+		<url>https://github.com/mbarre/schemacrawler-additional-lints</url>
 	</scm>
 
 	<developers>
@@ -99,7 +99,7 @@ License along with this program.  If not, see
 		<hsqldb.version>2.3.2</hsqldb.version>
 		<junit.version>4.12</junit.version>
 		<github.global.server>github</github.global.server>
-		<project.url>https://github.com/mbarre/schemacrawler-additionallints</project.url>
+		<project.url>https://github.com/mbarre/schemacrawler-additional-lints</project.url>
 
 		<maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
 		<maven-shade-plugin.version>2.4.3</maven-shade-plugin.version>
@@ -423,7 +423,7 @@ License along with this program.  If not, see
 							<fileSet>
 								<directory>target</directory>
 								<includes>
-									<include>schemacrawler-additionallints-${project.version}.jar</include>
+									<include>schemacrawler-additional-lints-${project.version}.jar</include>
 								</includes>
 							</fileSet>
 						</fileSets>
@@ -466,8 +466,8 @@ License along with this program.  If not, see
 					<version>${maven-project-info-reports-plugin.version}</version>
 					<configuration>
 						<webAccessUrl>${project.url}</webAccessUrl>
-						<anonymousConnection>scm:git:git://github.com/mbarre/schemacrawler-additionallints.git</anonymousConnection>
-						<developerConnection>scm:git:git@github.com:mbarre/schemacrawler-additionallints.git</developerConnection>
+						<anonymousConnection>scm:git:git://github.com/mbarre/schemacrawler-additional-lints.git</anonymousConnection>
+						<developerConnection>scm:git:git@github.com:mbarre/schemacrawler-additional-lints.git</developerConnection>
 					</configuration>
 					<reportSets>
 						<reportSet>

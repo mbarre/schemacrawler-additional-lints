@@ -1,12 +1,13 @@
-# schemacrawler-additionnallints
-[![Project Website](https://img.shields.io/badge/Project%20Website-Additionnal%20Lints-7f3692.svg)](http://mbarre.github.io/schemacrawler-additionnallints/) [![endorse](https://api.coderwall.com/mbarre/endorsecount.svg)](https://coderwall.com/mbarre)
-[![Build Status](https://travis-ci.org/mbarre/schemacrawler-additionnallints.svg?branch=master)](https://travis-ci.org/mbarre/schemacrawler-additionnallints) [![Coverage Status](https://coveralls.io/repos/mbarre/schemacrawler-additionnallints/badge.png?branch=master&service=github)](https://coveralls.io/github/mbarre/schemacrawler-additionnallints?branch=master) [![Join the chat at https://gitter.im/mbarre/schemacrawler-additionnallints](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/mbarre/schemacrawler-additionnallints?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+# Schemacrawler Additional Lints
+[![Project Website](https://img.shields.io/badge/Project%20Website-Additionnal%20Lints-7f3692.svg)](http://mbarre.github.io/schemacrawler-additional-lints/)
+[![Build Status](https://travis-ci.org/mbarre/schemacrawler-additionnallints.svg?branch=master)](https://travis-ci.org/mbarre/schemacrawler-additionnallints)
+[![Coverage Status](https://coveralls.io/repos/mbarre/schemacrawler-additionnallints/badge.png?branch=master&service=github)](https://coveralls.io/github/mbarre/schemacrawler-additionnallints?branch=master) [![Join the chat at https://gitter.im/mbarre/schemacrawler-additionnallints](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/mbarre/schemacrawler-additionnallints?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Dependency Status](https://www.versioneye.com/user/projects/56b9a580e8833700367b30e2/badge.svg?style=flat)](https://www.versioneye.com/user/projects/56b9a580e8833700367b30e2)
 
 
-[![Github Releases](https://img.shields.io/github/downloads/mbarre/schemacrawler-additionnallints/latest/total.svg?maxAge=2592000)]()[![Github All Releases](https://img.shields.io/github/downloads/mbarre/schemacrawler-additionnallints/total.svg?maxAge=2592000)](http://www.somsubhra.com/github-release-stats/?username=mbarre&repository=schemacrawler-additionnallints)
+[![Github Releases](https://img.shields.io/github/downloads/mbarre/schemacrawler-additionnallints/latest/total.svg?maxAge=2592000)]() [![Github All Releases](https://img.shields.io/github/downloads/mbarre/schemacrawler-additionnallints/total.svg?maxAge=2592000)](http://www.somsubhra.com/github-release-stats/?username=mbarre&repository=schemacrawler-additionnallints)
 
-Some additionnal lints for [Schemacrawler](http://sualeh.github.io/SchemaCrawler/)
+Some additional lints for [Schemacrawler](http://sualeh.github.io/SchemaCrawler/)
 
 # Main purpose
 
@@ -27,14 +28,14 @@ and hence is requiring JDK-1.8 to be built and run.**
 
 For now the jar is not available on maven central repo, so you'll have to build it yourself :
 
-    git clone https://github.com/mbarre/schemacrawler-additionnallints.git schemacrawler-additionnallints
-    cd schemacrawler-additionnallints
-    export LINT_VERSION=1.1.4
+    git clone https://github.com/mbarre/schemacrawler-additional-lints.git schemacrawler-additional-lints
+    cd schemacrawler-additional-lints
+    export LINT_VERSION=1.1.8
 
 Build without testing as a local postgres install is required to test.
 
     mvn install -Dmaven.test.skip=true
-    cp target/schemacrawler-additionnallints-${LINT_VERSION}.jar $SCHEMACRAWLER_HOME/lib
+    cp target/schemacrawler-additional-lints-${LINT_VERSION}.jar $SCHEMACRAWLER_HOME/lib
 
 ... and you're done, you just have to pass your
 normal  [schemacrawler lint](http://sualeh.github.io/SchemaCrawler/lint.html)
@@ -49,7 +50,7 @@ commands
     dropdb --if-exists sc_lint_test
     createdb sc_lint_test
     mvn install
-    cp target/schemacrawler-additionnallints-${LINT_VERSION}.jar $SCHEMACRAWLER_HOME/lib
+    cp target/schemacrawler-additional-lints-${LINT_VERSION}.jar $SCHEMACRAWLER_HOME/lib
 
 # Pre-release tasks
 

@@ -2,7 +2,7 @@
 
 <configuration>
 
-    <property name="APP_NAME" value="schemacrawler-additionallints" />
+    <property name="APP_NAME" value="schemacrawler-additional-lints" />
 	
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <layout class="ch.qos.logback.classic.PatternLayout">

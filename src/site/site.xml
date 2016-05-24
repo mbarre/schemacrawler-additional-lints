@@ -9,7 +9,7 @@
     <reflowSkin>
       <brand>
         <name>SchemaCrawler Additional Lints</name>
-        <href>http://mbarre.github.io/schemacrawler-additionallints/</href>
+        <href>http://mbarre.github.io/schemacrawler-additional-lints/</href>
       </brand>
       <highlightJs>true</highlightJs>
     </reflowSkin>
@@ -18,7 +18,7 @@
 
     <menu name="Additional Lints">
       <item name="About Additional Lints" href="index.html" />
-      <item name="Download" href="https://github.com/mbarre/schemacrawler-additionallints/releases"/>
+      <item name="Download" href="https://github.com/mbarre/schemacrawler-additional-lints/releases"/>
     </menu>
     <menu name="SchemaCrawler">
       <item name="Homepage" href="http://sualeh.github.io/SchemaCrawler/" />
@@ -26,7 +26,7 @@
     </menu>
     <links>
       <!-- Plugin links -->
-      <item name="Project github page" href = "http://github.com/mbarre/schemacrawler-additionallints"/>
+      <item name="Project github page" href = "http://github.com/mbarre/schemacrawler-additional-lints"/>
     </links>
 
     <menu ref="reports"/>
