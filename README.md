@@ -77,6 +77,7 @@ If you like this lint library, you can donate :
 * Ideas for new lints
 * Code for new lints
 * Code to increase code coverage
+* [Create issue](https://github.com/mbarre/schemacrawler-additional-lints/issues)
 * A nice logo
 * Feebdack on this library
 * Anything you think that could make us happy to go on developing this library,
