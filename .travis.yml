@@ -37,3 +37,6 @@ deploy:
   on:
     tags: true
     repo: mbarre/schemacrawler-additional-lints
+branches:
+  except:
+  - travis
