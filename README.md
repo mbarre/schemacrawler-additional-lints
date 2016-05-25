@@ -1,11 +1,13 @@
 # Schemacrawler Additional Lints
-[![Project Website](https://img.shields.io/badge/Project%20Website-Additionnal%20Lints-7f3692.svg)](http://mbarre.github.io/schemacrawler-additional-lints/)
-[![Build Status](https://travis-ci.org/mbarre/schemacrawler-additionnallints.svg?branch=master)](https://travis-ci.org/mbarre/schemacrawler-additionnallints)
-[![Coverage Status](https://coveralls.io/repos/mbarre/schemacrawler-additionnallints/badge.png?branch=master&service=github)](https://coveralls.io/github/mbarre/schemacrawler-additionnallints?branch=master) [![Join the chat at https://gitter.im/mbarre/schemacrawler-additionnallints](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/mbarre/schemacrawler-additionnallints?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Project Website](https://img.shields.io/badge/Project%20Website-Additional%20Lints-7f3692.svg)](http://mbarre.github.io/schemacrawler-additional-lints/)
+[![Build Status](https://travis-ci.org/mbarre/schemacrawler-additional-lints.svg?branch=master)](https://travis-ci.org/mbarre/schemacrawler-additional-lints)
+[![Coverage Status](https://coveralls.io/repos/mbarre/schemacrawler-additional-lints/badge.svg?branch=master&service=github)](https://coveralls.io/github/mbarre/schemacrawler-additional-lints?branch=master)
+[![Join the chat at https://gitter.im/mbarre/schemacrawler-additionallints](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/mbarre/schemacrawler-additional-lints?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Dependency Status](https://www.versioneye.com/user/projects/56b9a580e8833700367b30e2/badge.svg?style=flat)](https://www.versioneye.com/user/projects/56b9a580e8833700367b30e2)
 
 
-[![Github Releases](https://img.shields.io/github/downloads/mbarre/schemacrawler-additionnallints/latest/total.svg?maxAge=2592000)]() [![Github All Releases](https://img.shields.io/github/downloads/mbarre/schemacrawler-additionnallints/total.svg?maxAge=2592000)](http://www.somsubhra.com/github-release-stats/?username=mbarre&repository=schemacrawler-additionnallints)
+[![Github Releases](https://img.shields.io/github/downloads/mbarre/schemacrawler-additional-lints/latest/total.svg?maxAge=2592000)]()
+[![Github All Releases](https://img.shields.io/github/downloads/mbarre/schemacrawler-additional-lints/total.svg?maxAge=2592000)](http://www.somsubhra.com/github-release-stats/?username=mbarre&repository=schemacrawler-additional-lints)
 
 Some additional lints for [Schemacrawler](http://sualeh.github.io/SchemaCrawler/)
 
