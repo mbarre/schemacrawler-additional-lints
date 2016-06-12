@@ -148,7 +148,7 @@ License along with this program.  If not, see
 		<json.version>20160212</json.version>
 		<xerces.version>2.11.0</xerces.version>
 
-		<coveralls-maven-plugin.version>4.1.0 </coveralls-maven-plugin.version>
+		<coveralls-maven-plugin.version>4.2.0</coveralls-maven-plugin.version>
 		<coveralls.repoToken>${env.COVERALLS_REPOTOKEN}</coveralls.repoToken>
 		<versioneye-maven-plugin.version>3.9.2</versioneye-maven-plugin.version>
 		<versioneye-maven-plugin.apikey>${env.VERSIONEYE_APIKEY}</versioneye-maven-plugin.apikey>
