@@ -154,7 +154,7 @@ License along with this program.  If not, see
 		<versioneye-maven-plugin.apikey>${env.VERSIONEYE_APIKEY}</versioneye-maven-plugin.apikey>
 		<versioneye-maven-plugin.projectid>${env.VERSIONEYE_PROJECTID}</versioneye-maven-plugin.projectid>
 		<checksum-maven-plugin.version>1.3</checksum-maven-plugin.version>
-		<license-maven-plugin.version>1.8</license-maven-plugin.version>
+		<license-maven-plugin.version>1.9</license-maven-plugin.version>
 	</properties>
 
 	<dependencies>
