@@ -20,7 +20,7 @@ cache:
   - .autoconf
   - $HOME/.m2
 script:
-- mvn test jacoco:report coveralls:report
+- mvn test coveralls:report
 after_success:
 - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.login=$SONAR_TOKEN
 notifications:
