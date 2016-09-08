@@ -24,12 +24,17 @@ package io.github.mbarre.schemacrawler.utils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.slf4j.LoggerFactory;
 
 /**
  * Provides some tools around JSon to share them on the whole project.
  * @author adriens
  */
 public class JSonUtils {
+
+	private JSonUtils(){
+		throw new IllegalAccessError("Utility class.");
+	}
     
     /**
      * Test if a string is a valid json
@@ -44,6 +49,7 @@ public class JSonUtils {
 			new JSONObject(content);	
 			return true;
 		}catch(JSONException e){
+			LoggerFactory.getLogger(JSonUtils.class).info("String is not JSON.", e);
 			return false;
 		}
 		
