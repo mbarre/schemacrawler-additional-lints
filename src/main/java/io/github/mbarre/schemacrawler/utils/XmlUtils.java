@@ -22,22 +22,27 @@ package io.github.mbarre.schemacrawler.utils;
  * #L%
  */
 
-import java.io.IOException;
-import java.io.StringReader;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
+import org.slf4j.LoggerFactory;
 import org.xml.sax.ErrorHandler;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.IOException;
+import java.io.StringReader;
 
 /**
  *
  * @author salad74
  */
 public class XmlUtils {
+
+    private XmlUtils(){
+        throw new IllegalAccessError("Utility class.");
+    }
     
     /**
      * Tells wether a column contens XML data or not.
@@ -62,6 +67,7 @@ public class XmlUtils {
             return true;
             
         } catch (SAXException | IOException  | ParserConfigurationException e) {
+            LoggerFactory.getLogger(XmlUtils.class).info("String is not XML.", e);
             return false;
         }
     }

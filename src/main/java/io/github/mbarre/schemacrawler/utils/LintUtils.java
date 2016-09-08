@@ -22,8 +22,9 @@ package io.github.mbarre.schemacrawler.utils;
  * #L%
  */
 
-import java.sql.Types;
 import schemacrawler.schema.ColumnDataType;
+
+import java.sql.Types;
 
 /**
  *
@@ -31,9 +32,9 @@ import schemacrawler.schema.ColumnDataType;
  */
 public class LintUtils {
 
-        public LintUtils(){
-            
-        }
+	private LintUtils(){
+		throw new IllegalAccessError("Utility class.");
+	}
 	/**
 	 * Tells wether a column is text based or not.
 	 * @param javaSqlType the javaSqlType
@@ -95,9 +96,9 @@ public class LintUtils {
 	 * @return is the sqlType is binary based or not
 	 */
 	public static final boolean isSqlTypeLargeTextBased(ColumnDataType dataType) {
-		return (dataType.getJavaSqlType().getJavaSqlType() == Types.CLOB
+		return dataType.getJavaSqlType().getJavaSqlType() == Types.CLOB
                         || dataType.getJavaSqlType().getJavaSqlType() == Types.LONGVARCHAR
-                        || "text".equalsIgnoreCase(dataType.getDatabaseSpecificTypeName()));
+                        || "text".equalsIgnoreCase(dataType.getDatabaseSpecificTypeName());
 	}
 
 
