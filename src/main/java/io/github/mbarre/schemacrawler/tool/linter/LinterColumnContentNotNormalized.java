@@ -69,7 +69,7 @@ public class LinterColumnContentNotNormalized extends BaseLinter {
      * Build the lint
      */
     public LinterColumnContentNotNormalized() {
-        setSeverity(LintSeverity.high);
+        setSeverity(LintSeverity.medium);
         nbRepeatTolerance = NB_REPEAT_TOLERANCE;
         minTextColumnSize = MIN_TEXT_COLUMN_SIZE;
     }
