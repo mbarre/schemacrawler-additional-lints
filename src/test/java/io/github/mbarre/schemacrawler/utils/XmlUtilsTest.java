@@ -34,7 +34,6 @@ public class XmlUtilsTest {
     
     
     public XmlUtilsTest(){
-        XmlUtils test = new XmlUtils();
         Assert.assertTrue(true);
     }
     @Test
