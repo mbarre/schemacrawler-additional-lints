@@ -33,7 +33,6 @@ import org.junit.Test;
 public class JSonUtilsTest {
     
     public JSonUtilsTest(){
-        JSonUtils test = new JSonUtils();
         Assert.assertTrue(true);
     }
     @Test
