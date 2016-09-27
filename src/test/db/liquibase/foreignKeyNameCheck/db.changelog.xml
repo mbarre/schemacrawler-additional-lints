@@ -25,59 +25,58 @@
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 				   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
-	<changeSet author="mbarre" id="201611031109-1" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
-		<createSequence sequenceName="s_test_pk"
+	<changeSet author="mbarre" id="1474954675851-1" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+		<createSequence sequenceName="s_table1"
 						incrementBy="1"
 						maxValue="99999"
 						minValue="1"
 						startValue="1"/>
 
-		<createTable  tableName="test_pk" remarks="table for lint LinterForeignKeyMismatch">
-			<column name="id" type="bigint" defaultValueComputed="nextval('s_test_pk')"  remarks="primary key">
+		<createTable  tableName="table1" remarks="table for lint LinterForeignKeyName">
+			<column name="id" type="bigint" defaultValueComputed="nextval('s_table1')"  remarks="primary key">
 				<constraints nullable="false"/>
 			</column>
 			<column name="content" type="varchar(10)" remarks="column with data"/>
 		</createTable>
 
 		<addPrimaryKey columnNames="id"
-					   constraintName="pk_test"
+					   constraintName="pk_table1"
 					   schemaName="public"
-					   tableName="test_pk"/>
+					   tableName="table1"/>
 
-
-		<createTable  tableName="test_fk" remarks="table for lint LinterForeignKeyMismatch">
-			<column name="id" 				type="bigint" remarks="primary key"/>
-			<column name="content"                          type="varchar(10)" remarks="column with data"/>
-			<column name="test_pk_id"                       type="bigint" remarks="foreign key"/>
-		</createTable>
-
-		<addPrimaryKey columnNames="id"
-					   constraintName="pk_test_fk"
-					   schemaName="public"
-					   tableName="test_fk"/>
-
-		<addForeignKeyConstraint baseColumnNames="test_pk_id"
-								 baseTableName="test_fk"
-								 constraintName="fk_test"
-								 referencedColumnNames="id"
-								 referencedTableName="test_pk"/>
-
-		<createTable  tableName="test_fk_2" remarks="table for lint LinterForeignKeyMismatch">
+		<createTable  tableName="table2" remarks="table for lint LinterForeignKeyName">
 			<column name="id" 				type="bigint" remarks="primary key"/>
 			<column name="content"          type="varchar(10)" remarks="column with data"/>
-			<column name="test_pk_id"       type="int4" remarks="foreign key"/>
+			<column name="table1_id"       type="bigint" remarks="foreign key"/>
 		</createTable>
 
 		<addPrimaryKey columnNames="id"
-					   constraintName="pk_test_fk_2"
+					   constraintName="pk_table2"
 					   schemaName="public"
-					   tableName="test_fk_2"/>
+					   tableName="table2"/>
 
-		<addForeignKeyConstraint baseColumnNames="test_pk_id"
-								 baseTableName="test_fk_2"
-								 constraintName="fk_test_2"
+		<addForeignKeyConstraint baseColumnNames="table1_id"
+								 baseTableName="table2"
+								 constraintName="fk_table2"
 								 referencedColumnNames="id"
-								 referencedTableName="test_pk"/>
+								 referencedTableName="table1"/>
+
+		<createTable  tableName="table3" remarks="table for lint LinterForeignKeyName">
+			<column name="id" 				type="bigint" remarks="primary key"/>
+			<column name="content"          type="varchar(10)" remarks="column with data"/>
+			<column name="id_table2"       type="bigint" remarks="foreign key"/>
+		</createTable>
+
+		<addPrimaryKey columnNames="id"
+					   constraintName="pk_table3"
+					   schemaName="public"
+					   tableName="table3"/>
+
+		<addForeignKeyConstraint baseColumnNames="id_table2"
+								 baseTableName="table3"
+								 constraintName="fk_table3"
+								 referencedColumnNames="id"
+								 referencedTableName="table2"/>
 
 
 	</changeSet>
