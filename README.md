@@ -4,7 +4,7 @@
 [![Quality Gate](https://sonarqube.com/api/badges/gate?key=io.github.mbarre%3Aschemacrawler-additional-lints)](https://sonarqube.com/overview?id=io.github.mbarre%3Aschemacrawler-additional-lints)
 [![Coverage Status](https://coveralls.io/repos/mbarre/schemacrawler-additional-lints/badge.svg?branch=master&service=github)](https://coveralls.io/github/mbarre/schemacrawler-additional-lints?branch=master)
 [![Join the chat at https://gitter.im/mbarre/schemacrawler-additionallints](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/mbarre/schemacrawler-additional-lints?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Dependency Status](https://www.versioneye.com/user/projects/56b9a580e8833700367b30e2/badge.svg?style=flat)](https://www.versioneye.com/user/projects/56b9a580e8833700367b30e2) 
+[![Dependency Status](https://www.versioneye.com/user/projects/57b3946ab4fa6e004171f956/badge.svg?style=flat)](https://www.versioneye.com/user/projects/57b3946ab4fa6e004171f956) 
 
 
 [![Github Releases](https://img.shields.io/github/downloads/mbarre/schemacrawler-additional-lints/latest/total.svg?maxAge=2592000)]()
