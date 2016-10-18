@@ -29,8 +29,8 @@
 
 	    <createTable  tableName="test_blob" remarks="table for lint LinterBlobTypeColumnTest">
 	    	<column name="id" 				type="int"              remarks="primary key"/>
-	        <column name="content_blob"                     type="blob"             remarks="column with Blob"/>
-	        <column name="content_"                         type="Varchar(30)" 	remarks="column simple data"/>
+	        <column name="content_blob"     type="blob"             remarks="column with Blob"/>
+	        <column name="content_"         type="Varchar(30)" 	remarks="column simple data"/>
 	    </createTable>
 
 	    <addPrimaryKey columnNames="id"
