@@ -25,6 +25,7 @@ package io.github.mbarre.schemacrawler.tool.linter;
 import io.github.mbarre.schemacrawler.test.utils.LintWrapper;
 import org.apache.commons.io.IOUtils;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.Assert;
 import schemacrawler.schemacrawler.SchemaCrawlerOptions;
@@ -43,13 +44,18 @@ import java.nio.file.Paths;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created by barmi83 on 24/12/15.
  */
 public abstract class BaseLintTest {
 
-    protected List<LintWrapper> executeToJsonAndConvertToLintList(SchemaCrawlerOptions options, Connection connection) throws Exception {
+    private static final Logger LOGGER = Logger.getLogger(BaseLintTest.class.getName());
+
+
+    protected List<LintWrapper> executeToJsonAndConvertToLintList(SchemaCrawlerOptions options, Connection connection)  throws Exception{
 
         final Executable executable = new SchemaCrawlerExecutable("lint");
 
@@ -72,40 +78,44 @@ public abstract class BaseLintTest {
         JSONObject json = new JSONObject(data.toString().substring(1, data.toString().length() - 2));
        
         List<LintWrapper>lints = new ArrayList<>();
-        
-        if( json.get("table_lints") instanceof  JSONObject) {
 
-            Assert.assertNotNull(json.getJSONObject("table_lints"));
-            JSONArray jsonLints = json.getJSONObject("table_lints").getJSONArray("lints");
-            Assert.assertNotNull(jsonLints);
+        try {
+            if (json.get("table_lints") instanceof JSONObject) {
 
-            if(options.getTableNamePattern() != null  && ! options.getTableNamePattern().isEmpty())
-                Assert.assertEquals(options.getTableNamePattern(), json.getJSONObject("table_lints").getString("name"));
-
-            for (int i = 0; i < jsonLints.length(); i++) {
-                if(!"databasechangelog".equals(json.getJSONObject("table_lints").getString("name")) &&
-                        !"databasechangeloglock".equals(json.getJSONObject("table_lints").getString("name")))
-                    lints.add(createLintWrapper(json.getJSONObject("table_lints").getString("name"), jsonLints.getJSONObject(i)));
-            }
-        }
-        else{
-            Assert.assertNotNull(json.getJSONArray("table_lints"));
-            JSONArray jsonTableLints = json.getJSONArray("table_lints");
-
-            for (int i = 0; i < jsonTableLints.length(); i++) {
-                JSONArray jsonLints = jsonTableLints.getJSONObject(i).getJSONArray("lints");
+                Assert.assertNotNull(json.getJSONObject("table_lints"));
+                JSONArray jsonLints = json.getJSONObject("table_lints").getJSONArray("lints");
                 Assert.assertNotNull(jsonLints);
 
-                if(options.getTableNamePattern() != null  && ! options.getTableNamePattern().isEmpty())
+                if (options.getTableNamePattern() != null && !options.getTableNamePattern().isEmpty())
                     Assert.assertEquals(options.getTableNamePattern(), json.getJSONObject("table_lints").getString("name"));
 
-                for (int j = 0; j < jsonLints.length(); j++) {
-                    if(!"databasechangelog".equals(jsonTableLints.getJSONObject(i).getString("name")) &&
-                            !"databasechangeloglock".equals(jsonTableLints.getJSONObject(i).getString("name")))
-                        lints.add(createLintWrapper(jsonTableLints.getJSONObject(i).getString("name"), jsonLints.getJSONObject(j)));
+                for (int i = 0; i < jsonLints.length(); i++) {
+                    if (!"databasechangelog".equals(json.getJSONObject("table_lints").getString("name")) &&
+                            !"databasechangeloglock".equals(json.getJSONObject("table_lints").getString("name")))
+                        lints.add(createLintWrapper(json.getJSONObject("table_lints").getString("name"), jsonLints.getJSONObject(i)));
+                }
+            } else {
+                Assert.assertNotNull(json.getJSONArray("table_lints"));
+                JSONArray jsonTableLints = json.getJSONArray("table_lints");
+
+                for (int i = 0; i < jsonTableLints.length(); i++) {
+                    JSONArray jsonLints = jsonTableLints.getJSONObject(i).getJSONArray("lints");
+                    Assert.assertNotNull(jsonLints);
+
+                    if (options.getTableNamePattern() != null && !options.getTableNamePattern().isEmpty())
+                        Assert.assertEquals(options.getTableNamePattern(), json.getJSONObject("table_lints").getString("name"));
+
+                    for (int j = 0; j < jsonLints.length(); j++) {
+                        if (!"databasechangelog".equals(jsonTableLints.getJSONObject(i).getString("name")) &&
+                                !"databasechangeloglock".equals(jsonTableLints.getJSONObject(i).getString("name")))
+                            lints.add(createLintWrapper(jsonTableLints.getJSONObject(i).getString("name"), jsonLints.getJSONObject(j)));
+                    }
                 }
             }
+        }catch(JSONException e){
+            LOGGER.log(Level.WARNING, "No lint detected.");
         }
+
         return lints;
     }
 
