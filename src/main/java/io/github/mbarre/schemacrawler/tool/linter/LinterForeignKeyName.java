@@ -50,6 +50,8 @@ public class LinterForeignKeyName  extends BaseLinter {
     private String suffix;
 
     public LinterForeignKeyName() {
+        prefix = "";
+        suffix = "";
         setSeverity(LintSeverity.medium);
     }
 
@@ -86,6 +88,9 @@ public class LinterForeignKeyName  extends BaseLinter {
 
     private void findMismatchedForeignKeys(final Table table){
 
+        if(prefix.isEmpty() && suffix.isEmpty())
+            return;
+
         if (table != null && !(table instanceof View))
         {
             for (final ForeignKey foreignKey: table.getImportedForeignKeys())
@@ -93,12 +98,12 @@ public class LinterForeignKeyName  extends BaseLinter {
                 for (final ForeignKeyColumnReference columnReference: foreignKey)
                 {
                     final Column fkColumn = columnReference.getForeignKeyColumn();
-                    if (!fkColumn.getName().startsWith(prefix))
+                    if (fkColumn != null && !fkColumn.getName().startsWith(prefix))
                     {
                         addTableLint(table, "Foreign key does not start with prefix \"" + prefix +"\"", foreignKey);
 
                     }
-                    if (!fkColumn.getName().endsWith(suffix))
+                    if (fkColumn != null && !fkColumn.getName().endsWith(suffix))
                     {
                         addTableLint(table, "Foreign key does not ends with suffix \"" + suffix +"\"", foreignKey);
                     }

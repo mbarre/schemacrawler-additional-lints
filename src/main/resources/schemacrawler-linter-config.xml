@@ -170,10 +170,12 @@
         <table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
         <threshold>1</threshold>
     </linter>
-    <linter id="io.github.mbarre.schemacrawler.tool.linter.LinterForeignKeyMismatchLazy">
-        <run>true</run>
-        <severity>critical</severity>
-        <table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
-        <threshold>1</threshold>
+    <linter id="io.github.mbarre.schemacrawler.tool.linter.LinterForeignKeyName">
+        <run>false</run>
+        <severity>medium</severity>
+        <table-exclusion-pattern><![CDATA[.*databasechangelog*]]></table-exclusion-pattern>
+        <config>
+            <property name="foreignKeySuffix">_id</property>
+        </config>
     </linter>
 </schemacrawler-linter-configs>
