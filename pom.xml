@@ -129,7 +129,7 @@ License along with this program.  If not, see
 		<maven-surefire-report-plugin.version>2.19.1</maven-surefire-report-plugin.version>
 		<maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
 		<maven-project-info-reports-plugin.version>2.9</maven-project-info-reports-plugin.version>
-		<maven-changes-plugin.version>2.12</maven-changes-plugin.version>
+		<maven-changes-plugin.version>2.12.1</maven-changes-plugin.version>
 		<jacoco-maven-plugin.version>0.7.7.201606060606</jacoco-maven-plugin.version>
 		<findbugs-maven-plugin.version>3.0.4</findbugs-maven-plugin.version>
 		<maven-clover2-plugin.version>4.0.4</maven-clover2-plugin.version>
