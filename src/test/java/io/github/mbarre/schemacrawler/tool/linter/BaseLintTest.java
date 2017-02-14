@@ -44,6 +44,7 @@ import java.nio.file.Paths;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -89,9 +90,10 @@ public abstract class BaseLintTest {
                 if (options.getTableNamePattern() != null && !options.getTableNamePattern().isEmpty())
                     Assert.assertEquals(options.getTableNamePattern(), json.getJSONObject("table_lints").getString("name"));
 
+                String tableName;
                 for (int i = 0; i < jsonLints.length(); i++) {
-                    if (!"databasechangelog".equals(json.getJSONObject("table_lints").getString("name")) &&
-                            !"databasechangeloglock".equals(json.getJSONObject("table_lints").getString("name")))
+                    tableName = json.getJSONObject("table_lints").getString("name");
+                    if (!Objects.equals("databasechangelog", tableName) && !Objects.equals("databasechangeloglock", tableName))
                         lints.add(createLintWrapper(json.getJSONObject("table_lints").getString("name"), jsonLints.getJSONObject(i)));
                 }
             } else {
@@ -105,9 +107,10 @@ public abstract class BaseLintTest {
                     if (options.getTableNamePattern() != null && !options.getTableNamePattern().isEmpty())
                         Assert.assertEquals(options.getTableNamePattern(), json.getJSONObject("table_lints").getString("name"));
 
+                    String tableName;
                     for (int j = 0; j < jsonLints.length(); j++) {
-                        if (!"databasechangelog".equals(jsonTableLints.getJSONObject(i).getString("name")) &&
-                                !"databasechangeloglock".equals(jsonTableLints.getJSONObject(i).getString("name")))
+                        tableName = jsonTableLints.getJSONObject(i).getString("name");
+                        if (!Objects.equals("databasechangelog", tableName) && !Objects.equals("databasechangeloglock", tableName))
                             lints.add(createLintWrapper(jsonTableLints.getJSONObject(i).getString("name"), jsonLints.getJSONObject(j)));
                     }
                 }

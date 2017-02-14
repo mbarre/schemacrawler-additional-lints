@@ -116,11 +116,6 @@ public class PostgreSqlDatabase {
                 setPostgresPassword(DEFAULT_PASSWORD);
             }
         }
-        catch(FileNotFoundException ex){
-            LOG.error("Could not find <test.properties> conf file... will use default", ex);
-            this.properties = null;
-            setPostgresPassword(DEFAULT_PASSWORD);
-        }
         catch(IOException ex){
             LOG.error("Could not find <test.properties> conf file... will use default", ex);
             this.properties = null;

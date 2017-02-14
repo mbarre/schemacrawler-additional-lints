@@ -35,6 +35,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Types;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author adriens
@@ -74,8 +75,8 @@ public class LinterColumnContentNotNormalizedTest  extends BaseLintTest {
         boolean lint1Dectected = false;
         for (LintWrapper lint : lints) {
             // be sure we are on the right lint
-            if (LinterColumnContentNotNormalized.class.getName().equals(lint.getId())) {
-                if ("public.test_normalized.content".equals(lint.getValue())) {
+            if (Objects.equals(LinterColumnContentNotNormalized.class.getName(), lint.getId())) {
+                if (Objects.equals("public.test_normalized.content", lint.getValue())) {
                     Assert.assertEquals("<4> repetitions of the same value <AAAA>", lint.getDescription());
                     Assert.assertEquals("high", lint.getSeverity());
                     lint1Dectected = true;

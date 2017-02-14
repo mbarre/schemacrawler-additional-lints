@@ -27,6 +27,8 @@ import io.github.mbarre.schemacrawler.test.utils.PostgreSqlDatabase;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.List;
+import java.util.Objects;
+
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -70,13 +72,13 @@ public class LinterPrimaryKeyNotIntegerLikeTypeTest extends BaseLintTest {
         boolean lint2Detected = false;
         
         for (LintWrapper lint : lints) {
-            if(LinterPrimaryKeyNotIntegerLikeType.class.getName().equals(lint.getId())){
-                if("public.test_pk_char.id".equals(lint.getValue())){
+            if(Objects.equals(LinterPrimaryKeyNotIntegerLikeType.class.getName(), lint.getId())){
+                if(Objects.equals("public.test_pk_char.id", lint.getValue())){
                     Assert.assertEquals("should be Integer like type or eventually char(1)", lint.getDescription());
                     Assert.assertEquals("high", lint.getSeverity());
                     lint1Detected = true;
                 }
-                else if("public.test_pk_timestamp.id".equals(lint.getValue())){
+                else if(Objects.equals("public.test_pk_timestamp.id", lint.getValue())){
                     Assert.assertEquals("should be Integer like type or eventually char(1)", lint.getDescription());
                     Assert.assertEquals("high", lint.getSeverity());
                     lint2Detected = true;

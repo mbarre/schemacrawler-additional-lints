@@ -34,6 +34,7 @@ import schemacrawler.tools.lint.LinterRegistry;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.List;
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 
@@ -86,11 +87,7 @@ public class LinterBooleanContentTest extends BaseLintTest {
 	}
 
 	private boolean contains(List<LintWrapper> lints, String columnName){
-		for (LintWrapper lint : lints) {
-			if(lint.getValue().equals(columnName))
-				return true;
-		}
-		return false;
+		return lints.stream().anyMatch(lint -> Objects.equals(lint.getValue(), columnName));
 	}
 
 }
