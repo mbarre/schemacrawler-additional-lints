@@ -31,6 +31,7 @@ import schemacrawler.tools.lint.LintSeverity;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -96,7 +97,7 @@ public class LinterTableNameNotInLowerCase extends BaseLinter
     
     private boolean isLowerCaseName(final String name)
     {
-        return name.toLowerCase().equals(name);
+        return Objects.equals(name.toLowerCase(), name);
     }
     
     private List<String> findColumnsWithUpperCase(List<Column> columns){
