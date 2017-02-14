@@ -150,11 +150,11 @@ License along with this program.  If not, see
 
 		<coveralls-maven-plugin.version>4.3.0</coveralls-maven-plugin.version>
 		<coveralls.repoToken>${env.COVERALLS_REPOTOKEN}</coveralls.repoToken>
-		<versioneye-maven-plugin.version>3.11.0</versioneye-maven-plugin.version>
+		<versioneye-maven-plugin.version>3.11.1</versioneye-maven-plugin.version>
 		<versioneye-maven-plugin.apikey>${env.VERSIONEYE_APIKEY}</versioneye-maven-plugin.apikey>
 		<versioneye-maven-plugin.projectid>${env.VERSIONEYE_PROJECTID}</versioneye-maven-plugin.projectid>
 		<checksum-maven-plugin.version>1.4</checksum-maven-plugin.version>
-		<license-maven-plugin.version>1.10</license-maven-plugin.version>
+		<license-maven-plugin.version>1.11</license-maven-plugin.version>
 	</properties>
 
 	<dependencies>
