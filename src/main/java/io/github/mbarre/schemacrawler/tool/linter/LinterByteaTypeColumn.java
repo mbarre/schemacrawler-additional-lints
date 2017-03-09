@@ -22,14 +22,15 @@ package io.github.mbarre.schemacrawler.tool.linter;
  * #L%
  */
 
-import io.github.mbarre.schemacrawler.utils.LintUtils;
 import schemacrawler.schema.Column;
-import schemacrawler.schema.JavaSqlType;
 import schemacrawler.schema.Table;
+import schemacrawler.schemacrawler.SchemaCrawlerException;
 import schemacrawler.tools.lint.BaseLinter;
 import schemacrawler.tools.lint.LintSeverity;
 
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Objects;
 import java.util.logging.Level;
@@ -48,6 +49,7 @@ public class LinterByteaTypeColumn  extends BaseLinter {
 
     /**
      * Get lint descrption
+     *
      * @return lint description
      */
     @Override
@@ -57,6 +59,7 @@ public class LinterByteaTypeColumn  extends BaseLinter {
 
     /**
      * Get lint Summary
+     *
      * @return lint Summary
      */
     @Override
@@ -66,17 +69,25 @@ public class LinterByteaTypeColumn  extends BaseLinter {
 
     /**
      * The lint that does the job
-     * @param table table
+     *
+     * @param table      table
      * @param connection connection
      */
     @Override
-    protected void lint(final Table table, final Connection connection) {
-        List<Column> columns = getColumns(table);
-        for (Column column : columns) {
-            LOGGER.log(Level.INFO, "Checking {0}...", column.getFullName() + " - " + column.getColumnDataType().getDatabaseSpecificTypeName());
-            if(Objects.equals("bytea", column.getColumnDataType().getDatabaseSpecificTypeName())){
-                addLint(table, getDescription(), column.getFullName());
+    protected void lint(final Table table, final Connection connection) throws SchemaCrawlerException {
+        try {
+            if ("PostgreSQL".equalsIgnoreCase(connection.getMetaData().getDatabaseProductName()) && "9.4".compareTo(connection.getMetaData().getDatabaseProductVersion()) <= 0) {
+                List<Column> columns = getColumns(table);
+                for (Column column : columns) {
+                    LOGGER.log(Level.INFO, "Checking {0}...", column.getFullName() + " - " + column.getColumnDataType().getDatabaseSpecificTypeName());
+                    if (Objects.equals("bytea", column.getColumnDataType().getDatabaseSpecificTypeName())) {
+                        addLint(table, getDescription(), column.getFullName());
+                    }
+                }
             }
+        } catch (SQLException ex) {
+            LOGGER.severe(ex.getMessage());
+            throw new SchemaCrawlerException(ex.getMessage(), ex);
         }
     }
 }
