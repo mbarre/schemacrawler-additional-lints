@@ -27,6 +27,8 @@ import io.github.mbarre.schemacrawler.test.utils.PostgreSqlDatabase;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.List;
+import java.util.Objects;
+
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -52,24 +54,40 @@ public class LinterBlobTypeColumnTest extends BaseLintTest {
     @Test
     public void testLint() throws Exception{
 
-            final LinterRegistry registry = new LinterRegistry();
-            Assert.assertTrue(registry.hasLinter(LinterBlobTypeColumn.class.getName()));
+        final LinterRegistry registry = new LinterRegistry();
+        Assert.assertTrue(registry.hasLinter(LinterBlobTypeColumn.class.getName()));
 
-            final SchemaCrawlerOptions options = new SchemaCrawlerOptions();
-            // Set what details are required in the schema - this affects the
-            // time taken to crawl the schema
-            options.setSchemaInfoLevel(SchemaInfoLevelBuilder.standard());
-            options.setTableNamePattern("test_blob");
+        final SchemaCrawlerOptions options = new SchemaCrawlerOptions();
+        // Set what details are required in the schema - this affects the
+        // time taken to crawl the schema
+        options.setSchemaInfoLevel(SchemaInfoLevelBuilder.standard());
+        options.setTableNamePattern("test_blob");
 
-            Connection connection = DriverManager.getConnection(PostgreSqlDatabase.CONNECTION_STRING,
-                    PostgreSqlDatabase.USER_NAME, database.getPostgresPassword());
+        Connection connection = DriverManager.getConnection(PostgreSqlDatabase.CONNECTION_STRING,
+                PostgreSqlDatabase.USER_NAME, database.getPostgresPassword());
 
-            List<LintWrapper> lints = executeToJsonAndConvertToLintList(options, connection);
+        List<LintWrapper> lints = executeToJsonAndConvertToLintList(options, connection);
 
-            Assert.assertEquals(1,lints.size());
-            Assert.assertEquals(LinterBlobTypeColumn.class.getName(), lints.get(0).getId());
-            Assert.assertEquals("public.test_blob.content_blob", lints.get(0).getValue());
-            Assert.assertEquals("BLOB should not be used", lints.get(0).getDescription());
-            Assert.assertEquals("critical", lints.get(0).getSeverity());
+        Assert.assertEquals(2,lints.size());
+        boolean lint1Dectected = false;
+        boolean lint2Dectected = false;
+        for (LintWrapper lint : lints) {
+            // be sure we are on the right lint
+            if (Objects.equals(LinterBlobTypeColumn.class.getName(), lint.getId())) {
+                if (Objects.equals("public.test_blob.content_blob", lint.getValue())) {
+                    Assert.assertEquals("public.test_blob.content_blob", lint.getValue());
+                    Assert.assertEquals("BLOB should not be used", lint.getDescription());
+                    Assert.assertEquals("critical", lint.getSeverity());
+                    lint1Dectected = true;
+                }
+            } else if (Objects.equals(LinterByteaTypeColumn.class.getName(), lint.getId())){
+                if (Objects.equals("public.test_blob.content_blob", lint.getValue())) {
+                    Assert.assertEquals("OID should be used instead of BYTEA", lint.getDescription());
+                    Assert.assertEquals("high", lint.getSeverity());
+                    lint2Dectected = true;
+                }
+            }
         }
+        Assert.assertTrue(lint1Dectected && lint2Dectected);
+    }
 }

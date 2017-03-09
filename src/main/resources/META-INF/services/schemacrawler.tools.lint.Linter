@@ -9,3 +9,4 @@ io.github.mbarre.schemacrawler.tool.linter.LinterBlobTypeColumn
 io.github.mbarre.schemacrawler.tool.linter.LinterColumnSize
 io.github.mbarre.schemacrawler.tool.linter.LinterForeignKeyMismatchLazy
 io.github.mbarre.schemacrawler.tool.linter.LinterForeignKeyName
+io.github.mbarre.schemacrawler.tool.linter.LinterByteaTypeColumn
