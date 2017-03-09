@@ -43,6 +43,7 @@ public class TestLintPlugin
     assertTrue(registry.hasLinter("io.github.mbarre.schemacrawler.tool.linter.LinterPrimaryKeyNotIntegerLikeType"));
     assertTrue(registry.hasLinter("io.github.mbarre.schemacrawler.tool.linter.LinterBlobTypeColumn"));
     assertTrue(registry.hasLinter("io.github.mbarre.schemacrawler.tool.linter.LinterColumnSize"));
+    assertTrue(registry.hasLinter("io.github.mbarre.schemacrawler.tool.linter.LinterByteaTypeColumn"));
   }
 
 }
