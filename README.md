@@ -36,7 +36,7 @@ For now the jar is not available on maven central repo, so you'll have to build 
 
     git clone https://github.com/mbarre/schemacrawler-additional-lints.git schemacrawler-additional-lints
     cd schemacrawler-additional-lints
-    export LINT_VERSION=1.1.8
+    export LINT_VERSION=1.02.02
 
 Build without testing as a local postgres install is required to test.
 
@@ -86,3 +86,7 @@ If you like this lint library, you can donate :
 * Feebdack on this library
 * Anything you think that could make us happy to go on developing this library,
 including just some kind words on our gitter
+
+# Thanks
+
+Thanks to Jetbrains for giving me an [IntelliJ IDEA](https://www.jetbrains.com/idea/?fromMenu) Free Open Source License for this project. 
