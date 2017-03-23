@@ -11,6 +11,10 @@ Additional lint checks are :
 **Linter :** *io.github.mbarre.schemacrawler.tools.LinterBooleanContent*  
   Checks if column type should be boolean. ex.: int column with only 1 and 0 values.   
   Default severity : high.
+  
+**Linter :** *io.github.mbarre.schemacrawler.tools.LinterByteaTypeColumn*  
+  Checks that no binary column type is used. Postgres recommandation is to use OID.   
+  Default severity : medium.
 
 **Linter :** *io.github.mbarre.schemacrawler.tools.LinterColomnContentNotNormalized*  
   Checks wether foreign table should have been used.
@@ -46,7 +50,22 @@ Additional lint checks are :
 **Linter :** *io.github.mbarre.schemacrawler.tools.LinterForeignKeyMismatchLazy*  
   Check that a foreign key has the same type as the referenced primary key.   
   Default severity : critical.
-
+  
+**Linter :** *io.github.mbarre.schemacrawler.tools.LinterForeignKeyName*  
+  If you need your foreign key name has a specific prefix or suffix, this linter can check it.
+  Default severity : medium.
+  Exemple : if you want your foreign key starts with 'id_'
+  
+  ```
+  <linter id="io.github.mbarre.schemacrawler.tool.linter.LinterForeignKeyName">
+    <run>true</run>
+    <severity>medium</severity>
+    <config>
+        <property name="foreignKeyPrefix">id_</property>
+    </config>
+  </linter>
+  ```    
+ 
 **Linter :** *io.github.mbarre.schemacrawler.tools.LinterJsonContent*  
   Checks if column type should be JSON according to its content.   
   Default severity : high.
