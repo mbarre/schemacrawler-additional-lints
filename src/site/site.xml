@@ -19,6 +19,7 @@
     <menu name="Additional Lints">
       <item name="About Additional Lints" href="index.html" />
       <item name="Download" href="https://github.com/mbarre/schemacrawler-additional-lints/releases"/>
+      <item name="" href="https://cute-db.github.io"/>
     </menu>
     <menu name="SchemaCrawler">
       <item name="Homepage" href="http://sualeh.github.io/SchemaCrawler/" />
