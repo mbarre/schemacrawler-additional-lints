@@ -89,4 +89,4 @@ including just some kind words on our gitter
 
 # Thanks
 
-Thanks to Jetbrains for giving me an [IntelliJ IDEA](https://www.jetbrains.com/idea/?fromMenu) Free Open Source License for this project. 
+Thanks to Jetbrains for offering me an [IntelliJ IDEA](https://www.jetbrains.com/idea/?fromMenu) Free Open Source License for this project. 
