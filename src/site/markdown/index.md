@@ -45,6 +45,20 @@ Additional lint checks are :
 
   Default value is minColumnSizePercent = 20.   
   Default severity : high.
+  
+**Linter :** *io.github.mbarre.schemacrawler.tools.LinterCompressBlob*  
+    If column is BLOB or BINARY type, checks if compression can be useful:
+    This linter is configurable thanks config file and following parameter:
+
+      <linter id="io.github.mbarre.schemacrawler.tool.linter.LinterCompressBlob">
+        <run>true</run>
+        <config>
+          <property name="minCompressionPercent">30</property>
+        </config>
+      </linter>
+  
+    Default value is minCompressionPercent = 20, means if compressed file is more than 20% smaller than original one, you shoud compress it.   
+    Default severity : high.
 
 
 **Linter :** *io.github.mbarre.schemacrawler.tools.LinterForeignKeyMismatchLazy*  

@@ -141,4 +141,17 @@
         <severity>high</severity>
         <table-exclusion-pattern><![CDATA[.*databasechangelog*]]></table-exclusion-pattern>
     </linter>
+    <linter id="io.github.mbarre.schemacrawler.tool.linter.LinterCompressBlob">
+        <run>true</run>
+        <severity>high</severity>
+        <table-exclusion-pattern><![CDATA[.*databasechangelog*]]></table-exclusion-pattern>
+    </linter>
+    <linter id="io.github.mbarre.schemacrawler.tool.linter.LinterCompressBlob">
+        <run>true</run>
+        <severity>high</severity>
+        <table-exclusion-pattern><![CDATA[.*databasechangelog*]]></table-exclusion-pattern>
+        <config>
+            <property name="minCompressionPercent">30</property>
+        </config>
+    </linter>
 </schemacrawler-linter-configs>

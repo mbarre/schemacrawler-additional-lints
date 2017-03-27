@@ -23,7 +23,7 @@
     </menu>
     <menu name="SchemaCrawler">
       <item name="Homepage" href="http://sualeh.github.io/SchemaCrawler/" />
-      <item name="Download" href="https://github.com/sualeh/SchemaCrawler/releases/" />
+      <item name="Download" href="https://github.com/sualeh/SchemaCrawler/releases/"/>
     </menu>
     <links>
       <!-- Plugin links -->
