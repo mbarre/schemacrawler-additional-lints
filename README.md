@@ -7,8 +7,6 @@
 [![Join the chat at https://gitter.im/mbarre/schemacrawler-additionallints](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/mbarre/schemacrawler-additional-lints?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Dependency Status](https://www.versioneye.com/user/projects/57b3946ab4fa6e004171f956/badge.svg?style=flat)](https://www.versioneye.com/user/projects/57b3946ab4fa6e004171f956) 
 
-<a href="https://www.jetbrains.com/idea/?fromMenu"><img src="https://raw.githubusercontent.com/mbarre/schemacrawler-additional-lints/master/src/site/img/logo.png" height="42" width="42"></a>
-
 <a href="https://zenhub.com"><img src="https://raw.githubusercontent.com/ZenHubIO/support/master/zenhub-badge.png"></a>
 
 Some additional lints for [Schemacrawler](http://sualeh.github.io/SchemaCrawler/)
@@ -86,5 +84,5 @@ If you like this lint library, you can donate :
 including just some kind words on our gitter
 
 # Thanks
-
-Thanks to Jetbrains for offering me an [IntelliJ IDEA](https://www.jetbrains.com/idea/?fromMenu) Free Open Source License for this project. 
+<a href="https://www.jetbrains.com/idea/?fromMenu"><img src="https://raw.githubusercontent.com/mbarre/schemacrawler-additional-lints/master/src/site/img/logo.png" height="42" width="42"></a>
+To Jetbrains for offering an [IntelliJ IDEA](https://www.jetbrains.com/idea/?fromMenu) Free Open Source License to this project contributors.
