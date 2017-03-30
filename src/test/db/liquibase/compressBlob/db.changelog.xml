@@ -23,23 +23,21 @@
 
 
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
 
 	<changeSet author="mbarre" id="1490324972722-1" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
 
-	    <createTable  tableName="test_compress_blob" remarks="table for lint LinterCompressBlobTest">
-	    	<column name="id" 				type="int"              remarks="primary key"/>
-	        <column name="content_blob"     type="blob"             remarks="column with Blob"/>
-	    </createTable>
+		<sql>CREATE TABLE test_compress_blob(
+			id integer NOT NULL,
+			content_blob bytea NULL)</sql>
 
 	    <addPrimaryKey columnNames="id"
 	            constraintName="pk_test"
 	            schemaName="public"
 	            tableName="test_compress_blob"/>
 
-		<addAutoIncrement columnDataType="int"  columnName="id" incrementBy="1" tableName="test_compress_blob"/>
-		
 		<insert tableName="test_compress_blob">
+			<column name="id" valueNumeric="1"/>
 			<column name="content_blob" valueBlobFile="test.txt"/>
 		</insert>
 

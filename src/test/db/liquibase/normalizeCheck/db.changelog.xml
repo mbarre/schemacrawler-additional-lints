@@ -23,7 +23,7 @@
 
 
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
 
 <changeSet author="adriens" id="62ae17c0-4086-11e5-b970-0800200c9a66" objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
     <createTable  tableName="test_normalized" remarks="table for lint LinterColumnContentNotNormalized">
