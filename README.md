@@ -7,9 +7,7 @@
 [![Join the chat at https://gitter.im/mbarre/schemacrawler-additionallints](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/mbarre/schemacrawler-additional-lints?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Dependency Status](https://www.versioneye.com/user/projects/57b3946ab4fa6e004171f956/badge.svg?style=flat)](https://www.versioneye.com/user/projects/57b3946ab4fa6e004171f956) 
 
-
-[![Github Releases](https://img.shields.io/github/downloads/mbarre/schemacrawler-additional-lints/latest/total.svg?maxAge=2592000)]()
-[![Github All Releases](https://img.shields.io/github/downloads/mbarre/schemacrawler-additional-lints/total.svg?maxAge=2592000)](http://www.somsubhra.com/github-release-stats/?username=mbarre&repository=schemacrawler-additional-lints)
+<a href="https://www.jetbrains.com/idea/?fromMenu"><img src="./src/site/img/logo.svg"></a>
 
 <a href="https://zenhub.com"><img src="https://raw.githubusercontent.com/ZenHubIO/support/master/zenhub-badge.png"></a>
 
