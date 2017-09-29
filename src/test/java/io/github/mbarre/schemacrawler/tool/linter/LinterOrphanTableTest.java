@@ -70,7 +70,7 @@ public class LinterOrphanTableTest extends BaseLintTest {
         Assert.assertEquals(1,lints.size());
         Assert.assertEquals(LinterOrphanTable.class.getName(), lints.get(0).getId());
         Assert.assertEquals("table3", lints.get(0).getValue());
-        Assert.assertEquals("table has no relation with any other table", lints.get(0).getDescription());
+        Assert.assertEquals("table has no relation with any other table.", lints.get(0).getDescription());
         Assert.assertEquals("high", lints.get(0).getSeverity());
     }
     
