@@ -33,64 +33,45 @@ import schemacrawler.tools.lint.LinterRegistry;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.util.List;
-import schemacrawler.schemacrawler.SchemaCrawlerException;
-
+import java.util.Objects;
 
 /**
- * Check columns with JSON content but not JSON or JSONB type
  * @author mbarre
- * @since 1.0.1
  */
-public class LinterColumnSizeTest extends BaseLintTest {
+public class LinterOrphanTableTest extends BaseLintTest {
     
-    private static final String CHANGE_LOG_COLUMNSIZE_CHECK = "src/test/db/liquibase/columnSizeCheck/db.changelog.xml";
+    private static final String CHANGE_LOG_ORPHANTABLE_CHECK = "src/test/db/liquibase/orphanTableCheck/db.changelog.xml";
     private static PostgreSqlDatabase database;
     
     @BeforeClass
-    public static void  init() throws SQLException{
+    public static void  init(){
         database = new PostgreSqlDatabase();
-        database.setUp(CHANGE_LOG_COLUMNSIZE_CHECK);
+        database.setUp(CHANGE_LOG_ORPHANTABLE_CHECK);
     }
     
     @Test
-    public void testLint_varchar() throws Exception{
+    public void testLint() throws Exception{
         
         final LinterRegistry registry = new LinterRegistry();
-        Assert.assertTrue(registry.hasLinter(LinterColumnSize.class.getName()));
+        Assert.assertTrue(registry.hasLinter(LinterTableNameNotInLowerCase.class.getName()));
         
         final SchemaCrawlerOptions options = new SchemaCrawlerOptions();
+        // Set what details are required in the schema - this affects the
+        // time taken to crawl the schema
         options.setSchemaInfoLevel(SchemaInfoLevelBuilder.standard());
-        options.setTableNamePattern("test_varchar");
+        //options.setTableNamePattern("\"TEST_CASE\"");
         
         Connection connection = DriverManager.getConnection(PostgreSqlDatabase.CONNECTION_STRING,
                 PostgreSqlDatabase.USER_NAME, database.getPostgresPassword());
-        
+
         List<LintWrapper> lints = executeToJsonAndConvertToLintList(options, connection);
-        
-        Assert.assertEquals(2, lints.size());
-        int index = 0;
-        if(LinterOrphanTable.class.getName().equals(lints.get(index).getId()))
-            index = 1;
-        Assert.assertEquals(LinterColumnSize.class.getName(), lints.get(index).getId());
-        Assert.assertEquals("public.test_varchar.content_over", lints.get(index).getValue());
-        Assert.assertEquals("Column is oversized (100 char.) regarding its content (max: 5 char.).", lints.get(index).getDescription());
-        Assert.assertEquals("high", lints.get(index).getSeverity());
-    }
-    
-    @Test
-    public void testLint_getDescription () throws SchemaCrawlerException{
-        final LinterRegistry registry = new LinterRegistry();
-        LinterColumnSize linter = (LinterColumnSize)registry.newLinter(LinterColumnSize.class.getName());
-        Assert.assertEquals("Column is oversized regarding its content", linter.getDescription());
-    }
-    
-    @Test
-    public void testLint_getSummary () throws SchemaCrawlerException{
-        final LinterRegistry registry = new LinterRegistry();
-        LinterColumnSize linter = (LinterColumnSize)registry.newLinter(LinterColumnSize.class.getName());
-        Assert.assertEquals("oversized column", linter.getSummary());
+
+        Assert.assertEquals(1,lints.size());
+        Assert.assertEquals(LinterOrphanTable.class.getName(), lints.get(0).getId());
+        Assert.assertEquals("table3", lints.get(0).getValue());
+        Assert.assertEquals("table has no relation with any other table", lints.get(0).getDescription());
+        Assert.assertEquals("high", lints.get(0).getSeverity());
     }
     
 }

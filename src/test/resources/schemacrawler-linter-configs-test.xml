@@ -112,6 +112,12 @@
         <config>
         </config>
     </linter>
+    <linter id="schemacrawler.tools.linter.LinterTableWithNoSurrogatePrimaryKey">
+        <run>false</run>
+        <severity>high</severity>
+        <config>
+        </config>
+    </linter>
     <linter id="io.github.mbarre.schemacrawler.tool.linter.LinterColumnSize">
         <run>true</run>
         <severity>high</severity>

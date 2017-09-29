@@ -75,11 +75,14 @@ public class LinterJsonTypeColumnTest extends BaseLintTest {
             
             List<LintWrapper> lints = executeToJsonAndConvertToLintList(options, connection);
             
-            Assert.assertEquals(1,lints.size());
-            Assert.assertEquals(LinterJsonTypeColumn.class.getName(), lints.get(0).getId());
-            Assert.assertEquals("content_json", lints.get(0).getValue());
-            Assert.assertEquals("\"JSONB\" type should be used instead of \"JSON\" to store JSON data", lints.get(0).getDescription());
-            Assert.assertEquals("high", lints.get(0).getSeverity());
+            Assert.assertEquals(2,lints.size());
+            int index = 0;
+            if(LinterOrphanTable.class.getName().equals(lints.get(index).getId()))
+                index = 1;
+            Assert.assertEquals(LinterJsonTypeColumn.class.getName(), lints.get(index).getId());
+            Assert.assertEquals("content_json", lints.get(index).getValue());
+            Assert.assertEquals("\"JSONB\" type should be used instead of \"JSON\" to store JSON data", lints.get(index).getDescription());
+            Assert.assertEquals("high", lints.get(index).getSeverity());
         }
     }
     

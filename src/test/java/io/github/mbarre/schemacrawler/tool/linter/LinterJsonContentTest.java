@@ -78,11 +78,14 @@ public class LinterJsonContentTest extends BaseLintTest {
             
             List<LintWrapper> lints = executeToJsonAndConvertToLintList(options, connection);
             
-            Assert.assertEquals(1, lints.size());
-            Assert.assertEquals(LinterJsonContent.class.getName(), lints.get(0).getId());
-            Assert.assertEquals("public.test_json.content", lints.get(0).getValue());
-            Assert.assertEquals("should be JSON or JSONB type", lints.get(0).getDescription());
-            Assert.assertEquals("high", lints.get(0).getSeverity());
+            Assert.assertEquals(2, lints.size());
+            int index = 0;
+            if(LinterOrphanTable.class.getName().equals(lints.get(index).getId()))
+                index = 1;
+            Assert.assertEquals(LinterJsonContent.class.getName(), lints.get(index).getId());
+            Assert.assertEquals("public.test_json.content", lints.get(index).getValue());
+            Assert.assertEquals("should be JSON or JSONB type", lints.get(index).getDescription());
+            Assert.assertEquals("high", lints.get(index).getSeverity());
         }
     }
     

@@ -68,7 +68,7 @@ public class LinterBlobTypeColumnTest extends BaseLintTest {
 
         List<LintWrapper> lints = executeToJsonAndConvertToLintList(options, connection);
 
-        Assert.assertEquals(2,lints.size());
+        Assert.assertEquals(3,lints.size());
         boolean lint1Dectected = false;
         boolean lint2Dectected = false;
         for (LintWrapper lint : lints) {
@@ -86,6 +86,9 @@ public class LinterBlobTypeColumnTest extends BaseLintTest {
                     Assert.assertEquals("high", lint.getSeverity());
                     lint2Dectected = true;
                 }
+            }
+            else if (Objects.equals(LinterByteaTypeColumn.class.getName(), lint.getId())){
+                //ignore
             }
         }
         Assert.assertTrue(lint1Dectected && lint2Dectected);

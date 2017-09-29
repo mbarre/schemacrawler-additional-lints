@@ -66,11 +66,14 @@ public class LinterXmlContentTest extends BaseLintTest {
 				PostgreSqlDatabase.USER_NAME, database.getPostgresPassword());
 
 		List<LintWrapper> lints = executeToJsonAndConvertToLintList(options, connection);
-		Assert.assertEquals(1,lints.size());
-		Assert.assertEquals(LinterXmlContent.class.getName(), lints.get(0).getId());
-		Assert.assertEquals("public.test_xml.content", lints.get(0).getValue());
-		Assert.assertEquals("should be XML type", lints.get(0).getDescription());
-		Assert.assertEquals("high", lints.get(0).getSeverity());
+		Assert.assertEquals(2,lints.size());
+		int index = 0;
+		if(LinterOrphanTable.class.getName().equals(lints.get(index).getId()))
+			index = 1;
+		Assert.assertEquals(LinterXmlContent.class.getName(), lints.get(index).getId());
+		Assert.assertEquals("public.test_xml.content", lints.get(index).getValue());
+		Assert.assertEquals("should be XML type", lints.get(index).getDescription());
+		Assert.assertEquals("high", lints.get(index).getSeverity());
 
 	}
 

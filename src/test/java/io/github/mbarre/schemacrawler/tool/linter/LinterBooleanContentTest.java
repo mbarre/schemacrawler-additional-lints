@@ -68,12 +68,14 @@ public class LinterBooleanContentTest extends BaseLintTest {
 
 		List<LintWrapper> lints = executeToJsonAndConvertToLintList(options, connection);
 		Pattern p = Pattern.compile("test_(.*)_boolean");
-		Assert.assertEquals(8, lints.size());
+		Assert.assertEquals(16, lints.size());
 		for (LintWrapper lint :	lints) {
-			Assert.assertEquals(LinterBooleanContent.class.getName(), lint.getId());
-			Assert.assertEquals("should be boolean type", lint.getDescription());
-			Assert.assertEquals("high", lint.getSeverity());
-			Assert.assertTrue(p.matcher(lint.getTableName()).matches());
+			if(!LinterOrphanTable.class.getName().equals(lint.getId())) {
+				Assert.assertEquals(LinterBooleanContent.class.getName(), lint.getId());
+				Assert.assertEquals("should be boolean type", lint.getDescription());
+				Assert.assertEquals("high", lint.getSeverity());
+				Assert.assertTrue(p.matcher(lint.getTableName()).matches());
+			}
 		}
 		Assert.assertTrue(contains(lints, "public.test_bigint_boolean.bigint_boolean"));
 		Assert.assertTrue(contains(lints, "public.test_double_boolean.double_boolean"));
