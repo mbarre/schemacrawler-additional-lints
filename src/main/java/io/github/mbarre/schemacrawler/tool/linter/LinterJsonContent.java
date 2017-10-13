@@ -101,7 +101,7 @@ public class LinterJsonContent extends BaseLinter {
                         try(ResultSet rs = stmt.executeQuery(sql)){
                             boolean found = false;
                             while (rs.next() && !found) {
-                                String data = rs.getString(column.getName());
+                                String data = rs.getString(columnName);
 
                                 if(JSonUtils.isJsonContent(data)){
                                     addLint(table, getDescription(), column.getFullName());
