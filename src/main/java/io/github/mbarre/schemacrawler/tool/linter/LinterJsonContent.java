@@ -26,14 +26,12 @@ import io.github.mbarre.schemacrawler.utils.JSonUtils;
 import io.github.mbarre.schemacrawler.utils.LintUtils;
 import schemacrawler.schema.Column;
 import schemacrawler.schema.Table;
+import schemacrawler.schemacrawler.Config;
 import schemacrawler.schemacrawler.SchemaCrawlerException;
 import schemacrawler.tools.lint.BaseLinter;
 import schemacrawler.tools.lint.LintSeverity;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -47,11 +45,21 @@ public class LinterJsonContent extends BaseLinter {
 
     private static final Logger LOGGER = Logger.getLogger(LinterJsonContent.class.getName());
 
+    public static final String SAMPLE_SIZE_PARAM = "sampleSize";
+
+    private Integer sampleSize;
+
     /**
      * The lint that parses and test Json content
      */
     public LinterJsonContent () {
+        sampleSize = 1000;
         setSeverity(LintSeverity.high);
+    }
+
+    @Override
+    public void configure(Config config) {
+        sampleSize = config.getIntegerValue(SAMPLE_SIZE_PARAM, 1000);
     }
 
     /**
@@ -86,6 +94,8 @@ public class LinterJsonContent extends BaseLinter {
             if("PostgreSQL".equalsIgnoreCase(connection.getMetaData().getDatabaseProductName()) &&
                     "9.4".compareTo(connection.getMetaData().getDatabaseProductVersion()) <= 0){
 
+                LOGGER.log(Level.CONFIG, "<"+SAMPLE_SIZE_PARAM+"> parameter set to {0}%", sampleSize);
+
                 String sql;
                 List<Column> columns = getColumns(table);
                 String columnName;
@@ -95,7 +105,10 @@ public class LinterJsonContent extends BaseLinter {
                         columnName = column.getName().replaceAll("\"", "");
                         LOGGER.log(Level.INFO, "Checking {0}...",columnName);
 
-                        sql = "select \"" + columnName + "\" from \"" + tableName +"\"" ;
+
+
+                        sql = "select \"" + columnName + "\" from \"" + tableName +"\" ORDER BY random()" ;
+                        stmt.setMaxRows(sampleSize);
                         LOGGER.log(Level.CONFIG, "SQL : {0}", sql);
 
                         try(ResultSet rs = stmt.executeQuery(sql)){
