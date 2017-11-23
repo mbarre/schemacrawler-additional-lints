@@ -136,10 +136,16 @@
     <linter id="io.github.mbarre.schemacrawler.tool.linter.LinterJsonContent">
     	<run>true</run>
     	<table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
+        <config>
+            <property name="sampleSize">1000</property>
+        </config>
     </linter>
     <linter id="io.github.mbarre.schemacrawler.tool.linter.LinterXmlContent">
     	<run>true</run>
     	<table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
+        <config>
+            <property name="sampleSize">1000</property>
+        </config>
     </linter>
     <linter id="io.github.mbarre.schemacrawler.tool.linter.LinterBooleanContent">
     	<run>true</run>
