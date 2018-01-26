@@ -45,7 +45,7 @@ import java.util.regex.Pattern;
  */
 public class LinterCompressBlobTest extends BaseLintTest {
 
-	private static final String CHANGE_LOG_COMPRESS_BLOB_CHECK = "src/test/db/liquibase/compressBlob/db.changelog.xml";
+	private static final String CHANGE_LOG_COMPRESS_BLOB_CHECK = "src/test/db/liquibase/LinterCompressBlob/db.changelog.xml";
 	private static PostgreSqlDatabase database;
 
 	@BeforeClass
@@ -66,11 +66,11 @@ public class LinterCompressBlobTest extends BaseLintTest {
 		Connection connection = DriverManager.getConnection(PostgreSqlDatabase.CONNECTION_STRING,
 				PostgreSqlDatabase.USER_NAME, database.getPostgresPassword());
 
-		List<LintWrapper> lints = executeToJsonAndConvertToLintList(options, connection);
+		List<LintWrapper> lints = executeToJsonAndConvertToLintList(LinterCompressBlob.class.getSimpleName(), options, connection);
 		Assert.assertNotNull(lints);
 		Assert.assertTrue(lints.stream().anyMatch(lint -> Objects.equals(lint.getDescription(), "Blob should be compressed")));
-		Assert.assertTrue(lints.stream().anyMatch(lint -> Objects.equals(lint.getDescription(), "BLOB should not be used")));
-		Assert.assertTrue(lints.stream().anyMatch(lint -> Objects.equals(lint.getDescription(), "OID should be used instead of BYTEA")));
+//		Assert.assertTrue(lints.stream().anyMatch(lint -> Objects.equals(lint.getDescription(), "BLOB should not be used")));
+//		Assert.assertTrue(lints.stream().anyMatch(lint -> Objects.equals(lint.getDescription(), "OID should be used instead of BYTEA")));
 
 	}
 

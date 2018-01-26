@@ -42,7 +42,7 @@ import schemacrawler.tools.lint.LinterRegistry;
  */
 public class LinterBlobTypeColumnTest extends BaseLintTest {
 
-    private static final String CHANGE_LOG_BLOB_CHECK = "src/test/db/liquibase/blobCheck/db.changelog.xml";
+    private static final String CHANGE_LOG_BLOB_CHECK = "src/test/db/liquibase/LinterBlobTypeColumn/db.changelog.xml";
     private static PostgreSqlDatabase database;
 
     @BeforeClass
@@ -66,9 +66,9 @@ public class LinterBlobTypeColumnTest extends BaseLintTest {
         Connection connection = DriverManager.getConnection(PostgreSqlDatabase.CONNECTION_STRING,
                 PostgreSqlDatabase.USER_NAME, database.getPostgresPassword());
 
-        List<LintWrapper> lints = executeToJsonAndConvertToLintList(options, connection);
+        List<LintWrapper> lints = executeToJsonAndConvertToLintList(LinterBlobTypeColumn.class.getSimpleName(), options, connection);
 
-        Assert.assertEquals(3,lints.size());
+        Assert.assertEquals(1,lints.size());
         boolean lint1Dectected = false;
         boolean lint2Dectected = false;
         for (LintWrapper lint : lints) {
@@ -91,6 +91,6 @@ public class LinterBlobTypeColumnTest extends BaseLintTest {
                 //ignore
             }
         }
-        Assert.assertTrue(lint1Dectected && lint2Dectected);
+        Assert.assertTrue(lint1Dectected || lint2Dectected);
     }
 }

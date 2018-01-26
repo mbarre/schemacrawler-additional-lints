@@ -41,7 +41,7 @@ import java.util.Objects;
  */
 public class LinterOrphanTableTest extends BaseLintTest {
     
-    private static final String CHANGE_LOG_ORPHANTABLE_CHECK = "src/test/db/liquibase/orphanTableCheck/db.changelog.xml";
+    private static final String CHANGE_LOG_ORPHANTABLE_CHECK = "src/test/db/liquibase/LinterOrphanTable/db.changelog.xml";
     private static PostgreSqlDatabase database;
     
     @BeforeClass
@@ -65,7 +65,7 @@ public class LinterOrphanTableTest extends BaseLintTest {
         Connection connection = DriverManager.getConnection(PostgreSqlDatabase.CONNECTION_STRING,
                 PostgreSqlDatabase.USER_NAME, database.getPostgresPassword());
 
-        List<LintWrapper> lints = executeToJsonAndConvertToLintList(options, connection);
+        List<LintWrapper> lints = executeToJsonAndConvertToLintList(LinterOrphanTable.class.getSimpleName(), options, connection);
 
         Assert.assertEquals(1,lints.size());
         Assert.assertEquals(LinterOrphanTable.class.getName(), lints.get(0).getId());

@@ -43,7 +43,7 @@ import java.util.List;
  */
 public class LinterXmlContentTest extends BaseLintTest {
 
-	private static final String CHANGE_LOG_XML_CHECK = "src/test/db/liquibase/xmlContentCheck/db.changelog.xml";
+	private static final String CHANGE_LOG_XML_CHECK = "src/test/db/liquibase/LinterXmlContent/db.changelog.xml";
 	private static PostgreSqlDatabase database;
 
 	@BeforeClass
@@ -65,11 +65,9 @@ public class LinterXmlContentTest extends BaseLintTest {
 		Connection connection = DriverManager.getConnection(PostgreSqlDatabase.CONNECTION_STRING,
 				PostgreSqlDatabase.USER_NAME, database.getPostgresPassword());
 
-		List<LintWrapper> lints = executeToJsonAndConvertToLintList(options, connection);
-		Assert.assertEquals(2,lints.size());
+		List<LintWrapper> lints = executeToJsonAndConvertToLintList(LinterXmlContent.class.getSimpleName(), options, connection);
+		Assert.assertEquals(1,lints.size());
 		int index = 0;
-		if(LinterOrphanTable.class.getName().equals(lints.get(index).getId()))
-			index = 1;
 		Assert.assertEquals(LinterXmlContent.class.getName(), lints.get(index).getId());
 		Assert.assertEquals("public.test_xml.content", lints.get(index).getValue());
 		Assert.assertEquals("should be XML type", lints.get(index).getDescription());

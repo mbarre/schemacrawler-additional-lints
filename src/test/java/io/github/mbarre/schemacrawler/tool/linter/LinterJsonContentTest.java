@@ -45,7 +45,7 @@ import schemacrawler.schemacrawler.SchemaCrawlerException;
  */
 public class LinterJsonContentTest extends BaseLintTest {
     
-    private static final String CHANGE_LOG_JSON_CHECK = "src/test/db/liquibase/jsonContentCheck/db.changelog.xml";
+    private static final String CHANGE_LOG_JSON_CHECK = "src/test/db/liquibase/LinterJsonContent/db.changelog.xml";
     private static PostgreSqlDatabase database;
     private static boolean jsonbSupport = false;
     
@@ -76,12 +76,10 @@ public class LinterJsonContentTest extends BaseLintTest {
             Connection connection = DriverManager.getConnection(PostgreSqlDatabase.CONNECTION_STRING,
                     PostgreSqlDatabase.USER_NAME, database.getPostgresPassword());
             
-            List<LintWrapper> lints = executeToJsonAndConvertToLintList(options, connection);
+            List<LintWrapper> lints = executeToJsonAndConvertToLintList(LinterJsonContent.class.getSimpleName(), options, connection);
             
-            Assert.assertEquals(2, lints.size());
+            Assert.assertEquals(1, lints.size());
             int index = 0;
-            if(LinterOrphanTable.class.getName().equals(lints.get(index).getId()))
-                index = 1;
             Assert.assertEquals(LinterJsonContent.class.getName(), lints.get(index).getId());
             Assert.assertEquals("public.test_json.content", lints.get(index).getValue());
             Assert.assertEquals("should be JSON or JSONB type", lints.get(index).getDescription());

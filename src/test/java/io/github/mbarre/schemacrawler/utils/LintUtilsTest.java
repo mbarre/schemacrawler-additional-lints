@@ -25,6 +25,7 @@ package io.github.mbarre.schemacrawler.utils;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.lang.reflect.Type;
 import java.sql.Types;
 
 /**
@@ -210,6 +211,49 @@ public class LintUtilsTest {
         Assert.assertFalse(LintUtils.isSqlTypeBinayBased(Types.TIMESTAMP));
         Assert.assertFalse(LintUtils.isSqlTypeBinayBased(Types.TIMESTAMP_WITH_TIMEZONE));
         
+    }
+
+    /**
+     * Test of testIsSqlTypeNumericBased method, of class LintUtils.
+     */
+    @Test
+    public void testIsSqlTypeDateBased() {
+        Assert.assertTrue(LintUtils.isSqlTypeDateBased(Types.DATE));
+        Assert.assertTrue(LintUtils.isSqlTypeDateBased(Types.TIME));
+        Assert.assertTrue(LintUtils.isSqlTypeDateBased(Types.TIME_WITH_TIMEZONE));
+        Assert.assertTrue(LintUtils.isSqlTypeDateBased(Types.TIMESTAMP));
+        Assert.assertTrue(LintUtils.isSqlTypeDateBased(Types.TIMESTAMP_WITH_TIMEZONE));
+
+        Assert.assertFalse(LintUtils.isSqlTypeDateBased(Types.BINARY));
+        Assert.assertFalse(LintUtils.isSqlTypeDateBased(Types.BLOB));
+        Assert.assertFalse(LintUtils.isSqlTypeDateBased(Types.LONGVARBINARY));
+        Assert.assertFalse(LintUtils.isSqlTypeDateBased(Types.VARBINARY));
+        Assert.assertFalse(LintUtils.isSqlTypeDateBased(Types.BIGINT));
+        Assert.assertFalse(LintUtils.isSqlTypeDateBased(Types.DECIMAL));
+        Assert.assertFalse(LintUtils.isSqlTypeDateBased(Types.NUMERIC));
+        Assert.assertFalse(LintUtils.isSqlTypeDateBased(Types.REAL));
+        Assert.assertFalse(LintUtils.isSqlTypeDateBased(Types.SMALLINT));
+        Assert.assertFalse(LintUtils.isSqlTypeDateBased(Types.TINYINT));
+        Assert.assertFalse(LintUtils.isSqlTypeDateBased(Types.DOUBLE));
+        Assert.assertFalse(LintUtils.isSqlTypeDateBased(Types.FLOAT));
+        Assert.assertFalse(LintUtils.isSqlTypeDateBased(Types.INTEGER));
+        Assert.assertFalse(LintUtils.isSqlTypeDateBased(Types.NVARCHAR));
+        Assert.assertFalse(LintUtils.isSqlTypeDateBased(Types.LONGNVARCHAR));
+        Assert.assertFalse(LintUtils.isSqlTypeDateBased(Types.LONGVARCHAR));
+        Assert.assertFalse(LintUtils.isSqlTypeDateBased(Types.CHAR));
+        Assert.assertFalse(LintUtils.isSqlTypeDateBased(Types.NCHAR));
+        Assert.assertFalse(LintUtils.isSqlTypeDateBased(Types.VARCHAR));
+        Assert.assertFalse(LintUtils.isSqlTypeDateBased(Types.BIT));
+        Assert.assertFalse(LintUtils.isSqlTypeDateBased(Types.ARRAY));
+        Assert.assertFalse(LintUtils.isSqlTypeDateBased(Types.BOOLEAN));
+        Assert.assertFalse(LintUtils.isSqlTypeDateBased(Types.CLOB));
+        Assert.assertFalse(LintUtils.isSqlTypeDateBased(Types.DATALINK));
+        Assert.assertFalse(LintUtils.isSqlTypeDateBased(Types.DISTINCT));
+        Assert.assertFalse(LintUtils.isSqlTypeDateBased(Types.JAVA_OBJECT));
+        Assert.assertFalse(LintUtils.isSqlTypeDateBased(Types.NCLOB));
+        Assert.assertFalse(LintUtils.isSqlTypeDateBased(Types.NULL));
+        Assert.assertFalse(LintUtils.isSqlTypeDateBased(Types.OTHER));
+        Assert.assertFalse(LintUtils.isSqlTypeDateBased(Types.SQLXML));
     }
     
 }

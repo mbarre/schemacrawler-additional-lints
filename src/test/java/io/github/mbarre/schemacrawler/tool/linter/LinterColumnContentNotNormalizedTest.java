@@ -43,7 +43,7 @@ import java.util.Objects;
 public class LinterColumnContentNotNormalizedTest  extends BaseLintTest {
 
     private static PostgreSqlDatabase database;
-    private static final String CHANGE_LOG_NORMALIZE_CHECK = "src/test/db/liquibase/normalizeCheck/db.changelog.xml";
+    private static final String CHANGE_LOG_NORMALIZE_CHECK = "src/test/db/liquibase/LinterColumnContentNotNormalized/db.changelog.xml";
 
 
     @BeforeClass
@@ -68,7 +68,7 @@ public class LinterColumnContentNotNormalizedTest  extends BaseLintTest {
         Connection connection = DriverManager.getConnection(PostgreSqlDatabase.CONNECTION_STRING,
                 PostgreSqlDatabase.USER_NAME, database.getPostgresPassword());
 
-        List<LintWrapper> lints = executeToJsonAndConvertToLintList(options, connection);
+        List<LintWrapper> lints = executeToJsonAndConvertToLintList(LinterColumnContentNotNormalized.class.getSimpleName(), options, connection);
 
         // now we have the json array, let's filter only the one we want in our lint
         // lint id : [io.github.mbarre.schemacrawler.tool.linter.LinterColumnContentNotNormalized]

@@ -45,7 +45,7 @@ import schemacrawler.schemacrawler.SchemaCrawlerException;
  */
 public class LinterColumnSizeTest extends BaseLintTest {
     
-    private static final String CHANGE_LOG_COLUMNSIZE_CHECK = "src/test/db/liquibase/columnSizeCheck/db.changelog.xml";
+    private static final String CHANGE_LOG_COLUMNSIZE_CHECK = "src/test/db/liquibase/LinterColumnSize/db.changelog.xml";
     private static PostgreSqlDatabase database;
     
     @BeforeClass
@@ -67,12 +67,10 @@ public class LinterColumnSizeTest extends BaseLintTest {
         Connection connection = DriverManager.getConnection(PostgreSqlDatabase.CONNECTION_STRING,
                 PostgreSqlDatabase.USER_NAME, database.getPostgresPassword());
         
-        List<LintWrapper> lints = executeToJsonAndConvertToLintList(options, connection);
+        List<LintWrapper> lints = executeToJsonAndConvertToLintList(LinterColumnSize.class.getSimpleName(), options, connection);
         
-        Assert.assertEquals(2, lints.size());
+        Assert.assertEquals(1, lints.size());
         int index = 0;
-        if(LinterOrphanTable.class.getName().equals(lints.get(index).getId()))
-            index = 1;
         Assert.assertEquals(LinterColumnSize.class.getName(), lints.get(index).getId());
         Assert.assertEquals("public.test_varchar.content_over", lints.get(index).getValue());
         Assert.assertEquals("Column is oversized (100 char.) regarding its content (max: 5 char.).", lints.get(index).getDescription());

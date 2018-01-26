@@ -44,7 +44,7 @@ import java.util.List;
  */
 public class LinterForeignKeyMismatchLazyTest extends BaseLintTest {
     
-    private static final String CHANGE_LOG_FK_MISMATCH_CHECK = "src/test/db/liquibase/primaryKeyMismatchCheck/db.changelog.xml";
+    private static final String CHANGE_LOG_FK_MISMATCH_CHECK = "src/test/db/liquibase/LinterForeignKeyMismatchLazy/db.changelog.xml";
     private static PostgreSqlDatabase database;
     
     @BeforeClass
@@ -65,7 +65,7 @@ public class LinterForeignKeyMismatchLazyTest extends BaseLintTest {
         Connection connection = DriverManager.getConnection(PostgreSqlDatabase.CONNECTION_STRING,
                 PostgreSqlDatabase.USER_NAME, database.getPostgresPassword());
         
-        List<LintWrapper> lints = executeToJsonAndConvertToLintList(options, connection);
+        List<LintWrapper> lints = executeToJsonAndConvertToLintList(LinterForeignKeyMismatchLazy.class.getSimpleName(), options, connection);
         Assert.assertEquals(1,lints.size());
         Assert.assertEquals(LinterForeignKeyMismatchLazy.class.getName(), lints.get(0).getId());
         Assert.assertEquals("fk_test_2", lints.get(0).getValue());

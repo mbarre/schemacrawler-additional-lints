@@ -56,11 +56,11 @@ public abstract class BaseLintTest {
     private static final Logger LOGGER = Logger.getLogger(BaseLintTest.class.getName());
 
 
-    protected List<LintWrapper> executeToJsonAndConvertToLintList(SchemaCrawlerOptions options, Connection connection)  throws Exception{
+    protected List<LintWrapper> executeToJsonAndConvertToLintList(String linterName, SchemaCrawlerOptions options, Connection connection)  throws Exception{
 
         final Executable executable = new SchemaCrawlerExecutable("lint");
 
-        final Path linterConfigsFile = FileSystems.getDefault().getPath("", this.getClass().getClassLoader().getResource("schemacrawler-linter-configs-test.xml").getPath());
+        final Path linterConfigsFile = FileSystems.getDefault().getPath("", this.getClass().getClassLoader().getResource(linterName + "/schemacrawler-linter-configs-test.xml").getPath());
         final LintOptionsBuilder optionsBuilder = new LintOptionsBuilder();
         optionsBuilder.withLinterConfigs(linterConfigsFile.toString());
         executable.setAdditionalConfiguration(optionsBuilder.toConfig());

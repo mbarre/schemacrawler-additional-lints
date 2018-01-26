@@ -45,7 +45,7 @@ import java.util.regex.Pattern;
  */
 public class LinterBooleanContentTest extends BaseLintTest {
 
-	private static final String CHANGE_LOG_BOOLEAN_CHECK = "src/test/db/liquibase/booleanContentCheck/db.changelog.xml";
+	private static final String CHANGE_LOG_BOOLEAN_CHECK = "src/test/db/liquibase/LinterBooleanContentColumn/db.changelog.xml";
 	private static PostgreSqlDatabase database;
 
 	@BeforeClass
@@ -66,17 +66,8 @@ public class LinterBooleanContentTest extends BaseLintTest {
 		Connection connection = DriverManager.getConnection(PostgreSqlDatabase.CONNECTION_STRING,
 				PostgreSqlDatabase.USER_NAME, database.getPostgresPassword());
 
-		List<LintWrapper> lints = executeToJsonAndConvertToLintList(options, connection);
-		Pattern p = Pattern.compile("test_(.*)_boolean");
-		Assert.assertEquals(16, lints.size());
-		for (LintWrapper lint :	lints) {
-			if(!LinterOrphanTable.class.getName().equals(lint.getId())) {
-				Assert.assertEquals(LinterBooleanContent.class.getName(), lint.getId());
-				Assert.assertEquals("should be boolean type", lint.getDescription());
-				Assert.assertEquals("high", lint.getSeverity());
-				Assert.assertTrue(p.matcher(lint.getTableName()).matches());
-			}
-		}
+		List<LintWrapper> lints = executeToJsonAndConvertToLintList(LinterBooleanContent.class.getSimpleName(), options, connection);
+		Assert.assertEquals(8, lints.size());
 		Assert.assertTrue(contains(lints, "public.test_bigint_boolean.bigint_boolean"));
 		Assert.assertTrue(contains(lints, "public.test_double_boolean.double_boolean"));
 		Assert.assertTrue(contains(lints, "public.test_float_boolean.float_boolean"));

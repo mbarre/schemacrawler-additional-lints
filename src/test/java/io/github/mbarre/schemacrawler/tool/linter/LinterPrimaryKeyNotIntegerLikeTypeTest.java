@@ -42,7 +42,7 @@ import schemacrawler.tools.lint.LinterRegistry;
  */
 public class LinterPrimaryKeyNotIntegerLikeTypeTest extends BaseLintTest {
     
-    private static final String CHANGE_LOG_PKTYPE_CHECK = "src/test/db/liquibase/primaryKeyTypeCheck/db.changelog.xml";
+    private static final String CHANGE_LOG_PKTYPE_CHECK = "src/test/db/liquibase/LinterPrimaryKeyNotIntegerLikeType/db.changelog.xml";
     private static PostgreSqlDatabase database;
     
     
@@ -66,7 +66,7 @@ public class LinterPrimaryKeyNotIntegerLikeTypeTest extends BaseLintTest {
         Connection connection = DriverManager.getConnection(PostgreSqlDatabase.CONNECTION_STRING,
                 PostgreSqlDatabase.USER_NAME, database.getPostgresPassword());
         
-        List<LintWrapper> lints = executeToJsonAndConvertToLintList(options, connection);
+        List<LintWrapper> lints = executeToJsonAndConvertToLintList(LinterPrimaryKeyNotIntegerLikeType.class.getSimpleName(), options, connection);
         
         boolean lint1Detected = false;
         boolean lint2Detected = false;

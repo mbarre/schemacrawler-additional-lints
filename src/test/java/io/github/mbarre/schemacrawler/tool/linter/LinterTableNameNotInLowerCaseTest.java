@@ -41,7 +41,7 @@ import java.util.Objects;
  */
 public class LinterTableNameNotInLowerCaseTest extends BaseLintTest {
     
-    private static final String CHANGE_LOG_LOWERCASE_CHECK = "src/test/db/liquibase/lowerCaseCheck/db.changelog.xml";
+    private static final String CHANGE_LOG_LOWERCASE_CHECK = "src/test/db/liquibase/LinterTableNameNotInLowerCase/db.changelog.xml";
     private static PostgreSqlDatabase database;
     
     @BeforeClass
@@ -65,7 +65,7 @@ public class LinterTableNameNotInLowerCaseTest extends BaseLintTest {
         Connection connection = DriverManager.getConnection(PostgreSqlDatabase.CONNECTION_STRING,
                 PostgreSqlDatabase.USER_NAME, database.getPostgresPassword());
         
-        List<LintWrapper> lints = executeToJsonAndConvertToLintList(options, connection);
+        List<LintWrapper> lints = executeToJsonAndConvertToLintList(LinterTableNameNotInLowerCase.class.getSimpleName(), options, connection);
         
         boolean lint1Detected = false;
         boolean lint2Detected = false;

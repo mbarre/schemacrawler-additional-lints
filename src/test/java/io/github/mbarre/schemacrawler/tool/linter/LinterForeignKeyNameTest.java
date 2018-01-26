@@ -44,7 +44,7 @@ import java.util.List;
  */
 public class LinterForeignKeyNameTest extends BaseLintTest {
     
-    private static final String CHANGE_LOG_FK_NAME_CHECK = "src/test/db/liquibase/foreignKeyNameCheck/db.changelog.xml";
+    private static final String CHANGE_LOG_FK_NAME_CHECK = "src/test/db/liquibase/LinterForeignKeyName/db.changelog.xml";
     private static PostgreSqlDatabase database;
     
     @BeforeClass
@@ -65,7 +65,7 @@ public class LinterForeignKeyNameTest extends BaseLintTest {
         Connection connection = DriverManager.getConnection(PostgreSqlDatabase.CONNECTION_STRING,
                 PostgreSqlDatabase.USER_NAME, database.getPostgresPassword());
         
-        List<LintWrapper> lints = executeToJsonAndConvertToLintList(options, connection);
+        List<LintWrapper> lints = executeToJsonAndConvertToLintList(LinterForeignKeyName.class.getSimpleName(), options, connection);
         Assert.assertEquals(1,lints.size());
         Assert.assertEquals(LinterForeignKeyName.class.getName(), lints.get(0).getId());
         Assert.assertEquals("fk_table3", lints.get(0).getValue());
