@@ -24,8 +24,8 @@
         <run>false</run>
         <table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
         <config>
-          <property name="message">message for SQL catalog lint</property>
-          <property name="sql"><![CDATA[SELECT TOP 1 1 FROM INFORMATION_SCHEMA.TABLES]]></property>
+            <property name="message">message for SQL catalog lint</property>
+            <property name="sql"><![CDATA[SELECT TOP 1 1 FROM INFORMATION_SCHEMA.TABLES]]></property>
         </config>
     </linter>
     <linter id="schemacrawler.tools.linter.LinterColumnTypes">
@@ -71,8 +71,8 @@
         <run>false</run>
         <table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
         <config>
-          <property name="message">message for custom SQL lint</property>
-          <property name="sql"><![CDATA[SELECT TOP 1 1 FROM ${table}]]></property>
+            <property name="message">message for custom SQL lint</property>
+            <property name="sql"><![CDATA[SELECT TOP 1 1 FROM ${table}]]></property>
         </config>
     </linter>
     <linter id="schemacrawler.tools.linter.LinterTableWithBadlyNamedColumns">
@@ -117,49 +117,49 @@
         <table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
     </linter>
     <linter id="io.github.mbarre.schemacrawler.tool.linter.LinterTableNameNotInLowerCase">
-    	<run>true</run>
-    	<table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
+        <run>true</run>
+        <table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
     </linter>
     <linter id="io.github.mbarre.schemacrawler.tool.linter.LinterColumnContentNotNormalized">
-    	<run>true</run>
-      <severity>high</severity>
-    	<table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
-      <config>
-           <property name="nbRepeatTolerance">2</property>
-           <property name="minTextColumnSize">2</property>
-      </config>
-   </linter>
+        <run>true</run>
+        <severity>high</severity>
+        <table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
+        <config>
+            <property name="nbRepeatTolerance">2</property>
+            <property name="minTextColumnSize">2</property>
+        </config>
+    </linter>
     <linter id="io.github.mbarre.schemacrawler.tool.linter.LinterJsonTypeColumn">
-    	<run>true</run>
-    	<table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
+        <run>true</run>
+        <table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
     </linter>
     <linter id="io.github.mbarre.schemacrawler.tool.linter.LinterJsonContent">
-    	<run>true</run>
-    	<table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
+        <run>true</run>
+        <table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
         <config>
             <property name="sampleSize">1000</property>
         </config>
     </linter>
     <linter id="io.github.mbarre.schemacrawler.tool.linter.LinterXmlContent">
-    	<run>true</run>
-    	<table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
+        <run>true</run>
+        <table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
         <config>
             <property name="sampleSize">1000</property>
         </config>
     </linter>
     <linter id="io.github.mbarre.schemacrawler.tool.linter.LinterBooleanContent">
-    	<run>true</run>
-      <severity>high</severity>
-    	<table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
+        <run>true</run>
+        <severity>high</severity>
+        <table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
     </linter>
     <linter id="io.github.mbarre.schemacrawler.tool.linter.LinterPrimaryKeyNotIntegerLikeType">
-    	<run>true</run>
-    	<table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
+        <run>true</run>
+        <table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
     </linter>
     <linter id="io.github.mbarre.schemacrawler.tool.linter.LinterBlobTypeColumn">
-    	<run>true</run>
-      <severity>high</severity>
-    	<table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
+        <run>true</run>
+        <severity>high</severity>
+        <table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
     </linter>
     <linter id="io.github.mbarre.schemacrawler.tool.linter.LinterColumnSize">
         <run>true</run>
@@ -202,9 +202,14 @@
             <property name="minCompressionPercent">30</property>
         </config>
     </linter>
-  <linter id="io.github.mbarre.schemacrawler.tool.linter.LinterOrphanTable">
+    <linter id="io.github.mbarre.schemacrawler.tool.linter.LinterOrphanTable">
         <run>true</run>
         <severity>high</severity>
         <table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
-</linter>
+    </linter>
+    <linter id="io.github.mbarre.schemacrawler.tool.linter.LinterForbiddenPrimaryKeyType">
+        <run>true</run>
+        <severity>high</severity>
+        <table-exclusion-pattern><![CDATA[.*databasechangelog*]]></table-exclusion-pattern>
+    </linter>
 </schemacrawler-linter-configs>

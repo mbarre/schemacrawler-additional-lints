@@ -93,13 +93,27 @@ public class LintUtils {
         /**
 	 * Tells wether a column is large text like type or not.
 	 * @param dataType the dataType
-	 * @return is the sqlType is binary based or not
+	 * @return is the sqlType is text based or not
 	 */
 	public static final boolean isSqlTypeLargeTextBased(ColumnDataType dataType) {
 		return dataType.getJavaSqlType().getJavaSqlType() == Types.CLOB
                         || dataType.getJavaSqlType().getJavaSqlType() == Types.LONGVARCHAR
                         || "text".equalsIgnoreCase(dataType.getDatabaseSpecificTypeName());
 	}
+
+	/**
+	 * Tells wether a column is date like type or not.
+	 * @param dataType the dataType
+	 * @return is the sqlType is date based or not
+	 */
+	public static final boolean isSqlTypeDateBased(int javaSqlType) {
+		return javaSqlType == Types.DATE
+				|| javaSqlType == Types.TIME
+				|| javaSqlType == Types.TIME_WITH_TIMEZONE
+				|| javaSqlType == Types.TIMESTAMP
+				|| javaSqlType == Types.TIMESTAMP_WITH_TIMEZONE;
+	}
+
 
 
 }
