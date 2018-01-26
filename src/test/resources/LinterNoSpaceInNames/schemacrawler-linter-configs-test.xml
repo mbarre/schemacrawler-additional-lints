@@ -20,13 +20,13 @@
   #L%
   -->
 <schemacrawler-linter-configs>
-    <linter id="io.github.mbarre.schemacrawler.tool.linter.LinterForeignKeyName">
+    <linter id="io.github.mbarre.schemacrawler.tool.linter.LinterNoSpaceInNames">
         <run>true</run>
-        <severity>medium</severity>
         <table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
-        <config>
-            <property name="foreignKeySuffix">_id</property>
-        </config>
+    </linter>
+    <linter id="io.github.mbarre.schemacrawler.tool.linter.LinterJsonTypeColumn">
+       <run>false</run>
+        <table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
     </linter>
     <linter id="schemacrawler.tools.linter.LinterCatalogSql">
         <run>false</run>
@@ -37,7 +37,7 @@
         </config>
     </linter>
     <linter id="schemacrawler.tools.linter.LinterColumnTypes">
-        <run>false</run>
+       <run>false</run>
         <table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
     </linter>
     <linter id="schemacrawler.tools.linter.LinterForeignKeyMismatch">
@@ -45,33 +45,33 @@
         <table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
     </linter>
     <linter id="schemacrawler.tools.linter.LinterForeignKeyWithNoIndexes">
-        <run>false</run>
+       <run>false</run>
         <severity>medium</severity>
         <table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
     </linter>
     <linter id="schemacrawler.tools.linter.LinterNullColumnsInIndex">
-        <run>false</run>
+       <run>false</run>
         <table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
     </linter>
     <linter id="schemacrawler.tools.linter.LinterNullIntendedColumns">
-        <run>false</run>
+       <run>false</run>
         <table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
     </linter>
     <linter id="schemacrawler.tools.linter.LinterRedundantIndexes">
-        <run>false</run>
+       <run>false</run>
         <table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
     </linter>
     <linter id="schemacrawler.tools.linter.LinterTableAllNullableColumns">
-        <run>false</run>
+       <run>false</run>
         <severity>high</severity>
         <table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
     </linter>
     <linter id="schemacrawler.tools.linter.LinterTableCycles">
-        <run>false</run>
+       <run>false</run>
         <table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
     </linter>
     <linter id="schemacrawler.tools.linter.LinterTableEmpty">
-        <run>false</run>
+       <run>false</run>
         <severity>high</severity>
         <table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
     </linter>
@@ -88,48 +88,48 @@
         <table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
     </linter>
     <linter id="schemacrawler.tools.linter.LinterTableWithIncrementingColumns">
-        <run>false</run>
+       <run>false</run>
         <table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
     </linter>
     <linter id="schemacrawler.tools.linter.LinterTableWithNoIndexes">
-        <run>false</run>
+       <run>false</run>
         <table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
     </linter>
     <linter id="schemacrawler.tools.linter.LinterTableWithNoPrimaryKey">
-        <run>false</run>
+       <run>false</run>
         <severity>critical</severity>
         <table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
         <threshold>1</threshold>
     </linter>
     <linter id="schemacrawler.tools.linter.LinterTableWithPrimaryKeyNotFirst">
-        <run>false</run>
+       <run>false</run>
         <table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
     </linter>
     <linter id="schemacrawler.tools.linter.LinterTableWithNoRemarks">
-        <run>false</run>
+       <run>false</run>
         <table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
     </linter>
     <linter id="schemacrawler.tools.linter.LinterTableWithQuotedNames">
-        <run>false</run>
+       <run>false</run>
         <table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
         <column-exclusion-pattern><![CDATA[\w*\.\w*\."version"]]></column-exclusion-pattern>
     </linter>
     <linter id="schemacrawler.tools.linter.LinterTableWithSingleColumn">
     </linter>
     <linter id="schemacrawler.tools.linter.LinterTooManyLobs">
-        <run>false</run>
+       <run>false</run>
         <table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
     </linter>
     <linter id="schemacrawler.tools.linter.LinterUselessSurrogateKey">
-        <run>false</run>
+       <run>false</run>
         <table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
     </linter>
     <linter id="io.github.mbarre.schemacrawler.tool.linter.LinterTableNameNotInLowerCase">
-        <run>false</run>
+       <run>false</run>
         <table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
     </linter>
     <linter id="io.github.mbarre.schemacrawler.tool.linter.LinterColumnContentNotNormalized">
-        <run>false</run>
+       <run>false</run>
         <severity>high</severity>
         <table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
         <config>
@@ -137,40 +137,36 @@
             <property name="minTextColumnSize">2</property>
         </config>
     </linter>
-    <linter id="io.github.mbarre.schemacrawler.tool.linter.LinterJsonTypeColumn">
-        <run>false</run>
-        <table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
-    </linter>
     <linter id="io.github.mbarre.schemacrawler.tool.linter.LinterJsonContent">
-        <run>false</run>
+       <run>false</run>
         <table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
         <config>
             <property name="sampleSize">1000</property>
         </config>
     </linter>
     <linter id="io.github.mbarre.schemacrawler.tool.linter.LinterXmlContent">
-        <run>false</run>
+       <run>false</run>
         <table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
         <config>
             <property name="sampleSize">1000</property>
         </config>
     </linter>
     <linter id="io.github.mbarre.schemacrawler.tool.linter.LinterBooleanContent">
-        <run>false</run>
+       <run>false</run>
         <severity>high</severity>
         <table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
     </linter>
     <linter id="io.github.mbarre.schemacrawler.tool.linter.LinterPrimaryKeyNotIntegerLikeType">
-        <run>false</run>
+       <run>false</run>
         <table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
     </linter>
     <linter id="io.github.mbarre.schemacrawler.tool.linter.LinterBlobTypeColumn">
-        <run>false</run>
+       <run>false</run>
         <severity>high</severity>
         <table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
     </linter>
     <linter id="io.github.mbarre.schemacrawler.tool.linter.LinterColumnSize">
-        <run>false</run>
+       <run>false</run>
         <severity>high</severity>
         <table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
         <!-- <threshold>10</threshold> -->
@@ -179,23 +175,31 @@
         </config>
     </linter>
     <linter id="io.github.mbarre.schemacrawler.tool.linter.LinterForeignKeyMismatchLazy">
-        <run>false</run>
+       <run>false</run>
         <severity>critical</severity>
         <table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
         <threshold>1</threshold>
     </linter>
-    <linter id="io.github.mbarre.schemacrawler.tool.linter.LinterByteaTypeColumn">
+    <linter id="io.github.mbarre.schemacrawler.tool.linter.LinterForeignKeyName">
         <run>false</run>
+        <severity>medium</severity>
+        <table-exclusion-pattern><![CDATA[.*databasechangelog*]]></table-exclusion-pattern>
+        <config>
+            <property name="foreignKeySuffix">_id</property>
+        </config>
+    </linter>
+    <linter id="io.github.mbarre.schemacrawler.tool.linter.LinterByteaTypeColumn">
+       <run>false</run>
         <severity>medium</severity>
         <table-exclusion-pattern><![CDATA[.*databasechangelog*]]></table-exclusion-pattern>
     </linter>
     <linter id="io.github.mbarre.schemacrawler.tool.linter.LinterCompressBlob">
-        <run>false</run>
+       <run>false</run>
         <severity>medium</severity>
         <table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
     </linter>
     <linter id="io.github.mbarre.schemacrawler.tool.linter.LinterCompressBlob">
-        <run>false</run>
+       <run>false</run>
         <severity>high</severity>
         <table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
         <config>
@@ -203,17 +207,13 @@
         </config>
     </linter>
     <linter id="io.github.mbarre.schemacrawler.tool.linter.LinterOrphanTable">
-        <run>false</run>
+       <run>false</run>
         <severity>high</severity>
         <table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
     </linter>
     <linter id="io.github.mbarre.schemacrawler.tool.linter.LinterForbiddenPrimaryKeyType">
-        <run>false</run>
+       <run>false</run>
         <severity>high</severity>
         <table-exclusion-pattern><![CDATA[.*databasechangelog*]]></table-exclusion-pattern>
-    </linter>
-    <linter id="io.github.mbarre.schemacrawler.tool.linter.LinterNoSpaceInNames">
-        <run>false</run>
-        <table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
     </linter>
 </schemacrawler-linter-configs>

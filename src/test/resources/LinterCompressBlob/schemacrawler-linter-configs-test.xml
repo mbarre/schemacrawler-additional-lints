@@ -207,4 +207,8 @@
         <severity>high</severity>
         <table-exclusion-pattern><![CDATA[.*databasechangelog*]]></table-exclusion-pattern>
     </linter>
+    <linter id="io.github.mbarre.schemacrawler.tool.linter.LinterNoSpaceInNames">
+        <run>false</run>
+        <table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
+    </linter>
 </schemacrawler-linter-configs>
