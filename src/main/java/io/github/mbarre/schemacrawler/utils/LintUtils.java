@@ -103,7 +103,7 @@ public class LintUtils {
 
 	/**
 	 * Tells wether a column is date like type or not.
-	 * @param dataType the dataType
+	 * @param javaSqlType the dataType
 	 * @return is the sqlType is date based or not
 	 */
 	public static final boolean isSqlTypeDateBased(int javaSqlType) {

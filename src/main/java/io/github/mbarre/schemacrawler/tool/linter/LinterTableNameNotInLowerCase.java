@@ -77,7 +77,7 @@ public class LinterTableNameNotInLowerCase extends BaseLinter
     /**
      * The lint that does the job
      * @param table table
-     * @param connection
+     * @param connection the connection
      */
     @Override
     protected void lint(final Table table, final Connection connection)
