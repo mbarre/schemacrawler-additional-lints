@@ -37,6 +37,11 @@ public class LinterNoSpaceInNames extends BaseLinter {
     }
 
 
+    /**
+     * The lint that does the job
+     * @param table table
+     * @param connection connection
+     */
     @Override
     protected void lint(Table table, Connection connection) throws SchemaCrawlerException {
         String sql;
@@ -53,6 +58,11 @@ public class LinterNoSpaceInNames extends BaseLinter {
         }
     }
 
+
+    /**
+     * Get the summary
+     * @return the summary
+     */
     @Override
     public String getSummary() {
         return "Space should not be used in table or column names";
