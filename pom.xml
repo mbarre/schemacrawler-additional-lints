@@ -157,6 +157,7 @@ License along with this program.  If not, see
 		<versioneye-maven-plugin.projectid>${env.VERSIONEYE_PROJECTID}</versioneye-maven-plugin.projectid>
 		<checksum-maven-plugin.version>1.4</checksum-maven-plugin.version>
 		<license-maven-plugin.version>1.14</license-maven-plugin.version>
+		<commons-rng-simple.version>1.0</commons-rng-simple.version>
 	</properties>
 
 	<dependencies>
@@ -226,6 +227,12 @@ License along with this program.  If not, see
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 			<version>${commons-lang3.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-rng-simple</artifactId>
+			<version>${commons-rng-simple.version}</version>
 		</dependency>
 
 		<dependency>

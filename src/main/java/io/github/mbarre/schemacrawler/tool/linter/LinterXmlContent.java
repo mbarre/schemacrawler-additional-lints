@@ -25,6 +25,8 @@ package io.github.mbarre.schemacrawler.tool.linter;
 import io.github.mbarre.schemacrawler.utils.LintUtils;
 import io.github.mbarre.schemacrawler.utils.XmlUtils;
 import org.apache.commons.lang3.RandomUtils;
+import org.apache.commons.rng.UniformRandomProvider;
+import org.apache.commons.rng.simple.RandomSource;
 import schemacrawler.schema.Column;
 import schemacrawler.schema.Table;
 import schemacrawler.schemacrawler.Config;
@@ -156,10 +158,11 @@ public class LinterXmlContent extends BaseLinter {
 
     private Set<Long> generateSample(int sampleSize, Long totalRows){
         Set<Long> sampleIndex = new HashSet<>();
+        UniformRandomProvider rng = RandomSource.create(RandomSource.MT);
         if(totalRows < sampleSize)
             sampleSize = totalRows.intValue();
         while (sampleIndex.size() < sampleSize){
-            Long value = RandomUtils.nextLong(0,totalRows);
+            Long value = rng.nextLong(totalRows);
             LOGGER.log(Level.INFO, "value="+value);
             if(value.compareTo(totalRows) <= 0 && !sampleIndex.contains(value)) {
                 sampleIndex.add(value);
