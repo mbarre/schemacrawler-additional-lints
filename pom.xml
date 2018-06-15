@@ -25,7 +25,7 @@ License along with this program.  If not, see
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>io.github.mbarre</groupId>
 	<artifactId>schemacrawler-additional-lints</artifactId>
-	<version>1.03.03</version>
+	<version>1.03.04</version>
 	<name>Additional SchemaCrawler Lints</name>
 	<description>Some additional lints for Schemacrawler</description>
 	<inceptionYear>2015</inceptionYear>
@@ -106,7 +106,7 @@ License along with this program.  If not, see
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-		<schemacrawler.version>14.17.05</schemacrawler.version>
+		<schemacrawler.version>14.20.02</schemacrawler.version>
 		<java.version>1.8</java.version>
 		<java.version.short>8</java.version.short>
 		<hsqldb.version>2.3.2</hsqldb.version>
@@ -152,9 +152,6 @@ License along with this program.  If not, see
 
 		<coveralls-maven-plugin.version>4.3.0</coveralls-maven-plugin.version>
 		<coveralls.repoToken>${env.COVERALLS_REPOTOKEN}</coveralls.repoToken>
-		<versioneye-maven-plugin.version>3.11.4</versioneye-maven-plugin.version>
-		<versioneye-maven-plugin.apikey>${env.VERSIONEYE_APIKEY}</versioneye-maven-plugin.apikey>
-		<versioneye-maven-plugin.projectid>${env.VERSIONEYE_PROJECTID}</versioneye-maven-plugin.projectid>
 		<checksum-maven-plugin.version>1.4</checksum-maven-plugin.version>
 		<license-maven-plugin.version>1.14</license-maven-plugin.version>
 		<commons-rng-simple.version>1.0</commons-rng-simple.version>
@@ -376,16 +373,6 @@ License along with this program.  If not, see
 					<repoToken>${coveralls.repoToken}</repoToken>
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>com.versioneye</groupId>
-				<artifactId>versioneye-maven-plugin</artifactId>
-				<version>${versioneye-maven-plugin.version}</version>
-				<configuration>
-					<apiKey>${versioneye-maven-plugin.apikey}</apiKey>
-					<projectId>${versioneye-maven-plugin.projectid}</projectId>
-				</configuration>
-			</plugin>
-
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
