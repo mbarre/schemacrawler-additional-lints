@@ -119,7 +119,7 @@ License along with this program.  If not, see
 		<maven-enforcer-plugin.version>1.4.1</maven-enforcer-plugin.version>
 		<maven-clean-plugin.version>3.0.0</maven-clean-plugin.version>
 		<maven-checkstyle-plugin.version>2.17</maven-checkstyle-plugin.version>
-		<maven-pmd-plugin.version>3.8</maven-pmd-plugin.version>
+		<maven-pmd-plugin.version>3.10.0</maven-pmd-plugin.version>
 
 		<!-- Maven reporting plugin versions -->
 		<maven-source-plugin.version>3.0.1</maven-source-plugin.version>
