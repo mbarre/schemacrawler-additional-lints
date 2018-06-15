@@ -2,10 +2,8 @@
 [![Project Website](https://img.shields.io/badge/Project%20Website-Additional%20Lints-7f3692.svg)](http://mbarre.github.io/schemacrawler-additional-lints/)
 [![Build Status](https://travis-ci.org/mbarre/schemacrawler-additional-lints.svg?branch=master)](https://travis-ci.org/mbarre/schemacrawler-additional-lints)
 [![Release](https://jitpack.io/v/mbarre/schemacrawler-additional-lints.svg)](https://jitpack.io/mbarre/schemacrawler-additional-lints)
-[![Quality Gate](https://sonarqube.com/api/badges/gate?key=io.github.mbarre%3Aschemacrawler-additional-lints)](https://sonarqube.com/overview?id=io.github.mbarre%3Aschemacrawler-additional-lints)
 [![Coverage Status](https://coveralls.io/repos/mbarre/schemacrawler-additional-lints/badge.svg?branch=master&service=github)](https://coveralls.io/github/mbarre/schemacrawler-additional-lints?branch=master)
 [![Join the chat at https://gitter.im/mbarre/schemacrawler-additionallints](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/mbarre/schemacrawler-additional-lints?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Dependency Status](https://beta.gemnasium.com/badges/github.com/mbarre/schemacrawler-additional-lints.svg)](https://beta.gemnasium.com/projects/github.com/mbarre/schemacrawler-additional-lints) 
 <a href="https://zenhub.com"><img src="https://raw.githubusercontent.com/ZenHubIO/support/master/zenhub-badge.png"></a>
 
 Some additional lints for [Schemacrawler](http://sualeh.github.io/SchemaCrawler/)
