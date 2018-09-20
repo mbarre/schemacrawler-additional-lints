@@ -136,7 +136,7 @@ License along with this program.  If not, see
 		<changelog-maven-plugin.version>2.3</changelog-maven-plugin.version>
 		<maven-project-info-reports-plugin.version>2.9</maven-project-info-reports-plugin.version>
 		<taglist-maven-plugin.version>2.4</taglist-maven-plugin.version>
-		<maven-resources-plugin.version>3.0.2</maven-resources-plugin.version>
+		<maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
 		<nexus-staging-maven-plugin.version>1.6.8</nexus-staging-maven-plugin.version>
 		<maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
 
