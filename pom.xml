@@ -146,7 +146,7 @@ License along with this program.  If not, see
 		<postgresql.version>42.2.4</postgresql.version>
 		<commons-io.version>2.6</commons-io.version>
 		<commons-compress.version>1.17</commons-compress.version>
-		<commons-lang3.version>3.7</commons-lang3.version>
+		<commons-lang3.version>3.8.1</commons-lang3.version>
 		<json.version>20171018</json.version>
 		<xerces.version>2.11.0</xerces.version>
 
