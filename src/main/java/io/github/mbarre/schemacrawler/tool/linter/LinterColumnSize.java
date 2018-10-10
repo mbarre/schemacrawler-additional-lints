@@ -105,15 +105,15 @@ public class LinterColumnSize extends BaseLinter {
             List<Column> columns = getColumns(table);
             for (Column column : columns) {
                 
-                if(LintUtils.isSqlTypeTextBased(column.getColumnDataType().getJavaSqlType().getJavaSqlType())
+                if(LintUtils.isSqlTypeTextBased(column.getColumnDataType().getJavaSqlType().getVendorTypeNumber())
                         || LintUtils.isSqlTypeLargeTextBased(column.getColumnDataType())){
-                    
+
                     LOGGER.log(Level.INFO,"Checking {0}...", column.getFullName());
                     columnName = column.getName().replaceAll("\"", "");
-                    
+
                     sql = "select max(length(\"" + columnName + "\")) as max from \"" + tableName +"\"" ;
                     LOGGER.log(Level.CONFIG,"SQL : {0}", sql);
-                    
+
                     try(ResultSet rs = stmt.executeQuery(sql)){
                         while (rs.next()) {
                             int maxLength = rs.getInt(1);

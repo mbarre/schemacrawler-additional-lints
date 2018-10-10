@@ -22,8 +22,6 @@ package io.github.mbarre.schemacrawler.tool.linter;
  * #L%
  */
 
-import io.github.mbarre.schemacrawler.test.utils.LintWrapper;
-import io.github.mbarre.schemacrawler.test.utils.PostgreSqlDatabase;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.List;
@@ -32,7 +30,10 @@ import java.util.Objects;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import io.github.mbarre.schemacrawler.test.utils.LintWrapper;
+import io.github.mbarre.schemacrawler.test.utils.PostgreSqlDatabase;
 import schemacrawler.schemacrawler.SchemaCrawlerOptions;
+import schemacrawler.schemacrawler.SchemaCrawlerOptionsBuilder;
 import schemacrawler.schemacrawler.SchemaInfoLevelBuilder;
 import schemacrawler.tools.lint.LinterRegistry;
 
@@ -57,11 +58,7 @@ public class LinterBlobTypeColumnTest extends BaseLintTest {
         final LinterRegistry registry = new LinterRegistry();
         Assert.assertTrue(registry.hasLinter(LinterBlobTypeColumn.class.getName()));
 
-        final SchemaCrawlerOptions options = new SchemaCrawlerOptions();
-        // Set what details are required in the schema - this affects the
-        // time taken to crawl the schema
-        options.setSchemaInfoLevel(SchemaInfoLevelBuilder.standard());
-        options.setTableNamePattern("test_blob");
+        final SchemaCrawlerOptions options = SchemaCrawlerOptionsBuilder.builder().withSchemaInfoLevel(SchemaInfoLevelBuilder.standard()).tableNamePattern("test_blob").toOptions();
 
         Connection connection = DriverManager.getConnection(PostgreSqlDatabase.CONNECTION_STRING,
                 PostgreSqlDatabase.USER_NAME, database.getPostgresPassword());

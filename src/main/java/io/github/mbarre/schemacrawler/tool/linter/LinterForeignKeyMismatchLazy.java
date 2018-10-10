@@ -23,15 +23,16 @@ package io.github.mbarre.schemacrawler.tool.linter;
  */
 
 import java.sql.Connection;
-import static java.util.Objects.requireNonNull;
+
 import schemacrawler.schema.Column;
 import schemacrawler.schema.ForeignKey;
 import schemacrawler.schema.ForeignKeyColumnReference;
 import schemacrawler.schema.Table;
 import schemacrawler.schema.View;
-import schemacrawler.schemacrawler.SchemaCrawlerException;
 import schemacrawler.tools.lint.BaseLinter;
 import schemacrawler.tools.lint.LintSeverity;
+
+import static java.util.Objects.requireNonNull;
 
 /**
  * Check that foreign key has the same type as the associated primary key, using the Java sql type instead of jdbc type.
@@ -66,11 +67,9 @@ public class LinterForeignKeyMismatchLazy extends BaseLinter {
      * The lint that does the job
      * @param table table
      * @param connection connection
-     * @throws SchemaCrawlerException SchemaCrawlerException
-     */
+	 */
     @Override
-    protected void lint(final Table table, final Connection connection)
-            throws SchemaCrawlerException {
+    protected void lint(final Table table, final Connection connection) {
         
         requireNonNull(table, "No table provided");
         findMismatchedForeignKeys(table);
@@ -87,11 +86,11 @@ public class LinterForeignKeyMismatchLazy extends BaseLinter {
                 {
                     final Column pkColumn = columnReference.getPrimaryKeyColumn();
                     final Column fkColumn = columnReference.getForeignKeyColumn();
-                    if (!pkColumn.getColumnDataType().getJavaSqlType().getJavaSqlTypeName().equals(fkColumn.getColumnDataType().getJavaSqlType().getJavaSqlTypeName())
+                    if (!pkColumn.getColumnDataType().getJavaSqlType().getName().equals(fkColumn.getColumnDataType().getJavaSqlType().getName())
                             || pkColumn.getSize() != fkColumn.getSize())
                     {
-                        addTableLint(table, "Foreign key data type ("+fkColumn.getColumnDataType().getJavaSqlType().getJavaSqlTypeName()+") "
-                                + "does not match Primary key ("+pkColumn.getColumnDataType().getJavaSqlType().getJavaSqlTypeName()+").", foreignKey);
+                        addTableLint(table, "Foreign key data type ("+fkColumn.getColumnDataType().getJavaSqlType().getName()+") "
+                                + "does not match Primary key ("+pkColumn.getColumnDataType().getJavaSqlType().getName()+").", foreignKey);
                         break;
                     }
                 }

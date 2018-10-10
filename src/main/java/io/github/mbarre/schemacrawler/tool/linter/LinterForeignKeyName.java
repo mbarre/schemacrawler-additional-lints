@@ -22,15 +22,18 @@ package io.github.mbarre.schemacrawler.tool.linter;
  * #L%
  */
 
-import schemacrawler.schema.*;
-import schemacrawler.schemacrawler.Config;
-import schemacrawler.schemacrawler.SchemaCrawlerException;
-import schemacrawler.tools.lint.BaseLinter;
-import schemacrawler.tools.lint.LintSeverity;
-
 import java.sql.Connection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import schemacrawler.schema.Column;
+import schemacrawler.schema.ForeignKey;
+import schemacrawler.schema.ForeignKeyColumnReference;
+import schemacrawler.schema.Table;
+import schemacrawler.schema.View;
+import schemacrawler.schemacrawler.Config;
+import schemacrawler.tools.lint.BaseLinter;
+import schemacrawler.tools.lint.LintSeverity;
 
 import static java.util.Objects.requireNonNull;
 
@@ -76,7 +79,7 @@ public class LinterForeignKeyName  extends BaseLinter {
     }
 
     @Override
-    protected void lint(Table table, Connection connection) throws SchemaCrawlerException {
+    protected void lint(Table table, Connection connection) {
 
         LOGGER.log(Level.CONFIG, "<"+PREFIX_CONFIG_PARAM+"> parameter set to {0}%", prefix);
         LOGGER.log(Level.CONFIG, "<"+SUFFIX_CONFIG_PARAM+"> parameter set to {0}%", suffix);

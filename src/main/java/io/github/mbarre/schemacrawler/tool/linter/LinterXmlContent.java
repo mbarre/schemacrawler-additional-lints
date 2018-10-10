@@ -22,25 +22,27 @@ package io.github.mbarre.schemacrawler.tool.linter;
  * #L%
  */
 
-import io.github.mbarre.schemacrawler.utils.LintUtils;
-import io.github.mbarre.schemacrawler.utils.XmlUtils;
-import org.apache.commons.lang3.RandomUtils;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.Types;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import org.apache.commons.rng.UniformRandomProvider;
 import org.apache.commons.rng.simple.RandomSource;
+import io.github.mbarre.schemacrawler.utils.LintUtils;
+import io.github.mbarre.schemacrawler.utils.XmlUtils;
 import schemacrawler.schema.Column;
 import schemacrawler.schema.Table;
 import schemacrawler.schemacrawler.Config;
 import schemacrawler.schemacrawler.SchemaCrawlerException;
 import schemacrawler.tools.lint.BaseLinter;
 import schemacrawler.tools.lint.LintSeverity;
-
-import java.sql.*;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Random;
-import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Linter to check if non XML type is used whereas XML data is store in column
@@ -117,7 +119,7 @@ public class LinterXmlContent extends BaseLinter {
             LOGGER.log(Level.INFO, "sampleIndexes="+sampleIndexes);
             for (Column column : columns) {
 
-                if(LintUtils.isSqlTypeTextBased(column.getColumnDataType().getJavaSqlType().getJavaSqlType())){
+                if(LintUtils.isSqlTypeTextBased(column.getColumnDataType().getJavaSqlType().getVendorTypeNumber())){
 
                     columnName = column.getName().replaceAll("\"", "");
 
@@ -143,7 +145,7 @@ public class LinterXmlContent extends BaseLinter {
                         throw new SchemaCrawlerException(ex.getMessage(), ex);
                     }
                 }
-                else if(column.getColumnDataType().getJavaSqlType().getJavaSqlType() == Types.CLOB){
+                else if(column.getColumnDataType().getJavaSqlType().getVendorTypeNumber() == Types.CLOB){
                     //TODO voir comment gérer ce cas
                 }
             }
@@ -164,7 +166,7 @@ public class LinterXmlContent extends BaseLinter {
         while (sampleIndex.size() < sampleSize){
             Long value = rng.nextLong(totalRows);
             LOGGER.log(Level.INFO, "value="+value);
-            if(value.compareTo(totalRows) <= 0 && !sampleIndex.contains(value)) {
+            if(value.compareTo(totalRows) <= 0) {
                 sampleIndex.add(value);
             }
         }

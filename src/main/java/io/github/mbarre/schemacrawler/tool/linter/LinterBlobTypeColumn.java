@@ -79,7 +79,7 @@ public class LinterBlobTypeColumn extends BaseLinter {
         List<Column> columns = getColumns(table);
         for (Column column : columns) {
             LOGGER.log(Level.INFO, "Checking {0}...", column.getFullName());
-            if(LintUtils.isSqlTypeBinayBased(column.getColumnDataType().getJavaSqlType().getJavaSqlType())){
+            if(LintUtils.isSqlTypeBinayBased(column.getColumnDataType().getJavaSqlType().getVendorTypeNumber())){
                 addLint(table, getDescription(), column.getFullName());
             }
         }
