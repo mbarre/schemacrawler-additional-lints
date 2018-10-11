@@ -22,13 +22,6 @@ package io.github.mbarre.schemacrawler.tool.linter;
  * #L%
  */
 
-import io.github.mbarre.schemacrawler.utils.LintUtils;
-import schemacrawler.schema.Column;
-import schemacrawler.schema.Table;
-import schemacrawler.schemacrawler.SchemaCrawlerException;
-import schemacrawler.tools.lint.BaseLinter;
-import schemacrawler.tools.lint.LintSeverity;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -36,6 +29,13 @@ import java.sql.Statement;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import io.github.mbarre.schemacrawler.utils.LintUtils;
+import schemacrawler.schema.Column;
+import schemacrawler.schema.Table;
+import schemacrawler.schemacrawler.SchemaCrawlerException;
+import schemacrawler.tools.lint.BaseLinter;
+import schemacrawler.tools.lint.LintSeverity;
 
 /**
  * Linter to check if numeric column is used instead of boolean column
@@ -93,7 +93,7 @@ public class LinterBooleanContent extends BaseLinter {
                 //skip column if PK or FK
                 if(!column.isPartOfPrimaryKey() && !column.isPartOfForeignKey()) {
 
-                    columnDataType = column.getColumnDataType().getJavaSqlType().getJavaSqlType();
+                    columnDataType = column.getColumnDataType().getJavaSqlType().getVendorTypeNumber();
                     if (LintUtils.isSqlTypeNumericBased(columnDataType)) {
                         LOGGER.log(Level.INFO, "Checking {0}...", column.getFullName());
                         count = getSelectCount(stmt, table, column);

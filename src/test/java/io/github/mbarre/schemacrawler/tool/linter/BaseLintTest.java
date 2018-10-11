@@ -22,22 +22,8 @@ package io.github.mbarre.schemacrawler.tool.linter;
  * #L%
  */
 
-import io.github.mbarre.schemacrawler.test.utils.LintWrapper;
-import org.apache.commons.io.IOUtils;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.junit.Assert;
-import schemacrawler.schemacrawler.SchemaCrawlerOptions;
-import schemacrawler.tools.executable.Executable;
-import schemacrawler.tools.executable.SchemaCrawlerExecutable;
-import schemacrawler.tools.lint.executable.LintOptionsBuilder;
-import schemacrawler.tools.options.OutputOptions;
-import schemacrawler.tools.options.TextOutputFormat;
-
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -47,6 +33,19 @@ import java.util.List;
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import org.apache.commons.io.IOUtils;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.junit.Assert;
+import io.github.mbarre.schemacrawler.test.utils.LintWrapper;
+import schemacrawler.schemacrawler.SchemaCrawlerOptions;
+import schemacrawler.tools.executable.SchemaCrawlerExecutable;
+import schemacrawler.tools.lint.executable.LintOptionsBuilder;
+import schemacrawler.tools.options.OutputOptions;
+import schemacrawler.tools.options.OutputOptionsBuilder;
+import schemacrawler.tools.options.TextOutputFormat;
 
 /**
  * Created by barmi83 on 24/12/15.
@@ -58,27 +57,27 @@ public abstract class BaseLintTest {
 
     protected List<LintWrapper> executeToJsonAndConvertToLintList(String linterName, SchemaCrawlerOptions options, Connection connection)  throws Exception{
 
-        final Executable executable = new SchemaCrawlerExecutable("lint");
+        final SchemaCrawlerExecutable executable = new SchemaCrawlerExecutable("lint");
 
         final Path linterConfigsFile = FileSystems.getDefault().getPath("", this.getClass().getClassLoader().getResource(linterName + "/schemacrawler-linter-configs-test.xml").getPath());
-        final LintOptionsBuilder optionsBuilder = new LintOptionsBuilder();
+        final LintOptionsBuilder optionsBuilder = LintOptionsBuilder.builder();
         optionsBuilder.withLinterConfigs(linterConfigsFile.toString());
         executable.setAdditionalConfiguration(optionsBuilder.toConfig());
 
         Path out = Paths.get("target/test_"+this.getClass().getSimpleName()+".json");
-        OutputOptions outputOptions = new OutputOptions(TextOutputFormat.json, out);
-        outputOptions.setOutputFile(Paths.get("target/test_"+this.getClass().getSimpleName()+".json"));
+        OutputOptions outputOptions = OutputOptionsBuilder.builder().newOutputOptions(TextOutputFormat.json, out);
 
         executable.setOutputOptions(outputOptions);
         executable.setSchemaCrawlerOptions(options);
-        executable.execute(connection);
-        
+        executable.setConnection(connection);
+        executable.execute();
+
         File output = new File(out.toString());
         String data = IOUtils.toString(new FileInputStream(output));
         Assert.assertNotNull(data);
-        JSONObject json = new JSONObject(data.toString().substring(1, data.toString().length() - 2));
-       
-        List<LintWrapper>lints = new ArrayList<>();
+		JSONObject json = new JSONObject(data.substring(1, data.length() - 2));
+
+		List<LintWrapper>lints = new ArrayList<>();
 
         try {
             if (json.get("table_lints") instanceof JSONObject) {

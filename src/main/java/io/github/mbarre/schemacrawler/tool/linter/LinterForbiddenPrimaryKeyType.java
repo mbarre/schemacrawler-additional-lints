@@ -22,17 +22,16 @@ package io.github.mbarre.schemacrawler.tool.linter;
  * #L%
  */
 
-import io.github.mbarre.schemacrawler.utils.LintUtils;
-import schemacrawler.schema.Column;
-import schemacrawler.schema.Table;
-import schemacrawler.schemacrawler.SchemaCrawlerException;
-import schemacrawler.tools.lint.BaseLinter;
-import schemacrawler.tools.lint.LintSeverity;
-
 import java.sql.Connection;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import io.github.mbarre.schemacrawler.utils.LintUtils;
+import schemacrawler.schema.Column;
+import schemacrawler.schema.Table;
+import schemacrawler.tools.lint.BaseLinter;
+import schemacrawler.tools.lint.LintSeverity;
 
 public class LinterForbiddenPrimaryKeyType extends BaseLinter
 {
@@ -48,12 +47,12 @@ public class LinterForbiddenPrimaryKeyType extends BaseLinter
     }
 
     @Override
-    protected void lint(Table table, Connection connection) throws SchemaCrawlerException {
+    protected void lint(Table table, Connection connection) {
         List<Column> columns = getColumns(table);
         for (Column column : columns) {
             if(column.isPartOfPrimaryKey()){
                 LOGGER.log(Level.INFO, "Checking {0}...", column.getFullName());
-                if(LintUtils.isSqlTypeDateBased(column.getColumnDataType().getJavaSqlType().getJavaSqlType()))
+                if(LintUtils.isSqlTypeDateBased(column.getColumnDataType().getJavaSqlType().getVendorTypeNumber()))
                     addLint(table, getDescription(), column.getFullName());
             }
         }

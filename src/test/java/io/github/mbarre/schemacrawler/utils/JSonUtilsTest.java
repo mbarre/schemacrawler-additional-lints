@@ -36,7 +36,7 @@ public class JSonUtilsTest {
         Assert.assertTrue(true);
     }
     @Test
-    public void testUtils_success() throws Exception{
+    public void testUtils_success() {
         
         String data = "{\"menu\": {\"id\": \"file\", \"value\": \"File\", \"popup\": {\"menuitem\": [{\"value\": \"New\", "
                 + "\"onclick\": \"CreateNewDoc()\"},{\"value\": \"Open\", \"onclick\": \"OpenDoc()\"},"
@@ -47,7 +47,7 @@ public class JSonUtilsTest {
     }
     
     @Test
-    public void testUtils_fails() throws Exception{
+    public void testUtils_fails() {
         
         String data = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
                 + " Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure "
