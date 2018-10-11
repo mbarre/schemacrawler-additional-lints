@@ -22,28 +22,32 @@ package io.github.mbarre.schemacrawler.tool.linter;
  * #L%
  */
 
-import io.github.mbarre.schemacrawler.utils.LintUtils;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.Types;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import org.apache.commons.compress.archivers.ArchiveException;
 import org.apache.commons.compress.archivers.ArchiveOutputStream;
 import org.apache.commons.compress.archivers.ArchiveStreamFactory;
 import org.apache.commons.compress.archivers.zip.ZipArchiveEntry;
-import org.apache.commons.compress.compressors.CompressorOutputStream;
-import org.apache.commons.compress.compressors.CompressorStreamFactory;
 import org.apache.commons.io.IOUtils;
 import schemacrawler.schema.Column;
-import schemacrawler.schema.JavaSqlType;
 import schemacrawler.schema.Table;
 import schemacrawler.schemacrawler.Config;
 import schemacrawler.schemacrawler.SchemaCrawlerException;
 import schemacrawler.tools.lint.BaseLinter;
 import schemacrawler.tools.lint.LintSeverity;
-import schemacrawler.utility.JavaSqlTypes;
-
-import java.io.*;
-import java.sql.*;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Created by barmi83 on 3/24/17.
@@ -104,7 +108,8 @@ public class LinterCompressBlob extends BaseLinter {
             int distinctCount;
 
             for (Column column : columns) {
-                columnDataType = column.getColumnDataType().getJavaSqlType().getJavaSqlType();
+				column.getColumnDataType().getJavaSqlType();
+                columnDataType = column.getColumnDataType().getJavaSqlType().getVendorTypeNumber();
                 if(columnDataType == Types.BINARY || columnDataType == Types.BLOB) {
                     inspectBlobData(stmt, table, column);
                 }

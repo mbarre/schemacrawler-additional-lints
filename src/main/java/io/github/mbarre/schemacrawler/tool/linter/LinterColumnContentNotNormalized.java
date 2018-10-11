@@ -141,13 +141,13 @@ public class LinterColumnContentNotNormalized extends BaseLinter {
             List<Column> columns = getColumns(table);
             
             for (Column column : columns) {
-                if (LinterColumnContentNotNormalized.mustColumnBeTested(column.getColumnDataType().getJavaSqlType().getJavaSqlType(), column.getSize(), minTextColumnSize)) {
+                if (LinterColumnContentNotNormalized.mustColumnBeTested(column.getColumnDataType().getJavaSqlType().getVendorTypeNumber(), column.getSize(), minTextColumnSize)) {
                     // test based column, perform test
                     LOGGER.log(Level.INFO, "Checking {0}...", column.getFullName());
                     String columnName = column.getName().replaceAll("\"", "");
                     sql = "select \"" + columnName + "\", count(*)  as counter from \"" + tableName + "\" where \"" + columnName + "\" is not null group by \"" + columnName + "\" having count(*) > " + nbRepeatTolerance + " order by count(*) desc";
                     LOGGER.log(Level.CONFIG, "SQL : {0}", sql);
-                    
+
                     try(ResultSet rs = stmt.executeQuery(sql)){
                         while (rs.next()) {
                             int nbRepeats = rs.getInt("counter");

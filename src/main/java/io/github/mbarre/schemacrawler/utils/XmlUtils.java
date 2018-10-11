@@ -22,17 +22,17 @@ package io.github.mbarre.schemacrawler.utils;
  * #L%
  */
 
+import java.io.IOException;
+import java.io.StringReader;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
 import org.slf4j.LoggerFactory;
 import org.xml.sax.ErrorHandler;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.IOException;
-import java.io.StringReader;
 
 /**
  *
@@ -75,17 +75,17 @@ public class XmlUtils {
     
     private static class SimpleErrorHandler implements ErrorHandler {
         @Override
-        public void warning(SAXParseException e) throws SAXException {
+        public void warning(SAXParseException e) {
             // Do nothing
         }
         
         @Override
-        public void error(SAXParseException e) throws SAXException {
+        public void error(SAXParseException e) {
             // Do nothing
         }
         
         @Override
-        public void fatalError(SAXParseException e) throws SAXException {
+        public void fatalError(SAXParseException e) {
             // Do nothing
         }
     }

@@ -37,7 +37,7 @@ public class XmlUtilsTest {
         Assert.assertTrue(true);
     }
     @Test
-    public void testUtils_success() throws Exception {
+    public void testUtils_success() {
         
         String data = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><note><to>Tove</to><from>Jani</from><heading>Reminder</heading><body>Don't forget me this weekend!</body></note>";
         
@@ -49,16 +49,15 @@ public class XmlUtilsTest {
      * Tests wether even a malformed (ie. missing prolog) xml document is
      * detected as xml
      *
-     * @throws Exception
-     */
+	 */
     @Test
-    public void testXmlEvenWithMissingProlog() throws Exception {
+    public void testXmlEvenWithMissingProlog() {
         String data = "<note><to>Tove</to><from>Jani</from><heading>Reminder</heading><body>Don't forget me this weekend!</body></note>";
         Assert.assertTrue(XmlUtils.isXmlContent(data));
     }
     
     @Test
-    public void testUtils_fails() throws Exception {
+    public void testUtils_fails() {
         
         String data = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
                 + " Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure "

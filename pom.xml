@@ -106,7 +106,8 @@ License along with this program.  If not, see
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-		<schemacrawler.version>14.21.02</schemacrawler.version>
+		<schemacrawler.version>15.01.03</schemacrawler.version>
+		<!--<schemacrawler.version>14.21.02</schemacrawler.version>-->
 		<java.version>1.8</java.version>
 		<java.version.short>8</java.version.short>
 		<hsqldb.version>2.3.2</hsqldb.version>
@@ -115,7 +116,7 @@ License along with this program.  If not, see
 		<project.url>https://github.com/mbarre/schemacrawler-additional-lints</project.url>
 
 		<maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
-		<maven-shade-plugin.version>3.1.1</maven-shade-plugin.version>
+		<maven-shade-plugin.version>3.2.0</maven-shade-plugin.version>
 		<maven-enforcer-plugin.version>1.4.1</maven-enforcer-plugin.version>
 		<maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
 		<maven-checkstyle-plugin.version>3.0.0</maven-checkstyle-plugin.version>
@@ -125,18 +126,18 @@ License along with this program.  If not, see
 		<maven-source-plugin.version>3.0.1</maven-source-plugin.version>
 		<maven-site-plugin.version>3.7.1</maven-site-plugin.version>
 		<maven-javadoc-plugin.version>3.0.1</maven-javadoc-plugin.version>
-		<maven-jxr-plugin.version>2.5</maven-jxr-plugin.version>
+		<maven-jxr-plugin.version>3.0.0</maven-jxr-plugin.version>
 		<maven-surefire-report-plugin.version>2.22.0</maven-surefire-report-plugin.version>
 		<maven-surefire-plugin.version>2.22.0</maven-surefire-plugin.version>
 		<maven-project-info-reports-plugin.version>3.0.0</maven-project-info-reports-plugin.version>
 		<maven-changes-plugin.version>2.12.1</maven-changes-plugin.version>
-		<jacoco-maven-plugin.version>0.8.1</jacoco-maven-plugin.version>
+		<jacoco-maven-plugin.version>0.8.2</jacoco-maven-plugin.version>
 		<findbugs-maven-plugin.version>3.0.5</findbugs-maven-plugin.version>
 		<maven-clover2-plugin.version>4.0.4</maven-clover2-plugin.version>
 		<changelog-maven-plugin.version>2.3</changelog-maven-plugin.version>
 		<maven-project-info-reports-plugin.version>2.9</maven-project-info-reports-plugin.version>
 		<taglist-maven-plugin.version>2.4</taglist-maven-plugin.version>
-		<maven-resources-plugin.version>3.0.2</maven-resources-plugin.version>
+		<maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
 		<nexus-staging-maven-plugin.version>1.6.8</nexus-staging-maven-plugin.version>
 		<maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
 
@@ -145,8 +146,8 @@ License along with this program.  If not, see
 		<liquibase-plugin.version>3.6.2</liquibase-plugin.version>
 		<postgresql.version>42.2.5</postgresql.version>
 		<commons-io.version>2.6</commons-io.version>
-		<commons-compress.version>1.17</commons-compress.version>
-		<commons-lang3.version>3.7</commons-lang3.version>
+		<commons-compress.version>1.18</commons-compress.version>
+		<commons-lang3.version>3.8.1</commons-lang3.version>
 		<json.version>20171018</json.version>
 		<xerces.version>2.11.0</xerces.version>
 
