@@ -27,14 +27,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Types;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.apache.commons.rng.UniformRandomProvider;
-import org.apache.commons.rng.simple.RandomSource;
 import io.github.mbarre.schemacrawler.utils.LintUtils;
 import io.github.mbarre.schemacrawler.utils.XmlUtils;
 import schemacrawler.schema.Column;
@@ -107,15 +104,9 @@ public class LinterXmlContent extends BaseLinter {
             List<Column> columns = getColumns(table);
 
             Long totalRows = 0L;
-            try(ResultSet rs0 = stmt.executeQuery("select count(*) from \"" + tableName +"\"")){
-                rs0.next();
-                totalRows = rs0.getLong(1);
-            }catch (SQLException ex) {
-                LOGGER.severe(ex.getMessage());
-                throw new SchemaCrawlerException(ex.getMessage(), ex);
-            }
+			totalRows = LintUtils.getTableSize(stmt, tableName);
             LOGGER.log(Level.INFO, "totalrows="+totalRows);
-            Set<Long> sampleIndexes = generateSample(sampleSize, totalRows);
+            Set<Long> sampleIndexes = LintUtils.generateSample(sampleSize, totalRows);
             LOGGER.log(Level.INFO, "sampleIndexes="+sampleIndexes);
             for (Column column : columns) {
 
@@ -154,23 +145,6 @@ public class LinterXmlContent extends BaseLinter {
             LOGGER.severe(ex.getMessage());
             throw new SchemaCrawlerException(ex.getMessage(), ex);
         }
-    }
-
-
-
-    private Set<Long> generateSample(int sampleSize, Long totalRows){
-        Set<Long> sampleIndex = new HashSet<>();
-        UniformRandomProvider rng = RandomSource.create(RandomSource.MT);
-        if(totalRows < sampleSize)
-            sampleSize = totalRows.intValue();
-        while (sampleIndex.size() < sampleSize){
-            Long value = rng.nextLong(totalRows);
-            LOGGER.log(Level.INFO, "value="+value);
-            if(value.compareTo(totalRows) <= 0) {
-                sampleIndex.add(value);
-            }
-        }
-        return sampleIndex;
     }
 
 }
