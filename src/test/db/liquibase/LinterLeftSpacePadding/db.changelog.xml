@@ -27,83 +27,82 @@
 
 	<changeSet author="mvallet" id="20152812-1" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
 
-		<createTable  tableName="test_nvarchar" remarks="table for lint LinterRightSpacePaddingTest">
+		<createTable  tableName="test_nvarchar" remarks="table for lint LinterLeftSpacePaddingTest">
 			<column name="id" 				type="int" 			remarks="primary key"/>
-			<column name="nvarchar_data" 	type="nvarchar" 			remarks="column with non right padding"/>
-			<column name="nvarchar_right_padding" type="nvarchar" 			remarks="column with right padding"/>
+			<column name="nvarchar_data" 	type="nvarchar" 			remarks="column with non left padding"/>
+			<column name="nvarchar_left_padding" type="nvarchar" 			remarks="column with left padding"/>
 		</createTable>
 		<addPrimaryKey columnNames="id"
 					   constraintName="pk_nvarchar_test"
 					   schemaName="public"
 					   tableName="test_nvarchar"/>
-		<sql><![CDATA[insert into test_nvarchar(id, nvarchar_data, nvarchar_right_padding) values (1, 'test', 'test ')]]></sql>
-		<sql><![CDATA[insert into test_nvarchar(id, nvarchar_data, nvarchar_right_padding) values (2, 'test2', 'test2 ')]]></sql>
+		<sql><![CDATA[insert into test_nvarchar(id, nvarchar_data, nvarchar_left_padding) values (1, 'test', ' test')]]></sql>
 
 	</changeSet>
 
 	<changeSet author="mvallet" id="20152812-2" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
-		<createTable  tableName="test_longnvarchar" remarks="table for lint LinterRightSpacePaddingTest">
+		<createTable  tableName="test_longnvarchar" remarks="table for lint LinterLeftSpacePaddingTest">
 			<column name="id" 				type="int" 			remarks="primary key"/>
-			<column name="longnvarchar_data" 	type="longnvarchar" 			remarks="column with non right padding"/>
-			<column name="longnvarchar_right_padding" type="longnvarchar" 			remarks="column with right padding"/>
+			<column name="longnvarchar_data" 	type="longnvarchar" 			remarks="column with non left padding"/>
+			<column name="longnvarchar_left_padding" type="longnvarchar" 			remarks="column with left padding"/>
 		</createTable>
 		<addPrimaryKey columnNames="id"
 					   constraintName="pk_longnvarchar_test"
 					   schemaName="public"
 					   tableName="test_longnvarchar"/>
-		<sql><![CDATA[insert into test_longnvarchar(id, longnvarchar_data, longnvarchar_right_padding) values (1, 'test', 'test ')]]></sql>
+		<sql><![CDATA[insert into test_longnvarchar(id, longnvarchar_data, longnvarchar_left_padding) values (1, 'test', ' test')]]></sql>
 	</changeSet>
 
 	<changeSet author="mvallet" id="20152812-3" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
-		<createTable  tableName="test_longvarchar" remarks="table for lint LinterRightSpacePaddingTest">
+		<createTable  tableName="test_longvarchar" remarks="table for lint LinterLeftSpacePaddingTest">
 			<column name="id" 				type="int" 			remarks="primary key"/>
-			<column name="longvarchar_data" 	type="longvarchar" 			remarks="column with non right padding"/>
-			<column name="longvarchar_right_padding" type="longvarchar" 			remarks="column with right padding"/>
+			<column name="longvarchar_data" 	type="longvarchar" 			remarks="column with non left padding"/>
+			<column name="longvarchar_left_padding" type="longvarchar" 			remarks="column with left padding"/>
 		</createTable>
 		<addPrimaryKey columnNames="id"
 					   constraintName="pk_longvarchar_test"
 					   schemaName="public"
 					   tableName="test_longvarchar"/>
-		<sql><![CDATA[insert into test_longvarchar(id, longvarchar_data, longvarchar_right_padding) values (1, 'test', 'test ')]]></sql>
+		<sql><![CDATA[insert into test_longvarchar(id, longvarchar_data, longvarchar_left_padding) values (1, 'test', ' test')]]></sql>
 	</changeSet>
 
 	<changeSet author="mvallet" id="20152812-4" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
-		<createTable  tableName="test_char" remarks="table for lint LinterRightSpacePaddingTest">
+		<createTable  tableName="test_char" remarks="table for lint LinterLeftSpacePaddingTest">
 			<column name="id" 				type="int" 			remarks="primary key"/>
-			<column name="char_data" 	type="char(5)" 			remarks="column with non right padding"/>
-			<column name="char_right_padding" type="char(5)" 			remarks="column with right padding"/>
+			<column name="char_data" 	type="char(5)" 			remarks="column with non left padding"/>
+			<column name="char_left_padding" type="char(5)" 			remarks="column with left padding"/>
 		</createTable>
 		<addPrimaryKey columnNames="id"
 					   constraintName="pk_char_test"
 					   schemaName="public"
 					   tableName="test_char"/>
-		<sql><![CDATA[insert into test_char(id, char_data, char_right_padding) values (1, 'test1', 'test ')]]></sql>
+		<sql><![CDATA[insert into test_char(id, char_data, char_left_padding) values (1, 'test1', ' test')]]></sql>
 	</changeSet>
 
 	<changeSet author="mvallet" id="20152812-5" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
-		<createTable  tableName="test_nchar" remarks="table for lint LinterRightSpacePaddingTest">
+		<createTable  tableName="test_nchar" remarks="table for lint LinterLeftSpacePaddingTest">
 			<column name="id" 				type="int" 			remarks="primary key"/>
-			<column name="nchar_data" 	type="nchar(4)" 			remarks="column with non right padding"/>
-			<column name="nchar_right_padding" type="nchar(5)" 			remarks="column with right padding"/>
+			<column name="nchar_data" 	type="nchar(5)" 			remarks="column with non left padding"/>
+			<column name="nchar_left_padding" type="nchar(5)" 			remarks="column with left padding"/>
 		</createTable>
 		<addPrimaryKey columnNames="id"
 					   constraintName="pk_nchar_test"
 					   schemaName="public"
 					   tableName="test_nchar"/>
-		<sql><![CDATA[insert into test_nchar(id, nchar_data, nchar_right_padding) values (1, 'test', 'test ')]]></sql>
+		<sql><![CDATA[insert into test_nchar(id, nchar_data, nchar_left_padding) values (1, 'test1', ' test')]]></sql>
 	</changeSet>
 
 	<changeSet author="mvallet" id="20152812-7" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
-		<createTable  tableName="test_varchar" remarks="table for lint LinterRightSpacePaddingTest">
+		<createTable  tableName="test_varchar" remarks="table for lint LinterLeftSpacePaddingTest">
 			<column name="id" 				type="int" 			remarks="primary key"/>
-			<column name="varchar_data" 	type="VARCHAR(10)" 			remarks="column with non right padding"/>
-			<column name="varchar_right_padding" type="VARCHAR(10)" 			remarks="column with right padding"/>
+			<column name="varchar_data" 	type="VARCHAR(10)" 			remarks="column with non left padding"/>
+			<column name="varchar_left_padding" type="VARCHAR(10)" 			remarks="column with left padding"/>
 		</createTable>
 		<addPrimaryKey columnNames="id"
 					   constraintName="pk_varchar_test"
 					   schemaName="public"
 					   tableName="test_varchar"/>
-		<sql><![CDATA[insert into test_varchar(id, varchar_data, varchar_right_padding) values (1, 'test', 'test ')]]></sql>
+		<sql><![CDATA[insert into test_varchar(id, varchar_data, varchar_left_padding) values (1, 'test', ' test')]]></sql>
 	</changeSet>
 
 
