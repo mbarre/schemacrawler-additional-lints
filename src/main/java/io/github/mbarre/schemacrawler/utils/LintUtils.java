@@ -22,15 +22,26 @@ package io.github.mbarre.schemacrawler.utils;
  * #L%
  */
 
-import schemacrawler.schema.ColumnDataType;
-
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Types;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import org.apache.commons.rng.UniformRandomProvider;
+import org.apache.commons.rng.simple.RandomSource;
+import schemacrawler.schema.ColumnDataType;
+import schemacrawler.schemacrawler.SchemaCrawlerException;
 
 /**
  *
  * @author salad74
  */
 public class LintUtils {
+	private static final Logger LOGGER = Logger.getLogger(LintUtils.class.getName());
 
 	private LintUtils(){
 		throw new IllegalAccessError("Utility class.");
@@ -114,6 +125,31 @@ public class LintUtils {
 				|| javaSqlType == Types.TIMESTAMP_WITH_TIMEZONE;
 	}
 
+	public static Set<Long> generateSample(int sampleSize, Long totalRows){
+		Set<Long> sampleIndex = new HashSet<>();
+		UniformRandomProvider rng = RandomSource.create(RandomSource.MT);
+		if(totalRows < sampleSize)
+			sampleSize = totalRows.intValue();
+		while (sampleIndex.size() < sampleSize){
+			Long value = rng.nextLong(totalRows);
+			LOGGER.log(Level.INFO, "value="+value);
+			if(value.compareTo(totalRows) <= 0) {
+				sampleIndex.add(value);
+			}
+		}
+		return sampleIndex;
+	}
 
+	public static Long getTableSize(Statement stmt, String tableName) throws SchemaCrawlerException {
+		Long totalRows;
+		try (ResultSet rs0 = stmt.executeQuery("select count(*) from \"" + tableName + "\"")) {
+			rs0.next();
+			totalRows = rs0.getLong(1);
+		} catch (SQLException ex) {
+			LOGGER.severe(ex.getMessage());
+			throw new SchemaCrawlerException(ex.getMessage(), ex);
+		}
+		return totalRows;
+	}
 
 }
