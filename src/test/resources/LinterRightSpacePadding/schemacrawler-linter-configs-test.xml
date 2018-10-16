@@ -20,10 +20,14 @@
   #L%
   -->
 <schemacrawler-linter-configs>
-    <linter id="io.github.mbarre.schemacrawler.tool.linter.LinterRightSpacePadding">
-       <run>true</run>
-        <table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
-    </linter>
+	<linter id="io.github.mbarre.schemacrawler.tool.linter.LinterRightSpacePadding">
+		<run>true</run>
+		<table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
+	</linter>
+	<linter id="io.github.mbarre.schemacrawler.tool.linter.LinterLeftSpacePadding">
+		<run>false</run>
+		<table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
+	</linter>
     <linter id="io.github.mbarre.schemacrawler.tool.linter.LinterJsonTypeColumn">
        <run>false</run>
         <table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>

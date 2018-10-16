@@ -25,6 +25,10 @@
         <severity>high</severity>
         <table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
     </linter>
+	<linter id="io.github.mbarre.schemacrawler.tool.linter.LinterRightSpacePadding">
+		<run>false</run>
+		<table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
+	</linter>
     <linter id="io.github.mbarre.schemacrawler.tool.linter.LinterBooleanContent">
         <run>false</run>
         <severity>high</severity>

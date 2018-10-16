@@ -70,14 +70,14 @@
 	<changeSet author="mvallet" id="20152812-4" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
 		<createTable  tableName="test_char" remarks="table for lint LinterRightSpacePaddingTest">
 			<column name="id" 				type="int" 			remarks="primary key"/>
-			<column name="char_data" 	type="char" 			remarks="column with non right padding"/>
-			<column name="char_right_padding" type="char" 			remarks="column with right padding"/>
+			<column name="char_data" 	type="char(5)" 			remarks="column with non right padding"/>
+			<column name="char_right_padding" type="char(5)" 			remarks="column with right padding"/>
 		</createTable>
 		<addPrimaryKey columnNames="id"
 					   constraintName="pk_char_test"
 					   schemaName="public"
 					   tableName="test_char"/>
-		<sql><![CDATA[insert into test_char(id, char_data, char_right_padding) values (1, 't', ' ')]]></sql>
+		<sql><![CDATA[insert into test_char(id, char_data, char_right_padding) values (1, 'test1', 'test ')]]></sql>
 	</changeSet>
 
 	<changeSet author="mvallet" id="20152812-5" objectQuotingStrategy="QUOTE_ALL_OBJECTS">

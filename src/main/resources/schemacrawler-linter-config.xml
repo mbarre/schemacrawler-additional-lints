@@ -152,11 +152,6 @@
         <severity>high</severity>
         <table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
     </linter>
-    <linter id="io.github.mbarre.schemacrawler.tool.linter.LinterLeftSpacePadding">
-        <run>true</run>
-        <severity>high</severity>
-        <table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
-    </linter>
     <linter id="io.github.mbarre.schemacrawler.tool.linter.LinterPrimaryKeyNotIntegerLikeType">
         <run>true</run>
         <table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
@@ -218,6 +213,11 @@
         <table-exclusion-pattern><![CDATA[.*databasechangelog*]]></table-exclusion-pattern>
     </linter>
 	<linter id="io.github.mbarre.schemacrawler.tool.linter.LinterRightSpacePadding">
+		<run>true</run>
+		<severity>high</severity>
+		<table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
+	</linter>
+	<linter id="io.github.mbarre.schemacrawler.tool.linter.LinterLeftSpacePadding">
 		<run>true</run>
 		<severity>high</severity>
 		<table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>

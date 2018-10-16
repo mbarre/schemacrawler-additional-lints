@@ -69,14 +69,14 @@
 	<changeSet author="mvallet" id="20152812-4" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
 		<createTable  tableName="test_char" remarks="table for lint LinterLeftSpacePaddingTest">
 			<column name="id" 				type="int" 			remarks="primary key"/>
-			<column name="char_data" 	type="char" 			remarks="column with non left padding"/>
-			<column name="char_left_padding" type="char" 			remarks="column with left padding"/>
+			<column name="char_data" 	type="char(5)" 			remarks="column with non left padding"/>
+			<column name="char_left_padding" type="char(5)" 			remarks="column with left padding"/>
 		</createTable>
 		<addPrimaryKey columnNames="id"
 					   constraintName="pk_char_test"
 					   schemaName="public"
 					   tableName="test_char"/>
-		<sql><![CDATA[insert into test_char(id, char_data, char_left_padding) values (1, 't', ' ')]]></sql>
+		<sql><![CDATA[insert into test_char(id, char_data, char_left_padding) values (1, 'test1', ' test')]]></sql>
 	</changeSet>
 
 	<changeSet author="mvallet" id="20152812-5" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
@@ -89,7 +89,7 @@
 					   constraintName="pk_nchar_test"
 					   schemaName="public"
 					   tableName="test_nchar"/>
-		<sql><![CDATA[insert into test_nchar(id, nchar_data, nchar_left_padding) values (1, 'test', ' test')]]></sql>
+		<sql><![CDATA[insert into test_nchar(id, nchar_data, nchar_left_padding) values (1, 'test1', ' test')]]></sql>
 	</changeSet>
 
 	<changeSet author="mvallet" id="20152812-7" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
