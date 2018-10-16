@@ -37,6 +37,7 @@
 					   schemaName="public"
 					   tableName="test_nvarchar"/>
 		<sql><![CDATA[insert into test_nvarchar(id, nvarchar_data, nvarchar_right_padding) values (1, 'test', 'test ')]]></sql>
+		<sql><![CDATA[insert into test_nvarchar(id, nvarchar_data, nvarchar_right_padding) values (2, 'test2', 'test2 ')]]></sql>
 
 	</changeSet>
 
