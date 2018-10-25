@@ -20,12 +20,10 @@
  * #L%
  */
 
+import org.junit.Test;
+import schemacrawler.tools.lint.LinterRegistry;
 
 import static org.junit.Assert.assertTrue;
-
-import org.junit.Test;
-
-import schemacrawler.tools.lint.LinterRegistry;
 
 public class TestLintPlugin
 {
@@ -45,6 +43,8 @@ public class TestLintPlugin
     assertTrue(registry.hasLinter("io.github.mbarre.schemacrawler.tool.linter.LinterColumnSize"));
     assertTrue(registry.hasLinter("io.github.mbarre.schemacrawler.tool.linter.LinterByteaTypeColumn"));
     assertTrue(registry.hasLinter("io.github.mbarre.schemacrawler.tool.linter.LinterPluralTableName"));
+    assertTrue(registry.hasLinter("io.github.mbarre.schemacrawler.tool.linter.LinterLeftSpacePadding"));
+    assertTrue(registry.hasLinter("io.github.mbarre.schemacrawler.tool.linter.LinterRightSpacePadding"));
   }
 
 }
