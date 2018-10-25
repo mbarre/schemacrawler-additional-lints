@@ -116,7 +116,7 @@ License along with this program.  If not, see
 		<maven-javadoc-plugin.version>3.0.1</maven-javadoc-plugin.version>
 		<maven-jxr-plugin.version>3.0.0</maven-jxr-plugin.version>
 		<maven-surefire-report-plugin.version>2.22.0</maven-surefire-report-plugin.version>
-		<maven-surefire-plugin.version>2.22.0</maven-surefire-plugin.version>
+		<maven-surefire-plugin.version>2.22.1</maven-surefire-plugin.version>
 		<maven-project-info-reports-plugin.version>3.0.0</maven-project-info-reports-plugin.version>
 		<maven-changes-plugin.version>2.12.1</maven-changes-plugin.version>
 		<jacoco-maven-plugin.version>0.8.2</jacoco-maven-plugin.version>
