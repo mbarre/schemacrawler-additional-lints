@@ -81,6 +81,16 @@ License along with this program.  If not, see
 			</roles>
 			<timezone>+11</timezone>
 		</contributor>
+		<contributor>
+			<email>mvallet@calinfo-nc.com</email>
+			<name>VALLET</name>
+			<organization>Calinfo</organization>
+			<organizationUrl>http://www.calinfo-nc.com/</organizationUrl>
+			<roles>
+				<role>Developer</role>
+			</roles>
+			<timezone>+11</timezone>
+		</contributor>
 	</contributors>
 
 	<repositories>
