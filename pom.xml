@@ -25,7 +25,7 @@ License along with this program.  If not, see
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>io.github.mbarre</groupId>
 	<artifactId>schemacrawler-additional-lints</artifactId>
-	<version>1.03.04</version>
+	<version>1.04.01-SNAPSHOT</version>
 	<name>Additional SchemaCrawler Lints</name>
 	<description>Some additional lints for Schemacrawler</description>
 	<inceptionYear>2015</inceptionYear>
@@ -83,18 +83,6 @@ License along with this program.  If not, see
 		</contributor>
 	</contributors>
 
-	<distributionManagement>
-		<snapshotRepository>
-			<id>ossrh</id>
-			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
-		</snapshotRepository>
-		<repository>
-			<id>ossrh</id>
-			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-		</repository>
-	</distributionManagement>
-
-
 	<repositories>
 		<repository>
 			<id>The Central Repository</id>
@@ -106,7 +94,7 @@ License along with this program.  If not, see
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-		<schemacrawler.version>15.01.03</schemacrawler.version>
+		<schemacrawler.version>15.01.04</schemacrawler.version>
 		<!--<schemacrawler.version>14.21.02</schemacrawler.version>-->
 		<java.version>1.8</java.version>
 		<java.version.short>8</java.version.short>
@@ -127,8 +115,8 @@ License along with this program.  If not, see
 		<maven-site-plugin.version>3.7.1</maven-site-plugin.version>
 		<maven-javadoc-plugin.version>3.0.1</maven-javadoc-plugin.version>
 		<maven-jxr-plugin.version>3.0.0</maven-jxr-plugin.version>
-		<maven-surefire-report-plugin.version>2.22.0</maven-surefire-report-plugin.version>
-		<maven-surefire-plugin.version>2.22.0</maven-surefire-plugin.version>
+		<maven-surefire-report-plugin.version>2.22.1</maven-surefire-report-plugin.version>
+		<maven-surefire-plugin.version>2.22.1</maven-surefire-plugin.version>
 		<maven-project-info-reports-plugin.version>3.0.0</maven-project-info-reports-plugin.version>
 		<maven-changes-plugin.version>2.12.1</maven-changes-plugin.version>
 		<jacoco-maven-plugin.version>0.8.2</jacoco-maven-plugin.version>
@@ -365,7 +353,6 @@ License along with this program.  If not, see
 					<outputEncoding>UTF-8</outputEncoding>
 				</configuration>
 			</plugin>
-
 			<plugin>
 				<groupId>org.eluder.coveralls</groupId>
 				<artifactId>coveralls-maven-plugin</artifactId>
@@ -453,17 +440,6 @@ License along with this program.  If not, see
 							</includes>
 						</fileSet>
 					</fileSets>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.sonatype.plugins</groupId>
-				<artifactId>nexus-staging-maven-plugin</artifactId>
-				<version>${nexus-staging-maven-plugin.version}</version>
-				<extensions>true</extensions>
-				<configuration>
-					<serverId>ossrh</serverId>
-					<nexusUrl>https://oss.sonatype.org/</nexusUrl>
-					<autoReleaseAfterClose>true</autoReleaseAfterClose>
 				</configuration>
 			</plugin>
 		</plugins>
@@ -555,7 +531,7 @@ License along with this program.  If not, see
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jxr-plugin</artifactId>
-				<version>2.5</version>
+				<version>3.0.0</version>
 			</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
@@ -584,28 +560,4 @@ License along with this program.  If not, see
 			</plugin>
 		</plugins>
 	</reporting>
-	<profiles>
-		<profile>
-			<id>sign</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-gpg-plugin</artifactId>
-						<version>1.6</version>
-						<executions>
-							<execution>
-								<id>sign-artifacts</id>
-								<phase>verify</phase>
-								<goals>
-									<goal>sign</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
-
 </project>
