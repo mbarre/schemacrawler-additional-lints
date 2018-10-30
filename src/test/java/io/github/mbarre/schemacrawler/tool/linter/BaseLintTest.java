@@ -22,6 +22,20 @@ package io.github.mbarre.schemacrawler.tool.linter;
  * #L%
  */
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import io.github.mbarre.schemacrawler.test.utils.LintWrapper;
+import org.apache.commons.io.IOUtils;
+import org.junit.Assert;
+import schemacrawler.schemacrawler.SchemaCrawlerOptions;
+import schemacrawler.tools.executable.SchemaCrawlerExecutable;
+import schemacrawler.tools.lint.executable.LintOptionsBuilder;
+import schemacrawler.tools.options.OutputOptions;
+import schemacrawler.tools.options.OutputOptionsBuilder;
+import schemacrawler.tools.options.TextOutputFormat;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.nio.file.FileSystems;
@@ -31,21 +45,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import org.apache.commons.io.IOUtils;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.junit.Assert;
-import io.github.mbarre.schemacrawler.test.utils.LintWrapper;
-import schemacrawler.schemacrawler.SchemaCrawlerOptions;
-import schemacrawler.tools.executable.SchemaCrawlerExecutable;
-import schemacrawler.tools.lint.executable.LintOptionsBuilder;
-import schemacrawler.tools.options.OutputOptions;
-import schemacrawler.tools.options.OutputOptionsBuilder;
-import schemacrawler.tools.options.TextOutputFormat;
 
 /**
  * Created by barmi83 on 24/12/15.
@@ -75,62 +75,60 @@ public abstract class BaseLintTest {
         File output = new File(out.toString());
         String data = IOUtils.toString(new FileInputStream(output));
         Assert.assertNotNull(data);
-		JSONObject json = new JSONObject(data.substring(1, data.length() - 2));
+        Gson gson = new Gson();
+		JsonObject json = gson.fromJson(data.substring(1, data.length() - 2), JsonObject.class);
 
 		List<LintWrapper>lints = new ArrayList<>();
+            if (json.get("table_lints") instanceof JsonObject) {
 
-        try {
-            if (json.get("table_lints") instanceof JSONObject) {
-
-                Assert.assertNotNull(json.getJSONObject("table_lints"));
-                JSONArray jsonLints = json.getJSONObject("table_lints").getJSONArray("lints");
+                Assert.assertNotNull(json.getAsJsonObject("table_lints"));
+                JsonArray jsonLints = json.getAsJsonObject("table_lints").getAsJsonArray("lints");
                 Assert.assertNotNull(jsonLints);
 
                 if (options.getTableNamePattern() != null && !options.getTableNamePattern().isEmpty())
-                    Assert.assertEquals(options.getTableNamePattern(), json.getJSONObject("table_lints").getString("name"));
+                    Assert.assertEquals(options.getTableNamePattern(), json.getAsJsonObject("table_lints").get("name").getAsString());
 
                 String tableName;
-                for (int i = 0; i < jsonLints.length(); i++) {
-                    tableName = json.getJSONObject("table_lints").getString("name");
+
+                for (JsonElement lint : jsonLints) {
+                    tableName = json.getAsJsonObject("table_lints").get("name").getAsString();
                     if (!Objects.equals("databasechangelog", tableName) && !Objects.equals("databasechangeloglock", tableName))
-                        lints.add(createLintWrapper(json.getJSONObject("table_lints").getString("name"), jsonLints.getJSONObject(i)));
+                        lints.add(createLintWrapper(json.getAsJsonObject("table_lints").get("name").getAsString(), lint.getAsJsonObject()));
                 }
             } else {
-                Assert.assertNotNull(json.getJSONArray("table_lints"));
-                JSONArray jsonTableLints = json.getJSONArray("table_lints");
+                Assert.assertNotNull(json.getAsJsonArray("table_lints"));
+                JsonArray jsonTableLints = json.getAsJsonArray("table_lints");
 
-                for (int i = 0; i < jsonTableLints.length(); i++) {
-                    JSONArray jsonLints = jsonTableLints.getJSONObject(i).getJSONArray("lints");
+                for (JsonElement tableLint : jsonTableLints) {
+                    JsonObject tableLintObject = tableLint.getAsJsonObject();
+                    JsonArray jsonLints = tableLintObject.getAsJsonArray("lints");
                     Assert.assertNotNull(jsonLints);
 
                     if (options.getTableNamePattern() != null && !options.getTableNamePattern().isEmpty())
-                        Assert.assertEquals(options.getTableNamePattern(), json.getJSONObject("table_lints").getString("name"));
+                        Assert.assertEquals(options.getTableNamePattern(), json.getAsJsonObject("table_lints").get("name").getAsString());
 
                     String tableName;
-                    for (int j = 0; j < jsonLints.length(); j++) {
-                        tableName = jsonTableLints.getJSONObject(i).getString("name");
+                    for (JsonElement lint : jsonLints) {
+                        tableName = tableLintObject.get("name").getAsString();
                         if (!Objects.equals("databasechangelog", tableName) && !Objects.equals("databasechangeloglock", tableName))
-                            lints.add(createLintWrapper(jsonTableLints.getJSONObject(i).getString("name"), jsonLints.getJSONObject(j)));
+                            lints.add(createLintWrapper(tableLintObject.get("name").getAsString(), lint.getAsJsonObject()));
                     }
                 }
             }
-        }catch(JSONException e){
-            LOGGER.log(Level.WARNING, "No lint detected.");
-        }
 
         return lints;
     }
 
-    private LintWrapper createLintWrapper(String tableName, JSONObject jsonLint){
+    private LintWrapper createLintWrapper(String tableName, JsonObject jsonLint){
 
         LintWrapper lint = new LintWrapper();
-        lint.setId(jsonLint.getString("id"));
+        lint.setId(jsonLint.get("id").getAsString());
         Assert.assertNotNull(lint.getId());
-        lint.setValue(jsonLint.getString("value").trim());
+        lint.setValue(jsonLint.get("value").getAsString().trim());
         Assert.assertNotNull(lint.getValue());
-        lint.setDescription(jsonLint.getString("description").trim());
+        lint.setDescription(jsonLint.get("description").getAsString().trim());
         Assert.assertNotNull(lint.getDescription());
-        lint.setSeverity(jsonLint.getString("severity").trim());
+        lint.setSeverity(jsonLint.get("severity").getAsString().trim());
         Assert.assertNotNull(lint.getSeverity());
         lint.setTableName(tableName);
 
