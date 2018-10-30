@@ -35,6 +35,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -48,6 +49,7 @@ public class LinterColumnContentNotNormalized extends BaseLinter {
     private static final Logger LOGGER = Logger.getLogger(LinterColumnContentNotNormalized.class.getName());
     private static final String NB_REPEAT_TOLERANCE_CONFIG = "nbRepeatTolerance";
     private static final String MIN_TEXT_COLUMN_SIZE_CONFIG = "minTextColumnSize";
+    private Integer sampleSize;
     
     /**
      * Repeat tolerance : 1 is the most agressive, duplicates occur since there
@@ -72,6 +74,7 @@ public class LinterColumnContentNotNormalized extends BaseLinter {
         setSeverity(LintSeverity.medium);
         nbRepeatTolerance = NB_REPEAT_TOLERANCE;
         minTextColumnSize = MIN_TEXT_COLUMN_SIZE;
+        sampleSize = 1000;
     }
     
     /**
@@ -139,7 +142,13 @@ public class LinterColumnContentNotNormalized extends BaseLinter {
             String sql;
             String tableName = table.getName().replaceAll("\"", "");
             List<Column> columns = getColumns(table);
-            
+
+            Long totalRows = 0L;
+            totalRows = LintUtils.getTableSize(stmt, tableName);
+            LOGGER.log(Level.INFO, "totalrows=" + totalRows);
+            Set<Long> sampleIndexes = LintUtils.generateSample(sampleSize, totalRows);
+            LOGGER.log(Level.INFO, "sampleIndexes=" + sampleIndexes);
+
             for (Column column : columns) {
                 if (LinterColumnContentNotNormalized.mustColumnBeTested(column.getColumnDataType().getJavaSqlType().getVendorTypeNumber(), column.getSize(), minTextColumnSize)) {
                     // test based column, perform test
@@ -149,13 +158,17 @@ public class LinterColumnContentNotNormalized extends BaseLinter {
                     LOGGER.log(Level.CONFIG, "SQL : {0}", sql);
 
                     try(ResultSet rs = stmt.executeQuery(sql)){
+                        Long i = 0L;
                         while (rs.next()) {
-                            int nbRepeats = rs.getInt("counter");
-                            LOGGER.log(Level.CONFIG, "Found <{0}> repetitions of the same value <{1}> in <{2}>", new Object[]{nbRepeats, rs.getString(1), column});
-                            if(nbRepeats > nbRepeatTolerance){
-                                LOGGER.log(Level.CONFIG, "Adding lint as nbRepeats exceeds tolerance ({0} > {1} )", new Object[]{nbRepeats, nbRepeatTolerance});
-                                addLint(table, "<" + nbRepeats + "> repetitions of the same value <" + rs.getString(1) + ">", column.getFullName());
+                            if (sampleIndexes.contains(i)) {
+                                int nbRepeats = rs.getInt("counter");
+                                LOGGER.log(Level.CONFIG, "Found <{0}> repetitions of the same value <{1}> in <{2}>", new Object[]{nbRepeats, rs.getString(1), column});
+                                if (nbRepeats > nbRepeatTolerance) {
+                                    LOGGER.log(Level.CONFIG, "Adding lint as nbRepeats exceeds tolerance ({0} > {1} )", new Object[]{nbRepeats, nbRepeatTolerance});
+                                    addLint(table, "<" + nbRepeats + "> repetitions of the same value <" + rs.getString(1) + ">", column.getFullName());
+                                }
                             }
+                            i++;
                         }
                     } catch (SQLException ex) {
                         LOGGER.severe(ex.getMessage());
