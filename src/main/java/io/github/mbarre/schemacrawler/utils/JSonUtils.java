@@ -22,8 +22,7 @@ package io.github.mbarre.schemacrawler.utils;
  * #L%
  */
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.google.gson.Gson;
 import org.slf4j.LoggerFactory;
 
 /**
@@ -45,10 +44,11 @@ public class JSonUtils {
 		if (content == null)
 			return false;
 		
-		try{
-			new JSONObject(content);	
-			return true;
-		}catch(JSONException e){
+		Gson gson = new Gson();
+		try {
+		    Object o = gson.fromJson(content, Object.class);
+		    return true;
+		} catch (Exception e) {
 			LoggerFactory.getLogger(JSonUtils.class).info("String is not JSON.", e);
 			return false;
 		}
