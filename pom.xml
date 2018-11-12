@@ -114,7 +114,7 @@ License along with this program.  If not, see
 		<project.url>https://github.com/mbarre/schemacrawler-additional-lints</project.url>
 
 		<maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
-		<maven-shade-plugin.version>3.2.0</maven-shade-plugin.version>
+		<maven-shade-plugin.version>3.2.1</maven-shade-plugin.version>
 		<maven-enforcer-plugin.version>1.4.1</maven-enforcer-plugin.version>
 		<maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
 		<maven-checkstyle-plugin.version>3.0.0</maven-checkstyle-plugin.version>
