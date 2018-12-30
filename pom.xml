@@ -25,7 +25,7 @@ License along with this program.  If not, see
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>io.github.mbarre</groupId>
 	<artifactId>schemacrawler-additional-lints</artifactId>
-	<version>1.04.01</version>
+	<version>1.04.02</version>
 	<name>Additional SchemaCrawler Lints</name>
 	<description>Some additional lints for Schemacrawler</description>
 	<inceptionYear>2015</inceptionYear>
