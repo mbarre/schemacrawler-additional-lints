@@ -10,12 +10,12 @@ package io.github.mbarre.schemacrawler.tool.linter;
  * it under the terms of the GNU General Public License as
  * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
@@ -108,7 +108,7 @@ public class LinterCompressBlob extends BaseLinter {
             int distinctCount;
 
             for (Column column : columns) {
-				column.getColumnDataType().getJavaSqlType();
+                column.getColumnDataType().getJavaSqlType();
                 columnDataType = column.getColumnDataType().getJavaSqlType().getVendorTypeNumber();
                 if(columnDataType == Types.BINARY || columnDataType == Types.BLOB) {
                     inspectBlobData(stmt, table, column);
@@ -132,7 +132,7 @@ public class LinterCompressBlob extends BaseLinter {
         InputStream byte_stream;
         try(ResultSet rs = stmt.executeQuery(sql)){
             if(rs.next()){
-                File file = new File("target/file");
+                File file = File.createTempFile("file", ".tmp");
 
                 try(FileOutputStream fos = new FileOutputStream(file)){
                     byte[] buffer = new byte[1];
@@ -145,15 +145,15 @@ public class LinterCompressBlob extends BaseLinter {
                     byte_stream.close();
                     int extract_size = nbBytes-1;
 
+                    File zipOutput = File.createTempFile("zip_output", ".zip");
                     /* Create Output Stream that will have final zip files */
-                    OutputStream zip_output = new FileOutputStream(new File("target/zip_output.zip"));
+                    OutputStream zip_output = new FileOutputStream(zipOutput);
                     /* Create Archive Output Stream that attaches File Output Stream / and specifies type of compression */
-                    ArchiveOutputStream logical_zip = null;
-                    logical_zip = new ArchiveStreamFactory().createArchiveOutputStream(ArchiveStreamFactory.ZIP, zip_output);
+                    ArchiveOutputStream logical_zip = new ArchiveStreamFactory().createArchiveOutputStream(ArchiveStreamFactory.ZIP, zip_output);
                     /* Create Archieve entry - write header information*/
-                    logical_zip.putArchiveEntry(new ZipArchiveEntry("target/file"));
+                    logical_zip.putArchiveEntry(new ZipArchiveEntry(zipOutput.getName()));
                     /* Copy input file */
-                    IOUtils.copy(new FileInputStream(new File("target/file")), logical_zip);
+                    IOUtils.copy(new FileInputStream(zipOutput), logical_zip);
                     /* Close Archieve entry, write trailer information */
                     logical_zip.closeArchiveEntry();
                     /* Finish addition of entries to the file */
@@ -161,24 +161,26 @@ public class LinterCompressBlob extends BaseLinter {
                     /* Close output stream, our files are zipped */
                     zip_output.close();
 
-                    File zip_file = new File("target/zip_output.zip");
-                    if(zip_file.length() < extract_size) {
-                        double rate = (zip_file.length() - extract_size)*100/extract_size;
+                    if(extract_size != 0  && zipOutput.length() < extract_size) {
+                        double rate = (zipOutput.length() - extract_size)*100/extract_size;
                         if (Math.abs(rate) >= minCompressionPercent) {
-                            LOGGER.info("Extract size :" + extract_size + "ko, zip file size :" + zip_file.length() + " rate :" +rate+"%");
+                            LOGGER.info("Extract size :" + extract_size + "ko, zip file size :" + zipOutput.length() + " rate :" +rate+"%");
                             addLint(table, "Blob should be compressed", column.getFullName());
                         }
                     }
+
+                    file.delete();
+                    zipOutput.delete();
 
                 } catch (IOException | ArchiveException e){
                     LOGGER.severe(e.getMessage());
                     throw new SchemaCrawlerException(e.getMessage(), e);
                 }
             }
-        }catch (SQLException ex) {
+        }catch (SQLException | IOException ex) {
             LOGGER.severe(ex.getMessage());
             throw new SchemaCrawlerException(ex.getMessage(), ex);
         }
     }
 
-    }
+}
