@@ -17,3 +17,4 @@ io.github.mbarre.schemacrawler.tool.linter.LinterNoSpaceInNames
 io.github.mbarre.schemacrawler.tool.linter.LinterPluralTableName
 io.github.mbarre.schemacrawler.tool.linter.LinterLeftSpacePadding
 io.github.mbarre.schemacrawler.tool.linter.LinterRightSpacePadding
+io.github.mbarre.schemacrawler.tool.linter.LinterTimeStampWithOutTimeZoneColumn
