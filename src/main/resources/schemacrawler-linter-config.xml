@@ -204,7 +204,6 @@
     </linter>
     <linter id="io.github.mbarre.schemacrawler.tool.linter.LinterOrphanTable">
         <run>true</run>
-        <severity>high</severity>
         <table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
     </linter>
     <linter id="io.github.mbarre.schemacrawler.tool.linter.LinterForbiddenPrimaryKeyType">

@@ -40,7 +40,7 @@ import static java.util.Objects.requireNonNull;
 public class LinterOrphanTable extends BaseLinter {
 
     public LinterOrphanTable() {
-        setSeverity(LintSeverity.high);
+        setSeverity(LintSeverity.critical);
     }
 
     /**
