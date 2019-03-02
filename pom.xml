@@ -64,33 +64,64 @@ License along with this program.  If not, see
 			</roles>
 			<timezone>+11</timezone>
 		</developer>
-	</developers>
+        <developer>
+            <email>Adrien.Sales@gmail.com</email>
+            <id>adriens</id>
+            <name>Adrien Sales</name>
+            <organization>Github</organization>
+            <organizationUrl>https://github.com/adriens</organizationUrl>
+            <roles>
+                <role>DBA</role>
+                <role>Documentation contributor</role>
+                <role>Tester</role>
+                <role>PostgreSQL expert</role>
+                <role>Schemacrawler integrator</role>
+                <role>Open source evangelist</role>
+            </roles>
+            <timezone>+11</timezone>
+        </developer>
+    </developers>
 	<contributors>
-		<contributor>
-			<email>Adrien.Sales@gmail.com</email>
-			<name>Sales</name>
-			<organization>Github</organization>
-			<organizationUrl>https://github.com/adriens</organizationUrl>
-			<roles>
-				<role>DBA</role>
-				<role>Documentation contributor</role>
-				<role>Tester</role>
-				<role>PostgreSQL expert</role>
-				<role>Schemacrawler integrator</role>
-				<role>Open source evangelist</role>
-			</roles>
-			<timezone>+11</timezone>
-		</contributor>
+        <contributor>
+            <email>sualeh@hotmail.com</email>
+            <name>Sualeh Fatehi</name>
+            <organization>Github</organization>
+            <organizationUrl>https://github.com/sualeh</organizationUrl>
+            <roles>
+                <role>Schemacrawler project creator</role>
+            </roles>
+            <timezone>-5</timezone>
+        </contributor>
 		<contributor>
 			<email>mvallet@calinfo-nc.com</email>
-			<name>VALLET</name>
-			<organization>Calinfo</organization>
-			<organizationUrl>http://www.calinfo-nc.com/</organizationUrl>
+			<name>Martin Vallet</name>
+			<organization>Github</organization>
+			<organizationUrl>https://github.com/mvallet-calinfo</organizationUrl>
 			<roles>
 				<role>Developer</role>
 			</roles>
 			<timezone>+11</timezone>
 		</contributor>
+		<contributor>
+			<email>thomas.lemaire@agilesoft.nc</email>
+			<name>Thomas Lemaire</name>
+			<organization>Github</organization>
+			<organizationUrl>https://github.com/ThomasLemaire</organizationUrl>
+			<roles>
+				<role>Developer</role>
+			</roles>
+			<timezone>+11</timezone>
+		</contributor>
+        <contributor>
+            <email>bheemreddy181@gmail.com</email>
+            <name>bheemreddy181</name>
+            <organization>Github</organization>
+            <organizationUrl>https://github.com/bheemreddy181</organizationUrl>
+            <roles>
+                <role>Developer</role>
+            </roles>
+            <timezone>-6</timezone>
+        </contributor>
 	</contributors>
 
 	<repositories>
@@ -346,11 +377,16 @@ License along with this program.  If not, see
 						<artifactId>doxia-module-markdown</artifactId>
 						<version>1.8</version>
 					</dependency>
-					<dependency>
-						<groupId>lt.velykis.maven.skins</groupId>
-						<artifactId>reflow-velocity-tools</artifactId>
-						<version>1.1.1</version>
-					</dependency>
+					<!--<dependency>-->
+						<!--<groupId>lt.velykis.maven.skins</groupId>-->
+						<!--<artifactId>reflow-velocity-tools</artifactId>-->
+						<!--<version>1.1.1</version>-->
+					<!--</dependency>-->
+                    <dependency>
+                        <groupId>org.apache.maven.skins</groupId>
+                        <artifactId>maven-fluido-skin</artifactId>
+                        <version>1.7</version>
+                    </dependency>
 					<dependency>
 						<groupId>org.apache.velocity</groupId>
 						<artifactId>velocity</artifactId>

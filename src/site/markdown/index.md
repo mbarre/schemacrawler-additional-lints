@@ -99,3 +99,7 @@ Additional lint checks are :
 **Linter :** *io.github.mbarre.schemacrawler.tools.LinterXmlContent*  
   Check that columns with XML content is XML type.   
   Default severity : high.
+
+**Linter :** *io.github.mbarre.schemacrawler.tools.LinterTimeStampWithoutTimeZoneColumn*  
+  Check if columns have any TimeStamp data type columns if so suggest to use TimeStamp with TimeZones - PostgreSQL reserved.
+  Default severity : critical.
