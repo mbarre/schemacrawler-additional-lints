@@ -102,6 +102,16 @@ License along with this program.  If not, see
 			</roles>
 			<timezone>+11</timezone>
 		</contributor>
+		<contributor>
+			<email>thomas.lemaire@agilesoft.nc</email>
+			<name>Thomas Lemaire</name>
+			<organization>Github</organization>
+			<organizationUrl>https://github.com/ThomasLemaire</organizationUrl>
+			<roles>
+				<role>Developer</role>
+			</roles>
+			<timezone>+11</timezone>
+		</contributor>
         <contributor>
             <email>bheemreddy181@gmail.com</email>
             <name>bheemreddy181</name>
@@ -314,23 +324,23 @@ License along with this program.  If not, see
 					</execution>
 				</executions>
 			</plugin>
-			<!--<plugin>-->
-				<!--<groupId>com.github.github</groupId>-->
-				<!--<artifactId>site-maven-plugin</artifactId>-->
-				<!--<version>0.12</version>-->
-				<!--<configuration>-->
-					<!--<message>Creating site for ${project.version}</message>-->
-					<!--<server>${github.global.server}</server>-->
-				<!--</configuration>-->
-				<!--<executions>-->
-					<!--<execution>-->
-						<!--<goals>-->
-							<!--<goal>site</goal>-->
-						<!--</goals>-->
-						<!--<phase>site</phase>-->
-					<!--</execution>-->
-				<!--</executions>-->
-			<!--</plugin>-->
+			<plugin>
+				<groupId>com.github.github</groupId>
+				<artifactId>site-maven-plugin</artifactId>
+				<version>0.12</version>
+				<configuration>
+					<message>Creating site for ${project.version}</message>
+					<server>${github.global.server}</server>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>site</goal>
+						</goals>
+						<phase>site</phase>
+					</execution>
+				</executions>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
