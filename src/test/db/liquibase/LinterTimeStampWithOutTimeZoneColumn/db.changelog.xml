@@ -31,6 +31,7 @@
 			<column name="id" 				type="int" 			remarks="primary key"/>
 			<column name="content"                          type="varchar(20)"/>
 			<column name="created_at"                          type="timestamp" remarks="column timestamp type"/>
+			<column name="updated_at"                          type="timestamptz" remarks="column timestamp type"/>
 		</createTable>
 
 		<addPrimaryKey columnNames="id"
@@ -38,7 +39,7 @@
 					   schemaName="public"
 					   tableName="test_timetsamp_type"/>
 
-		<sql>insert into test_timetsamp_type(id, content, created_at) values (1, 'timestamp_lint', current_timestamp)</sql>
+		<sql>insert into test_timetsamp_type(id, content, created_at,updated_at) values (1, 'timestamp_lint', current_timestamp,current_timestamp::timestamptz)</sql>
 
 	</changeSet>
 
