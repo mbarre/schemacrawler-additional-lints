@@ -104,8 +104,6 @@ public class LinterCompressBlob extends BaseLinter {
 
             List<Column> columns = getColumns(table);
             int columnDataType;
-            int count;
-            int distinctCount;
 
             for (Column column : columns) {
                 column.getColumnDataType().getJavaSqlType();

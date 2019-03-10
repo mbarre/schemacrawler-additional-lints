@@ -46,7 +46,7 @@ public class JSonUtils {
 		
 		Gson gson = new Gson();
 		try {
-		    Object o = gson.fromJson(content, Object.class);
+		     gson.fromJson(content, Object.class);
 		    return true;
 		} catch (Exception e) {
 			LoggerFactory.getLogger(JSonUtils.class).info("String is not JSON.", e);

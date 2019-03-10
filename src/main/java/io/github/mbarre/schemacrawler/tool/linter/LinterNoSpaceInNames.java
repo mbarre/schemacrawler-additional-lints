@@ -58,9 +58,7 @@ public class LinterNoSpaceInNames extends BaseLinter {
      */
     @Override
     protected void lint(Table table, Connection connection) {
-        String sql;
         List<Column> columns = getColumns(table);
-        String columnName;
         String tableName = table.getName().replaceAll("\"", "");
         if(tableName.contains(" ")) {
             addLint(table, getDescription(), table.getFullName());
