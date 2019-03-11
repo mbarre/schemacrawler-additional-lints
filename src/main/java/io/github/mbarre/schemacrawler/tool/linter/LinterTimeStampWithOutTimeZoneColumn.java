@@ -86,7 +86,7 @@ public class LinterTimeStampWithOutTimeZoneColumn extends BaseLinter {
 		List<Column> columns = getColumns(table);
 		for (Column column : columns) {
 			LOGGER.log(Level.INFO, "Checking {0}...", column.getFullName());
-			if (LintUtils.isSqlTypeTimeStampBased(column.getColumnDataType().getJavaSqlType().getVendorTypeNumber())) {
+			if (column.getColumnDataType().toString().equalsIgnoreCase("timestamp")) {
 				addLint(table, getDescription(), column.getFullName());
 			}
 		}
