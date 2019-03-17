@@ -1,0 +1,15 @@
+version: '3'
+services:
+   sc_test_postgres:
+     image: "postgres:9.4"
+     environment:
+       POSTGRES_USER: postgres
+       POSTGRES_PASSWORD: postgres
+     ports:
+       - 5433:5432
+     # Persist the data between container invocations
+     volumes:
+       - ./../src/test/db/liquibase/dba/sql/init_db_test.sql:/docker-entrypoint-initdb.d/init.sql
+
+
+
