@@ -17,8 +17,6 @@ This project has been created to be used at our office
 [Mairie de la Ville de Nouméa](http://www.noumea.nc/) to test our database
 schema quality in a more easy way and make it possible for our partners to
 apply our database quality policy the easy way.
-
-
 # Build and install lint
 
 **Notice that this version is designed to run on schemacrawler `14.x.x`...
@@ -41,12 +39,18 @@ command and enjoy.
 
 # Build and test
 
-To ba able to test locally, assuming you have a locally postgreSQL instance
+To be able to test locally, assuming you have a locally postgreSQL instance
 up and running with the proper `superuser` account, then run the following
 commands
 
     dropdb --if-exists sc_lint_test
     createdb sc_lint_test
+    mvn install
+    cp target/schemacrawler-additional-lints-${LINT_VERSION}.jar $SCHEMACRAWLER_HOME/lib
+    
+Or, install [Docker Compose](https://docs.docker.com/compose/install/) to deploy PostgreSQL and the database
+
+    docker-compose -f docker/postgresql.yml up
     mvn install
     cp target/schemacrawler-additional-lints-${LINT_VERSION}.jar $SCHEMACRAWLER_HOME/lib
 
