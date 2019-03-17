@@ -68,13 +68,6 @@ public class LinterCompressBlobTest extends BaseLintTest {
 		List<LintWrapper> lints = executeToJsonAndConvertToLintList(LinterCompressBlob.class.getSimpleName(), options, connection);
 		Assert.assertNotNull(lints);
 		Assert.assertTrue(lints.stream().anyMatch(lint -> Objects.equals(lint.getDescription(), "Blob should be compressed")));
-//		Assert.assertTrue(lints.stream().anyMatch(lint -> Objects.equals(lint.getDescription(), "BLOB should not be used")));
-//		Assert.assertTrue(lints.stream().anyMatch(lint -> Objects.equals(lint.getDescription(), "OID should be used instead of BYTEA")));
 
 	}
-
-	private boolean contains(List<LintWrapper> lints, String columnName){
-		return lints.stream().anyMatch(lint -> Objects.equals(lint.getValue(), columnName));
-	}
-
 }

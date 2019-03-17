@@ -50,6 +50,7 @@ import java.util.logging.Logger;
 /**
  * Created by barmi83 on 24/12/15.
  */
+@SuppressWarnings({ "static-access", "deprecation" })
 public abstract class BaseLintTest {
 
     private static final Logger LOGGER = Logger.getLogger(BaseLintTest.class.getName());
@@ -88,10 +89,8 @@ public abstract class BaseLintTest {
                 if (options.getTableNamePattern() != null && !options.getTableNamePattern().isEmpty())
                     Assert.assertEquals(options.getTableNamePattern(), json.getAsJsonObject("table_lints").get("name").getAsString());
 
-                String tableName;
-
                 for (JsonElement lint : jsonLints) {
-                    tableName = json.getAsJsonObject("table_lints").get("name").getAsString();
+                	String tableName = json.getAsJsonObject("table_lints").get("name").getAsString();
                     if (!Objects.equals("databasechangelog", tableName) && !Objects.equals("databasechangeloglock", tableName))
                         lints.add(createLintWrapper(json.getAsJsonObject("table_lints").get("name").getAsString(), lint.getAsJsonObject()));
                 }
@@ -107,11 +106,11 @@ public abstract class BaseLintTest {
                     if (options.getTableNamePattern() != null && !options.getTableNamePattern().isEmpty())
                         Assert.assertEquals(options.getTableNamePattern(), json.getAsJsonObject("table_lints").get("name").getAsString());
 
-                    String tableName;
                     for (JsonElement lint : jsonLints) {
-                        tableName = tableLintObject.get("name").getAsString();
+                    	String tableName = tableLintObject.get("name").getAsString();
                         if (!Objects.equals("databasechangelog", tableName) && !Objects.equals("databasechangeloglock", tableName))
                             lints.add(createLintWrapper(tableLintObject.get("name").getAsString(), lint.getAsJsonObject()));
+                        	LOGGER.info("lints added:"+ lints);
                     }
                 }
             }
