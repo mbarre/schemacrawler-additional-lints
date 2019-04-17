@@ -1,5 +1,7 @@
 package io.github.mbarre.schemacrawler.tool.linter;
 
+
+
 /*-
  * #%L
  * Additional SchemaCrawler Lints
@@ -22,19 +24,17 @@ package io.github.mbarre.schemacrawler.tool.linter;
  * #L%
  */
 
-import schemacrawler.schema.Column;
-import schemacrawler.schema.Table;
-import schemacrawler.schemacrawler.SchemaCrawlerException;
-import schemacrawler.tools.lint.BaseLinter;
-import schemacrawler.tools.lint.LintSeverity;
-
 import java.sql.Connection;
-import java.sql.DatabaseMetaData;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import schemacrawler.schema.Column;
+import schemacrawler.schema.Table;
+import schemacrawler.schemacrawler.SchemaCrawlerException;
+import schemacrawler.tools.lint.BaseLinter;
+import schemacrawler.tools.lint.LintSeverity;
 
 /**
  * Created by barmi83 on 3/10/17.

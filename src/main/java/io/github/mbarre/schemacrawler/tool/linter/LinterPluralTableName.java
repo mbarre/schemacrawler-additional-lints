@@ -1,5 +1,7 @@
 package io.github.mbarre.schemacrawler.tool.linter;
 
+
+
 /*-
  * #%L
  * Additional SchemaCrawler Lints
@@ -23,14 +25,10 @@ package io.github.mbarre.schemacrawler.tool.linter;
  */
 
 import schemacrawler.schema.Table;
-import schemacrawler.schemacrawler.SchemaCrawlerException;
 import schemacrawler.tools.lint.BaseLinter;
 import schemacrawler.tools.lint.LintSeverity;
-
-import java.sql.Connection;
-
 import static java.util.Objects.requireNonNull;
-
+import java.sql.Connection;
 
 /**
  * Linter to check if a table has its name plural ou singular

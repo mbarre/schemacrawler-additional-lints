@@ -27,8 +27,6 @@ import schemacrawler.tools.lint.BaseLinter;
 import schemacrawler.tools.lint.LintSeverity;
 
 import java.sql.Connection;
-import java.util.List;
-
 import static java.util.Objects.requireNonNull;
 
 /**

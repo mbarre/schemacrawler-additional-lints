@@ -4,7 +4,6 @@
 [![Release](https://jitpack.io/v/mbarre/schemacrawler-additional-lints.svg)](https://jitpack.io/mbarre/schemacrawler-additional-lints)
 [![Coverage Status](https://coveralls.io/repos/mbarre/schemacrawler-additional-lints/badge.svg?branch=master&service=github)](https://coveralls.io/github/mbarre/schemacrawler-additional-lints?branch=master)
 [![Join the chat at https://gitter.im/mbarre/schemacrawler-additionallints](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/mbarre/schemacrawler-additional-lints?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-<a href="https://zenhub.com"><img src="https://raw.githubusercontent.com/ZenHubIO/support/master/zenhub-badge.png"></a>
 
 Some additional lints for [Schemacrawler](http://sualeh.github.io/SchemaCrawler/)
 
@@ -18,8 +17,6 @@ This project has been created to be used at our office
 [Mairie de la Ville de Nouméa](http://www.noumea.nc/) to test our database
 schema quality in a more easy way and make it possible for our partners to
 apply our database quality policy the easy way.
-
-
 # Build and install lint
 
 **Notice that this version is designed to run on schemacrawler `14.x.x`...
@@ -42,12 +39,18 @@ command and enjoy.
 
 # Build and test
 
-To ba able to test locally, assuming you have a locally postgreSQL instance
+To be able to test locally, assuming you have a locally postgreSQL instance
 up and running with the proper `superuser` account, then run the following
 commands
 
     dropdb --if-exists sc_lint_test
     createdb sc_lint_test
+    mvn install
+    cp target/schemacrawler-additional-lints-${LINT_VERSION}.jar $SCHEMACRAWLER_HOME/lib
+    
+Or, install [Docker Compose](https://docs.docker.com/compose/install/) to deploy PostgreSQL and the database
+
+    docker-compose -f docker/postgresql.yml up
     mvn install
     cp target/schemacrawler-additional-lints-${LINT_VERSION}.jar $SCHEMACRAWLER_HOME/lib
 
