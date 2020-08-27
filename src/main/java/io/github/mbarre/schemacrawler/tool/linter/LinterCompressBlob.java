@@ -163,7 +163,7 @@ public class LinterCompressBlob extends BaseLinter {
                         double rate = (zipOutput.length() - extract_size)*100/extract_size;
                         if (Math.abs(rate) >= minCompressionPercent) {
                             LOGGER.info("Extract size :" + extract_size + "ko, zip file size :" + zipOutput.length() + " rate :" +rate+"%");
-                            addLint(table, "Blob should be compressed", column.getFullName());
+                            addTableLint(table, "Blob should be compressed", column.getFullName());
                         }
                     }
 

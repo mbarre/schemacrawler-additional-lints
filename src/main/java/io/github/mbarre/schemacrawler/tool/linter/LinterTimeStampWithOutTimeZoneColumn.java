@@ -87,7 +87,7 @@ public class LinterTimeStampWithOutTimeZoneColumn extends BaseLinter {
 		for (Column column : columns) {
 			LOGGER.log(Level.INFO, "Checking {0}...", column.getFullName());
 			if (column.getColumnDataType().toString().equalsIgnoreCase("timestamp")) {
-				addLint(table, getDescription(), column.getFullName());
+				addTableLint(table, getDescription(), column.getFullName());
 			}
 		}
 	}
