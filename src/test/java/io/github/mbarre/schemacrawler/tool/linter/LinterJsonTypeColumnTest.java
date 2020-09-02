@@ -66,8 +66,6 @@ public class LinterJsonTypeColumnTest extends BaseLintTest {
             Assert.assertTrue(registry.hasLinter(LinterJsonTypeColumn.class.getName()));
             
             final SchemaCrawlerOptions options = SchemaCrawlerOptionsBuilder.builder().toOptions();
-            //fixme
-            //            final SchemaCrawlerOptions options = SchemaCrawlerOptionsBuilder.builder().withSchemaInfoLevel(SchemaInfoLevelBuilder.standard()).tableNamePattern("test_json").toOptions();
 
             Connection connection = DriverManager.getConnection(PostgreSqlDatabase.CONNECTION_STRING,
                     PostgreSqlDatabase.USER_NAME, database.getPostgresPassword());

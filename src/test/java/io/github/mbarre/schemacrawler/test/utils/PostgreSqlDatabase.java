@@ -47,7 +47,7 @@ import org.slf4j.LoggerFactory;
 public class PostgreSqlDatabase {
     private static final Logger LOG = LoggerFactory.getLogger(PostgreSqlDatabase.class);
     
-    public static final String CONNECTION_STRING = "jdbc:postgresql://localhost:5432/sc_lint_test";
+    public static final String CONNECTION_STRING = "jdbc:postgresql://localhost:5433/sc_lint_test";
     /* Leave to postgres as the default user as described on travis
     (http://docs.travis-ci.com/user/database-setup/)
     
@@ -56,7 +56,7 @@ public class PostgreSqlDatabase {
     
     */
     public static final String USER_NAME = "postgres";
-    public static final String DEFAULT_PASSWORD = "";
+    public static final String DEFAULT_PASSWORD = "postgres";
     
     
     private Liquibase liquibase;

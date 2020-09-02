@@ -61,8 +61,6 @@ public class LinterColumnContentNotNormalizedTest  extends BaseLintTest {
         Assert.assertTrue(registry.hasLinter(LinterColumnContentNotNormalized.class.getName()));
 
         final SchemaCrawlerOptions options = SchemaCrawlerOptionsBuilder.builder().toOptions();
-        //FIXME
-//        final SchemaCrawlerOptions options = SchemaCrawlerOptionsBuilder.builder().withSchemaInfoLevel(SchemaInfoLevelBuilder.standard()).toOptions();
 
         Connection connection = DriverManager.getConnection(PostgreSqlDatabase.CONNECTION_STRING,
                 PostgreSqlDatabase.USER_NAME, database.getPostgresPassword());

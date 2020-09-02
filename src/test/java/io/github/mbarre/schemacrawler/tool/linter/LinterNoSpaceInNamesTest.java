@@ -61,8 +61,6 @@ public class LinterNoSpaceInNamesTest extends BaseLintTest {
 		Assert.assertTrue(registry.hasLinter(LinterNoSpaceInNames.class.getName()));
 
 		final SchemaCrawlerOptions options = SchemaCrawlerOptionsBuilder.builder().toOptions();
-		//fixme
-		// final SchemaCrawlerOptions options = SchemaCrawlerOptionsBuilder.builder().withSchemaInfoLevel(SchemaInfoLevelBuilder.standard()).toOptions();
 
 		Connection connection = DriverManager.getConnection(PostgreSqlDatabase.CONNECTION_STRING,
 				PostgreSqlDatabase.USER_NAME, database.getPostgresPassword());
