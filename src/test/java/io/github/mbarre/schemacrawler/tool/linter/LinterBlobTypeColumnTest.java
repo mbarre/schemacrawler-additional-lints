@@ -60,7 +60,7 @@ public class LinterBlobTypeColumnTest extends BaseLintTest {
         LimitOptionsBuilder limitOptionBuilder = LimitOptionsBuilder.builder().tableNamePattern("test_blob");
         optionsBuilder.withLimitOptions(limitOptionBuilder.toOptions());
 
-        Connection connection = DriverManager.getConnection(PostgreSqlDatabase.CONNECTION_STRING,
+        Connection connection = DriverManager.getConnection(database.getConnectionString(),
                 PostgreSqlDatabase.USER_NAME, database.getPostgresPassword());
 
         List<LintWrapper> lints = executeToJsonAndConvertToLintList(LinterBlobTypeColumn.class.getSimpleName(), optionsBuilder.toOptions(), connection);

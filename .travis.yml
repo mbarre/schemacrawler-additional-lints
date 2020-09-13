@@ -12,12 +12,13 @@ env:
   - secure: gw32l1VoKdS6gt6DXn2U14R+sqsBWowEwTIvu86yFz2UxhpW2PXDWOkuhzMyE/N1uQtlHFYBZCnHR2jd1KRMNqhsLR6NnoIPgs+CRt448bL+mM8eJsX9cMSXKDVOMtm2tH/z/EGWAtcztA3hb698NJgcGYk2ARV40ZxlMn36g1V5GEKEDPcWm5rOPtQ1lkubdkMxqgN5pwx92sxDaqCZ6Grki+CWKVWfir2C3KcEImy50fPr8FV4c6tO6VRa9tC2ura9aftQwRECbAEYtsQ7kDV+kT9euXPo08vmSRftRICTFoRzFDfkd1fy6tDcZRPxmq3J1NnNZklYbHfXqLFVPyeSHWbG3y1QZlCg2pqGMpCXBCr0irdUcpKyXUJd9yzCkdl5sqKncYDEVOtPc0o+uZ4PbmvCggmGtuSlljlYgbE9mV2iEw+IsCtiP/T3Q4Bb3vDyMrheuY7E9BhTP835XIYwlAwXZP+eb5L0UI2ZHYWXe6GIEI3GDi9QA7yQ/qq/yaeTbZlDgqw0S4lQxZKK3Ct5xiVznZmOiRpeEeraeCLM/799GGEIsJJZ3ZdADMFRGTygByYpCXiJZNOnvf127Xr3N9h1UAVkZcAUb0+qclJml+3NEWETd1o4HoiYfU9wkpVtDPsGBitKKjj15Zmw2O1RfsOTZtFfq8KlCQg4g48=
 services: postgresql
 addons:
-  postgresql: 9.4
+  postgresql: 9.6
   sonarqube: true
 install: mvn install checksum:files -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 before_script:
-- dropdb --if-exists sc_lint_test
-- psql -c 'create database sc_lint_test;' -U postgres
+  - dropdb --if-exists sc_lint_test
+  - psql -c 'create database sc_lint_test;' -U postgres
+  - psql -c '\l' -U postgres
 script:
   # the following command line builds the project, runs the tests with coverage and then execute the SonarQube analysis
   - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.login=$SONAR_TOKEN coveralls:report
