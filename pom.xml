@@ -135,7 +135,7 @@ License along with this program.  If not, see
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-		<schemacrawler.version>15.06.01</schemacrawler.version>
+		<schemacrawler.version>16.9.4</schemacrawler.version>
 		<java.version>1.8</java.version>
 		<java.version.short>8</java.version.short>
 		<hsqldb.version>2.3.2</hsqldb.version>
@@ -148,15 +148,15 @@ License along with this program.  If not, see
 		<maven-enforcer-plugin.version>1.4.1</maven-enforcer-plugin.version>
 		<maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
 		<maven-checkstyle-plugin.version>3.0.0</maven-checkstyle-plugin.version>
-		<maven-pmd-plugin.version>3.11.0</maven-pmd-plugin.version>
+		<maven-pmd-plugin.version>3.13.0</maven-pmd-plugin.version>
 
 		<!-- Maven reporting plugin versions -->
 		<maven-source-plugin.version>3.0.1</maven-source-plugin.version>
 		<maven-site-plugin.version>3.7.1</maven-site-plugin.version>
 		<maven-javadoc-plugin.version>3.1.0</maven-javadoc-plugin.version>
 		<maven-jxr-plugin.version>3.0.0</maven-jxr-plugin.version>
-		<maven-surefire-report-plugin.version>2.22.1</maven-surefire-report-plugin.version>
 		<maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
+		<maven-surefire-report-plugin.version>2.22.2</maven-surefire-report-plugin.version>
 		<maven-project-info-reports-plugin.version>3.0.0</maven-project-info-reports-plugin.version>
 		<maven-changes-plugin.version>2.12.1</maven-changes-plugin.version>
 		<jacoco-maven-plugin.version>0.8.3</jacoco-maven-plugin.version>
@@ -176,13 +176,13 @@ License along with this program.  If not, see
 		<commons-io.version>2.6</commons-io.version>
 		<commons-compress.version>1.18</commons-compress.version>
 		<commons-lang3.version>3.9</commons-lang3.version>
-		<gson.version>2.8.5</gson.version>
+		<gson.version>2.8.6</gson.version>
 		<xerces.version>2.11.0</xerces.version>
 
 		<coveralls-maven-plugin.version>4.3.0</coveralls-maven-plugin.version>
 		<coveralls.repoToken>${env.COVERALLS_REPOTOKEN}</coveralls.repoToken>
 		<checksum-maven-plugin.version>1.4</checksum-maven-plugin.version>
-		<license-maven-plugin.version>1.18</license-maven-plugin.version>
+		<license-maven-plugin.version>1.19</license-maven-plugin.version>
 		<commons-rng-simple.version>1.2</commons-rng-simple.version>
 	</properties>
 
@@ -266,6 +266,17 @@ License along with this program.  If not, see
 		<artifactId>gson</artifactId>
 		<version>${gson.version}</version>
 	</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.11.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.datatype</groupId>
+			<artifactId>jackson-datatype-jsr310</artifactId>
+			<version>2.11.2</version>
+		</dependency>
 	</dependencies>
 
 	<build>

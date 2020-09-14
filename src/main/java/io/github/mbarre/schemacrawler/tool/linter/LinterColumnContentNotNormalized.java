@@ -165,7 +165,7 @@ public class LinterColumnContentNotNormalized extends BaseLinter {
                                 LOGGER.log(Level.CONFIG, "Found <{0}> repetitions of the same value <{1}> in <{2}>", new Object[]{nbRepeats, rs.getString(1), column});
                                 if (nbRepeats > nbRepeatTolerance) {
                                     LOGGER.log(Level.CONFIG, "Adding lint as nbRepeats exceeds tolerance ({0} > {1} )", new Object[]{nbRepeats, nbRepeatTolerance});
-                                    addLint(table, "<" + nbRepeats + "> repetitions of the same value <" + rs.getString(1) + ">", column.getFullName());
+                                    addTableLint(table, "<" + nbRepeats + "> repetitions of the same value <" + rs.getString(1) + ">", column.getFullName());
                                 }
                             }
                             i++;
