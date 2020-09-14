@@ -182,7 +182,7 @@ License along with this program.  If not, see
 		<coveralls-maven-plugin.version>4.3.0</coveralls-maven-plugin.version>
 		<coveralls.repoToken>${env.COVERALLS_REPOTOKEN}</coveralls.repoToken>
 		<checksum-maven-plugin.version>1.4</checksum-maven-plugin.version>
-		<license-maven-plugin.version>1.18</license-maven-plugin.version>
+		<license-maven-plugin.version>1.19</license-maven-plugin.version>
 		<commons-rng-simple.version>1.2</commons-rng-simple.version>
 	</properties>
 
