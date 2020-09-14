@@ -1,0 +1,6 @@
+version: '3'
+services:
+  schemacrawler:
+    image: schemacrawler/schemacrawler
+    volumes:
+    - /media/michele/DATA/docker_volumes/schemacrawler/lib/:/opt/schemacrawler/lib/

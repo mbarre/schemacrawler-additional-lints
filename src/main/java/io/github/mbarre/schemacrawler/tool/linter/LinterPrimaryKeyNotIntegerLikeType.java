@@ -82,7 +82,7 @@ public class LinterPrimaryKeyNotIntegerLikeType extends BaseLinter {
                 LOGGER.log(Level.INFO, "Checking {0}...", column.getFullName());
                 if(!LintUtils.isSqlTypeIntegerBased(column.getColumnDataType().getJavaSqlType().getVendorTypeNumber())
                         && !(column.getColumnDataType().getJavaSqlType().getVendorTypeNumber() ==  Types.CHAR && column.getSize() == 1)){
-                    addLint(table, getDescription(), column.getFullName());
+                    addTableLint(table, getDescription(), column.getFullName());
                 }
             }
         }

@@ -19,5 +19,4 @@
 -- <http://www.gnu.org/licenses/gpl-3.0.html>.
 -- #L%
 ---
-psql -host localhost -U postgres -W
 create database sc_lint_test owner postgres;

@@ -72,7 +72,7 @@ public class LinterPluralTableName extends BaseLinter {
         requireNonNull(table, "No table provided");
 
             if(table.getName().endsWith("s"))
-                addLint(table, getDescription(), table.getName());
+                addTableLint(table, getDescription(), table.getName());
     }
 
 }

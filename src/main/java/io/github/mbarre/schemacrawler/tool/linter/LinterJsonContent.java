@@ -120,7 +120,7 @@ public class LinterJsonContent extends BaseLinter {
                                 String data = rs.getString(columnName);
 
                                 if(JSonUtils.isJsonContent(data)){
-                                    addLint(table, getDescription(), column.getFullName());
+                                    addTableLint(table, getDescription(), column.getFullName());
                                     found = true;
                                 }
                             }
