@@ -13,10 +13,10 @@ env:
 services: postgresql
 addons:
   postgresql: 9.6
-  sonarcloud:
-    organization: "mbarre"
-    projectKey: "schemacrawler-additional-lints"
-    token: ${SONAR_TOKEN}
+#  sonarcloud:
+#    organization: "mbarre"
+#    projectKey: "schemacrawler-additional-lints"
+#    token: ${SONAR_TOKEN}
 install: mvn install checksum:files -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 before_script:
   - dropdb --if-exists sc_lint_test
