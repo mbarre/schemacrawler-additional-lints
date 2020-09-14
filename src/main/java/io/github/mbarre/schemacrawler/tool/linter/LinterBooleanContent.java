@@ -173,7 +173,7 @@ public class LinterBooleanContent extends BaseLinter {
             }
             
             if(trueFound && falseFound){
-                addLint(table, getDescription(), column.getFullName());
+                addTableLint(table, getDescription(), column.getFullName());
             }
             
         }catch (SQLException ex) {

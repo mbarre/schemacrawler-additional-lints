@@ -1,4 +1,4 @@
-# Schemacrawler Additional Lints
+#  Schemacrawler Additional Lints
 [![Project Website](https://img.shields.io/badge/Project%20Website-Additional%20Lints-7f3692.svg)](http://mbarre.github.io/schemacrawler-additional-lints/)
 [![Build Status](https://travis-ci.org/mbarre/schemacrawler-additional-lints.svg?branch=master)](https://travis-ci.org/mbarre/schemacrawler-additional-lints)
 [![Release](https://jitpack.io/v/mbarre/schemacrawler-additional-lints.svg)](https://jitpack.io/mbarre/schemacrawler-additional-lints)

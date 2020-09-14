@@ -31,10 +31,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import io.github.mbarre.schemacrawler.test.utils.LintWrapper;
 import io.github.mbarre.schemacrawler.test.utils.PostgreSqlDatabase;
-import schemacrawler.schemacrawler.SchemaCrawlerException;
-import schemacrawler.schemacrawler.SchemaCrawlerOptions;
-import schemacrawler.schemacrawler.SchemaCrawlerOptionsBuilder;
-import schemacrawler.schemacrawler.SchemaInfoLevelBuilder;
+import schemacrawler.schemacrawler.*;
 import schemacrawler.tools.lint.LinterRegistry;
 
 
@@ -60,12 +57,14 @@ public class LinterColumnSizeTest extends BaseLintTest {
         final LinterRegistry registry = new LinterRegistry();
         Assert.assertTrue(registry.hasLinter(LinterColumnSize.class.getName()));
         
-        final SchemaCrawlerOptions options = SchemaCrawlerOptionsBuilder.builder().withSchemaInfoLevel(SchemaInfoLevelBuilder.standard()).tableNamePattern("test_varchar").toOptions();
-        
-        Connection connection = DriverManager.getConnection(PostgreSqlDatabase.CONNECTION_STRING,
+        final SchemaCrawlerOptionsBuilder optionsBuilder = SchemaCrawlerOptionsBuilder.builder();
+        LimitOptionsBuilder limitOptionBuilder = LimitOptionsBuilder.builder().tableNamePattern("test_varchar");
+        optionsBuilder.withLimitOptions(limitOptionBuilder.toOptions());
+
+        Connection connection = DriverManager.getConnection(database.getConnectionString(),
                 PostgreSqlDatabase.USER_NAME, database.getPostgresPassword());
         
-        List<LintWrapper> lints = executeToJsonAndConvertToLintList(LinterColumnSize.class.getSimpleName(), options, connection);
+        List<LintWrapper> lints = executeToJsonAndConvertToLintList(LinterColumnSize.class.getSimpleName(), optionsBuilder.toOptions(), connection);
         
         Assert.assertEquals(1, lints.size());
         int index = 0;
