@@ -101,7 +101,7 @@ public class LinterRightSpacePadding extends BaseLinter {
 								}
 
 								if (valueFound.length() > 0 && Character.isWhitespace(valueFound.charAt(valueFound.length() - 1))) {
-									addLint(table, getDescription(), column.getFullName());
+									addTableLint(table, getDescription(), column.getFullName());
 								}
 							}
 							i++;

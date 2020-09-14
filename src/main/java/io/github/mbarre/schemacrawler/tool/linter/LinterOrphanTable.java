@@ -72,6 +72,6 @@ public class LinterOrphanTable extends BaseLinter {
         requireNonNull(table, "No table provided");
 
         if(table.getExportedForeignKeys().isEmpty() && table.getForeignKeys().isEmpty())
-            addLint(table, getDescription(), table.getName());
+            addTableLint(table, getDescription(), table.getName());
     }
 }

@@ -125,7 +125,7 @@ public class LinterXmlContent extends BaseLinter {
                             if(sampleIndexes.contains(i)) {
                                 String data = rs.getString(column.getName());
                                 if (XmlUtils.isXmlContent(data)) {
-                                    addLint(table, getDescription(), column.getFullName());
+                                    addTableLint(table, getDescription(), column.getFullName());
                                     found = true;
                                 }
                             }

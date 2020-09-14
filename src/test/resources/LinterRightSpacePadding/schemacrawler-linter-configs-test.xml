@@ -234,4 +234,10 @@
 		<severity>critical</severity>
 		<table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
 	</linter>
+    <linter
+            id="schemacrawler.tools.linter.LinterTableWithNoSurrogatePrimaryKey">
+        <run>false</run>
+        <severity>critical</severity>
+        <table-exclusion-pattern><![CDATA[\w*\.((databasechangeloglock)|(databasechangelog))]]></table-exclusion-pattern>
+    </linter>
 </schemacrawler-linter-configs>
