@@ -57,7 +57,7 @@ Or, install [Docker Compose](https://docs.docker.com/compose/install/) to deploy
     
 # Docker Image
 
-Schemacrawler Additional Lints is now distributed with an image on Docker Hub. This is an extension of the [SchemaCrawler Docker Image](https://www.schemacrawler.com/docker-image.html).
+Schemacrawler Additional Lints is now released with an image on Docker Hub. This is an extension of the [SchemaCrawler Docker Image](https://www.schemacrawler.com/docker-image.html).
 
 You can run docker container like this :
 
