@@ -5,7 +5,6 @@ cache:
   directories:
   - .autoconf
   - $HOME/.m2
-sudo: required
 env:
   global:
   - secure: qczyIZl7He/Hh5TwFkMUwSnyYwB/b1XCQXG2PnDJWfLkRVZ8+UAnl0yt05b7pMXKeJ0UfaglSzcvXI2++UcNVkjZoGRp/9HuKgqafzBjrDyLh/6rdbmZyIE4tj9txCnGglu/bQWMJ407UtRtzwx5mGXsCNBjYbfMYwoePmSeK3BeTg7kV9Wsx7+jqHcrczywapMDGh8v+HY7P8i2jw67dBdHP6B4HgnKdvt1SuHzJ0WMp73u4jb/kQu4vHKIZaKadYmq5htKhcD/zXkd4v6veO4Cp6esT9kmNFFeqdoJRbNX/khzG3VzDqbnX/6Z1+8ruJv8WnOUlRhaJDox77t7fTu0Qq7gbFG0/zf56a/JMjE4+KKyD7W+EY1hVrZQ8n+l5C8lrVRHu7tc19x72ruXhem/RyBf/8PtFCr9+GuJy2uSg2SANnE1xWJFe+xgEgenXYI07g01sE8GDLFm4p59sWn818aHrtqoEuoLTK0WDSPLz+Hv9orpTuNFGkYsAdlnpjlswPXCLDicSSj37G5+Un/H+gbgU1efNYx8mL9BDRPYnO3XIex/mFh/sJnsv9oBXS0Wu4g1YJ3z/LHqBZSiUwMwOhEtvwyUeNIBPqVUO6YfYZH75CIxRg05Da899nJAyMG9flz9hoHhK1TrFbiqRCaWMqKH057UfGTKpVrHGOk=
@@ -41,16 +40,14 @@ deploy:
     - target/schemacrawler-additional-lints-${TRAVIS_TAG}.jar
     - target/schemacrawler-additional-lints-${TRAVIS_TAG}.jar.md5
     - target/schemacrawler-additional-lints-${TRAVIS_TAG}.jar.sha1
-    skip_cleanup: true
     on:
       tags: true
       repo: mbarre/schemacrawler-additional-lints
   - provider: script
     script: bash -c "./docker-publish.sh"
-    skip_cleanup: true
-      on:
-        tags: true
-        repo: mbarre/schemacrawler-additional-lints
+    on:
+      tags: true
+      repo: mbarre/schemacrawler-additional-lints
 branches:
   except:
   - travis
