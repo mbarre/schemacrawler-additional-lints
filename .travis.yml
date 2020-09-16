@@ -40,11 +40,13 @@ deploy:
     - target/schemacrawler-additional-lints-${TRAVIS_TAG}.jar
     - target/schemacrawler-additional-lints-${TRAVIS_TAG}.jar.md5
     - target/schemacrawler-additional-lints-${TRAVIS_TAG}.jar.sha1
+    skip_cleanup: true
     on:
       tags: true
       repo: mbarre/schemacrawler-additional-lints
   - provider: script
     script: bash -c "./docker-publish.sh"
+    skip_cleanup: true
     on:
       tags: true
       repo: mbarre/schemacrawler-additional-lints
