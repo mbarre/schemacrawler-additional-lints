@@ -27,7 +27,7 @@ before_script:
 script:
   # the following command line builds the project, runs the tests with coverage and then execute the SonarQube analysis
   - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install
- # - sonar-scanner
+  # - sonar-scanner
   - mvn coveralls:report
 notifications:
   slack:
@@ -35,7 +35,7 @@ notifications:
 deploy:
   - provider: releases
     api_key:
-      secure: ZfPAAfcU13jvUVRFRj6cp2OnDYWDVreLc8+QFApKeiApFuDOprZmmIk+HA34UbflJvXq0q9IWcvjS7nJIMGGMLH6vdFaPDLiKqjRVKPnyj10Q3XfEA/8ZRzMg5QpUf32GRrBemKzDkU5mdXhacYKb1cNCYsQt2Ix1DC6slwKmS2duOyLu/Knw25b/m7yz4KxDI+l7bjYwa3OIOEQxh0z5OcQpwt6Wy39iuc4pRLORrjtHGISOA+1PA+ycmBjZZGibNCZ0CRl5+f5AfdY1W3evaCg/7I3ha8Y+p/3MyTBVjISEefDTMkI+gWFncsHP4MP53w5Ekp0f7GovLAFOF7dqY3DF4Qkeyd6qHHIsDHRr3Zyp/JD5iAQtezW45oy/afsRiherBBUbwppb/63IYbBSu69wJZAupY3tycSgpO/KCQ+giV/NzhzspNbevsCsaNWbt3a0DPqvVYVWmRGhU2PjNUy21WslvIQT2lUzMWRM11ubkF4MFfH1OLrBP4LinNG2FZ5pKd3kBldePInieQ89xfuFnQ2jqtfGI+lTWNEhcgOBMAs57s6mCLDu4xvyDWclD3DRvlhKWKe6iaYoLnkRW2ko4IlP4ksCQatCPzSa06Kg4ax8vhyDKA4CpcAqUsYKY80OV9xjQqabuz4N+fxCi0e3sY7QVuYLrwfKbhVBxo=
+      secure: nlt7WHbr4aCkUf+LHEzF+njYMnMjXPfGviP9iEZlZ4Rl+ExF+dAi2zmU6HHGtRefXMf4czR5oOvHeq8u5la+OdilvCLn2V50SzKiRQFQokby41IOAurLk6FAPycfWeaR+6emFcUjtahsf5TGBgt8kOYHyN+ar8tMlyuAXsoEmJ/0uAhPRppl//EPG1ny+7kWySV98Et/gYWDpoTWQNU0ZI5Udhgufo6Xet8fJ0tUwghDSo65irCE1a9CTYRKhOat8HkTsOj0YIEJNnV2YfJ14sg5F1u51QzActqeGATEdByiT+dwCKGKnoVSNyD0945K9q2/afvFMXH1q3GFGnKtx8hjvXsj88y2PacywcHVviX9Kqb8WN/KNwmlbjc7RdInmqbRf2+UiMJigpidZSR2vQDleEjfblBKZZlEOGsljEawP1Us5IqCAvRD2EaXsRyvs+pZWFTlNifiObg/aUxEbLdjWLNVtty9XkrPhpTW3Fy1o4jx27BY8xfGZa+VBVi+g8N1xuWNO7NOsA/mtqd3oCBankGYHOSkbW8aZnlykpIIV7cF7KYu/gDGB+bx9CJ0DLED8N0QBwU+NCm0l+JRX+UpkbyiBhexl0Wcmfq0Kk6f8v95m3ivWRJ5I4GzJLT/NjT4eZTuM3oUZussc4DLhJ/4ykZ6SWeaUHaAv1FukOU=
     file:
     - target/schemacrawler-additional-lints-${TRAVIS_TAG}.jar
     - target/schemacrawler-additional-lints-${TRAVIS_TAG}.jar.md5
