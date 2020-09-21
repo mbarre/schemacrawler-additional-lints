@@ -9,7 +9,7 @@ services:
        - 5433:5432
      # Persist the data between container invocations
      volumes:
-       - ./../src/test/db/liquibase/dba/sql/init_db_test.sql:/docker-entrypoint-initdb.d/init.sql
+       - ./../src/test/db/liquibase/dba/sql:/docker-entrypoint-initdb.d
 
 
 
