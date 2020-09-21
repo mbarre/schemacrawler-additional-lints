@@ -16,7 +16,7 @@ USER root
 RUN addgroup schcrwlr
 
 # Copy additional-lints local jar file
-COPY --chown=schcrwlr:schcrwlr target/schemacrawler-additional-lints-$LINTS_VERSION.jar /opt/schemacrawler/lib
+COPY --chown=schcrwlr:schcrwlr target/schemacrawler-additional-lints-$LINTS_VERSION.jar /opt/schemacrawler/lib/
 RUN chmod +rx /opt/schemacrawler/lib/*.jar
 
 # Create aliases for SchemaCrawler
