@@ -25,10 +25,10 @@ package io.github.mbarre.schemacrawler.tool.linter;
 import io.github.mbarre.schemacrawler.utils.LintUtils;
 import schemacrawler.schema.Column;
 import schemacrawler.schema.Table;
-import schemacrawler.schemacrawler.Config;
 import schemacrawler.schemacrawler.SchemaCrawlerException;
 import schemacrawler.tools.lint.BaseLinter;
 import schemacrawler.tools.lint.LintSeverity;
+import schemacrawler.tools.options.Config;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
