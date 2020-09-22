@@ -1,6 +1,6 @@
 FROM schemacrawler/schemacrawler
 
-ARG LINTS_VERSION
+ARG LINTS_VERSION=*
 
 USER schcrwlr
 WORKDIR /home/schcrwlr
@@ -15,8 +15,10 @@ MAINTAINER Michèle Barré <michele.barre@gmail.com>
 USER root
 RUN addgroup schcrwlr
 
+RUN ls
+
 # Copy additional-lints local jar file
-COPY --chown=schcrwlr:schcrwlr target/schemacrawler-additional-lints-$LINTS_VERSION.jar /opt/schemacrawler/lib/schemacrawler-additional-lints-$LINTS_VERSION.jar
+COPY --chown=schcrwlr:schcrwlr target/schemacrawler-additional-lints-*.jar /opt/schemacrawler/lib/
 RUN chmod +rx /opt/schemacrawler/lib/*.jar
 
 # Create aliases for SchemaCrawler
