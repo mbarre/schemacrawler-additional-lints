@@ -25,7 +25,7 @@ License along with this program.  If not, see
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>io.github.mbarre</groupId>
 	<artifactId>schemacrawler-additional-lints</artifactId>
-	<version>1.06.01</version>
+	<version>1.06.02</version>
 	<name>Additional SchemaCrawler Lints</name>
 	<description>Some additional lints for Schemacrawler</description>
 	<inceptionYear>2015</inceptionYear>
@@ -135,7 +135,7 @@ License along with this program.  If not, see
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-		<schemacrawler.version>16.9.4</schemacrawler.version>
+		<schemacrawler.version>16.9.5</schemacrawler.version>
 		<java.version>1.8</java.version>
 		<java.version.short>8</java.version.short>
 		<hsqldb.version>2.3.2</hsqldb.version>
