@@ -130,12 +130,17 @@ License along with this program.  If not, see
 			<name>The Central Repository</name>
 			<url>http://repo.maven.apache.org/maven2/</url>
 		</repository>
+		<repository>
+			<id>jitpack.io</id>
+			<url>https://jitpack.io</url>
+		</repository>
 	</repositories>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
 		<schemacrawler.version>16.9.5</schemacrawler.version>
+		<schemacrawler.command.csv.lint.version>1.6</schemacrawler.command.csv.lint.version>
 		<java.version>1.8</java.version>
 		<java.version.short>8</java.version.short>
 		<hsqldb.version>2.3.2</hsqldb.version>
@@ -186,6 +191,8 @@ License along with this program.  If not, see
 		<license-maven-plugin.version>1.19</license-maven-plugin.version>
 		<commons-rng-simple.version>1.3</commons-rng-simple.version>
 		<docker.organization>mbarre</docker.organization>
+		<schemacrawler.command.csv.lint.url>https://jitpack.io/com/github/adriens/schemacrawler-additional-command-lints-as-csv/${schemacrawler.command.csv.lint.version}</schemacrawler.command.csv.lint.url>
+		<schemacrawler.command.csv.lint.artefact>schemacrawler-additional-command-lints-as-csv-${schemacrawler.command.csv.lint.version}.jar</schemacrawler.command.csv.lint.artefact>
 	</properties>
 
 	<dependencies>
@@ -203,12 +210,17 @@ License along with this program.  If not, see
 			<version>${schemacrawler.version}</version>
 			<scope>provided</scope>
 		</dependency>
-		<dependency>
-			<groupId>us.fatehi</groupId>
-			<artifactId>schemacrawler</artifactId>
-			<version>${schemacrawler.version}</version>
-			<scope>provided</scope>
-		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>com.github.adriens</groupId>-->
+<!--			<artifactId>schemacrawler-additional-command-lints-as-csv</artifactId>-->
+<!--			<version>${schemacrawler.command.csv.lint.version}</version>-->
+<!--			<exclusions>-->
+<!--				<exclusion>  &lt;!&ndash; declare the exclusion here &ndash;&gt;-->
+<!--					<groupId>us.fatehi</groupId>-->
+<!--					<artifactId>schemacrawler</artifactId>-->
+<!--				</exclusion>-->
+<!--			</exclusions>-->
+<!--		</dependency>-->
 
 		<!-- SLF4J LOGBACK -->
 		<dependency>
@@ -509,37 +521,16 @@ License along with this program.  If not, see
 						 Tag the image using maven project version information.
 					-->
 					<execution>
-						<id>docker-build</id>
+						<id>download-command-csv-lint</id>
 						<phase>install</phase>
 						<goals>
 							<goal>exec</goal>
 						</goals>
 						<configuration>
-							<executable>docker</executable>
-							<workingDirectory>${project.basedir}</workingDirectory>
+							<executable>wget</executable>
+							<workingDirectory>${project.basedir}/target</workingDirectory>
 							<arguments>
-								<argument>build</argument>
-								<argument>-t</argument>
-								<argument>mbarre/${project.artifactId}</argument>
-								<argument>--build-arg</argument>
-								<argument>LINTS_VERSION=${project.version}</argument>
-								<argument>.</argument>
-							</arguments>
-						</configuration>
-					</execution>
-					<execution>
-						<id>docker-tag</id>
-						<phase>install</phase>
-						<goals>
-							<goal>exec</goal>
-						</goals>
-						<configuration>
-							<executable>docker</executable>
-							<workingDirectory>${project.basedir}</workingDirectory>
-							<arguments>
-								<argument>tag</argument>
-								<argument>mbarre/${project.artifactId}</argument>
-								<argument>mbarre/${project.artifactId}:${project.version}</argument>
+								<argument>${schemacrawler.command.csv.lint.url}/${schemacrawler.command.csv.lint.artefact}</argument>
 							</arguments>
 						</configuration>
 					</execution>
