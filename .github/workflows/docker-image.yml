@@ -10,17 +10,28 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - name : Checkout
+      uses: actions/checkout@v2
     
     - name: Build with Maven
       run: mvn install -DskipTests --file pom.xml
     
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag schemacrawler-additional-lints:$(date +%s)
+    - name: Set Up QEMU
+      uses: docker/setup-qemu-action@v1
+    
+    - name: Set Up Buildx
+      uses: docker/setup-buildx-action@v1
       env:
           SOURCE_NAME: ${{ steps.branch_name.outputs.SOURCE_NAME }}
           SOURCE_BRANCH: ${{ steps.branch_name.outputs.SOURCE_BRANCH }}
           SOURCE_TAG: ${{ steps.branch_name.outputs.SOURCE_TAG }}
+
+#    - name: Build the Docker image
+#      run: docker build . --file Dockerfile --tag schemacrawler-additional-lints:$(date +%s)
+#      env:
+#          SOURCE_NAME: ${{ steps.branch_name.outputs.SOURCE_NAME }}
+#          SOURCE_BRANCH: ${{ steps.branch_name.outputs.SOURCE_BRANCH }}
+#          SOURCE_TAG: ${{ steps.branch_name.outputs.SOURCE_TAG }}
     
     - name: Login to DockerHub
       uses: docker/login-action@v1 
