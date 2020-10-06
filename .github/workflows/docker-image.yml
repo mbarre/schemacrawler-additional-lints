@@ -19,11 +19,6 @@ jobs:
     - name: Set Up QEMU
       uses: docker/setup-qemu-action@v1
     
-    - name: Get release version
-      id: get_version
-      env:
-        SOURCE_TAG: ${{ steps.branch_name.outputs.SOURCE_TAG }}
-    
     - name: Set Up Buildx
       uses: docker/setup-buildx-action@v1
 
@@ -48,7 +43,8 @@ jobs:
         file: ./Dockerfile
         platforms: linux/amd64,linux/arm64,linux/386
         push: true
-        tags: mbarre/schemacrawler-additional-lints:latest,mbarre/schemacrawler-additional-lints:${{ env.SOURCE_TAG }}
+        tag_names: true
+        tags: mbarre/schemacrawler-additional-lints:latest
     
     - name: Image digest
       run: echo ${{ steps.docker_build.outputs.digest }}
