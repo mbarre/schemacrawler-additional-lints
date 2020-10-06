@@ -47,7 +47,7 @@ jobs:
         file: ./Dockerfile
         platforms: linux/amd64,linux/arm64,linux/386
         push: true
-        tags: mbarre/schemacrawler-additional-lints:latest,mbarre/schemacrawler-additional-lints:${SOURCE_TAG}
+        tags: mbarre/schemacrawler-additional-lints:latest,mbarre/schemacrawler-additional-lints:${{SOURCE_TAG}}
     
     - name: Image digest
       run: echo ${{ steps.docker_build.outputs.digest }}
