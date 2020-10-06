@@ -19,12 +19,12 @@ jobs:
     - name: Set Up QEMU
       uses: docker/setup-qemu-action@v1
     
+    - name: Get release version
+      id: get_version
+      run: echo ::set-env name=RELEASE_VERSION::$(echo ${GITHUB_REF:10})
+    
     - name: Set Up Buildx
       uses: docker/setup-buildx-action@v1
-      env:
-          SOURCE_NAME: ${{ steps.branch_name.outputs.SOURCE_NAME }}
-          SOURCE_BRANCH: ${{ steps.branch_name.outputs.SOURCE_BRANCH }}
-          SOURCE_TAG: ${{ steps.branch_name.outputs.SOURCE_TAG }}
 
 #    - name: Build the Docker image
 #      run: docker build . --file Dockerfile --tag schemacrawler-additional-lints:$(date +%s)
@@ -47,7 +47,7 @@ jobs:
         file: ./Dockerfile
         platforms: linux/amd64,linux/arm64,linux/386
         push: true
-        tags: mbarre/schemacrawler-additional-lints:latest,mbarre/schemacrawler-additional-lints:$SOURCE_TAG
+        tags: mbarre/schemacrawler-additional-lints:latest,mbarre/schemacrawler-additional-lints:${{ env.RELEASE_VERSION }}
     
     - name: Image digest
       run: echo ${{ steps.docker_build.outputs.digest }}
