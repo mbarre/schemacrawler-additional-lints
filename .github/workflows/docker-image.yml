@@ -29,9 +29,16 @@ jobs:
 #          SOURCE_BRANCH: ${{ steps.branch_name.outputs.SOURCE_BRANCH }}
 #          SOURCE_TAG: ${{ steps.branch_name.outputs.SOURCE_TAG }}
     
-    - name: Get the version
-      id: get_version
-      run: echo ::set-env name=RELEASE_VERSION::$(echo ${GITHUB_REF:10})
+    - uses: haya14busa/action-cond@v1
+      id: condval
+      with:
+        cond: ${{ GITHUB_REF:10 == '/master' }}
+        if_true: ""
+        if_false: "GITHUB_REF:10"
+    
+#     - name: Get the version
+#       id: get_version
+#       run: echo ::set-env name=RELEASE_VERSION::$(echo ${GITHUB_REF:10})
     
     - name: Login to DockerHub
       uses: docker/login-action@v1 
@@ -47,7 +54,7 @@ jobs:
         file: ./Dockerfile
         platforms: linux/amd64,linux/arm64,linux/386
         push: true
-        tags: "latest,${{ env.RELEASE_VERSION }}"
+        tags: "latest,${{ steps.condval.outputs.value }}"
     
     - name: Image digest
       run: echo ${{ steps.docker_build.outputs.digest }}
