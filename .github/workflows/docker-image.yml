@@ -3,8 +3,7 @@ name: Docker Image CI
 on:
   push:
     branches: master
-  release:
-    types: [published]
+    tags: '*.*.*'
 
 jobs:
   build:
@@ -12,6 +11,19 @@ jobs:
     steps:
     - name : Checkout
       uses: actions/checkout@v2
+      
+    - name: Prepare
+      id: prep
+      run: |
+          DOCKER_IMAGE=mbarre/schemacrawler-additional-lints
+          VERSION=noop
+          if [[ $GITHUB_REF == refs/tags/* ]]; then
+            VERSION=${GITHUB_REF#refs/tags/}
+            TAGS="${DOCKER_IMAGE}:latest,${DOCKER_IMAGE}:${VERSION}"
+          else
+            TAGS="${DOCKER_IMAGE}:latest"
+          fi
+          echo ::set-output name=tags::${TAGS}
     
     - name: Build with Maven
       run: mvn install -DskipTests --file pom.xml
@@ -21,13 +33,6 @@ jobs:
     
     - name: Set Up Buildx
       uses: docker/setup-buildx-action@v1
-
-#    - name: Build the Docker image
-#      run: docker build . --file Dockerfile --tag schemacrawler-additional-lints:$(date +%s)
-#      env:
-#          SOURCE_NAME: ${{ steps.branch_name.outputs.SOURCE_NAME }}
-#          SOURCE_BRANCH: ${{ steps.branch_name.outputs.SOURCE_BRANCH }}
-#          SOURCE_TAG: ${{ steps.branch_name.outputs.SOURCE_TAG }}
     
     - name: Login to DockerHub
       uses: docker/login-action@v1 
@@ -43,8 +48,7 @@ jobs:
         file: ./Dockerfile
         platforms: linux/amd64,linux/arm64,linux/386
         push: true
-        tag_with_ref: true
-        tags: mbarre/schemacrawler-additional-lints:latest
+        tags: ${{ steps.prep.outputs.tags }}
     
     - name: Image digest
       run: echo ${{ steps.docker_build.outputs.digest }}
