@@ -25,7 +25,7 @@ License along with this program.  If not, see
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>io.github.mbarre</groupId>
 	<artifactId>schemacrawler-additional-lints</artifactId>
-	<version>1.06.05</version>
+	<version>1.06.06</version>
 	<name>Additional SchemaCrawler Lints</name>
 	<description>Some additional lints for Schemacrawler</description>
 	<inceptionYear>2015</inceptionYear>
@@ -128,7 +128,7 @@ License along with this program.  If not, see
 		<repository>
 			<id>The Central Repository</id>
 			<name>The Central Repository</name>
-			<url>http://repo.maven.apache.org/maven2/</url>
+			<url>https://repo.maven.apache.org/maven2/</url>
 		</repository>
 		<repository>
 			<id>jitpack.io</id>
@@ -140,7 +140,7 @@ License along with this program.  If not, see
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
 		<schemacrawler.version>16.9.5</schemacrawler.version>
-		<schemacrawler.command.csv.lint.version>1.6</schemacrawler.command.csv.lint.version>
+		<schemacrawler.command.csv.lint.version>1.8</schemacrawler.command.csv.lint.version>
 		<java.version>1.8</java.version>
 		<java.version.short>8</java.version.short>
 		<hsqldb.version>2.3.2</hsqldb.version>
@@ -210,17 +210,17 @@ License along with this program.  If not, see
 			<version>${schemacrawler.version}</version>
 			<scope>provided</scope>
 		</dependency>
-<!--		<dependency>-->
-<!--			<groupId>com.github.adriens</groupId>-->
-<!--			<artifactId>schemacrawler-additional-command-lints-as-csv</artifactId>-->
-<!--			<version>${schemacrawler.command.csv.lint.version}</version>-->
-<!--			<exclusions>-->
-<!--				<exclusion>  &lt;!&ndash; declare the exclusion here &ndash;&gt;-->
-<!--					<groupId>us.fatehi</groupId>-->
-<!--					<artifactId>schemacrawler</artifactId>-->
-<!--				</exclusion>-->
-<!--			</exclusions>-->
-<!--		</dependency>-->
+		<dependency>
+			<groupId>com.github.adriens</groupId>
+			<artifactId>schemacrawler-additional-command-lints-as-csv</artifactId>
+			<version>${schemacrawler.command.csv.lint.version}</version>
+			<exclusions>
+				<exclusion>  <!-- declare the exclusion here -->
+					<groupId>us.fatehi</groupId>
+					<artifactId>schemacrawler</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
 
 		<!-- SLF4J LOGBACK -->
 		<dependency>
