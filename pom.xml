@@ -144,7 +144,7 @@ License along with this program.  If not, see
 		<java.version>1.8</java.version>
 		<java.version.short>8</java.version.short>
 		<hsqldb.version>2.3.2</hsqldb.version>
-		<junit.version>4.12</junit.version>
+		<junit.version>4.13</junit.version>
 		<github.global.server>github</github.global.server>
 		<project.url>https://github.com/mbarre/schemacrawler-additional-lints</project.url>
 
