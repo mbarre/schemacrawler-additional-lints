@@ -56,14 +56,14 @@ public class LinterBlobTypeColumnTest extends BaseLintTest {
         final LinterRegistry registry = new LinterRegistry();
         Assert.assertTrue(registry.hasLinter(LinterBlobTypeColumn.class.getName()));
 
-        final SchemaCrawlerOptionsBuilder optionsBuilder = SchemaCrawlerOptionsBuilder.builder();
+        //final SchemaCrawlerOptionsBuilder optionsBuilder = SchemaCrawlerOptionsBuilder.builder();
         LimitOptionsBuilder limitOptionBuilder = LimitOptionsBuilder.builder().tableNamePattern("test_blob");
-        optionsBuilder.withLimitOptions(limitOptionBuilder.toOptions());
+        SchemaCrawlerOptions options = SchemaCrawlerOptionsBuilder.newSchemaCrawlerOptions().withLimitOptions(limitOptionBuilder.toOptions());
 
         Connection connection = DriverManager.getConnection(database.getConnectionString(),
                 PostgreSqlDatabase.USER_NAME, database.getPostgresPassword());
 
-        List<LintWrapper> lints = executeToJsonAndConvertToLintList(LinterBlobTypeColumn.class.getSimpleName(), optionsBuilder.toOptions(), connection);
+        List<LintWrapper> lints = executeToJsonAndConvertToLintList(LinterBlobTypeColumn.class.getSimpleName(), options, connection);
 
         Assert.assertEquals(1,lints.size());
         boolean lint1Dectected = false;

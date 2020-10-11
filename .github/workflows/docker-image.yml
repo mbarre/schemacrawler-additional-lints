@@ -48,7 +48,7 @@ jobs:
         file: ./Dockerfile
         platforms: linux/amd64,linux/arm64,linux/386
         #TODO find a way to inject these values
-        build-args: SCHEMACRAWLER_VERSION=16.9.5, LINTS_VERSION=1.06.06
+        build-args: SCHEMACRAWLER_VERSION=16.10.1, LINTS_VERSION=1.06.08
         push: true
         tags: ${{ steps.prep.outputs.tags }}
     
