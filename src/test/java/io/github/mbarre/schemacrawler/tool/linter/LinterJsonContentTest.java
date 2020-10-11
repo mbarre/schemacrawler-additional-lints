@@ -67,7 +67,7 @@ public class LinterJsonContentTest extends BaseLintTest {
             final LinterRegistry registry = new LinterRegistry();
             Assert.assertTrue(registry.hasLinter(LinterJsonContent.class.getName()));
             
-            final SchemaCrawlerOptions options = SchemaCrawlerOptionsBuilder.builder().toOptions();
+            final SchemaCrawlerOptions options = SchemaCrawlerOptionsBuilder.newSchemaCrawlerOptions();
 
             Connection connection = DriverManager.getConnection(database.getConnectionString(),
                     PostgreSqlDatabase.USER_NAME, database.getPostgresPassword());

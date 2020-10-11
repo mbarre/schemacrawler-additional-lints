@@ -58,7 +58,7 @@ public class LinterPluralTableNameTest extends BaseLintTest {
 		final LinterRegistry registry = new LinterRegistry();
 		Assert.assertTrue(registry.hasLinter(LinterPluralTableName.class.getName()));
 
-		final SchemaCrawlerOptions options = SchemaCrawlerOptionsBuilder.builder().toOptions();
+		final SchemaCrawlerOptions options = SchemaCrawlerOptionsBuilder.newSchemaCrawlerOptions();
 
 		Connection connection = DriverManager.getConnection(database.getConnectionString(),
 				PostgreSqlDatabase.USER_NAME, database.getPostgresPassword());
