@@ -44,12 +44,6 @@ deploy:
     on:
       tags: true
       repo: mbarre/schemacrawler-additional-lints
-  - provider: script
-    script: bash -c "./docker-publish.sh"
-    skip_cleanup: true
-    on:
-      tags: true
-      repo: mbarre/schemacrawler-additional-lints
 branches:
   except:
   - travis
