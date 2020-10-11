@@ -1,7 +1,7 @@
 ARG SCHEMACRAWLER_VERSION
 ARG LINTS_VERSION
 
-FROM schemacrawler/schemacrawler:${SCHEMACRAWLER_VERSION}
+FROM schemacrawler/schemacrawler:v${SCHEMACRAWLER_VERSION}
 
 USER schcrwlr
 WORKDIR /home/schcrwlr
