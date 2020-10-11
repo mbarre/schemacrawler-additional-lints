@@ -22,6 +22,15 @@ package io.github.mbarre.schemacrawler.tool.linter;
  * #L%
  */
 
+import io.github.mbarre.schemacrawler.utils.JSonUtils;
+import io.github.mbarre.schemacrawler.utils.LintUtils;
+import schemacrawler.schema.Column;
+import schemacrawler.schema.Table;
+import schemacrawler.schemacrawler.SchemaCrawlerException;
+import schemacrawler.tools.lint.BaseLinter;
+import schemacrawler.tools.lint.LintSeverity;
+import schemacrawler.tools.options.Config;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -29,15 +38,6 @@ import java.sql.Statement;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import io.github.mbarre.schemacrawler.utils.JSonUtils;
-import io.github.mbarre.schemacrawler.utils.LintUtils;
-import schemacrawler.schema.Column;
-import schemacrawler.schema.Table;
-import schemacrawler.schemacrawler.Config;
-import schemacrawler.schemacrawler.SchemaCrawlerException;
-import schemacrawler.tools.lint.BaseLinter;
-import schemacrawler.tools.lint.LintSeverity;
 
 /**
  * Linter to check if non JSONB type is used whereas JSON data is store in column
@@ -120,7 +120,7 @@ public class LinterJsonContent extends BaseLinter {
                                 String data = rs.getString(columnName);
 
                                 if(JSonUtils.isJsonContent(data)){
-                                    addLint(table, getDescription(), column.getFullName());
+                                    addTableLint(table, getDescription(), column.getFullName());
                                     found = true;
                                 }
                             }

@@ -53,7 +53,7 @@ public class LinterForbiddenPrimaryKeyType extends BaseLinter
             if(column.isPartOfPrimaryKey()){
                 LOGGER.log(Level.INFO, "Checking {0}...", column.getFullName());
                 if(LintUtils.isSqlTypeDateBased(column.getColumnDataType().getJavaSqlType().getVendorTypeNumber()))
-                    addLint(table, getDescription(), column.getFullName());
+                    addTableLint(table, getDescription(), column.getFullName());
             }
         }
     }

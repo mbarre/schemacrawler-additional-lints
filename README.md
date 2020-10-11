@@ -1,9 +1,10 @@
-# Schemacrawler Additional Lints
+#  Schemacrawler Additional Lints
 [![Project Website](https://img.shields.io/badge/Project%20Website-Additional%20Lints-7f3692.svg)](http://mbarre.github.io/schemacrawler-additional-lints/)
 [![Build Status](https://travis-ci.org/mbarre/schemacrawler-additional-lints.svg?branch=master)](https://travis-ci.org/mbarre/schemacrawler-additional-lints)
 [![Release](https://jitpack.io/v/mbarre/schemacrawler-additional-lints.svg)](https://jitpack.io/mbarre/schemacrawler-additional-lints)
 [![Coverage Status](https://coveralls.io/repos/mbarre/schemacrawler-additional-lints/badge.svg?branch=master&service=github)](https://coveralls.io/github/mbarre/schemacrawler-additional-lints?branch=master)
 [![Join the chat at https://gitter.im/mbarre/schemacrawler-additionallints](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/mbarre/schemacrawler-additional-lints?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+![Docker Pulls](https://img.shields.io/docker/pulls/mbarre/schemacrawler-additional-lints)
 
 Some additional lints for [Schemacrawler](http://sualeh.github.io/SchemaCrawler/)
 
@@ -13,10 +14,11 @@ The main purpose of this lint library is to enhance native schemacrawler lints
 with some more hardcore constraints and some specific postgres types. That's
 why a postgreSQL database instance is required to test.
 
-This project has been created to be used at our office
+This project has been created to be used at our former office
 [Mairie de la Ville de Nouméa](http://www.noumea.nc/) to test our database
 schema quality in a more easy way and make it possible for our partners to
 apply our database quality policy the easy way.
+
 # Build and install lint
 
 **Notice that this version is designed to run on schemacrawler `14.x.x`...
@@ -53,6 +55,27 @@ Or, install [Docker Compose](https://docs.docker.com/compose/install/) to deploy
     docker-compose -f docker/postgresql.yml up
     mvn install
     cp target/schemacrawler-additional-lints-${LINT_VERSION}.jar $SCHEMACRAWLER_HOME/lib
+    
+# Docker Image
+
+Schemacrawler Additional Lints is now released with an image on Docker Hub. This is an extension of the [SchemaCrawler Docker Image](https://www.schemacrawler.com/docker-image.html).
+
+You can run docker container like this :
+
+    docker run --name schemacrawler-additional-lints --rm -i -t --entrypoint=/bin/bash --net=host mbarre/schemacrawler-additional-lints
+
+--net=host option will allow you to work on database deployed on your host.
+
+Use the Schemacrawler Interactive Shell
+
+    schemacrawler --shell
+    
+Use the following script from within the shell to launch the lints analysis :
+
+    connect --server=your_db_server --database=your_db --user=your-user
+    load --info-level=minimum
+    execute --command lint
+
 
 # Pre-release tasks
 
@@ -70,7 +93,6 @@ Check that plugins are up-to-date :
 
 # Donate
 
-
 If you like this lint library, you can donate :
 
 * Stars on github
@@ -84,5 +106,6 @@ If you like this lint library, you can donate :
 including just some kind words on our gitter
 
 # Thanks
+
 <a href="https://www.jetbrains.com/idea/?fromMenu"><img src="https://raw.githubusercontent.com/mbarre/schemacrawler-additional-lints/master/src/site/img/logo.png" height="42" width="42"></a>
 To Jetbrains for offering an [IntelliJ IDEA](https://www.jetbrains.com/idea/?fromMenu) Free Open Source License to this project contributors.

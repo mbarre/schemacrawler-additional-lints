@@ -25,7 +25,7 @@ License along with this program.  If not, see
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>io.github.mbarre</groupId>
 	<artifactId>schemacrawler-additional-lints</artifactId>
-	<version>1.05.03</version>
+	<version>1.06.08-SNAPSHOT</version>
 	<name>Additional SchemaCrawler Lints</name>
 	<description>Some additional lints for Schemacrawler</description>
 	<inceptionYear>2015</inceptionYear>
@@ -33,7 +33,7 @@ License along with this program.  If not, see
 		<name>github</name>
 		<url>https://github.com/mbarre/schemacrawler-additional-lints</url>
 	</organization>
-	<url>https://github.com/mbarre/schemacrawler-additional-lints</url>
+	<url>http://mbarre.github.io/schemacrawler-additional-lints/</url>
 
 	<licenses>
 		<license>
@@ -128,18 +128,23 @@ License along with this program.  If not, see
 		<repository>
 			<id>The Central Repository</id>
 			<name>The Central Repository</name>
-			<url>http://repo.maven.apache.org/maven2/</url>
+			<url>https://repo.maven.apache.org/maven2/</url>
+		</repository>
+		<repository>
+			<id>jitpack.io</id>
+			<url>https://jitpack.io</url>
 		</repository>
 	</repositories>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-		<schemacrawler.version>15.06.01</schemacrawler.version>
+		<schemacrawler.version>16.9.5</schemacrawler.version>
+		<schemacrawler.command.csv.lint.version>1.8</schemacrawler.command.csv.lint.version>
 		<java.version>1.8</java.version>
 		<java.version.short>8</java.version.short>
 		<hsqldb.version>2.3.2</hsqldb.version>
-		<junit.version>4.12</junit.version>
+		<junit.version>4.13.1</junit.version>
 		<github.global.server>github</github.global.server>
 		<project.url>https://github.com/mbarre/schemacrawler-additional-lints</project.url>
 
@@ -148,15 +153,15 @@ License along with this program.  If not, see
 		<maven-enforcer-plugin.version>1.4.1</maven-enforcer-plugin.version>
 		<maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
 		<maven-checkstyle-plugin.version>3.0.0</maven-checkstyle-plugin.version>
-		<maven-pmd-plugin.version>3.11.0</maven-pmd-plugin.version>
+		<maven-pmd-plugin.version>3.13.0</maven-pmd-plugin.version>
 
 		<!-- Maven reporting plugin versions -->
 		<maven-source-plugin.version>3.0.1</maven-source-plugin.version>
 		<maven-site-plugin.version>3.7.1</maven-site-plugin.version>
 		<maven-javadoc-plugin.version>3.1.0</maven-javadoc-plugin.version>
 		<maven-jxr-plugin.version>3.0.0</maven-jxr-plugin.version>
-		<maven-surefire-report-plugin.version>2.22.1</maven-surefire-report-plugin.version>
-		<maven-surefire-plugin.version>2.22.1</maven-surefire-plugin.version>
+		<maven-surefire-report-plugin.version>2.22.2</maven-surefire-report-plugin.version>
+		<maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
 		<maven-project-info-reports-plugin.version>3.0.0</maven-project-info-reports-plugin.version>
 		<maven-changes-plugin.version>2.12.1</maven-changes-plugin.version>
 		<jacoco-maven-plugin.version>0.8.3</jacoco-maven-plugin.version>
@@ -168,22 +173,26 @@ License along with this program.  If not, see
 		<maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
 		<nexus-staging-maven-plugin.version>1.6.8</nexus-staging-maven-plugin.version>
 		<maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
+		<exec-maven-plugin.version>1.6.0</exec-maven-plugin.version>
 
-		<slf4j.version>1.7.26</slf4j.version>
+		<slf4j.version>1.7.30</slf4j.version>
 		<logback.version>1.1.3</logback.version>
 		<liquibase-plugin.version>3.6.3</liquibase-plugin.version>
 		<postgresql.version>42.2.6</postgresql.version>
-		<commons-io.version>2.6</commons-io.version>
-		<commons-compress.version>1.18</commons-compress.version>
+		<commons-io.version>2.8.0</commons-io.version>
+		<commons-compress.version>1.19</commons-compress.version>
 		<commons-lang3.version>3.9</commons-lang3.version>
-		<gson.version>2.8.5</gson.version>
+		<gson.version>2.8.6</gson.version>
 		<xerces.version>2.11.0</xerces.version>
 
 		<coveralls-maven-plugin.version>4.3.0</coveralls-maven-plugin.version>
 		<coveralls.repoToken>${env.COVERALLS_REPOTOKEN}</coveralls.repoToken>
 		<checksum-maven-plugin.version>1.4</checksum-maven-plugin.version>
-		<license-maven-plugin.version>1.18</license-maven-plugin.version>
-		<commons-rng-simple.version>1.2</commons-rng-simple.version>
+		<license-maven-plugin.version>1.19</license-maven-plugin.version>
+		<commons-rng-simple.version>1.3</commons-rng-simple.version>
+		<docker.organization>mbarre</docker.organization>
+		<schemacrawler.command.csv.lint.url>https://jitpack.io/com/github/adriens/schemacrawler-additional-command-lints-as-csv/${schemacrawler.command.csv.lint.version}</schemacrawler.command.csv.lint.url>
+		<schemacrawler.command.csv.lint.artefact>schemacrawler-additional-command-lints-as-csv-${schemacrawler.command.csv.lint.version}.jar</schemacrawler.command.csv.lint.artefact>
 	</properties>
 
 	<dependencies>
@@ -202,10 +211,15 @@ License along with this program.  If not, see
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>us.fatehi</groupId>
-			<artifactId>schemacrawler</artifactId>
-			<version>${schemacrawler.version}</version>
-			<scope>provided</scope>
+			<groupId>com.github.adriens</groupId>
+			<artifactId>schemacrawler-additional-command-lints-as-csv</artifactId>
+			<version>${schemacrawler.command.csv.lint.version}</version>
+			<exclusions>
+				<exclusion>  <!-- declare the exclusion here -->
+					<groupId>us.fatehi</groupId>
+					<artifactId>schemacrawler</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<!-- SLF4J LOGBACK -->
@@ -266,6 +280,17 @@ License along with this program.  If not, see
 		<artifactId>gson</artifactId>
 		<version>${gson.version}</version>
 	</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.11.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.datatype</groupId>
+			<artifactId>jackson-datatype-jsr310</artifactId>
+			<version>2.11.2</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -329,7 +354,7 @@ License along with this program.  If not, see
 				<artifactId>site-maven-plugin</artifactId>
 				<version>0.12</version>
 				<configuration>
-					<message>Creating site for ${project.version}</message>
+					<message>Building site for ${project.artifactId} ${project.version}</message>
 					<server>${github.global.server}</server>
 				</configuration>
 				<executions>
@@ -486,6 +511,30 @@ License along with this program.  If not, see
 						</fileSet>
 					</fileSets>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>${exec-maven-plugin.version}</version>
+				<executions>
+					<!-- Create new docker image using Dockerfile which must be present in current working directory.
+						 Tag the image using maven project version information.
+					-->
+					<execution>
+						<id>download-command-csv-lint</id>
+						<phase>install</phase>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+						<configuration>
+							<executable>wget</executable>
+							<workingDirectory>${project.basedir}/target</workingDirectory>
+							<arguments>
+								<argument>${schemacrawler.command.csv.lint.url}/${schemacrawler.command.csv.lint.artefact}</argument>
+							</arguments>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
