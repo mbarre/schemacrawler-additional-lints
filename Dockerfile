@@ -18,7 +18,7 @@ RUN addgroup schcrwlr
 
 # Copy additional-lints and additional-lints-csv local jar files
 COPY --chown=schcrwlr:schcrwlr target/schemacrawler-additional-lints-*.jar /opt/schemacrawler/lib/
-COPY --chown=schcrwlr:schcrwlr target/schemacrawler-additional-command-csv-*.jar /opt/schemacrawler/lib/
+COPY --chown=schcrwlr:schcrwlr target/schemacrawler-additional-command-lints-as-csv-*.jar /opt/schemacrawler/lib/
 
 RUN chmod +rx /opt/schemacrawler/lib/*.jar
 
