@@ -16,6 +16,9 @@ MAINTAINER Michèle Barré <michele.barre@gmail.com>
 USER root
 RUN addgroup schcrwlr
 
+# Copy linter config file
+COPY --chown=schcrwlr:schcrwlr src/main/resources/schemacrawler-linter-config.xml .
+
 # Copy additional-lints and additional-lints-csv local jar files
 COPY --chown=schcrwlr:schcrwlr target/schemacrawler-additional-lints-*.jar /opt/schemacrawler/lib/
 COPY --chown=schcrwlr:schcrwlr target/schemacrawler-additional-command-lints-as-csv-*.jar /opt/schemacrawler/lib/
