@@ -86,6 +86,8 @@ You can try it this way :
 
     schemacrawler --server=your_db_server --database=your_db --user=your_user --info-level=minimum  --command csv
 
+A default linter config file is available in the schemacrawler container home directory : **schemacrawler-linter-config.xml**.
+You can use it to include or exclude tables, change the lints severity, by adding **--linter-configs=schemacrawler-linter-config.xml** to lint and csv commands.
 
 # Pre-release tasks
 
