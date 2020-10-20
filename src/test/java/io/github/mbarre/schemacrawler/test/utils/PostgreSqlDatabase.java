@@ -47,7 +47,8 @@ import org.slf4j.LoggerFactory;
 public class PostgreSqlDatabase {
     private static final Logger LOG = LoggerFactory.getLogger(PostgreSqlDatabase.class);
     
-    public static final String CONNECTION_STRING = "jdbc:postgresql://localhost:5432/sc_lint_test";
+    public static final String CONNECTION_STRING = "jdbc:postgresql://localhost";
+    public static final String DB_NAME = "sc_lint_test";
     /* Leave to postgres as the default user as described on travis
     (http://docs.travis-ci.com/user/database-setup/)
     
@@ -57,11 +58,14 @@ public class PostgreSqlDatabase {
     */
     public static final String USER_NAME = "postgres";
     public static final String DEFAULT_PASSWORD = "";
+    public static final String DEFAULT_PORT = "5432";
     
     
     private Liquibase liquibase;
     private Properties properties;
-    private String postgresPassword;
+    private String postgresPassword = "";
+    private String postgresPort = "";
+    private String connectionString = "";
     
     public void setUp(String changelog) {
         try {
@@ -78,7 +82,7 @@ public class PostgreSqlDatabase {
         setProperties();
         String version;
         try {
-            Connection connection = DriverManager.getConnection(PostgreSqlDatabase.CONNECTION_STRING,
+            Connection connection = DriverManager.getConnection(getConnectionString(),
                     PostgreSqlDatabase.USER_NAME, getPostgresPassword());
             version = connection.getMetaData().getDatabaseProductVersion();
             connection.close();
@@ -92,7 +96,7 @@ public class PostgreSqlDatabase {
     public void setProperties(){
         this.properties = new Properties();
         InputStream input;
-        LOG.info("Looking for <test/resources/test.properties> file, with key <postgres.password> ...");
+        LOG.info("Looking for <test/resources/test.properties> file...");
         try{
             
             input = getClass().getClassLoader().getResourceAsStream("test.properties");
@@ -103,29 +107,43 @@ public class PostgreSqlDatabase {
                 return;
             }
             
-            
             properties.load(input);
             LOG.info("Found <test/resources/test.properties> file");
-            LOG.info("Found postgres password : <" + properties.getProperty("postgres.password") +">");
+
             if(properties.getProperty("postgres.password") != null){
                 LOG.info("<postgres.password> found...");
+                LOG.info("Found postgres password : <" + properties.getProperty("postgres.password") +">");
                 setPostgresPassword(properties.getProperty("postgres.password"));
             }
             else{
-                LOG.info("<postgres.password> nof found : default empty value will be used.");
+                LOG.info("<postgres.password> not found : default empty value will be used.");
                 setPostgresPassword(DEFAULT_PASSWORD);
+            }
+
+            if(properties.getProperty("postgres.port") != null){
+                LOG.info("<postgres.port> found...");
+                LOG.info("Found postgres port : <" + properties.getProperty("postgres.port") +">");
+                setPostgresPort(properties.getProperty("postgres.port"));
+            }
+            else{
+                LOG.info("<postgres.port> not found : default value will be used.");
+                setPostgresPort(DEFAULT_PASSWORD);
             }
         }
         catch(IOException ex){
             LOG.error("Could not find <test.properties> conf file... will use default", ex);
             this.properties = null;
             setPostgresPassword(DEFAULT_PASSWORD);
+            setPostgresPort(DEFAULT_PASSWORD);
         }
+
+        setConnectionString(CONNECTION_STRING + (getPostgresPort().isEmpty() ? "" : (":" + getPostgresPort())) + "/" + DB_NAME);
     }
     
     
     private Connection getConnectionImpl(String user, String password) throws SQLException {
-        return DriverManager.getConnection(CONNECTION_STRING, user, password);
+        LOG.info("Try to connect with user " + user +", pwd : '"+ password + "' to " + getConnectionString());
+        return DriverManager.getConnection(getConnectionString(), user, password);
     }
     
     // Create tables...
@@ -169,5 +187,21 @@ public class PostgreSqlDatabase {
         this.postgresPassword = postgresPassword;
         LOG.info("PG password set to <" + postgresPassword + ">");
     }
-    
+
+    public String getPostgresPort() {
+        return postgresPort;
+    }
+
+    public void setPostgresPort(String postgresPort) {
+        this.postgresPort = postgresPort;
+        LOG.info("PG port set to <" + postgresPort + ">");
+    }
+
+    public String getConnectionString() {
+        return connectionString;
+    }
+
+    public void setConnectionString(String connectionString) {
+        this.connectionString = connectionString;
+    }
 }

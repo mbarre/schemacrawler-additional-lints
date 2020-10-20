@@ -22,18 +22,14 @@ package io.github.mbarre.schemacrawler.tool.linter;
  * #L%
  */
 
+import schemacrawler.schema.*;
+import schemacrawler.tools.lint.BaseLinter;
+import schemacrawler.tools.lint.LintSeverity;
+import schemacrawler.tools.options.Config;
+
 import java.sql.Connection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import schemacrawler.schema.Column;
-import schemacrawler.schema.ForeignKey;
-import schemacrawler.schema.ForeignKeyColumnReference;
-import schemacrawler.schema.Table;
-import schemacrawler.schema.View;
-import schemacrawler.schemacrawler.Config;
-import schemacrawler.tools.lint.BaseLinter;
-import schemacrawler.tools.lint.LintSeverity;
 
 import static java.util.Objects.requireNonNull;
 

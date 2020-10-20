@@ -61,12 +61,12 @@ public class LinterNoSpaceInNames extends BaseLinter {
         List<Column> columns = getColumns(table);
         String tableName = table.getName().replaceAll("\"", "");
         if(tableName.contains(" ")) {
-            addLint(table, getDescription(), table.getFullName());
+            addTableLint(table, getDescription(), table.getFullName());
         }
 
         for (Column column : columns) {
             if(column.getName().contains(" "))
-                addLint(table, getDescription(), column.getFullName());
+                addTableLint(table, getDescription(), column.getFullName());
         }
     }
 
