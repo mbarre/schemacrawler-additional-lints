@@ -25,6 +25,7 @@ package io.github.mbarre.schemacrawler.tool.linter;
 import schemacrawler.schema.*;
 import schemacrawler.tools.lint.BaseLinter;
 import schemacrawler.tools.lint.LintSeverity;
+import schemacrawler.tools.lint.LinterConfig;
 import schemacrawler.tools.options.Config;
 
 import java.sql.Connection;
@@ -69,9 +70,9 @@ public class LinterForeignKeyName  extends BaseLinter {
     }
 
     @Override
-    public void configure(Config config) {
-        prefix = config.getStringValue(PREFIX_CONFIG_PARAM, "");
-        suffix = config.getStringValue(SUFFIX_CONFIG_PARAM, "");
+    public void configure(LinterConfig config) {
+        prefix = config.getProperties().get(PREFIX_CONFIG_PARAM);
+        suffix = config.getProperties().get(SUFFIX_CONFIG_PARAM);
     }
 
     @Override

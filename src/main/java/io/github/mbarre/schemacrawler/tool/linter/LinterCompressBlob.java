@@ -32,6 +32,7 @@ import schemacrawler.schema.Table;
 import schemacrawler.schemacrawler.SchemaCrawlerException;
 import schemacrawler.tools.lint.BaseLinter;
 import schemacrawler.tools.lint.LintSeverity;
+import schemacrawler.tools.lint.LinterConfig;
 import schemacrawler.tools.options.Config;
 
 import java.io.*;
@@ -61,8 +62,8 @@ public class LinterCompressBlob extends BaseLinter {
     }
 
     @Override
-    public void configure(Config config) {
-        minCompressionPercent = config.getIntegerValue(COMPRESSION_PERCENT_CONFIG_PARAM, MIN_COMPRESSION_PERCENT);
+    public void configure(LinterConfig config) {
+        minCompressionPercent = Integer.valueOf(config.getProperties().get(COMPRESSION_PERCENT_CONFIG_PARAM));
     }
 
     /**

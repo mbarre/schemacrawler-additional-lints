@@ -28,6 +28,7 @@ import schemacrawler.schema.Table;
 import schemacrawler.schemacrawler.SchemaCrawlerException;
 import schemacrawler.tools.lint.BaseLinter;
 import schemacrawler.tools.lint.LintSeverity;
+import schemacrawler.tools.lint.LinterConfig;
 import schemacrawler.tools.options.Config;
 
 import java.sql.Connection;
@@ -96,9 +97,9 @@ public class LinterColumnContentNotNormalized extends BaseLinter {
     }
 
     @Override
-    public void configure(Config config) {
-        nbRepeatTolerance = config.getIntegerValue(NB_REPEAT_TOLERANCE_CONFIG, NB_REPEAT_TOLERANCE);
-        minTextColumnSize = config.getIntegerValue(MIN_TEXT_COLUMN_SIZE_CONFIG, MIN_TEXT_COLUMN_SIZE);
+    public void configure(LinterConfig config) {
+        nbRepeatTolerance = Integer.valueOf(config.getProperties().get(NB_REPEAT_TOLERANCE_CONFIG));
+        minTextColumnSize = Integer.valueOf(config.getProperties().get(MIN_TEXT_COLUMN_SIZE_CONFIG));
     }
         
     /**

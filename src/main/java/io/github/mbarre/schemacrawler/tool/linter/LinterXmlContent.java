@@ -29,6 +29,7 @@ import schemacrawler.schema.Table;
 import schemacrawler.schemacrawler.SchemaCrawlerException;
 import schemacrawler.tools.lint.BaseLinter;
 import schemacrawler.tools.lint.LintSeverity;
+import schemacrawler.tools.lint.LinterConfig;
 import schemacrawler.tools.options.Config;
 
 import java.sql.*;
@@ -59,8 +60,8 @@ public class LinterXmlContent extends BaseLinter {
     }
 
     @Override
-    public void configure(Config config) {
-        sampleSize = config.getIntegerValue(SAMPLE_SIZE_PARAM, 1000);
+    public void configure(LinterConfig config) {
+        sampleSize = Integer.valueOf(config.getProperties().get(SAMPLE_SIZE_PARAM));
     }
 
     /**

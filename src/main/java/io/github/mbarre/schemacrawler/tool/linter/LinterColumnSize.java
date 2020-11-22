@@ -28,6 +28,7 @@ import schemacrawler.schema.Table;
 import schemacrawler.schemacrawler.SchemaCrawlerException;
 import schemacrawler.tools.lint.BaseLinter;
 import schemacrawler.tools.lint.LintSeverity;
+import schemacrawler.tools.lint.LinterConfig;
 import schemacrawler.tools.options.Config;
 
 import java.sql.Connection;
@@ -80,8 +81,8 @@ public class LinterColumnSize extends BaseLinter {
     }
 
     @Override
-    public void configure(Config config) {
-        minColumnSizePercent = config.getIntegerValue(COLUMNSIZE_CONFIG_PARAM, MIN_COLUMN_SIZE_PERCENT);
+    public void configure(LinterConfig config) {
+        minColumnSizePercent = Integer.valueOf(config.getProperties().get(COLUMNSIZE_CONFIG_PARAM));
     }
     
     /**
