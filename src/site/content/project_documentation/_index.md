@@ -6,8 +6,6 @@ chapter = true
 pre = "<b></b>"
 +++
 
-### Chapter X
+### Project documentation
 
-# Some Chapter title
-
-Lorem Ipsum.
+Collaborators list and overview of code quality checks.
