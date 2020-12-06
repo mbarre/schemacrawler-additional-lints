@@ -5,7 +5,7 @@ date = 2020-11-16T13:59:22+11:00
 weight = 15
 +++
 
-Version : 1.06.10
+Version : 1.06.11
 
 This project is a set of free basic database lints that come in addition to the ones embedded in Schemacrawler Lint.
 

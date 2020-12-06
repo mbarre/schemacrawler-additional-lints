@@ -50,7 +50,7 @@ jobs:
         #TODO find a way to inject these values
         build-args: |
           SCHEMACRAWLER_VERSION=16.10.1
-          LINTS_VERSION=1.06.10
+          LINTS_VERSION=1.06.11
         push: true
         tags: ${{ steps.prep.outputs.tags }}
     

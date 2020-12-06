@@ -2,6 +2,7 @@ name: hugo
 
 on:
   push:
+    tags: '*.*.*'
 
 jobs:
   hugo:
