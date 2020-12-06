@@ -23,9 +23,7 @@ before_script:
   - psql -c 'create database sc_lint_test;' -U postgres
 script:
   # the following command line builds the project, runs the tests with coverage and then execute the SonarQube analysis
-  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install
-  # - sonar-scanner
-  - mvn coveralls:report
+  - mvn clean test jacoco:report coveralls:report
 notifications:
   slack:
     secure: ar8mq3cXiZx7QehmtvDDAzGanJcL7KWrvbGzo8RGqFToVyVCqfaKaelmqv/TCLCOr8DssP3yKm0yoPX0kiypqqbXaCp3v6a/4k8LtS3az41dKkVjQnRQFc3zDb3FkVKFIfEK8Y/hOUrwcZvSydh9rIsJ/m3CgAQz5mBCny3Vh7r5sjCazUO8pjOTIEWd2AOSgoJvlwKaUHYYtonqmHhycxjtus1zHkDsvrvs8iPHVVKv9FUHmCy0aiXcOnUihftRGElUCA9yujwdHC//yMjetdYihmmErmPkgQFLIW0y/G+6aeZzR8zW5zFlU/oQZBE6bCp3FU856wJV+ohp5+PwBwbqSU9b6Fszs9mgNzZFcIirxouB9NE6qQ1p/tp0y82nFfOsyY6OggqWtRNFGT7hyX2qaF1cIzovaKk8HQQKCg3RzpbmssEqDy8mvsF4GP4ByozCogghqmtpGhu+NjSdMkAZIZgVbcZLjoIDVV2uxA+7vAXdUvhBce4bpetv7r0ddxpq4lY36RANCJvbVQvsFtffJHd0j1cY7ipN3WdS7r7UmlqsKBcv+RiSVbKxhhjDk73jcMFBbkjDMHkIkSGLXmYxzqmHusDVwmprju835ae3RQyJ50RC8Zcj9pUZOUmoYCH7YGJuoLF7KIPbZzEcjxjwPFpa1WH6haSB/phzjgg=
