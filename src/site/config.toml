@@ -1,0 +1,11 @@
+baseURL = "http://mbarre.github.io/schemacrawler-additional-lints/"
+languageCode = "en-us"
+title = "Schemacrawler Additionnal Lints web site"
+
+# Change the default theme to be use when building the site with Hugo
+theme = "hugo-theme-learn"
+
+# For search functionality
+[outputs]
+home = [ "HTML", "RSS", "JSON"]
+

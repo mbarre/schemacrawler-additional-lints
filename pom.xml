@@ -25,7 +25,7 @@ License along with this program.  If not, see
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>io.github.mbarre</groupId>
 	<artifactId>schemacrawler-additional-lints</artifactId>
-	<version>1.06.08-SNAPSHOT</version>
+	<version>1.06.11</version>
 	<name>Additional SchemaCrawler Lints</name>
 	<description>Some additional lints for Schemacrawler</description>
 	<inceptionYear>2015</inceptionYear>
@@ -64,34 +64,34 @@ License along with this program.  If not, see
 			</roles>
 			<timezone>+11</timezone>
 		</developer>
-        <developer>
-            <email>Adrien.Sales@gmail.com</email>
-            <id>adriens</id>
-            <name>Adrien Sales</name>
-            <organization>Github</organization>
-            <organizationUrl>https://github.com/adriens</organizationUrl>
-            <roles>
-                <role>DBA</role>
-                <role>Documentation contributor</role>
-                <role>Tester</role>
-                <role>PostgreSQL expert</role>
-                <role>Schemacrawler integrator</role>
-                <role>Open source evangelist</role>
-            </roles>
-            <timezone>+11</timezone>
-        </developer>
-    </developers>
+		<developer>
+			<email>Adrien.Sales@gmail.com</email>
+			<id>adriens</id>
+			<name>Adrien Sales</name>
+			<organization>Github</organization>
+			<organizationUrl>https://github.com/adriens</organizationUrl>
+			<roles>
+				<role>DBA</role>
+				<role>Documentation contributor</role>
+				<role>Tester</role>
+				<role>PostgreSQL expert</role>
+				<role>Schemacrawler integrator</role>
+				<role>Open source evangelist</role>
+			</roles>
+			<timezone>+11</timezone>
+		</developer>
+	</developers>
 	<contributors>
-        <contributor>
-            <email>sualeh@hotmail.com</email>
-            <name>Sualeh Fatehi</name>
-            <organization>Github</organization>
-            <organizationUrl>https://github.com/sualeh</organizationUrl>
-            <roles>
-                <role>Schemacrawler project creator</role>
-            </roles>
-            <timezone>-5</timezone>
-        </contributor>
+		<contributor>
+			<email>sualeh@hotmail.com</email>
+			<name>Sualeh Fatehi</name>
+			<organization>Github</organization>
+			<organizationUrl>https://github.com/sualeh</organizationUrl>
+			<roles>
+				<role>Schemacrawler project creator</role>
+			</roles>
+			<timezone>-5</timezone>
+		</contributor>
 		<contributor>
 			<email>mvallet@calinfo-nc.com</email>
 			<name>Martin Vallet</name>
@@ -112,16 +112,16 @@ License along with this program.  If not, see
 			</roles>
 			<timezone>+11</timezone>
 		</contributor>
-        <contributor>
-            <email>bheemreddy181@gmail.com</email>
-            <name>bheemreddy181</name>
-            <organization>Github</organization>
-            <organizationUrl>https://github.com/bheemreddy181</organizationUrl>
-            <roles>
-                <role>Developer</role>
-            </roles>
-            <timezone>-6</timezone>
-        </contributor>
+		<contributor>
+			<email>bheemreddy181@gmail.com</email>
+			<name>bheemreddy181</name>
+			<organization>Github</organization>
+			<organizationUrl>https://github.com/bheemreddy181</organizationUrl>
+			<roles>
+				<role>Developer</role>
+			</roles>
+			<timezone>-6</timezone>
+		</contributor>
 	</contributors>
 
 	<repositories>
@@ -139,8 +139,8 @@ License along with this program.  If not, see
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-		<schemacrawler.version>16.9.5</schemacrawler.version>
-		<schemacrawler.command.csv.lint.version>1.8</schemacrawler.command.csv.lint.version>
+		<schemacrawler.version>16.10.1</schemacrawler.version>
+		<schemacrawler.command.csv.lint.version>1.9</schemacrawler.command.csv.lint.version>
 		<java.version>1.8</java.version>
 		<java.version.short>8</java.version.short>
 		<hsqldb.version>2.3.2</hsqldb.version>
@@ -164,7 +164,7 @@ License along with this program.  If not, see
 		<maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
 		<maven-project-info-reports-plugin.version>3.0.0</maven-project-info-reports-plugin.version>
 		<maven-changes-plugin.version>2.12.1</maven-changes-plugin.version>
-		<jacoco-maven-plugin.version>0.8.3</jacoco-maven-plugin.version>
+		<jacoco-maven-plugin.version>0.8.4</jacoco-maven-plugin.version>
 		<findbugs-maven-plugin.version>3.0.5</findbugs-maven-plugin.version>
 		<maven-clover2-plugin.version>4.0.4</maven-clover2-plugin.version>
 		<changelog-maven-plugin.version>2.3</changelog-maven-plugin.version>
@@ -173,7 +173,7 @@ License along with this program.  If not, see
 		<maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
 		<nexus-staging-maven-plugin.version>1.6.8</nexus-staging-maven-plugin.version>
 		<maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
-		<exec-maven-plugin.version>1.6.0</exec-maven-plugin.version>
+		<exec-maven-plugin.version>3.0.0</exec-maven-plugin.version>
 
 		<slf4j.version>1.7.30</slf4j.version>
 		<logback.version>1.1.3</logback.version>
@@ -193,6 +193,8 @@ License along with this program.  If not, see
 		<docker.organization>mbarre</docker.organization>
 		<schemacrawler.command.csv.lint.url>https://jitpack.io/com/github/adriens/schemacrawler-additional-command-lints-as-csv/${schemacrawler.command.csv.lint.version}</schemacrawler.command.csv.lint.url>
 		<schemacrawler.command.csv.lint.artefact>schemacrawler-additional-command-lints-as-csv-${schemacrawler.command.csv.lint.version}.jar</schemacrawler.command.csv.lint.artefact>
+
+		<aspectj.version>1.9.1</aspectj.version>
 	</properties>
 
 	<dependencies>
@@ -276,10 +278,10 @@ License along with this program.  If not, see
 		</dependency>
 
 		<dependency>
-		<groupId>com.google.code.gson</groupId>
-		<artifactId>gson</artifactId>
-		<version>${gson.version}</version>
-	</dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>${gson.version}</version>
+		</dependency>
 
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
@@ -350,23 +352,6 @@ License along with this program.  If not, see
 				</executions>
 			</plugin>
 			<plugin>
-				<groupId>com.github.github</groupId>
-				<artifactId>site-maven-plugin</artifactId>
-				<version>0.12</version>
-				<configuration>
-					<message>Building site for ${project.artifactId} ${project.version}</message>
-					<server>${github.global.server}</server>
-				</configuration>
-				<executions>
-					<execution>
-						<goals>
-							<goal>site</goal>
-						</goals>
-						<phase>site</phase>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>${maven-compiler-plugin.version}</version>
@@ -393,64 +378,25 @@ License along with this program.  If not, see
 				</executions>
 			</plugin>
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-site-plugin</artifactId>
-				<version>${maven-site-plugin.version}</version>
-				<dependencies>
-					<dependency>
-						<groupId>org.apache.maven.doxia</groupId>
-						<artifactId>doxia-module-markdown</artifactId>
-						<version>1.8</version>
-					</dependency>
-					<!--<dependency>-->
-						<!--<groupId>lt.velykis.maven.skins</groupId>-->
-						<!--<artifactId>reflow-velocity-tools</artifactId>-->
-						<!--<version>1.1.1</version>-->
-					<!--</dependency>-->
-                    <dependency>
-                        <groupId>org.apache.maven.skins</groupId>
-                        <artifactId>maven-fluido-skin</artifactId>
-                        <version>1.7</version>
-                    </dependency>
-					<dependency>
-						<groupId>org.apache.velocity</groupId>
-						<artifactId>velocity</artifactId>
-						<version>1.7</version>
-					</dependency>
-				</dependencies>
-				<configuration>
-					<inputEncoding>UTF-8</inputEncoding>
-					<outputEncoding>UTF-8</outputEncoding>
-				</configuration>
-			</plugin>
-			<plugin>
 				<groupId>org.eluder.coveralls</groupId>
 				<artifactId>coveralls-maven-plugin</artifactId>
 				<version>${coveralls-maven-plugin.version}</version>
 				<configuration>
 					<repoToken>${coveralls.repoToken}</repoToken>
+					<jacocoReports>
+						<param>./target/surefire-reports</param>
+					</jacocoReports>
 				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
 				<version>${jacoco-maven-plugin.version}</version>
-				<configuration>
-					<destFile>${basedir}/target/coverage-reports/jacoco-unit.exec</destFile>
-					<dataFile>${basedir}/target/coverage-reports/jacoco-unit.exec</dataFile>
-				</configuration>
 				<executions>
 					<execution>
-						<id>jacoco-initialize</id>
+						<id>prepare-agent</id>
 						<goals>
 							<goal>prepare-agent</goal>
-						</goals>
-					</execution>
-					<execution>
-						<id>jacoco-site</id>
-						<phase>package</phase>
-						<goals>
-							<goal>report</goal>
 						</goals>
 					</execution>
 				</executions>
@@ -538,120 +484,4 @@ License along with this program.  If not, see
 			</plugin>
 		</plugins>
 	</build>
-
-	<reporting>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-clean-plugin</artifactId>
-				<version>${maven-clean-plugin.version}</version>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-deploy-plugin</artifactId>
-				<version>2.8.2</version>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-install-plugin</artifactId>
-				<version>2.5.2</version>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-resources-plugin</artifactId>
-				<version>${maven-resources-plugin.version}</version>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>${maven-surefire-plugin.version}</version>
-			</plugin>
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-project-info-reports-plugin</artifactId>
-				<version>${maven-project-info-reports-plugin.version}</version>
-				<configuration>
-					<webAccessUrl>${project.url}</webAccessUrl>
-					<anonymousConnection>scm:git:git://github.com/mbarre/schemacrawler-additional-lints.git</anonymousConnection>
-					<developerConnection>scm:git:git@github.com:mbarre/schemacrawler-additional-lints.git</developerConnection>
-				</configuration>
-				<reportSets>
-					<reportSet>
-						<reports>
-							<report>dependencies</report>
-							<report>project-team</report>
-							<report>mailing-list</report>
-							<report>cim</report>
-							<report>license</report>
-							<report>scm</report>
-						</reports>
-					</reportSet>
-				</reportSets>
-			</plugin>
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-changes-plugin</artifactId>
-				<version>${maven-changes-plugin.version}</version>
-				<reportSets>
-					<reportSet>
-						<reports>
-							<report>changes-report</report>
-						</reports>
-					</reportSet>
-				</reportSets>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>${maven-javadoc-plugin.version}</version>
-				<reportSets>
-					<reportSet><!-- by default, id = "default" -->
-						<reports><!-- select non-aggregate reports -->
-							<report>javadoc</report>
-							<report>test-javadoc</report>
-						</reports>
-					</reportSet>
-					<reportSet>
-						<id>aggregate</id><!-- aggregate reportSet, for pom with modules -->
-						<inherited>false</inherited><!-- don't run aggregate in child modules -->
-						<reports>
-							<report>aggregate</report>
-						</reports>
-					</reportSet>
-				</reportSets>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jxr-plugin</artifactId>
-				<version>3.0.0</version>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>taglist-maven-plugin</artifactId>
-				<version>${taglist-maven-plugin.version}</version>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-checkstyle-plugin</artifactId>
-				<version>${maven-checkstyle-plugin.version}</version>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>findbugs-maven-plugin</artifactId>
-				<version>${findbugs-maven-plugin.version}</version>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-report-plugin</artifactId>
-				<version>${maven-surefire-report-plugin.version}</version>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-pmd-plugin</artifactId>
-				<version>${maven-pmd-plugin.version}</version>
-			</plugin>
-		</plugins>
-	</reporting>
 </project>

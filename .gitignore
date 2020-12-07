@@ -18,3 +18,4 @@ schemacrawler-additionnallints.iml
 dependency-reduced-pom.xml
 schemacrawler-additional-lints.iml
 src/test/resources/test.properties
+.allure

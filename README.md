@@ -72,10 +72,22 @@ Use the Schemacrawler Interactive Shell
     
 Use the following script from within the shell to launch the lints analysis :
 
-    connect --server=your_db_server --database=your_db --user=your-user
+    connect --server=your_db_server --database=your_db --user=your_user
     load --info-level=minimum
     execute --command lint
 
+Or, simplier...
+    
+    schemacrawler --server=your_db_server --database=your_db --user=your_user --info-level=minimum  --command lint
+
+The docker image also includes the command which export lints in csv files, for more information see [adriens/schemacrawler-additional-command-lints-as-csv](https://github.com/adriens/schemacrawler-additional-command-lints-as-csv)
+
+You can try it this way :
+
+    schemacrawler --server=your_db_server --database=your_db --user=your_user --info-level=minimum  --command csv
+
+A default linter config file is available in the schemacrawler container home directory : **schemacrawler-linter-config.xml**.
+You can use it to include or exclude tables, change the lints severity, by adding **--linter-configs=schemacrawler-linter-config.xml** to lint and csv commands.
 
 # Pre-release tasks
 
