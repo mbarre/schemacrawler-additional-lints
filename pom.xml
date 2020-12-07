@@ -195,7 +195,6 @@ License along with this program.  If not, see
 		<schemacrawler.command.csv.lint.artefact>schemacrawler-additional-command-lints-as-csv-${schemacrawler.command.csv.lint.version}.jar</schemacrawler.command.csv.lint.artefact>
 
 		<aspectj.version>1.9.1</aspectj.version>
-		<allure.version>2.13.6</allure.version>
 	</properties>
 
 	<dependencies>
@@ -294,12 +293,6 @@ License along with this program.  If not, see
 			<artifactId>jackson-datatype-jsr310</artifactId>
 			<version>2.11.2</version>
 		</dependency>
-
-		<dependency>
-			<groupId>io.qameta.allure</groupId>
-			<artifactId>allure-junit4</artifactId>
-			<version>${allure.version}</version>
-		</dependency>
 	</dependencies>
 
 	<build>
@@ -391,7 +384,7 @@ License along with this program.  If not, see
 				<configuration>
 					<repoToken>${coveralls.repoToken}</repoToken>
 					<jacocoReports>
-						<param>./target/jacoco/report</param>
+						<param>./target/surefire-reports</param>
 					</jacocoReports>
 				</configuration>
 			</plugin>
@@ -407,9 +400,6 @@ License along with this program.  If not, see
 						</goals>
 					</execution>
 				</executions>
-				<configuration>
-					<outputDirectory>./target/jacoco/report</outputDirectory>
-				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -492,161 +482,6 @@ License along with this program.  If not, see
 					</execution>
 				</executions>
 			</plugin>
-			<!-- ALLURE -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.22.2</version>
-				<configuration>
-					<testFailureIgnore>false</testFailureIgnore>
-					<argLine>
-						-Dfile.encoding=UTF-8
-						-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
-					</argLine>
-					<properties>
-						<property>
-							<name>listener</name>
-							<value>io.qameta.allure.junit4.AllureJunit4</value>
-						</property>
-					</properties>
-					<systemPropertyVariables>
-						<allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
-					</systemPropertyVariables>
-				</configuration>
-				<dependencies>
-					<dependency>
-						<groupId>org.aspectj</groupId>
-						<artifactId>aspectjweaver</artifactId>
-						<version>${aspectj.version}</version>
-					</dependency>
-				</dependencies>
-			</plugin>
-
-			<plugin>
-				<groupId>io.qameta.allure</groupId>
-				<artifactId>allure-maven</artifactId>
-				<version>2.10.0</version>
-				<configuration>
-					<reportVersion>${allure.version}</reportVersion>
-					<resultsDirectory>${project.build.directory}/allure-results</resultsDirectory>
-				</configuration>
-			</plugin>
 		</plugins>
 	</build>
-
-	<reporting>
-		<plugins>
-			<!--			<plugin>-->
-			<!--				<groupId>org.apache.maven.plugins</groupId>-->
-			<!--				<artifactId>maven-clean-plugin</artifactId>-->
-			<!--				<version>${maven-clean-plugin.version}</version>-->
-			<!--			</plugin>-->
-			<!--			<plugin>-->
-			<!--				<groupId>org.apache.maven.plugins</groupId>-->
-			<!--				<artifactId>maven-deploy-plugin</artifactId>-->
-			<!--				<version>2.8.2</version>-->
-			<!--			</plugin>-->
-			<!--			<plugin>-->
-			<!--				<groupId>org.apache.maven.plugins</groupId>-->
-			<!--				<artifactId>maven-install-plugin</artifactId>-->
-			<!--				<version>2.5.2</version>-->
-			<!--			</plugin>-->
-			<!--			<plugin>-->
-			<!--				<groupId>org.apache.maven.plugins</groupId>-->
-			<!--				<artifactId>maven-resources-plugin</artifactId>-->
-			<!--				<version>${maven-resources-plugin.version}</version>-->
-			<!--			</plugin>-->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>${maven-surefire-plugin.version}</version>
-			</plugin>
-
-			<!--			<plugin>-->
-			<!--				<groupId>org.apache.maven.plugins</groupId>-->
-			<!--				<artifactId>maven-project-info-reports-plugin</artifactId>-->
-			<!--				<version>${maven-project-info-reports-plugin.version}</version>-->
-			<!--				<configuration>-->
-			<!--					<webAccessUrl>${project.url}</webAccessUrl>-->
-			<!--					<anonymousConnection>scm:git:git://github.com/mbarre/schemacrawler-additional-lints.git</anonymousConnection>-->
-			<!--					<developerConnection>scm:git:git@github.com:mbarre/schemacrawler-additional-lints.git</developerConnection>-->
-			<!--				</configuration>-->
-			<!--				<reportSets>-->
-			<!--					<reportSet>-->
-			<!--						<reports>-->
-			<!--							<report>dependencies</report>-->
-			<!--							<report>project-team</report>-->
-			<!--							<report>mailing-list</report>-->
-			<!--							<report>cim</report>-->
-			<!--							<report>license</report>-->
-			<!--							<report>scm</report>-->
-			<!--						</reports>-->
-			<!--					</reportSet>-->
-			<!--				</reportSets>-->
-			<!--			</plugin>-->
-
-			<!--			<plugin>-->
-			<!--				<groupId>org.apache.maven.plugins</groupId>-->
-			<!--				<artifactId>maven-changes-plugin</artifactId>-->
-			<!--				<version>${maven-changes-plugin.version}</version>-->
-			<!--				<reportSets>-->
-			<!--					<reportSet>-->
-			<!--						<reports>-->
-			<!--							<report>changes-report</report>-->
-			<!--						</reports>-->
-			<!--					</reportSet>-->
-			<!--				</reportSets>-->
-			<!--			</plugin>-->
-			<!--			<plugin>-->
-			<!--				<groupId>org.apache.maven.plugins</groupId>-->
-			<!--				<artifactId>maven-javadoc-plugin</artifactId>-->
-			<!--				<version>${maven-javadoc-plugin.version}</version>-->
-			<!--				<reportSets>-->
-			<!--					<reportSet>&lt;!&ndash; by default, id = "default" &ndash;&gt;-->
-			<!--						<reports>&lt;!&ndash; select non-aggregate reports &ndash;&gt;-->
-			<!--							<report>javadoc</report>-->
-			<!--							<report>test-javadoc</report>-->
-			<!--						</reports>-->
-			<!--					</reportSet>-->
-			<!--					<reportSet>-->
-			<!--						<id>aggregate</id>&lt;!&ndash; aggregate reportSet, for pom with modules &ndash;&gt;-->
-			<!--						<inherited>false</inherited>&lt;!&ndash; don't run aggregate in child modules &ndash;&gt;-->
-			<!--						<reports>-->
-			<!--							<report>aggregate</report>-->
-			<!--						</reports>-->
-			<!--					</reportSet>-->
-			<!--				</reportSets>-->
-			<!--			</plugin>-->
-			<!--			<plugin>-->
-			<!--				<groupId>org.apache.maven.plugins</groupId>-->
-			<!--				<artifactId>maven-jxr-plugin</artifactId>-->
-			<!--				<version>3.0.0</version>-->
-			<!--			</plugin>-->
-			<!--			<plugin>-->
-			<!--				<groupId>org.codehaus.mojo</groupId>-->
-			<!--				<artifactId>taglist-maven-plugin</artifactId>-->
-			<!--				<version>${taglist-maven-plugin.version}</version>-->
-			<!--			</plugin>-->
-			<!--			<plugin>-->
-			<!--				<groupId>org.apache.maven.plugins</groupId>-->
-			<!--				<artifactId>maven-checkstyle-plugin</artifactId>-->
-			<!--				<version>${maven-checkstyle-plugin.version}</version>-->
-			<!--			</plugin>-->
-			<!--			<plugin>-->
-			<!--				<groupId>org.codehaus.mojo</groupId>-->
-			<!--				<artifactId>findbugs-maven-plugin</artifactId>-->
-			<!--				<version>${findbugs-maven-plugin.version}</version>-->
-			<!--			</plugin>-->
-			<!--			<plugin>-->
-			<!--				<groupId>org.apache.maven.plugins</groupId>-->
-			<!--				<artifactId>maven-surefire-report-plugin</artifactId>-->
-			<!--				<version>${maven-surefire-report-plugin.version}</version>-->
-			<!--			</plugin>-->
-			<!--			<plugin>-->
-			<!--				<groupId>org.apache.maven.plugins</groupId>-->
-			<!--				<artifactId>maven-pmd-plugin</artifactId>-->
-			<!--				<version>${maven-pmd-plugin.version}</version>-->
-			<!--			</plugin>-->
-		</plugins>
-	</reporting>
 </project>
