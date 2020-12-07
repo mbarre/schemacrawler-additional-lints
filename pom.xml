@@ -184,7 +184,7 @@ License along with this program.  If not, see
 		<coveralls-maven-plugin.version>4.3.0</coveralls-maven-plugin.version>
 		<coveralls.repoToken>${env.COVERALLS_REPOTOKEN}</coveralls.repoToken>
 		<checksum-maven-plugin.version>1.4</checksum-maven-plugin.version>
-		<license-maven-plugin.version>1.19</license-maven-plugin.version>
+		<license-maven-plugin.version>2.0.0</license-maven-plugin.version>
 		<commons-rng-simple.version>1.3</commons-rng-simple.version>
 		<docker.organization>mbarre</docker.organization>
 		<schemacrawler.command.csv.lint.url>https://jitpack.io/com/github/adriens/schemacrawler-additional-command-lints-as-csv/${schemacrawler.command.csv.lint.version}</schemacrawler.command.csv.lint.url>
