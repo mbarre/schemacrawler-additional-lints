@@ -88,7 +88,7 @@ public class LinterJsonTypeColumn extends BaseLinter {
                     "9.4".compareTo(connection.getMetaData().getDatabaseProductVersion()) <= 0){
                 List<String> names = findJsonTypeColumn(getColumns(table));
                 for (String name : names) {
-                    addLint(table, getDescription(), name);
+                    addTableLint(table, getDescription(), name);
                 }
             }
             
