@@ -57,12 +57,9 @@ public class LinterTableNameNotInLowerCaseTest extends BaseLintTest {
         final LinterRegistry registry = new LinterRegistry();
         Assert.assertTrue(registry.hasLinter(LinterTableNameNotInLowerCase.class.getName()));
         
-        final SchemaCrawlerOptions options = SchemaCrawlerOptionsBuilder.builder().withSchemaInfoLevel(SchemaInfoLevelBuilder.standard()).toOptions();
-        // Set what details are required in the schema - this affects the
-        // time taken to crawl the schema
-        //options.setTableNamePattern("\"TEST_CASE\"");
-        
-        Connection connection = DriverManager.getConnection(PostgreSqlDatabase.CONNECTION_STRING,
+        final SchemaCrawlerOptions options = SchemaCrawlerOptionsBuilder.newSchemaCrawlerOptions();
+
+        Connection connection = DriverManager.getConnection(database.getConnectionString(),
                 PostgreSqlDatabase.USER_NAME, database.getPostgresPassword());
         
         List<LintWrapper> lints = executeToJsonAndConvertToLintList(LinterTableNameNotInLowerCase.class.getSimpleName(), options, connection);

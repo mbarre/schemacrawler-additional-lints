@@ -31,6 +31,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import io.github.mbarre.schemacrawler.test.utils.LintWrapper;
 import io.github.mbarre.schemacrawler.test.utils.PostgreSqlDatabase;
+import schemacrawler.schemacrawler.LimitOptionsBuilder;
 import schemacrawler.schemacrawler.SchemaCrawlerOptions;
 import schemacrawler.schemacrawler.SchemaCrawlerOptionsBuilder;
 import schemacrawler.schemacrawler.SchemaInfoLevelBuilder;
@@ -59,9 +60,10 @@ public class LinterXmlContentTest extends BaseLintTest {
 		final LinterRegistry registry = new LinterRegistry();
 		Assert.assertTrue(registry.hasLinter(LinterXmlContent.class.getName()));
 
-		final SchemaCrawlerOptions options = SchemaCrawlerOptionsBuilder.builder().withSchemaInfoLevel(SchemaInfoLevelBuilder.standard()).tableNamePattern("test_xml").toOptions();
+		LimitOptionsBuilder limitOptionBuilder = LimitOptionsBuilder.builder().tableNamePattern("test_xml");
+		SchemaCrawlerOptions options = SchemaCrawlerOptionsBuilder.newSchemaCrawlerOptions().withLimitOptions(limitOptionBuilder.toOptions());
 
-		Connection connection = DriverManager.getConnection(PostgreSqlDatabase.CONNECTION_STRING,
+		Connection connection = DriverManager.getConnection(database.getConnectionString(),
 				PostgreSqlDatabase.USER_NAME, database.getPostgresPassword());
 
 		List<LintWrapper> lints = executeToJsonAndConvertToLintList(LinterXmlContent.class.getSimpleName(), options, connection);

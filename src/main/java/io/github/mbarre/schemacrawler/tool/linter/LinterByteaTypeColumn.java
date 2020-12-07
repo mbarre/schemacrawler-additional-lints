@@ -81,7 +81,7 @@ public class LinterByteaTypeColumn  extends BaseLinter {
                 for (Column column : columns) {
                     LOGGER.log(Level.INFO, "Checking {0}...", column.getFullName() + " - " + column.getColumnDataType().getDatabaseSpecificTypeName());
                     if (Objects.equals("bytea", column.getColumnDataType().getDatabaseSpecificTypeName())) {
-                        addLint(table, getDescription(), column.getFullName());
+                        addTableLint(table, getDescription(), column.getFullName());
                     }
                 }
             }

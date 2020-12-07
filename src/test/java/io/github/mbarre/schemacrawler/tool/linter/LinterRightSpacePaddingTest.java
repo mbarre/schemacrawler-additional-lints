@@ -54,9 +54,9 @@ public class LinterRightSpacePaddingTest  extends BaseLintTest {
 		final LinterRegistry registry = new LinterRegistry();
 		Assert.assertTrue(registry.hasLinter(LinterRightSpacePadding.class.getName()));
 
-		final SchemaCrawlerOptions options = SchemaCrawlerOptionsBuilder.builder().withSchemaInfoLevel(SchemaInfoLevelBuilder.standard()).toOptions();
+		final SchemaCrawlerOptions options = SchemaCrawlerOptionsBuilder.newSchemaCrawlerOptions();
 
-		Connection connection = DriverManager.getConnection(PostgreSqlDatabase.CONNECTION_STRING,
+		Connection connection = DriverManager.getConnection(database.getConnectionString(),
 				PostgreSqlDatabase.USER_NAME, database.getPostgresPassword());
 
 		List<LintWrapper> lints = executeToJsonAndConvertToLintList(LinterRightSpacePadding.class.getSimpleName(), options, connection);

@@ -25,10 +25,10 @@ package io.github.mbarre.schemacrawler.tool.linter;
 import io.github.mbarre.schemacrawler.utils.LintUtils;
 import schemacrawler.schema.Column;
 import schemacrawler.schema.Table;
-import schemacrawler.schemacrawler.Config;
 import schemacrawler.schemacrawler.SchemaCrawlerException;
 import schemacrawler.tools.lint.BaseLinter;
 import schemacrawler.tools.lint.LintSeverity;
+import schemacrawler.tools.options.Config;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -118,7 +118,7 @@ public class LinterColumnSize extends BaseLinter {
                         while (rs.next()) {
                             int maxLength = rs.getInt(1);
                             if(maxLength > 0 && (maxLength*100/column.getSize() < minColumnSizePercent)){
-                                addLint(table, "Column is oversized ("+column.getSize()+" char.) regarding its content (max: "+maxLength+" char.).", column.getFullName());
+                                addTableLint(table, "Column is oversized ("+column.getSize()+" char.) regarding its content (max: "+maxLength+" char.).", column.getFullName());
                             }
                         }
                     }   catch (SQLException ex) {
