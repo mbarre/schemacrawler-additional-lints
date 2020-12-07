@@ -22,24 +22,20 @@ package io.github.mbarre.schemacrawler.tool.linter;
  * #L%
  */
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.sql.Types;
-import java.util.List;
-import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import io.github.mbarre.schemacrawler.utils.LintUtils;
 import io.github.mbarre.schemacrawler.utils.XmlUtils;
 import schemacrawler.schema.Column;
 import schemacrawler.schema.Table;
-import schemacrawler.schemacrawler.Config;
 import schemacrawler.schemacrawler.SchemaCrawlerException;
 import schemacrawler.tools.lint.BaseLinter;
 import schemacrawler.tools.lint.LintSeverity;
+import schemacrawler.tools.options.Config;
+
+import java.sql.*;
+import java.util.List;
+import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Linter to check if non XML type is used whereas XML data is store in column

@@ -60,14 +60,13 @@ public class LinterXmlContentTest extends BaseLintTest {
 		final LinterRegistry registry = new LinterRegistry();
 		Assert.assertTrue(registry.hasLinter(LinterXmlContent.class.getName()));
 
-		final SchemaCrawlerOptionsBuilder optionsBuilder = SchemaCrawlerOptionsBuilder.builder();
 		LimitOptionsBuilder limitOptionBuilder = LimitOptionsBuilder.builder().tableNamePattern("test_xml");
-		optionsBuilder.withLimitOptions(limitOptionBuilder.toOptions());
+		SchemaCrawlerOptions options = SchemaCrawlerOptionsBuilder.newSchemaCrawlerOptions().withLimitOptions(limitOptionBuilder.toOptions());
 
 		Connection connection = DriverManager.getConnection(database.getConnectionString(),
 				PostgreSqlDatabase.USER_NAME, database.getPostgresPassword());
 
-		List<LintWrapper> lints = executeToJsonAndConvertToLintList(LinterXmlContent.class.getSimpleName(), optionsBuilder.toOptions(), connection);
+		List<LintWrapper> lints = executeToJsonAndConvertToLintList(LinterXmlContent.class.getSimpleName(), options, connection);
 		Assert.assertEquals(1,lints.size());
 		int index = 0;
 		Assert.assertEquals(LinterXmlContent.class.getName(), lints.get(index).getId());

@@ -8,9 +8,9 @@ cache:
 env:
   global:
   - secure: qczyIZl7He/Hh5TwFkMUwSnyYwB/b1XCQXG2PnDJWfLkRVZ8+UAnl0yt05b7pMXKeJ0UfaglSzcvXI2++UcNVkjZoGRp/9HuKgqafzBjrDyLh/6rdbmZyIE4tj9txCnGglu/bQWMJ407UtRtzwx5mGXsCNBjYbfMYwoePmSeK3BeTg7kV9Wsx7+jqHcrczywapMDGh8v+HY7P8i2jw67dBdHP6B4HgnKdvt1SuHzJ0WMp73u4jb/kQu4vHKIZaKadYmq5htKhcD/zXkd4v6veO4Cp6esT9kmNFFeqdoJRbNX/khzG3VzDqbnX/6Z1+8ruJv8WnOUlRhaJDox77t7fTu0Qq7gbFG0/zf56a/JMjE4+KKyD7W+EY1hVrZQ8n+l5C8lrVRHu7tc19x72ruXhem/RyBf/8PtFCr9+GuJy2uSg2SANnE1xWJFe+xgEgenXYI07g01sE8GDLFm4p59sWn818aHrtqoEuoLTK0WDSPLz+Hv9orpTuNFGkYsAdlnpjlswPXCLDicSSj37G5+Un/H+gbgU1efNYx8mL9BDRPYnO3XIex/mFh/sJnsv9oBXS0Wu4g1YJ3z/LHqBZSiUwMwOhEtvwyUeNIBPqVUO6YfYZH75CIxRg05Da899nJAyMG9flz9hoHhK1TrFbiqRCaWMqKH057UfGTKpVrHGOk=
-  #defines SONAR_TOKEN
   - secure: gw32l1VoKdS6gt6DXn2U14R+sqsBWowEwTIvu86yFz2UxhpW2PXDWOkuhzMyE/N1uQtlHFYBZCnHR2jd1KRMNqhsLR6NnoIPgs+CRt448bL+mM8eJsX9cMSXKDVOMtm2tH/z/EGWAtcztA3hb698NJgcGYk2ARV40ZxlMn36g1V5GEKEDPcWm5rOPtQ1lkubdkMxqgN5pwx92sxDaqCZ6Grki+CWKVWfir2C3KcEImy50fPr8FV4c6tO6VRa9tC2ura9aftQwRECbAEYtsQ7kDV+kT9euXPo08vmSRftRICTFoRzFDfkd1fy6tDcZRPxmq3J1NnNZklYbHfXqLFVPyeSHWbG3y1QZlCg2pqGMpCXBCr0irdUcpKyXUJd9yzCkdl5sqKncYDEVOtPc0o+uZ4PbmvCggmGtuSlljlYgbE9mV2iEw+IsCtiP/T3Q4Bb3vDyMrheuY7E9BhTP835XIYwlAwXZP+eb5L0UI2ZHYWXe6GIEI3GDi9QA7yQ/qq/yaeTbZlDgqw0S4lQxZKK3Ct5xiVznZmOiRpeEeraeCLM/799GGEIsJJZ3ZdADMFRGTygByYpCXiJZNOnvf127Xr3N9h1UAVkZcAUb0+qclJml+3NEWETd1o4HoiYfU9wkpVtDPsGBitKKjj15Zmw2O1RfsOTZtFfq8KlCQg4g48=
-services: postgresql
+services:
+  - postgresql
 addons:
   postgresql: 9.6
 #  sonarcloud:
@@ -23,24 +23,22 @@ before_script:
   - psql -c 'create database sc_lint_test;' -U postgres
 script:
   # the following command line builds the project, runs the tests with coverage and then execute the SonarQube analysis
-  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install
- # - sonar-scanner
-  - mvn coveralls:report
+  - mvn clean test jacoco:report coveralls:report
 notifications:
   slack:
     secure: ar8mq3cXiZx7QehmtvDDAzGanJcL7KWrvbGzo8RGqFToVyVCqfaKaelmqv/TCLCOr8DssP3yKm0yoPX0kiypqqbXaCp3v6a/4k8LtS3az41dKkVjQnRQFc3zDb3FkVKFIfEK8Y/hOUrwcZvSydh9rIsJ/m3CgAQz5mBCny3Vh7r5sjCazUO8pjOTIEWd2AOSgoJvlwKaUHYYtonqmHhycxjtus1zHkDsvrvs8iPHVVKv9FUHmCy0aiXcOnUihftRGElUCA9yujwdHC//yMjetdYihmmErmPkgQFLIW0y/G+6aeZzR8zW5zFlU/oQZBE6bCp3FU856wJV+ohp5+PwBwbqSU9b6Fszs9mgNzZFcIirxouB9NE6qQ1p/tp0y82nFfOsyY6OggqWtRNFGT7hyX2qaF1cIzovaKk8HQQKCg3RzpbmssEqDy8mvsF4GP4ByozCogghqmtpGhu+NjSdMkAZIZgVbcZLjoIDVV2uxA+7vAXdUvhBce4bpetv7r0ddxpq4lY36RANCJvbVQvsFtffJHd0j1cY7ipN3WdS7r7UmlqsKBcv+RiSVbKxhhjDk73jcMFBbkjDMHkIkSGLXmYxzqmHusDVwmprju835ae3RQyJ50RC8Zcj9pUZOUmoYCH7YGJuoLF7KIPbZzEcjxjwPFpa1WH6haSB/phzjgg=
 deploy:
-  provider: releases
-  api_key:
-    secure: ZfPAAfcU13jvUVRFRj6cp2OnDYWDVreLc8+QFApKeiApFuDOprZmmIk+HA34UbflJvXq0q9IWcvjS7nJIMGGMLH6vdFaPDLiKqjRVKPnyj10Q3XfEA/8ZRzMg5QpUf32GRrBemKzDkU5mdXhacYKb1cNCYsQt2Ix1DC6slwKmS2duOyLu/Knw25b/m7yz4KxDI+l7bjYwa3OIOEQxh0z5OcQpwt6Wy39iuc4pRLORrjtHGISOA+1PA+ycmBjZZGibNCZ0CRl5+f5AfdY1W3evaCg/7I3ha8Y+p/3MyTBVjISEefDTMkI+gWFncsHP4MP53w5Ekp0f7GovLAFOF7dqY3DF4Qkeyd6qHHIsDHRr3Zyp/JD5iAQtezW45oy/afsRiherBBUbwppb/63IYbBSu69wJZAupY3tycSgpO/KCQ+giV/NzhzspNbevsCsaNWbt3a0DPqvVYVWmRGhU2PjNUy21WslvIQT2lUzMWRM11ubkF4MFfH1OLrBP4LinNG2FZ5pKd3kBldePInieQ89xfuFnQ2jqtfGI+lTWNEhcgOBMAs57s6mCLDu4xvyDWclD3DRvlhKWKe6iaYoLnkRW2ko4IlP4ksCQatCPzSa06Kg4ax8vhyDKA4CpcAqUsYKY80OV9xjQqabuz4N+fxCi0e3sY7QVuYLrwfKbhVBxo=
-  file: 
-  - target/schemacrawler-additional-lints-${TRAVIS_TAG}.jar
-  - target/schemacrawler-additional-lints-${TRAVIS_TAG}.jar.md5
-  - target/schemacrawler-additional-lints-${TRAVIS_TAG}.jar.sha1
-  skip_cleanup: true
-  on:
-    tags: true
-    repo: mbarre/schemacrawler-additional-lints
+  - provider: releases
+    api_key:
+      secure: nlt7WHbr4aCkUf+LHEzF+njYMnMjXPfGviP9iEZlZ4Rl+ExF+dAi2zmU6HHGtRefXMf4czR5oOvHeq8u5la+OdilvCLn2V50SzKiRQFQokby41IOAurLk6FAPycfWeaR+6emFcUjtahsf5TGBgt8kOYHyN+ar8tMlyuAXsoEmJ/0uAhPRppl//EPG1ny+7kWySV98Et/gYWDpoTWQNU0ZI5Udhgufo6Xet8fJ0tUwghDSo65irCE1a9CTYRKhOat8HkTsOj0YIEJNnV2YfJ14sg5F1u51QzActqeGATEdByiT+dwCKGKnoVSNyD0945K9q2/afvFMXH1q3GFGnKtx8hjvXsj88y2PacywcHVviX9Kqb8WN/KNwmlbjc7RdInmqbRf2+UiMJigpidZSR2vQDleEjfblBKZZlEOGsljEawP1Us5IqCAvRD2EaXsRyvs+pZWFTlNifiObg/aUxEbLdjWLNVtty9XkrPhpTW3Fy1o4jx27BY8xfGZa+VBVi+g8N1xuWNO7NOsA/mtqd3oCBankGYHOSkbW8aZnlykpIIV7cF7KYu/gDGB+bx9CJ0DLED8N0QBwU+NCm0l+JRX+UpkbyiBhexl0Wcmfq0Kk6f8v95m3ivWRJ5I4GzJLT/NjT4eZTuM3oUZussc4DLhJ/4ykZ6SWeaUHaAv1FukOU=
+    file:
+    - target/schemacrawler-additional-lints-${TRAVIS_TAG}.jar
+    - target/schemacrawler-additional-lints-${TRAVIS_TAG}.jar.md5
+    - target/schemacrawler-additional-lints-${TRAVIS_TAG}.jar.sha1
+    skip_cleanup: true
+    on:
+      tags: true
+      repo: mbarre/schemacrawler-additional-lints
 branches:
   except:
   - travis

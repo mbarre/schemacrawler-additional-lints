@@ -57,14 +57,13 @@ public class LinterColumnSizeTest extends BaseLintTest {
         final LinterRegistry registry = new LinterRegistry();
         Assert.assertTrue(registry.hasLinter(LinterColumnSize.class.getName()));
         
-        final SchemaCrawlerOptionsBuilder optionsBuilder = SchemaCrawlerOptionsBuilder.builder();
         LimitOptionsBuilder limitOptionBuilder = LimitOptionsBuilder.builder().tableNamePattern("test_varchar");
-        optionsBuilder.withLimitOptions(limitOptionBuilder.toOptions());
+        SchemaCrawlerOptions options = SchemaCrawlerOptionsBuilder.newSchemaCrawlerOptions().withLimitOptions(limitOptionBuilder.toOptions());
 
         Connection connection = DriverManager.getConnection(database.getConnectionString(),
                 PostgreSqlDatabase.USER_NAME, database.getPostgresPassword());
         
-        List<LintWrapper> lints = executeToJsonAndConvertToLintList(LinterColumnSize.class.getSimpleName(), optionsBuilder.toOptions(), connection);
+        List<LintWrapper> lints = executeToJsonAndConvertToLintList(LinterColumnSize.class.getSimpleName(), options, connection);
         
         Assert.assertEquals(1, lints.size());
         int index = 0;
