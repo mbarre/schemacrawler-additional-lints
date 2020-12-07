@@ -140,7 +140,7 @@ License along with this program.  If not, see
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
 		<schemacrawler.version>16.10.1</schemacrawler.version>
-		<schemacrawler.command.csv.lint.version>1.9</schemacrawler.command.csv.lint.version>
+		<schemacrawler.command.csv.lint.version>1.10</schemacrawler.command.csv.lint.version>
 		<java.version>1.8</java.version>
 		<java.version.short>8</java.version.short>
 		<hsqldb.version>2.3.2</hsqldb.version>
