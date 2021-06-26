@@ -1,0 +1,40 @@
+version: 2
+updates:
+- package-ecosystem: maven
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "07:00"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: org.apache.maven.doxia:doxia-module-markdown
+    versions:
+    - "> 1.8"
+  - dependency-name: org.liquibase:liquibase-maven-plugin
+    versions:
+    - 4.2.2
+    - 4.3.0
+    - 4.3.1
+    - 4.3.2
+    - 4.3.3
+  - dependency-name: us.fatehi:schemacrawler-lint
+    versions:
+    - 16.11.7
+    - 16.12.1
+    - 16.12.2
+    - 16.12.3
+    - 16.14.1
+    - 16.14.2
+    - 16.14.3
+    - 16.14.4
+  - dependency-name: com.fasterxml.jackson.datatype:jackson-datatype-jsr310
+    versions:
+    - 2.12.1
+    - 2.12.2
+  - dependency-name: org.postgresql:postgresql
+    versions:
+    - 42.2.18
+    - 42.2.19
+  - dependency-name: org.apache.commons:commons-lang3
+    versions:
+    - "3.11"
