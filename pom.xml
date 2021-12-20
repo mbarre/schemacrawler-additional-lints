@@ -287,7 +287,7 @@ License along with this program.  If not, see
 		<dependency>
 			<groupId>com.fasterxml.jackson.datatype</groupId>
 			<artifactId>jackson-datatype-jsr310</artifactId>
-			<version>2.11.2</version>
+			<version>2.13.1</version>
 		</dependency>
 	</dependencies>
 
