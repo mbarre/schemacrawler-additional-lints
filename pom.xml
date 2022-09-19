@@ -139,7 +139,7 @@ License along with this program.  If not, see
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-		<schemacrawler.version>16.10.1</schemacrawler.version>
+		<schemacrawler.version>16.18.2</schemacrawler.version>
 		<schemacrawler.command.csv.lint.version>1.9</schemacrawler.command.csv.lint.version>
 		<java.version>1.8</java.version>
 		<java.version.short>8</java.version.short>
